@@ -35,15 +35,15 @@ A written page-and-section spec for the whole Canto Zen storefront: every route,
 
 - [Route inventory & URL structure](tickets/001-route-inventory.md) — rooms are top-level (`/sala`, `/quarto`, `/cozinha`, `/escritorio` — **Varanda dropped**, four rooms); products are flat at `/produtos/[slug]`; type is a path segment (`/sala/sofas`) with every other facet as pt-BR query state, room × type pairs enumerated per room and 404 otherwise; `/produtos`, `/colecoes/[slug]`, `/inspiracoes/[slug]`, `/carrinho`, `/checkout`, `/pedido-confirmado`, `/sobre`, `/contato`, `/politicas/[slug]` × 4. Breadcrumbs read a product's primary room, which hands a field to [Product data shape](tickets/003-product-data-shape.md). Full table in [`docs/spec/rotas.md`](../docs/spec/rotas.md).
 
+- [Brand direction](tickets/002-brand-direction.md) — **high-end atelier in japandi register, quiet with one bold move**, and that move is *a régua*: a hairline rule with end ticks carrying a real cm figure along every featured piece, chosen because the cota is ornament and data at once. Palette is ink/reboco/kozo/carvalho/fio with **índigo `#223244` as the sole accent** — terracotta and `#F4F1EA` creams ruled out as the category default; type is **Zen Old Mincho** (display only) + **Schibsted Grotesk** (body, UI, tabular figures); zero radius, no UI shadow, 1px hairlines, and the only curve or shadow in the identity lives inside the photograph, which is always raking late-afternoon light on raw plaster with the piece alone. Atelier vs. the commerce realism in [Brazilian e-commerce UX conventions](tickets/004-br-ecommerce-conventions.md) resolved as **voice, not presence** — every price, parcelamento and Pix badge stays, set in the annotation voice rather than shouted; no "sob consulta". Full direction in [`docs/spec/marca.md`](../docs/spec/marca.md); three compared directions captured on branch `prototype/brand-direction`.
+
 ## Not yet specified
 
 - **Self-service cancellation / returns path.** Decreto 7.962 art. 5º requires cancelling "pela mesma ferramenta" used to buy. With no auth in scope, what that surface even is for a concept store is unclear — revisit once Institutional pages and Footer are settled.
 - **Legal-copy verification.** Statutory text in the research came from a mirror, not planalto.gov.br. Any ticket that writes user-facing legal copy should cross-check first.
-- **404 / error / loading surfaces.** Now load-bearing: the route inventory enumerates room × type pairs and 404s the rest, so 404 is a real destination rather than an edge case. Shape still waits on brand direction.
 - **Search.** Whether the navbar carries search at all is the navbar ticket's call. The route question is settled — results land on `/produtos?q=`, not a separate route — but if search exists, the results *surface* (empty state, query echo, relevance signalling) still needs a spec.
 - **Empty states.** Empty cart, zero filter results, no articles. Coarser than one ticket; may graduate into several or fold into the page specs.
-- **Motion & transition conventions.** Page transitions, hover behaviour, scroll reveals. Waits on brand direction to know how loud the design is.
-- **Accessibility commitments.** What level the spec asserts, and which sections carry specific obligations.
+- **Accessibility commitments.** What level the spec asserts, and which sections carry specific obligations. Brand direction fixed a visible índigo focus ring and honoured `prefers-reduced-motion`, but not the commitment level.
 
 ## Out of scope
 
