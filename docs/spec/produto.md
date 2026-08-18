@@ -45,6 +45,7 @@ type Produto = {
   ambientePrincipal: string; // -> Ambiente.slug — drives the breadcrumb
   ambientes: string[];       // -> Ambiente.slug[] — every room it lists under
   colecoes: string[];        // -> Colecao.slug[] — usually empty
+  ordem: number;             // authored curatorial sequence — added by catalogo.md §11
 
   precoTabela: number;       // centavos — the reference/parcelado price
   precoDe?: number;          // centavos — strikethrough, promo only
@@ -212,6 +213,7 @@ type Ambiente = {
   label: string;     // 'Sala'
   tipos: string[];   // -> Tipo.slug[] — CURATED, in menu order
   imagem: { src: string; alt: string };  // room photograph — added by home.md §8
+  descricao: string;                     // one-sentence header — added by catalogo.md §11
 };
 
 type Tipo = {
@@ -242,6 +244,12 @@ Two things justify entities over bare strings on the product:
   the taxonomy is inferred from whatever products happen to exist.
 - **Every facet needs a slug *and* an accented label**, and colours additionally
   need a swatch.
+
+> **`Produto.ordem` and `Ambiente.descricao` were added after this ticket closed**,
+> by [`catalogo.md`](catalogo.md) §11. `ordem` is the authored sequence behind the
+> default `curadoria` sort — global, not per-ambiente, so one piece has one
+> curatorial position in every slice of the catalogue. `descricao` is the
+> one-sentence room-landing header. Both additive, neither a reversal.
 
 > **`Ambiente.imagem` was added after this ticket closed**, by
 > [`home.md`](home.md) §8 — the home's Ambientes section needs a room photograph
@@ -353,9 +361,11 @@ to fix; this file only fixes where the inputs live.
 
 ## Restrições entregues a outros tickets
 
-- **[Catálogo](../../.wayfinder/tickets/008-catalog.md)** — filters read `cor`
-  (single), `materiais` (any-match), `precoTabela`, `tipo`. The card renders
-  `disponibilidade` as a badge.
+- **[Catálogo](../../.wayfinder/tickets/008-catalog.md)** — *resolved*, see
+  [`catalogo.md`](catalogo.md). Filters read `cor`, `materiais`, `precoTabela`,
+  `tipo` and `ambientes` (cor and material multi-select, any-match). The card
+  renders `disponibilidade` as an annotation label, not a coloured badge, and adds
+  `medidas.largura` — the promise this file made by keeping the cm out of `nome`.
 - **[Produto](../../.wayfinder/tickets/009-product-detail.md)** — the *outros
   acabamentos* strip queries by `familia`. `medidasExtras` is the
   Especificações table. The montagem block reads the derived price.
