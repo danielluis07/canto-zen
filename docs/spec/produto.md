@@ -211,6 +211,7 @@ type Ambiente = {
   slug: string;      // 'sala'
   label: string;     // 'Sala'
   tipos: string[];   // -> Tipo.slug[] — CURATED, in menu order
+  imagem: { src: string; alt: string };  // room photograph — added by home.md §8
 };
 
 type Tipo = {
@@ -241,6 +242,12 @@ Two things justify entities over bare strings on the product:
   the taxonomy is inferred from whatever products happen to exist.
 - **Every facet needs a slug *and* an accented label**, and colours additionally
   need a swatch.
+
+> **`Ambiente.imagem` was added after this ticket closed**, by
+> [`home.md`](home.md) §8 — the home's Ambientes section needs a room photograph
+> and nothing here supplied one. Deliberately not an `Imagem`: that type carries
+> `papel` and `cotas`, and a régua on a room photo is forbidden, so both fields
+> would exist only to stay empty. Additive, not a reversal.
 
 `Familia` is deliberately thin — it exists so the PDP's *outros acabamentos* strip
 has a display name. It has **no route**; `familias` is not a reserved segment and
