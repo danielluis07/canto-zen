@@ -159,11 +159,12 @@ Considered and ruled out — recorded so they are not relitigated:
   no traffic to justify it.
 - **`/finalizar-compra`** — a button label, not a place. The URL says `/checkout`,
   which is the established term in BR e-commerce.
+- **`?q=` e superfície de resultados** — reservado por esta tabela, **nunca usado**.
+  [`navbar.md`](navbar.md) §12 recusou a busca: ~20 páginas de listagem curadas,
+  navegação room-primary como *o* caminho, e nenhum corpus real que torne relevância
+  significativa. A busca e sua página de resultados saíram do mapa como fora de escopo.
 
 ## Open, elsewhere
 
-- **Search.** If [ticket 005 — Navbar](../../.wayfinder/tickets/005-navbar.md) puts search in
-  the navbar, results land on `/produtos` with a `?q=` param rather than a separate
-  route. That decision is the navbar's, not this table's.
 - **404 and error surfaces.** Enumerated type routes mean 404 is load-bearing here.
   Its shape waits on brand direction — see the map's *Not yet specified*.
