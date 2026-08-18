@@ -18,7 +18,7 @@ A written page-and-section spec for the whole Canto Zen storefront: every route,
   - Scope is **browse + cart + checkout**. No auth/account/orders/wishlist.
   - Copy is **pt-BR**. `app/layout.tsx` currently hardcodes `lang="en"` — the spec supersedes it.
   - **Brand direction is in scope** as an early ticket (mood/palette/type/density), not a full brand kit.
-  - Catalog is **room-primary, type-as-filter** (Sala, Quarto, Cozinha, Escritório, Varanda).
+  - Catalog is **room-primary, type-as-filter** (Sala, Quarto, Cozinha, Escritório). *Varanda was dropped while resolving the route inventory — four rooms, not five.*
   - Non-commerce surfaces: **editorial** — Inspirações, plus Sobre/Contato and a single shared policy template.
   - Checkout is **single-page**, accordion sections + sticky order summary.
   - **No dark mode.** One warm light identity.
@@ -33,16 +33,17 @@ A written page-and-section spec for the whole Canto Zen storefront: every route,
 
 - [Brazilian e-commerce UX conventions](tickets/004-br-ecommerce-conventions.md) — frete is quoted per-CEP on the *product* page as a list of options; every price shows both an à-vista and a financed total (`{N}x de R$ {v} sem juros`); Pix-first payment with a legally-required discount badge; checkout runs Identificação → Entrega → Pagamento with CPF and CEP-autofill; footer must carry razão social + CNPJ + address and an ostensive 7-day arrependimento notice; furniture adds montagem-as-add-on, bulky-item access disclosure, and L × P × A dimensions. Full detail and citations in [`docs/research/br-ecommerce-conventions.md`](../docs/research/br-ecommerce-conventions.md).
 
+- [Route inventory & URL structure](tickets/001-route-inventory.md) — rooms are top-level (`/sala`, `/quarto`, `/cozinha`, `/escritorio` — **Varanda dropped**, four rooms); products are flat at `/produtos/[slug]`; type is a path segment (`/sala/sofas`) with every other facet as pt-BR query state, room × type pairs enumerated per room and 404 otherwise; `/produtos`, `/colecoes/[slug]`, `/inspiracoes/[slug]`, `/carrinho`, `/checkout`, `/pedido-confirmado`, `/sobre`, `/contato`, `/politicas/[slug]` × 4. Breadcrumbs read a product's primary room, which hands a field to [Product data shape](tickets/003-product-data-shape.md). Full table in [`docs/spec/rotas.md`](../docs/spec/rotas.md).
+
 ## Not yet specified
 
 - **Self-service cancellation / returns path.** Decreto 7.962 art. 5º requires cancelling "pela mesma ferramenta" used to buy. With no auth in scope, what that surface even is for a concept store is unclear — revisit once Institutional pages and Footer are settled.
 - **Legal-copy verification.** Statutory text in the research came from a mirror, not planalto.gov.br. Any ticket that writes user-facing legal copy should cross-check first.
-- **404 / error / loading surfaces.** Certainly needed; their shape depends on the brand direction and on whether search exists.
-- **Search.** Whether the navbar carries search at all is part of the navbar ticket; if it does, a results surface needs its own spec.
+- **404 / error / loading surfaces.** Now load-bearing: the route inventory enumerates room × type pairs and 404s the rest, so 404 is a real destination rather than an edge case. Shape still waits on brand direction.
+- **Search.** Whether the navbar carries search at all is the navbar ticket's call. The route question is settled — results land on `/produtos?q=`, not a separate route — but if search exists, the results *surface* (empty state, query echo, relevance signalling) still needs a spec.
 - **Empty states.** Empty cart, zero filter results, no articles. Coarser than one ticket; may graduate into several or fold into the page specs.
 - **Motion & transition conventions.** Page transitions, hover behaviour, scroll reveals. Waits on brand direction to know how loud the design is.
 - **Accessibility commitments.** What level the spec asserts, and which sections carry specific obligations.
-- **SEO / metadata per route.** Titles, descriptions, structured data. Waits on the route inventory.
 
 ## Out of scope
 
