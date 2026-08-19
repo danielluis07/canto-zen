@@ -1,37 +1,40 @@
-# Navbar — barra de navegação
+# Navbar — navigation bar
 
-Resolve o ticket [Navbar](../../.wayfinder/tickets/005-navbar.md).
-Vale para todas as 15 rotas de [`rotas.md`](rotas.md). Vocabulário visual em
-[`marca.md`](marca.md); toda medida, cor e voz tipográfica citada aqui vem de lá e
-não é redefinida.
+Resolves ticket [Navbar](../../.wayfinder/tickets/005-navbar.md).
+Applies to all 15 routes in [`rotas.md`](rotas.md). Visual vocabulary lives in
+[`marca.md`](marca.md); every measurement, colour and typographic voice quoted
+here comes from there and is not redefined.
 
----
-
-## 1. Propósito
-
-A barra tem **um** trabalho: manter os quatro ambientes a um gesto de distância em
-qualquer ponto da loja. Ela não vende, não anuncia e não busca. É o espinha dorsal
-room-primary de [`rotas.md`](rotas.md) tornado permanente.
-
-Corolário: tudo que não serve a esse trabalho foi recusado — busca, ícones,
-minicarrinho, contador de favoritos, seletor de idioma, telefone de atendimento.
+This file is written in English prose; every string quoted as copy is the pt-BR
+that ships, and domain terms stay pt-BR throughout.
 
 ---
 
-## 2. Estrutura
+## 1. Purpose
 
-Duas faixas empilhadas. Só a segunda é fixa.
+The bar has **one** job: keep the four ambientes one gesture away from anywhere
+in the store. It does not sell, does not advertise and does not search. It is the
+room-primary spine of [`rotas.md`](rotas.md) made permanent.
+
+Corollary: everything that does not serve that job was refused — search, icons,
+mini-cart, wishlist counter, language switcher, support phone number.
+
+---
+
+## 2. Structure
+
+Two stacked bands. Only the second one is sticky.
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│  FRETE CALCULADO POR CEP · ATÉ 10X SEM JUROS · …             │  faixa de aviso (§3)
+│  FRETE CALCULADO POR CEP · ATÉ 10X SEM JUROS · …             │  notice band (§3)
 ├──────────────────────────────────────────────────────────────┤
-│  Canto Zen    SALA  QUARTO  COZINHA  ESCRITÓRIO  INSPIRAÇÕES │  barra (§5)
+│  Canto Zen    SALA  QUARTO  COZINHA  ESCRITÓRIO  INSPIRAÇÕES │  bar (§5)
 │                                            CARRINHO (2)      │
 └──────────────────────────────────────────────────────────────┘
-                    ↓ abre
+                    ↓ opens
 ┌──────────────────────────────────────────────────────────────┐
-│              Sofás                                           │  painel (§6)
+│              Sofás                                           │  panel (§6)
 │              Poltronas                                       │
 │              …                                               │
 │              ───────────────                                 │
@@ -39,271 +42,279 @@ Duas faixas empilhadas. Só a segunda é fixa.
 └──────────────────────────────────────────────────────────────┘
 ```
 
-**Geometria da barra**
+**Bar geometry**
 
-| Propriedade | Valor |
+| Property | Value |
 |---|---|
-| Altura | `72px`, **constante** — nunca muda, nem ao fixar |
-| Container | `max-width: 1360px`, goteira `clamp(1.5rem, 4vw, 4.5rem)` |
-| Fundo | `--plaster` |
-| Borda inferior | filete de 1px em `--hairline` |
-| Sombra | nenhuma, em nenhum estado (§6 de `marca.md`) |
-| Raio | 0 |
+| Height | `72px`, **constant** — never changes, not even when it sticks |
+| Container | `max-width: 1360px`, gutter `clamp(1.5rem, 4vw, 4.5rem)` |
+| Background | `--plaster` |
+| Bottom border | 1px hairline in `--hairline` |
+| Shadow | none, in any state (`marca.md` §6) |
+| Radius | 0 |
 
-**Alinhamento — agrupado à esquerda, assimétrico.** Assinatura, um respiro de
-`3.5rem`, e então os itens de navegação com `2rem` entre si. O carrinho é empurrado
-sozinho para a direita. A goteira direita fica deliberadamente vazia — é a mesma
-regra do par imagem/texto em §5 de `marca.md`.
+**Alignment — left-grouped, asymmetric.** Wordmark, a `3.5rem` breath, then the
+navigation items with `2rem` between them. The cart is pushed alone to the right.
+The right gutter is deliberately left empty — the same rule as the image/text
+pair in `marca.md` §5.
 
-Navegação centralizada foi recusada: simetria contradiz o vazio intencional da
-marca. Duas linhas (assinatura centralizada acima da navegação) também — briga com
-a barra fixa por altura.
+Centred navigation was refused: symmetry contradicts the brand's intentional
+emptiness. Two lines (wordmark centred above the navigation) too — it fights the
+sticky bar over height.
 
 ---
 
-## 3. Faixa de aviso
+## 3. Notice band
 
-Existe, é **uma linha, estática e única**. Não gira, não é dispensável, não é fixa:
-rola para fora com a página e não volta.
+It exists, and it is **a single static line**. It does not rotate, is not
+dismissible, and is not sticky: it scrolls away with the page and does not come
+back.
 
-- Fundo `--kozo`, texto `--muted`, filete de 1px em `--hairline` embaixo.
-- Voz de **anotação** (§4 de `marca.md`).
-- Padding vertical `0.625rem`.
+- Background `--kozo`, text `--muted`, 1px hairline in `--hairline` underneath.
+- **Annotation** voice (`marca.md` §4).
+- Vertical padding `0.625rem`.
 
-**Direção de copy** — reasseguramento, nunca promoção. Três fatos curtos separados
-por `·`, nesta ordem de prioridade:
+**Copy direction** — reassurance, never promotion. Three short facts separated by
+`·`, in this order of priority:
 
 > `FRETE CALCULADO POR CEP · ATÉ 10X SEM JUROS · PEÇAS SOB ENCOMENDA`
 
-Proibido: contagem regressiva, percentual de desconto, "últimas unidades", qualquer
-verbo no imperativo. Rotação de mensagens está fora porque é movimento, e §9 de
-`marca.md` não o autoriza.
+Prohibited: countdowns, discount percentages, "últimas unidades", any imperative
+verb. Message rotation is out because it is motion, and `marca.md` §9 does not
+authorise it.
 
 ---
 
-## 4. Assinatura
+## 4. Wordmark
 
-`Canto Zen`, caixa baixa com iniciais maiúsculas, em **Zen Old Mincho** a
-`1.35rem`, `--ink`, tracking `0.005em`. Link para `/`.
+`Canto Zen`, sentence case with initial capitals, in **Zen Old Mincho** at
+`1.35rem`, `--ink`, tracking `0.005em`. Links to `/`.
 
-> **Exceção registrada.** §4 de `marca.md` restringe a Mincho a nome de peça,
-> título de coleção, título editorial e uma linha de destaque — *"nunca para
-> interface"*. A assinatura é a **única** exceção a essa regra em todo o
-> storefront, e não se generaliza: nenhum outro elemento de chrome usa a Mincho.
+> **Registered exception.** `marca.md` §4 restricts Mincho to piece names,
+> collection titles, editorial titles and a single feature line — *"never for
+> interface"*. The wordmark is the **only** exception to that rule in the entire
+> storefront, and it does not generalise: no other chrome element uses Mincho.
 >
-> A razão: com zero ícones na barra, compor a assinatura na voz de anotação a
-> tornaria tipograficamente idêntica ao rótulo "Inspirações" ao lado — a marca
-> desapareceria dentro da própria navegação.
+> The reason: with zero icons in the bar, setting the wordmark in the annotation
+> voice would make it typographically identical to the "Inspirações" label beside
+> it — the brand would disappear inside its own navigation.
 
-Não há símbolo, monograma ou lockup. A marca não tem sistema de logo, e o gesto
-forte já está gasto na régua.
+There is no symbol, monogram or lockup. The brand has no logo system, and the
+bold gesture is already spent on the régua.
 
 ---
 
-## 5. Itens de navegação
+## 5. Navigation items
 
-Cinco, nesta ordem, todos em voz de anotação:
+Five, in this order, all in the annotation voice:
 
-| Item | Destino | Abre painel |
+| Item | Destination | Opens panel |
 |---|---|---|
-| Sala | `/sala` | sim |
-| Quarto | `/quarto` | sim |
-| Cozinha | `/cozinha` | sim |
-| Escritório | `/escritorio` | sim |
-| Inspirações | `/inspiracoes` | não |
+| Sala | `/sala` | yes |
+| Quarto | `/quarto` | yes |
+| Cozinha | `/cozinha` | yes |
+| Escritório | `/escritorio` | yes |
+| Inspirações | `/inspiracoes` | no |
 
-**Fora da barra, deliberadamente:**
+**Deliberately out of the bar:**
 
-- **Todos os produtos** (`/produtos`) — vive dentro do painel como "Ver tudo em
-  {Ambiente}" e no rodapé. Um slot permanente para ele enfraqueceria os ambientes.
-- **Sobre e Contato** — rodapé e home. Não são destinos de navegação recorrente.
-- **Coleções** — não têm página índice (`rotas.md`, *Omissões deliberadas*), logo
-  não têm slot.
+- **All products** (`/produtos`) — it lives inside the panel as "Ver tudo em
+  {Ambiente}" and in the footer. A permanent slot for it would weaken the
+  ambientes.
+- **Sobre and Contato** — footer and home. They are not recurring navigation
+  destinations.
+- **Coleções** — they have no index page (`rotas.md`, *Deliberate omissions*), so
+  they get no slot.
 
 ---
 
-## 6. Painel de ambiente
+## 6. Ambiente panel
 
-**Forma: coluna.** O painel é uma coluna estreita alinhada sob o grupo de
-navegação — não uma superfície de largura total.
+**Shape: a column.** The panel is a narrow column aligned under the navigation
+group — not a full-bleed surface.
 
-| Propriedade | Valor |
+| Property | Value |
 |---|---|
-| Largura do conteúdo | `max-width: 260px`, coluna única |
-| Alinhamento | sob o grupo de navegação, não sob a borda da página |
-| Fundo | `--plaster` — o mesmo da barra, contínuo |
-| Borda inferior | filete de 1px em `--hairline` |
-| Padding vertical | `2rem` |
-| Sombra, raio | nenhuma, 0 |
+| Content width | `max-width: 260px`, single column |
+| Alignment | under the navigation group, not under the page edge |
+| Background | `--plaster` — the same as the bar, continuous |
+| Bottom border | 1px hairline in `--hairline` |
+| Vertical padding | `2rem` |
+| Shadow, radius | none, 0 |
 
-**Conteúdo**, de cima para baixo:
+**Content**, top to bottom:
 
-1. Os tipos curados daquele ambiente, na ordem exata da tabela *Taxonomia de tipos*
-   de [`rotas.md`](rotas.md). Corpo S (`0.875rem`), `--ink`, `0.375rem` de padding
-   vertical cada. Hover leva a cor a `--indigo`.
-2. Filete de 1px em `--hairline`, com `1.25rem` de respiro acima e abaixo.
-3. **Ver tudo em {Ambiente}** — voz de anotação, sublinhado por filete
-   `--hairline`, apontando para a landing do ambiente.
+1. That ambiente's curated tipos, in the exact order of the *Type taxonomy* table
+   in [`rotas.md`](rotas.md). Body S (`0.875rem`), `--ink`, `0.375rem` vertical
+   padding each. Hover takes the colour to `--indigo`.
+2. A 1px hairline in `--hairline`, with `1.25rem` of breathing room above and
+   below.
+3. **Ver tudo em {Ambiente}** — annotation voice, underlined with a `--hairline`
+   rule, pointing at the ambiente landing.
 
-Nada mais entra: sem imagem, sem peça em destaque, sem coleção, sem texto
-editorial, sem "novidades".
+Nothing else goes in: no image, no featured piece, no collection, no editorial
+text, no "novidades".
 
-### Por que essa forma
+### Why this shape
 
-Comparadas lado a lado no protótipo (§12):
+Compared side by side in the prototype (§12):
 
-- **Painel com peça em destaque** — largura total, tipos em duas colunas e uma peça
-  com régua à direita. Recusado: repetir a régua acima de *toda* página gasta o
-  gesto que §2 de `marca.md` raciona a duas por tela. A assinatura da marca vira
-  papel de parede exatamente onde ela não é informação que o comprador pediu.
-- **Índice** — um único painel com os quatro ambientes e todos os tipos de uma vez,
-  o ambiente sob o cursor em tinta cheia e os outros esmaecidos. Recusado: esmaecer
-  três quartos do painel é um efeito, e a densidade de 20 tipos simultâneos
-  contradiz a densidade baixa de §5 de `marca.md`.
+- **Panel with a featured piece** — full-bleed, tipos in two columns and a piece
+  with a régua on the right. Refused: repeating the régua above *every* page
+  spends the gesture `marca.md` §2 rations to two per screen. The brand's
+  signature becomes wallpaper exactly where it is not information the buyer asked
+  for.
+- **Index** — a single panel with all four ambientes and every tipo at once, the
+  hovered ambiente in full ink and the others dimmed. Refused: dimming
+  three-quarters of the panel is an effect, and the density of 20 simultaneous
+  tipos contradicts the low density of `marca.md` §5.
 
-A coluna venceu por ser a única que não adiciona nada ao que a pergunta pedia:
-revelar os tipos daquele ambiente.
-
----
-
-## 7. Carrinho
-
-Texto, sem ícone: **`CARRINHO`**, e `(n)` quando `n > 0`.
-
-- Voz de anotação, `--ink`, numerais tabulares.
-- O parêntese some inteiro no carrinho vazio — nunca `(0)`.
-- Sem badge, sem círculo, sem cor. Vermelho não existe na paleta e um badge
-  índigo gastaria o único acento em contagem.
-- **Navega para `/carrinho`.** Não abre gaveta, não abre preview, não tem hover
-  state além da transição de cor.
-
-> **Restrição entregue ao ticket [Cart sections](../../.wayfinder/tickets/010-cart.md):**
-> a afordância da navbar é um **link**. Se aquele ticket quiser uma gaveta, ela é
-> um acréscimo disparado pelo *adicionar ao carrinho*, não por este link. O link
-> continua indo para a página em qualquer cenário.
+The column won because it is the only one that adds nothing to what the question
+asked for: revealing that ambiente's tipos.
 
 ---
 
-## 8. Comportamento fixo
+## 7. Cart
 
-A faixa de aviso rola para fora. A barra então **fixa no topo**, na mesma altura de
-`72px` que tinha antes.
+Text, no icon: **`CARRINHO`**, plus `(n)` when `n > 0`.
 
-- Sem encolher, sem trocar de fundo, sem ganhar sombra, sem esconder-ao-descer.
-- `--plaster` opaco — nunca translúcido ou desfocado.
-- O filete inferior é o que separa a barra do conteúdo que passa por baixo.
+- Annotation voice, `--ink`, tabular figures.
+- The parenthesis disappears entirely on an empty cart — never `(0)`.
+- No badge, no circle, no colour. Red does not exist in the palette, and an
+  índigo badge would spend the sole accent on a count.
+- **Navigates to `/carrinho`.** It does not open a drawer, does not open a
+  preview, and has no hover state beyond the colour transition.
 
-Escolhido assim porque qualquer mudança de altura no scroll é movimento, e movimento
-pertence ao ticket [Motion & transition conventions](../../.wayfinder/tickets/017-motion.md).
-Esta especificação não deixa nada para aquele ticket desfazer.
+> **Constraint handed to ticket [Cart sections](../../.wayfinder/tickets/010-cart.md):**
+> the navbar affordance is a **link**. If that ticket wants a drawer, it is an
+> addition triggered by *add to cart*, not by this link. The link keeps going to
+> the page in every scenario.
 
 ---
 
-## 9. Estado ativo
+## 8. Sticky behaviour
 
-O ambiente da rota corrente é marcado por um **filete de 1px em `--ink` sob o
-rótulo**, e o rótulo vai a `--ink` cheio. Os demais ficam em `--muted`.
+The notice band scrolls away. The bar then **sticks to the top**, at the same
+`72px` height it had before.
 
-**Não se usa índigo aqui**, embora §3 de `marca.md` liste "link ativo" entre seus
-usos: numa página de produto o selo Pix e o anel de foco já consomem duas
-aparições, e um terceiro índigo violaria a regra das três. O filete reaproveita o
-vocabulário que a marca já possui.
+- No shrinking, no background swap, no shadow gained, no hide-on-scroll-down.
+- Opaque `--plaster` — never translucent or blurred.
+- The bottom hairline is what separates the bar from the content passing beneath.
 
-Regras de aplicação:
+Chosen this way because any height change on scroll is motion, and motion belongs
+to ticket [Motion & transition conventions](../../.wayfinder/tickets/017-motion.md).
+This specification leaves nothing for that ticket to undo.
 
-| Rota | Item marcado |
+---
+
+## 9. Active state
+
+The current route's ambiente is marked with a **1px `--ink` hairline under the
+label**, and the label goes to full `--ink`. The others stay in `--muted`.
+
+**Índigo is not used here**, even though `marca.md` §3 lists "active link" among
+its uses: on a product page the Pix badge and the focus ring already consume two
+appearances, and a third índigo would violate the rule of three. The hairline
+reuses vocabulary the brand already owns.
+
+Application rules:
+
+| Route | Marked item |
 |---|---|
 | `/sala`, `/sala/sofas` | Sala |
 | `/inspiracoes`, `/inspiracoes/[slug]` | Inspirações |
-| `/produtos/[slug]` | **nenhum** — o breadcrumb já declara o ambiente principal |
-| `/produtos`, `/carrinho`, `/checkout`, institucionais | nenhum |
+| `/produtos/[slug]` | **none** — the breadcrumb already states the primary ambiente |
+| `/produtos`, `/carrinho`, `/checkout`, institutional pages | none |
 
-Estado **aberto** ≠ estado **ativo**: o painel aberto leva o rótulo a `--ink` cheio
-sem desenhar o filete. Um ambiente pode estar aberto e ativo ao mesmo tempo.
+**Open** state ≠ **active** state: an open panel takes its label to full `--ink`
+without drawing the hairline. An ambiente can be open and active at the same time.
 
 ---
 
-## 10. Interação e acessibilidade
+## 10. Interaction and accessibility
 
-- **O rótulo é um link.** Em ponteiro, o hover abre o painel após uma espera de
-  intenção de `120ms`; o clique navega para a landing do ambiente.
-- **Toque e teclado** não têm hover: a primeira interação abre o painel, e a
-  navegação acontece pelo "Ver tudo em {Ambiente}" dentro dele.
-- **Um painel por vez.** Abrir um fecha o outro.
-- **Fechamento**: `Escape` fecha e devolve o foco ao rótulo que o abriu; sair com o
-  ponteiro fecha após `180ms`; rolar a página fecha imediatamente.
-- `aria-expanded` no rótulo; o painel é rotulado pelo ambiente que o abriu.
-- **Foco visível obrigatório**: `outline: 2px solid var(--indigo); outline-offset: 3px`,
-  conforme §6 de `marca.md`. Este é o único índigo da barra.
-- Ordem de tabulação: assinatura → ambientes → Inspirações → carrinho. O conteúdo
-  do painel entra na ordem imediatamente após seu rótulo, quando aberto.
-- A transição de cor de `120ms` dos estados interativos é a única animação; nada
-  na barra anima geometria, opacidade ou posição.
+- **The label is a link.** With a pointer, hover opens the panel after a `120ms`
+  intent delay; a click navigates to the ambiente landing.
+- **Touch and keyboard** have no hover: the first interaction opens the panel, and
+  navigation happens through "Ver tudo em {Ambiente}" inside it.
+- **One panel at a time.** Opening one closes the other.
+- **Closing**: `Escape` closes and returns focus to the label that opened it;
+  leaving with the pointer closes after `180ms`; scrolling the page closes
+  immediately.
+- `aria-expanded` on the label; the panel is labelled by the ambiente that opened
+  it.
+- **Visible focus is mandatory**: `outline: 2px solid var(--indigo); outline-offset: 3px`,
+  per `marca.md` §6. This is the bar's only índigo.
+- Tab order: wordmark → ambientes → Inspirações → cart. Panel content enters the
+  order immediately after its label, when open.
+- The `120ms` colour transition on interactive states is the only animation;
+  nothing in the bar animates geometry, opacity or position.
 
 ---
 
 ## 11. Mobile
 
-Abaixo de `768px`:
+Below `768px`:
 
-- A barra mantém `72px`, a assinatura à esquerda e **`MENU` à direita, como
-  palavra em voz de anotação — não um ícone de hambúrguer.** A regra de zero ícones
-  vale em todos os breakpoints.
-- **`CARRINHO (n)` permanece na barra**, ao lado de `MENU`. Não se esconde dentro
-  do painel: é a única afordância comercial da barra e some no exato momento em que
-  a tela é menor.
-- `MENU` abre um painel de **tela cheia** em `--plaster`, sem sobreposição
-  translúcida.
-- Dentro dele: os quatro ambientes como **acordeão** — tocar o nome revela os tipos
-  curados daquele ambiente; tocar "Ver tudo em {Ambiente}" navega. Inspirações é um
-  link plano.
-- Um acordeão aberto por vez. `MENU` vira `FECHAR` enquanto o painel está aberto.
-- O rodapé do painel repete Sobre, Contato e as políticas — no mobile o rodapé fica
-  longe demais para ser o único caminho até eles.
-
----
-
-## 12. Busca — ausência deliberada
-
-**Não há busca na navbar**, e portanto não há superfície de resultados no
-storefront.
-
-Motivo: o catálogo é de quatro ambientes com 4 a 6 tipos curados cada — cerca de 20
-páginas de listagem —, e a navegação room-primary de [`rotas.md`](rotas.md) foi
-desenhada como *o* caminho. Um campo de busca é sinal de loja utilitária e briga
-com o registro de ateliê; e uma loja conceito não tem corpus real que torne
-relevância significativa.
-
-O custo é reconhecido: quem chega sabendo "poltrona" precisa passar por Sala.
-
-Consequências registradas:
-
-- O `?q=` que [`rotas.md`](rotas.md) reservava em `/produtos` **não é usado**.
-- A superfície de resultados (estado vazio, eco da consulta, sinalização de
-  relevância) saiu do mapa como fora de escopo.
+- The bar keeps `72px`, the wordmark on the left and **`MENU` on the right, as a
+  word in the annotation voice — not a hamburger icon.** The zero-icon rule holds
+  at every breakpoint.
+- **`CARRINHO (n)` stays in the bar**, next to `MENU`. It is not hidden inside the
+  panel: it is the bar's only commercial affordance, and it would disappear at the
+  exact moment the screen gets smaller.
+- `MENU` opens a **full-screen** panel in `--plaster`, with no translucent
+  overlay.
+- Inside it: the four ambientes as an **accordion** — tapping the name reveals
+  that ambiente's curated tipos; tapping "Ver tudo em {Ambiente}" navigates.
+  Inspirações is a flat link.
+- One accordion open at a time. `MENU` becomes `FECHAR` while the panel is open.
+- The panel's footer repeats Sobre, Contato and the policies — on mobile the
+  footer is too far away to be the only path to them.
 
 ---
 
-## 13. Dados necessários
+## 12. Search — a deliberate absence
 
-A barra é estática exceto por dois valores.
+**There is no search in the navbar**, and therefore no results surface anywhere in
+the storefront.
 
-| Dado | Origem | Uso |
+Reason: the catalogue is four ambientes with 4 to 6 curated tipos each — roughly
+20 listing pages — and the room-primary navigation of [`rotas.md`](rotas.md) was
+designed as *the* path. A search field signals a utilitarian store and fights the
+atelier register; and a concept store has no real corpus that would make relevance
+meaningful.
+
+The cost is acknowledged: someone arriving knowing "poltrona" has to go through
+Sala.
+
+Recorded consequences:
+
+- The `?q=` that [`rotas.md`](rotas.md) reserved on `/produtos` is **unused**.
+- The results surface (empty state, query echo, relevance signalling) left the map
+  as out of scope.
+
+---
+
+## 13. Required data
+
+The bar is static except for two values.
+
+| Data | Source | Use |
 |---|---|---|
-| `ambientes[]` | entidade `Ambiente` de [`produto.md`](produto.md) — `slug`, `label`, `tipos[]` | rótulos da barra e conteúdo de cada painel |
-| `tipos[]` por ambiente | `Ambiente.tipos[]` (curado, não inferido do catálogo) | lista do painel, na ordem autorada |
-| contagem do carrinho | estado do carrinho | `(n)`, omitido quando `0` |
-| rota corrente | roteador | filete de estado ativo (§9) |
-| copy da faixa | constante da loja | §3 |
+| `ambientes[]` | the `Ambiente` entity in [`produto.md`](produto.md) — `slug`, `label`, `tipos[]` | bar labels and each panel's content |
+| `tipos[]` per ambiente | `Ambiente.tipos[]` (curated, not inferred from the catalogue) | panel list, in the authored order |
+| cart count | cart state | `(n)`, omitted when `0` |
+| current route | router | active-state hairline (§9) |
+| band copy | store constant | §3 |
 
-Nenhum desses exige requisição: a taxonomia é autorada e pode ser renderizada no
-servidor. Só a contagem do carrinho é estado de cliente.
+None of these requires a request: the taxonomy is authored and can be rendered on
+the server. Only the cart count is client state.
 
 ---
 
-## 14. Protótipo
+## 14. Prototype
 
-Três formas de painel construídas e comparadas em `/prototype/navbar?variant=`,
-capturadas no branch `prototype/navbar`. **Não devem ser promovidas** — foram
-escritas sob restrições de protótipo (sem testes, sem tratamento de erro, dados
-simulados). A decisão validada é este documento.
+Three panel shapes were built and compared at `/prototype/navbar?variant=`,
+captured on branch `prototype/navbar`. They must **not** be promoted — they were
+written under prototype constraints (no tests, no error handling, mocked data).
+The validated decision is this document.

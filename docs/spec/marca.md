@@ -1,219 +1,224 @@
-# Direção de marca — Canto Zen
+# Brand direction — Canto Zen
 
-Resolve o ticket [Brand direction](../../.wayfinder/tickets/002-brand-direction.md).
-Direção visual, não brand kit: sem sistema de logo, sem papelaria, sem aplicação
-offline. O que está aqui é o suficiente para que nenhuma decisão de seção seja
-arbitrária.
+Resolves ticket [Brand direction](../../.wayfinder/tickets/002-brand-direction.md).
+Visual direction, not a brand kit: no logo system, no stationery, no offline
+application. What is here is enough that no section decision has to be arbitrary.
 
----
-
-## 1. Posição
-
-Ateliê de alto padrão em registro japandi. Peças assinadas, produção sob
-encomenda, marcenaria própria. Reverência ao objeto: muito espaço, material em
-primeiro plano, nome do designer sempre presente.
-
-**Silencioso com um único gesto forte.** Tudo é disciplinado e calmo; a
-personalidade inteira mora em um só dispositivo (§2). Isso é o que mantém as 15
-rotas coerentes sem virar papel de parede.
-
-### A tensão que isso resolve
-
-Ateliê de alto padrão normalmente esconde preço ("sob consulta"). Aqui **não**:
-[Brazilian e-commerce UX conventions](../research/br-ecommerce-conventions.md) já
-fixou que todo preço mostra à-vista **e** parcelado, com selo de desconto Pix e
-frete por CEP na página do produto. Nada disso sai.
-
-A reconciliação é de **voz, não de presença**: os fatos comerciais aparecem
-inteiros, compostos na voz de anotação (§4) — pequenos, tracked, numerais
-tabulares — em vez de gritados em vermelho e amarelo. Micasa e Artefacto fazem
-exatamente isso. Preço discreto, nunca preço ausente.
+This file is written in English prose; every string quoted as copy is the pt-BR
+that ships, and domain terms stay pt-BR throughout — they are the glossary
+([`CONTEXT.md`](../../CONTEXT.md)), not the prose.
 
 ---
 
-## 2. O gesto: a régua
+## 1. Position
 
-**A cota é a assinatura.** Um filete com um tique em cada extremidade, carregando
-um número real em centímetros, corre junto à borda inferior e à borda direita de
-toda peça fotografada.
+High-end atelier in a japandi register. Signed pieces, made to order, in-house
+marcenaria. Reverence for the object: plenty of space, material in the
+foreground, the designer's name always present.
 
-Isso é escolhido em vez de um enfeite porque a cota é **simultaneamente ornamento
-e dado**. O spec já deve ao cliente L × P × A — móvel é uma categoria em que
-medida decide a compra. O dispositivo mais memorável da marca é, portanto,
-informação que o comprador precisa de qualquer jeito. Ele nunca fica decorativo
-porque nunca deixa de ser verdadeiro.
+**Quiet, with a single bold gesture.** Everything is disciplined and calm; the
+entire personality lives in one device (§2). That is what keeps the 15 routes
+coherent without turning into wallpaper.
 
-**Onde a régua pode aparecer**
+### The tension this resolves
 
-- Ao redor de qualquer peça em destaque — produto, coleção, ambiente.
-- Abrindo uma seção, quando houver um número real a declarar (nº de peças, prazo,
-  ano da coleção).
-- Em comparação de escala no catálogo.
+A high-end atelier normally hides price ("sob consulta"). Here it does **not**:
+[Brazilian e-commerce UX conventions](../research/br-ecommerce-conventions.md)
+already fixed that every price shows à-vista **and** parcelado, with a Pix
+discount badge and CEP-quoted frete on the product page. None of that goes.
 
-**Onde a régua não pode aparecer**
-
-- Sem número real. Uma régua vazia é enfeite e está proibida.
-- Mais de duas por tela. Duas cotas por peça (largura, altura) é o teto.
-- Em texto corrido, formulário, checkout ou rodapé.
-
-**Anatomia** — filete de 1px em `--ink`; tiques de 13px perpendiculares nas
-pontas; rótulo centrado na voz de anotação, com um respiro do fundo da página por
-trás dele para cortar o filete. Cota vertical fica **fora** da imagem, à direita,
-com o rótulo rotacionado 90°.
-
-Corolário: numeração ordinal (01 / 02 / 03) fica **fora** do sistema. Nada no
-storefront é uma sequência que o leitor precise seguir em ordem.
+The reconciliation is one of **voice, not presence**: the commercial facts appear
+in full, set in the annotation voice (§4) — small, tracked, tabular figures —
+rather than shouted in red and yellow. Micasa and Artefacto do exactly this.
+Discreet price, never absent price.
 
 ---
 
-## 3. Paleta
+## 2. The gesture: a régua
 
-Uma identidade clara e quente. **Sem dark mode** — decisão já fechada no mapa.
+**The cota is the signature.** A hairline with a tick at each end, carrying a
+real figure in centimetres, runs along the bottom edge and the right edge of
+every featured piece that is photographed.
 
-| Token | Nome | Hex | Uso |
+This is chosen over an ornament because the cota is **ornament and data at
+once**. The spec already owes the customer L × P × A — furniture is a category
+where measurement decides the purchase. The brand's most memorable device is
+therefore information the buyer needs anyway. It never becomes decorative
+because it never stops being true.
+
+**Where the régua may appear**
+
+- Around any featured piece — product, coleção, ambiente.
+- Opening a section, when there is a real figure to state (number of pieces,
+  prazo, collection year).
+- In scale comparison within the catalogue.
+
+**Where the régua may not appear**
+
+- Without a real figure. An empty régua is ornament and is prohibited.
+- More than twice per screen. Two cotas per piece (width, height) is the ceiling.
+- In running text, forms, checkout or the footer.
+
+**Anatomy** — 1px hairline in `--ink`; 13px perpendicular ticks at the ends;
+label centred in the annotation voice, with a breath of the page background
+behind it to cut the hairline. A vertical cota sits **outside** the image, to the
+right, with its label rotated 90°.
+
+Corollary: ordinal numbering (01 / 02 / 03) stays **out** of the system. Nothing
+in the storefront is a sequence the reader must follow in order.
+
+---
+
+## 3. Palette
+
+A light, warm identity. **No dark mode** — already settled in the map.
+
+| Token | Name | Hex | Use |
 |---|---|---|---|
-| `--ink` | Tinta | `#1B1A18` | Texto, filete, traço da régua |
-| `--plaster` | Reboco | `#F5F4F0` | Fundo da página |
-| `--kozo` | Kozo | `#EAE7E0` | Painel recuado, trilho, faixa |
-| `--oak` | Carvalho | `#C6B49A` | Madeira, calor, hover sutil |
-| `--hairline` | Fio | `#D3CFC7` | Divisor, borda de campo |
-| `--indigo` | Índigo | `#223244` | **Único acento cromático** |
-| `--muted` | Apagado | `#7A756C` | Texto secundário, legenda |
+| `--ink` | Tinta | `#1B1A18` | Text, hairline, régua stroke |
+| `--plaster` | Reboco | `#F5F4F0` | Page background |
+| `--kozo` | Kozo | `#EAE7E0` | Recessed panel, rail, band |
+| `--oak` | Carvalho | `#C6B49A` | Wood, warmth, subtle hover |
+| `--hairline` | Fio | `#D3CFC7` | Divider, field border |
+| `--indigo` | Índigo | `#223244` | **Sole chromatic accent** |
+| `--muted` | Apagado | `#7A756C` | Secondary text, caption |
 
-**Índigo é o único acento** e é racionado: estado interativo (foco, hover de CTA,
-link ativo) e o selo de desconto Pix. Nada mais. Se o índigo aparece três vezes
-numa tela, duas estão erradas.
+**Índigo is the only accent** and it is rationed: interactive state (focus, CTA
+hover, active link) and the Pix discount badge. Nothing else. If índigo appears
+three times on one screen, two of them are wrong.
 
-**Fora, deliberadamente:**
+**Deliberately out:**
 
-- **Terracota.** É o acento padrão da categoria e o clichê mais reconhecível de
-  design gerado por IA. Índigo ocupa esse lugar — frio contra a madeira, e lê
-  tanto como tinta índigo japonesa quanto como neutro escandinavo.
-- **Creme `#F4F1EA` e vizinhos.** Reboco é mais frio e mais cinza de propósito.
-- **Verde, vermelho e amarelo de e-commerce.** Estado de sucesso e erro se
-  resolvem em tinta + índigo + peso tipográfico, não em semáforo.
+- **Terracotta.** It is the category's default accent and the most recognisable
+  cliché of AI-generated design. Índigo takes that place — cool against the wood,
+  and it reads as both Japanese indigo dye and Scandinavian neutral.
+- **Cream `#F4F1EA` and neighbours.** Reboco is cooler and greyer on purpose.
+- **E-commerce green, red and yellow.** Success and error states resolve in ink +
+  índigo + typographic weight, not in traffic lights.
 
 ---
 
-## 4. Tipografia
+## 4. Typography
 
-Duas famílias. Uma terceira seria um acessório a mais.
+Two families. A third would be one accessory too many.
 
-**Zen Old Mincho** — display. Mincho de **baixo contraste**: tem a calma japandi
-sem ser o serif de altíssimo contraste tipo Playfair que a categoria inteira usa.
-Cobre `latin-ext`, então acentuação pt-BR está inteira.
+**Zen Old Mincho** — display. A **low-contrast** Mincho: it has the japandi calm
+without being the very-high-contrast Playfair-type serif the whole category uses.
+It covers `latin-ext`, so pt-BR accents are complete.
 
-> Só para: nome de peça, título de coleção, título editorial, uma única linha de
-> destaque por página. Nunca para interface, dado, preço ou label.
+> Only for: piece name, collection title, editorial title, a single feature line
+> per page. Never for interface, data, price or labels.
 
-**Schibsted Grotesk** — corpo, interface e dado. Grotesca neutra de origem
-escandinava, alinhada ao registro e fora do eixo Inter/Geist. **Numerais
-tabulares ligados em todo lugar** — preço, medida, parcela, CEP, prazo.
+**Schibsted Grotesk** — body, interface and data. A neutral grotesque of
+Scandinavian origin, aligned with the register and off the Inter/Geist axis.
+**Tabular figures enabled everywhere** — price, measurement, parcela, CEP, prazo.
 
-### Escala
+### Scale
 
-| Papel | Família | Tamanho / entrelinha | Tracking |
+| Role | Family | Size / leading | Tracking |
 |---|---|---|---|
-| Display XL — nome de peça em destaque | Mincho 400 | `clamp(2.1rem, 3.6vw, 3.25rem)` / 1.08 | `0.005em` |
-| Display L — título de seção | Mincho 400 | `1.75rem` / 1.2 | `0.005em` |
-| Display M — destaque editorial | Mincho 400 | `1.35rem` / 1.45 | `0.005em` |
-| Preço | Grotesk 400 tab. | `1.75rem` / 1.1 | `-0.01em` |
-| Corpo | Grotesk 400 | `1rem` / 1.55 | `0` |
-| Corpo S — secundário, parcela | Grotesk 400 | `0.875rem` / 1.5 | `0` |
-| **Anotação** | Grotesk 500 tab. | `0.6875rem` / 1.4 | `0.16em`, caixa alta |
-| CTA | Grotesk 500 | `0.75rem` | `0.18em`, caixa alta |
+| Display XL — featured piece name | Mincho 400 | `clamp(2.1rem, 3.6vw, 3.25rem)` / 1.08 | `0.005em` |
+| Display L — section title | Mincho 400 | `1.75rem` / 1.2 | `0.005em` |
+| Display M — editorial feature | Mincho 400 | `1.35rem` / 1.45 | `0.005em` |
+| Price | Grotesk 400 tab. | `1.75rem` / 1.1 | `-0.01em` |
+| Body | Grotesk 400 | `1rem` / 1.55 | `0` |
+| Body S — secondary, parcela | Grotesk 400 | `0.875rem` / 1.5 | `0` |
+| **Annotation** | Grotesk 500 tab. | `0.6875rem` / 1.4 | `0.16em`, uppercase |
+| CTA | Grotesk 500 | `0.75rem` | `0.18em`, uppercase |
 
-**A voz de anotação é o cavalo de batalha do sistema.** Ela carrega label, breadcrumb,
-navegação, medida, rótulo de cota, legenda de foto e metadado. É ela que permite
-o preço ser discreto sem sumir. Medida de texto corrido: 60–70 caracteres; nunca
-mais que 34ch em coluna lateral.
+**The annotation voice is the system's workhorse.** It carries labels,
+breadcrumbs, navigation, measurements, cota labels, photo captions and metadata.
+It is what lets the price be discreet without disappearing. Running-text measure:
+60–70 characters; never more than 34ch in a side column.
 
-`<html lang="pt-BR">` — o boilerplate atual traz `lang="en"` e é substituído.
-
----
-
-## 5. Espaço e densidade
-
-Densidade **baixa**, e o vazio é intencional e assimétrico — não é margem
-sobrando, é o alcova (`tokonoma`) que faz o objeto ter presença.
-
-- Medida máxima do container: `1360px`.
-- Goteira externa: `clamp(1.5rem, 4vw, 4.5rem)`.
-- Ritmo vertical: `0.5 / 0.75 / 1 / 1.5 / 2.75 / 4 / 7rem`.
-- Respiro entre seções maiores: `7rem`; nunca menos que `4rem`.
-- Grade de 12 colunas. **Bloco de texto nunca centralizado sob a imagem**: o par
-  padrão é imagem em 7 colunas e texto em 5, com a goteira grande à direita
-  preservada vazia.
+`<html lang="pt-BR">` — the current boilerplate ships `lang="en"` and is replaced.
 
 ---
 
-## 6. Traço e canto
+## 5. Space and density
 
-- **Raio de canto: 0** em tudo que é interface — botão, campo, painel, card. A
-  única curva do sistema é a do próprio móvel, na fotografia.
-- **Sem sombra em UI.** A única sombra que existe é a que a luz rasante lança na
-  foto. Elevação se resolve por tom (`--kozo` sob `--plaster`) e por filete.
-- **Filete de 1px** é o divisor universal, em `--hairline`. `--ink` só quando o
-  traço é uma régua (§2) ou fecha um total.
-- Botão primário: caixa alta, tracking `0.18em`, borda de 1px em `--ink`,
-  fundo transparente; no hover inverte para fundo `--ink`.
-- Foco visível obrigatório: `outline: 2px solid var(--indigo); outline-offset: 3px`.
+**Low** density, and the emptiness is intentional and asymmetric — it is not
+leftover margin, it is the alcove (`tokonoma`) that gives the object presence.
 
----
-
-## 7. Fotografia
-
-Uma regra e ela não abre exceção: **luz rasante de fim de tarde, fundo de reboco
-cru, sombra dura e longa.**
-
-- Peça **sozinha**, sem styling, sem plantas, sem xícara, sem pessoa. O produto
-  não é encenado; é observado.
-- Sombra projetada é parte do enquadramento, nunca cortada fora.
-- Enquadramento na proporção real da peça sempre que possível — a foto e a régua
-  contam a mesma verdade.
-- Ambiente (Inspirações) é a única exceção ao "peça sozinha", e mesmo lá a luz
-  rasante e o fundo de reboco continuam valendo.
-
-O detalhamento completo — proporções, crops por superfície, tratamento de
-`alt`, fallback — é do ticket [Imagery system](../../.wayfinder/tickets/014-imagery.md).
+- Maximum container measure: `1360px`.
+- Outer gutter: `clamp(1.5rem, 4vw, 4.5rem)`.
+- Vertical rhythm: `0.5 / 0.75 / 1 / 1.5 / 2.75 / 4 / 7rem`.
+- Breathing room between major sections: `7rem`; never less than `4rem`.
+- 12-column grid. **A text block is never centred under the image**: the default
+  pair is image on 7 columns and text on 5, with the large right-hand gutter kept
+  empty.
 
 ---
 
-## 8. Preço e dado
+## 6. Stroke and corner
 
-- À-vista no Pix em Preço (§4), com o desconto como sobrescrito em `--indigo`.
-- Parcelamento logo abaixo, em Corpo S `--muted`: `ou {total} em {N}x de {v} sem juros`.
-- Medida sempre na voz de anotação, sempre `L {n} × P {n} × A {n} cm`, com `×`
-  de multiplicação — nunca a letra `x`.
-- Todo numeral em contexto de dado usa `font-variant-numeric: tabular-nums`.
-
----
-
-## 9. Movimento
-
-Provisório, e deliberadamente magro: transição de cor em 120ms nos estados
-interativos, e nada mais. Sem revelação em scroll, sem transição de página, sem
-paralaxe. `prefers-reduced-motion: reduce` respeitado.
-
-Convenção completa de movimento continua em **Not yet specified** no mapa — esta
-seção só garante que nenhuma sessão de build invente movimento antes daquele
-ticket existir.
+- **Corner radius: 0** on everything that is interface — button, field, panel,
+  card. The system's only curve is the furniture's own, in the photograph.
+- **No shadow in UI.** The only shadow that exists is the one raking light casts
+  in the photo. Elevation resolves through tone (`--kozo` under `--plaster`) and
+  through hairlines.
+- **A 1px hairline** is the universal divider, in `--hairline`. `--ink` only when
+  the stroke is a régua (§2) or closes a total.
+- Primary button: uppercase, `0.18em` tracking, 1px border in `--ink`,
+  transparent background; on hover it inverts to an `--ink` background.
+- Visible focus is mandatory: `outline: 2px solid var(--indigo); outline-offset: 3px`.
 
 ---
 
-## Como isso foi decidido
+## 7. Photography
 
-Três direções construídas e comparadas lado a lado em `/prototype/marca` —
-**A régua**, **O canto** (o ângulo em filete + luz rasante) e **O caderno** (a
-ficha técnica como herói, foto rebaixada a miniatura). Todas as três já
-partilhavam posição, registro e volume; discordavam apenas sobre onde gastar o
-gesto forte.
+One rule, and it admits no exception: **raking late-afternoon light, raw plaster
+background, hard long shadow.**
 
-**A régua venceu**: é a única cuja assinatura carrega informação, e por isso a
-única que sobrevive a 15 rotas sem virar enfeite. O Caderno era a mais
-distintiva, mas rebaixar fotografia numa loja de móveis briga com a categoria.
-O Canto era a mais segura e a menos memorável.
+- The piece **alone** — no styling, no plants, no cup, no person. The product is
+  not staged; it is observed.
+- The cast shadow is part of the frame, never cropped out.
+- Frame in the piece's real proportion wherever possible — the photo and the
+  régua tell the same truth.
+- A room shot (Inspirações) is the only exception to "the piece alone", and even
+  there the raking light and plaster background still hold.
 
-O protótipo completo está capturado no branch `prototype/brand-direction`
-(commit `ff44fd7`) e **não** deve ser promovido — foi escrito sob restrições de
-protótipo.
+The full detailing — ratios, crops per surface, `alt` treatment, fallback —
+belongs to ticket [Imagery system](../../.wayfinder/tickets/014-imagery.md).
+
+---
+
+## 8. Price and data
+
+- The à-vista Pix figure set in Price (§4), with the discount as a superscript in
+  `--indigo`.
+- Parcelamento immediately below, in Body S `--muted`: `ou {total} em {N}x de {v} sem juros`.
+- Measurements always in the annotation voice, always `L {n} × P {n} × A {n} cm`,
+  with a multiplication `×` — never the letter `x`.
+- Every figure in a data context uses `font-variant-numeric: tabular-nums`.
+
+---
+
+## 9. Motion
+
+Provisional, and deliberately thin: a 120ms colour transition on interactive
+states, and nothing else. No scroll reveal, no page transition, no parallax.
+`prefers-reduced-motion: reduce` is respected.
+
+The full motion convention remains **Not yet specified** in the map — this
+section only guarantees that no build session invents motion before that ticket
+exists.
+
+---
+
+## How this was decided
+
+Three directions were built and compared side by side in `/prototype/marca` —
+**A régua**, **O canto** (the hairline corner + raking light) and **O caderno**
+(the spec sheet as hero, the photo demoted to a thumbnail). All three already
+shared position, register and volume; they disagreed only about where to spend
+the bold gesture.
+
+**A régua won**: it is the only one whose signature carries information, and
+therefore the only one that survives 15 routes without becoming ornament. O
+Caderno was the most distinctive, but demoting photography in a furniture store
+fights the category. O Canto was the safest and the least memorable.
+
+The complete prototype is captured on branch `prototype/brand-direction`
+(commit `ff44fd7`) and must **not** be promoted — it was written under prototype
+constraints.

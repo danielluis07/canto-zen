@@ -1,37 +1,41 @@
-# Página de produto — PDP
+# Product page — PDP
 
-Resolve o ticket [Product detail page sections](../../.wayfinder/tickets/009-product-detail.md).
+Resolves ticket [Product detail page sections](../../.wayfinder/tickets/009-product-detail.md).
 
-Rota: `/produtos/[slug]`, plana, sem o caminho de ambiente ([`rotas.md`](rotas.md)).
-Uma peça = um acabamento = uma URL ([`produto.md`](produto.md)).
+Route: `/produtos/[slug]`, flat, with no ambiente path ([`rotas.md`](rotas.md)).
+One piece = one acabamento = one URL ([`produto.md`](produto.md)).
 
-Este arquivo especifica a **página**. O modelo de dados que ela lê continua em
-[`produto.md`](produto.md) — que este ticket altera em quatro pontos (§10).
+This file specifies the **page**. The data model it reads still lives in
+[`produto.md`](produto.md) — which this ticket changes in four places (§10).
+
+This file is written in English prose; every string quoted as copy is the pt-BR
+that ships, and domain terms stay pt-BR throughout.
 
 ---
 
-## 0. Ordem e ritmo
+## 0. Order and rhythm
 
-| # | Seção | Conteúdo |
+| # | Section | Content |
 |---|---|---|
-| 1 | Breadcrumb | anotação, lê `ambientePrincipal` |
-| 2 | Bloco de compra | galeria 7 col · buy box 5 col |
-| 3 | Descrição | rótulo em anotação + corpo |
-| — | *quebra* | imagem `ambientada`, largura total |
-| 4 | Medidas | desenho de escala · L × P × A · extras · embalagem |
-| 5 | Ficha técnica | materiais, cor, acabamento, cuidados, garantia, itens inclusos |
-| — | *quebra* | imagem `detalhe`, largura total |
-| 6 | Entrega e acesso | prosa |
-| 7 | Fecho | coleção, ou uma linha de link |
+| 1 | Breadcrumb | annotation, reads `ambientePrincipal` |
+| 2 | Purchase block | gallery 7 col · buy box 5 col |
+| 3 | Description | annotation label + body |
+| — | *break* | `ambientada` image, full bleed |
+| 4 | Medidas | scale drawing · L × P × A · extras · packaging |
+| 5 | Ficha técnica | materials, cor, acabamento, care, warranty, included items |
+| — | *break* | `detalhe` image, full bleed |
+| 6 | Delivery and access | prose |
+| 7 | Closing | coleção, or one link line |
 
-Respiro de `7rem` entre seções, nunca menos que `4rem` ([`marca.md`](marca.md) §5).
+`7rem` of breathing room between sections, never less than `4rem`
+([`marca.md`](marca.md) §5).
 
-**O buy box não é sticky.** Ele termina onde termina, e o resto da página é
-imagem e ficha. Um painel persistente arrastaria preço e CTA por cima das
-medidas e da descrição — exatamente o registro gritado que `marca.md` §1
-reconcilia como *voz, não presença* — e o buy box desta página carrega nome,
-preço, parcelamento, acabamentos, CEP e montagem, ou seja, excede a altura da
-viewport e grudaria mal de qualquer jeito.
+**The buy box is not sticky.** It ends where it ends, and the rest of the page is
+image and spec sheet. A persistent panel would drag price and CTA across the
+measurements and the description — exactly the shouted register `marca.md` §1
+reconciles as *voice, not presence* — and this page's buy box carries name, price,
+parcelamento, acabamentos, CEP and montagem, which is to say it exceeds the
+viewport height and would stick badly anyway.
 
 ---
 
@@ -41,219 +45,219 @@ viewport e grudaria mal de qualquer jeito.
 INÍCIO / SALA / POLTRONAS / POLTRONA LINA
 ```
 
-Voz de anotação, separador `/`, `--muted` nos ancestrais e `--ink` no item
-corrente. O ambiente vem de `ambientePrincipal` — a promessa que
-[`rotas.md`](rotas.md) fez ao deixar a URL do produto plana: a URL não carrega o
-caminho, então o breadcrumb é quem o reconstrói. O segmento de tipo usa
-`Tipo.label` (plural), não `labelSingular`, porque ele aponta para a listagem
-`/sala/poltronas` — é a rota, não a peça.
+Annotation voice, `/` separator, `--muted` on the ancestors and `--ink` on the
+current item. The ambiente comes from `ambientePrincipal` — the promise
+[`rotas.md`](rotas.md) made by leaving the product URL flat: the URL carries no
+path, so the breadcrumb is what reconstructs it. The tipo segment uses
+`Tipo.label` (plural), not `labelSingular`, because it points at the
+`/sala/poltronas` listing — it is the route, not the piece.
 
-**O item corrente não é link.** Nenhum ícone, nenhum chevron — as setas do
-sistema são caracteres, e aqui o caractere é `/`.
+**The current item is not a link.** No icon, no chevron — the system's arrows are
+characters, and here the character is `/`.
 
 ---
 
-## 2. Bloco de compra
+## 2. Purchase block
 
-Par padrão de [`marca.md`](marca.md) §5: imagem em 7 colunas, buy box em 5,
-goteira grande à direita preservada vazia.
+The default pair from [`marca.md`](marca.md) §5: image on 7 columns, buy box on 5,
+the large right gutter preserved empty.
 
-### 2.1 A galeria não é uma galeria
+### 2.1 The gallery is not a gallery
 
-Só a imagem `principal` mora aqui, em **proporção real**, sem recorte, com a
-cota que `imagens[0].cotas` declarar.
+Only the `principal` image lives here, in **real proportion**, uncropped, with
+whatever cota `imagens[0].cotas` declares.
 
-As outras imagens **não** ficam empilhadas ao lado do buy box nem viram
-miniaturas com troca ao clique. Cada `papel` é uma **instrução de posição**:
+The other images are **not** stacked beside the buy box and do not become
+thumbnails with click-to-swap. Each `papel` is a **position instruction**:
 
-| `papel` | Onde renderiza |
+| `papel` | Where it renders |
 |---|---|
-| `principal` | bloco de compra, coluna de 7 |
-| `ambientada` | quebra de largura total entre §3 e §4 |
-| `detalhe` | quebra de largura total entre §5 e §6 |
+| `principal` | purchase block, the 7-column side |
+| `ambientada` | full-bleed break between §3 and §4 |
+| `detalhe` | full-bleed break between §5 and §6 |
 
-Isto é o que "papéis são nomeados, não posicionais" ([`produto.md`](produto.md))
-comprava: a página é determinística a partir dos dados, e uma peça sem
-`ambientada` simplesmente não tem aquela quebra — **nada é promovido para o
-slot vago**.
+This is what "roles are named, not positional" ([`produto.md`](produto.md)) bought:
+the page is deterministic from the data, and a piece with no `ambientada` simply
+does not have that break — **nothing is promoted into the empty slot**.
 
-Miniaturas com troca ao clique foram descartadas: é um widget de estado numa
-página onde [`marca.md`](marca.md) §9 concede apenas transição de cor.
+Thumbnails with click-to-swap were dropped: it is a stateful widget on a page where
+[`marca.md`](marca.md) §9 grants only a colour transition.
 
-### 2.2 Anatomia do buy box
+### 2.2 Buy box anatomy
 
-Ordem, de cima para baixo:
+Order, top to bottom:
 
 ```
 Poltrona Lina                          Mincho, Display XL
-LINHO CRU · POR {designer}             anotação, --muted
+LINHO CRU · POR {designer}             annotation, --muted
 
-R$ 3.501,00  10% À VISTA NO PIX        Preço tabular + selo --indigo
-ou R$ 3.890,00 em 10x de R$ 389,00     Corpo S, --muted
+R$ 3.501,00  10% À VISTA NO PIX        tabular Price + --indigo badge
+ou R$ 3.890,00 em 10x de R$ 389,00     Body S, --muted
 sem juros
 
-OUTROS ACABAMENTOS                     anotação
-[amostras]                             ver §2.4
+OUTROS ACABAMENTOS                     annotation
+[swatches]                             see §2.4
 
-SOB ENCOMENDA · 4 SEMANAS              anotação, --muted
+SOB ENCOMENDA · 4 SEMANAS              annotation, --muted
 
-[ COMPRAR ]                            CTA, borda 1px --ink
+[ COMPRAR ]                            CTA, 1px --ink border
 
-CALCULAR FRETE E PRAZO                 ver §2.7
-MONTAGEM                               ver §2.8
+CALCULAR FRETE E PRAZO                 see §2.7
+MONTAGEM                               see §2.8
 ```
 
-A **única** linha em Mincho da página inteira é o nome
-([`marca.md`](marca.md) §4: uma linha de destaque por página). Nenhuma seção
-abaixo recebe título em display.
+The **only** Mincho line on the entire page is the name ([`marca.md`](marca.md) §4:
+one feature line per page). No section below gets a display title.
 
-O designer vem de `Familia.designer` (§10) — autoria é da peça, não do
-acabamento.
+The designer comes from `Familia.designer` (§10) — authorship belongs to the piece,
+not to the acabamento.
 
-### 2.3 Preço
+### 2.3 Price
 
-Tudo derivado de `politicas`, nunca escrito à mão
-([`produto.md`](produto.md) § Políticas comerciais):
+Everything derived from `politicas`, never hand-written
+([`produto.md`](produto.md) § Commercial policies):
 
-- **À vista no Pix** no papel Preço (`1.75rem`, tabular). Este papel é reservado
-  ao herói da home e a esta página — [`catalogo.md`](catalogo.md) §6 já o fixou.
-- **Selo do desconto** ao lado, em `--indigo`, voz de anotação:
-  `10% À VISTA NO PIX`. É a divulgação ostensiva que a Lei 13.455 exige para o
-  preço diferenciado ser lícito ([pesquisa §4](../research/br-ecommerce-conventions.md)).
-- **Parcelamento** logo abaixo em Corpo S `--muted`:
+- **À vista no Pix** in the Price role (`1.75rem`, tabular). That role is reserved
+  for the home hero and this page — [`catalogo.md`](catalogo.md) §6 already fixed
+  it.
+- **The discount badge** beside it, in `--indigo`, annotation voice:
+  `10% À VISTA NO PIX`. This is the conspicuous disclosure Lei 13.455 requires for
+  the differentiated price to be lawful
+  ([research §4](../research/br-ecommerce-conventions.md)).
+- **Parcelamento** right below in Body S `--muted`:
   `ou {total} em {N}x de {v} sem juros`.
-- `precoDe`, quando presente, antes do preço à vista em Corpo S `--muted` com
-  tachado de 1px. Sem cor, sem selo de percentual — igual ao card.
+- `precoDe`, when present, before the à-vista price in Body S `--muted` with a 1px
+  strikethrough. No colour, no percentage badge — same as the card.
 
-**Orçamento de índigo:** o selo Pix gasta um. O anel de foco gasta o segundo
-quando aparece. `marca.md` §3 permite dois por tela — por isso **não há linha de
-política repetida** nesta página: o buy box já diz Pix e parcelamento inteiros,
-no lugar onde a decisão acontece.
+**Índigo budget:** the Pix badge spends one. The focus ring spends the second when
+it appears. `marca.md` §3 permits two per screen — which is why **there is no
+repeated policy line** on this page: the buy box already states Pix and
+parcelamento in full, in the place where the decision happens.
 
-### 2.4 Outros acabamentos
+### 2.4 Other acabamentos
 
-Fica **dentro do buy box**, logo abaixo do preço, porque cada acabamento é outro
-produto com outro preço: escolher entre eles é decisão de compra, não de
-navegação, e tem de estar no bloco cujo número ela muda.
+It sits **inside the buy box**, right below the price, because each acabamento is
+another product with another price: choosing between them is a purchase decision,
+not a navigation one, and it has to be in the block whose figure it changes.
 
-- Consulta por `familia`; renderiza os irmãos, inclusive o corrente.
-- Cada item é uma amostra quadrada de 28px preenchida com `Cor.amostra`, borda
-  de 1px em `--hairline`, **raio zero**, com o rótulo do acabamento em anotação
-  ao lado.
-- O corrente é marcado com filete de 1px em `--ink` embaixo — o mesmo sinal de
-  item ativo que [`navbar.md`](navbar.md) usa, e pela mesma razão: índigo já
-  está gasto.
-- Cada amostra é **link** para `/produtos/{slug}` do irmão. Nada de estado no
-  cliente, nada de troca de imagem in-place.
-- Irmão `esgotado` continua listado, com o rótulo `ESGOTADO` em `--muted`
-  abaixo — some nada, exatamente como na grade.
-- Família com um só acabamento: o bloco **não renderiza**.
+- Queried by `familia`; renders the siblings, including the current one.
+- Each item is a 28px square swatch filled with `Cor.amostra`, 1px border in
+  `--hairline`, **zero radius**, with the acabamento's label in annotation beside
+  it.
+- The current one is marked with a 1px `--ink` hairline underneath — the same
+  active-item signal [`navbar.md`](navbar.md) uses, and for the same reason: índigo
+  is already spent.
+- Each swatch is a **link** to the sibling's `/produtos/{slug}`. No client state, no
+  in-place image swap.
+- An `esgotado` sibling stays listed, with an `ESGOTADO` label in `--muted` below —
+  nothing disappears, exactly as in the grid.
+- A família with a single acabamento: the block **does not render**.
 
-Isto admite cor de produto na interface. O precedente é
-[`catalogo.md`](catalogo.md) §3: a amostra aparece como *dado do produto*, não
-como cor de marca.
+This admits product colour into the interface. The precedent is
+[`catalogo.md`](catalogo.md) §3: the swatch appears as *product data*, not as brand
+colour.
 
 ### 2.5 Disponibilidade
 
-Mesmos três estados e mesmo texto do card ([`catalogo.md`](catalogo.md) §6),
-em anotação `--muted`:
+The same three states and the same text as the card
+([`catalogo.md`](catalogo.md) §6), in annotation `--muted`:
 
-| Valor | Texto |
+| Value | Text |
 |---|---|
 | `envio-imediato` | `ENVIO IMEDIATO` |
 | `sob-encomenda` | `SOB ENCOMENDA · {prazoProducaoSemanas} SEMANAS` |
 | `esgotado` | `ESGOTADO` |
 
-Sem cor de estado, sem contagem de estoque, sem "restam apenas 2".
+No state colour, no stock count, no "restam apenas 2".
 
-### 2.6 CTA e estados
+### 2.6 CTA and states
 
-**Rótulo: `COMPRAR`.** Caixa alta, tracking `0.18em`, borda de 1px em `--ink`,
-fundo transparente, invertendo para fundo `--ink` no hover em 120ms
-([`marca.md`](marca.md) §6). É o rótulo convencional no Brasil e o mais curto —
-a página não precisa explicar que comprar põe no carrinho.
+**Label: `COMPRAR`.** Uppercase, `0.18em` tracking, 1px border in `--ink`,
+transparent background, inverting to an `--ink` background on hover in 120ms
+([`marca.md`](marca.md) §6). It is the conventional label in Brazil and the
+shortest — the page does not need to explain that buying puts it in the cart.
 
-**Sem seletor de quantidade.** A decisão que esta página pede é *esta peça ou
-não*; quantidade é do carrinho, que já tem de editá-la de qualquer forma. Um
-stepper aqui gastaria atenção num buy box que já carrega CEP e montagem.
-*(Contra-argumento registrado: cadeiras de jantar se compram em quatro e seis.
-Se voltar, volta como stepper à esquerda do CTA, não como campo.)*
+**No quantity selector.** The decision this page asks for is *this piece or not*;
+quantity belongs to the cart, which has to edit it anyway. A stepper here would
+spend attention in a buy box that already carries CEP and montagem.
+*(Counter-argument recorded: dining chairs are bought in fours and sixes. If it
+comes back, it comes back as a stepper to the left of the CTA, not as a field.)*
 
-**Ao clicar:** a página **não navega**. O CTA é substituído no lugar por uma
-linha de confirmação em anotação e um link:
+**On click:** the page **does not navigate**. The CTA is replaced in place by a
+confirmation line in annotation and a link:
 
 ```
 ADICIONADO AO CARRINHO        VER CARRINHO →
 ```
 
-E o contador da navbar vai a `CARRINHO (n)`. Gaveta lateral está indisponível
-por decisão de [`navbar.md`](navbar.md) — o carrinho é link, nunca gatilho de
-drawer — e navegar para `/carrinho` encerraria a navegação justo na página onde
-*outros acabamentos* convida ao movimento lateral. O contador da navbar já é o
-canal de feedback; a linha só confirma.
+And the navbar counter goes to `CARRINHO (n)`. A side drawer is unavailable by
+decision of [`navbar.md`](navbar.md) — the cart is a link, never a drawer trigger —
+and navigating to `/carrinho` would end the browsing session on exactly the page
+where *outros acabamentos* invites lateral movement. The navbar counter is already
+the feedback channel; the line only confirms.
 
-**Estado `esgotado`:** o CTA **não renderiza**. No lugar, em anotação:
+**`esgotado` state:** the CTA **does not render**. In its place, in annotation:
 
 ```
 ESGOTADO
 VER POLTRONA LINA EM BOUCLÉ CARVALHO →
 ```
 
-O link só aparece se a família tiver irmão disponível. **Não há "avise-me quando
-chegar"** — captura e-mail contra um backend que não existe; a promessa honesta
-é o `AVISO DE NOVAS PEÇAS` do rodapé ([`rodape.md`](rodape.md)).
+The link only appears if the família has an available sibling. **There is no
+"avise-me quando chegar"** — it captures an e-mail against a backend that does not
+exist; the honest promise is the footer's `AVISO DE NOVAS PEÇAS`
+([`rodape.md`](rodape.md)).
 
-O bloco de CEP e o de montagem **continuam renderizando** em `esgotado`: são
-informação sobre a peça, não sobre o pedido.
+The CEP block and the montagem block **still render** in `esgotado`: they are
+information about the piece, not about the order.
 
-### 2.7 CEP, frete e prazo
+### 2.7 CEP, frete and prazo
 
-Convenção brasileira, e a maior divergência em relação a PDPs americanos: o
-frete se calcula **aqui**, não no checkout
-([pesquisa §1](../research/br-ecommerce-conventions.md)).
+Brazilian convention, and the biggest divergence from American PDPs: frete is
+calculated **here**, not at checkout
+([research §1](../research/br-ecommerce-conventions.md)).
 
-**Posição: abaixo do CTA.** A tabela de opções expande em várias linhas e
-empurraria `COMPRAR` para fora da tela se ficasse acima. A convenção que importa
-é que a resposta exista na PDP; a ordem interna do bloco é nossa.
+**Position: below the CTA.** The options table expands over several lines and would
+push `COMPRAR` off screen if it sat above. The convention that matters is that the
+answer exists on the PDP; the block's internal order is ours.
 
-Estado inicial — campo único, máscara `00000-000`, `inputmode="numeric"`,
-borda de 1px em `--hairline`, raio zero:
+Initial state — a single field, `00000-000` mask, `inputmode="numeric"`, 1px border
+in `--hairline`, zero radius:
 
 ```
 CALCULAR FRETE E PRAZO
 [ 00000-000 ]  [ CALCULAR ]     NÃO SEI MEU CEP
 ```
 
-`NÃO SEI MEU CEP` abre a busca dos Correios em nova aba.
+`NÃO SEI MEU CEP` opens the Correios lookup in a new tab.
 
-Resultado — tabela de **opções**, nunca um número só:
+Result — a table of **options**, never a single figure:
 
 ```
 ENTREGA PADRÃO      até 12 dias úteis        R$ 289,00
 ENTREGA AGENDADA    data à sua escolha       R$ 389,00
 ```
 
-- Filete de 1px entre linhas, numerais tabulares, valores alinhados à direita.
-- **`Grátis`**, a palavra, quando `freteGratis` cobre a região — nunca
-  `R$ 0,00`.
-- Uma linha de nota abaixo, em anotação `--muted`:
+- 1px hairline between rows, tabular figures, values right-aligned.
+- **`Grátis`**, the word, when `freteGratis` covers the region — never `R$ 0,00`.
+- One note line below, in annotation `--muted`:
   `PRAZO EM DIAS ÚTEIS, CONTADO APÓS A CONFIRMAÇÃO DO PAGAMENTO.`
-- Em `sob-encomenda`, uma segunda linha soma o que a peça realmente demora:
+- In `sob-encomenda`, a second line adds what the piece actually takes:
   `PRODUÇÃO DE {n} SEMANAS ANTES DO ENVIO.`
 
-**Erro** — CEP inválido ou região não atendida: uma linha abaixo do campo, em
-`--ink`, voz de anotação, sem cor e sem ícone. `marca.md` §3 já decidiu que erro
-se resolve em tinta e peso tipográfico, não em semáforo.
+**Error** — invalid CEP or an unserved region: one line below the field, in
+`--ink`, annotation voice, with no colour and no icon. `marca.md` §3 already decided
+that errors resolve in ink and typographic weight, not in traffic lights.
 
-**O CEP é lembrado.** Digitado uma vez, vale para a sessão inteira: o carrinho e
-o checkout leem o mesmo valor já preenchido. Perguntar três vezes o mesmo CEP é
-o defeito que esta convenção existe para evitar. Restrição entregue a
-[Carrinho](../../.wayfinder/tickets/010-cart.md) e
+**The CEP is remembered.** Typed once, it holds for the whole session: the cart and
+the checkout read the same value pre-filled. Asking for the same CEP three times is
+the defect this convention exists to avoid. A constraint handed to
+[Cart](../../.wayfinder/tickets/010-cart.md) and
 [Checkout](../../.wayfinder/tickets/011-checkout.md) — §11.
 
 ### 2.8 Montagem
 
-Renderiza **apenas quando `montagem.necessaria === true`**.
+Renders **only when `montagem.necessaria === true`**.
 
 ```
 MONTAGEM
@@ -262,86 +266,87 @@ SIMPLES · 1 PESSOA · 5 PEÇAS · 20 MIN
 NO MESMO DIA DA ENTREGA AGENDADA.
 ```
 
-- Preço derivado de `politicas.montagemCentavos[montagem.nivel]`.
-- Os quatro fatos ficam **aqui e só aqui** — não se repetem na ficha técnica.
-  Eles existem para justificar o preço, e é por isso que
-  [`produto.md`](produto.md) derivou o preço do `nivel`: a complexidade fica
-  provadamente consistente com o número logo acima.
-- Checkbox de 1px, raio zero, sem cor de preenchimento — marcado é um quadrado
-  `--ink` sólido.
-- A promessa modelada é a da Tok&Stok: montagem **no dia da entrega agendada**,
-  não em agendamento separado ([pesquisa §7.2](../research/br-ecommerce-conventions.md)).
+- Price derived from `politicas.montagemCentavos[montagem.nivel]`.
+- The four facts stay **here and only here** — they are not repeated in the ficha
+  técnica. They exist to justify the price, which is why
+  [`produto.md`](produto.md) derived the price from `nivel`: the complexity stays
+  provably consistent with the figure right above it.
+- 1px checkbox, zero radius, no fill colour — checked is a solid `--ink` square.
+- The promise modelled is Tok&Stok's: montagem **on the day of the scheduled
+  delivery**, not on a separate appointment
+  ([research §7.2](../research/br-ecommerce-conventions.md)).
 
-**Consequência:** marcada, a montagem viaja como **atributo da linha do
-carrinho** — sinalizador mais preço derivado, dentro da linha da peça, nunca uma
-linha irmã ([`carrinho.md`](carrinho.md) §4.3; corrigido ali, este parágrafo
-dizia "item de linha com preço próprio" e contradizia o §11 deste mesmo
-arquivo) — e o prazo de arrependimento de 7 dias passa a contar **da data da
-montagem** ([`rodape.md`](rodape.md), pesquisa §6.2).
+**Consequence:** when checked, montagem travels as an **attribute of the cart
+line** — a flag plus the derived price, inside the piece's line, never a sibling
+line ([`carrinho.md`](carrinho.md) §4.3; corrected there, this paragraph used to say
+"a line item with its own price" and contradicted §11 of this same file) — and the
+7-day withdrawal window starts counting **from the montagem date**
+([`rodape.md`](rodape.md), research §6.2).
 
 ---
 
-## 3. Descrição
+## 3. Description
 
-Rótulo `DESCRIÇÃO` em anotação; corpo em Corpo, medida de 60–70 caracteres, 5 a
-7 colunas, **nunca centralizado**.
+`DESCRIÇÃO` label in annotation; body in Body, 60–70 character measure, 5 to 7
+columns, **never centred**.
 
-**Sem abertura em Mincho.** `marca.md` §4 concede uma linha de destaque por
-página e o nome da peça já a gastou no buy box. Um segundo display aqui faria a
-página ter dois heróis.
+**No Mincho opening.** `marca.md` §4 grants one feature line per page and the
+piece's name already spent it in the buy box. A second display here would give the
+page two heroes.
 
-`descricao` continua **uma string só**. Nenhum campo novo: nem resumo, nem
-subtítulo, nem lead. [`produto.md`](produto.md) já registrou que não existe campo
-de descrição curta, e a meta description é problema do
-[ticket de metadata](../../.wayfinder/tickets/015-route-metadata.md).
+`descricao` remains **a single string**. No new field: no summary, no subtitle, no
+lead. [`produto.md`](produto.md) already recorded that there is no short-description
+field, and the meta description is the
+[metadata ticket](../../.wayfinder/tickets/015-route-metadata.md)'s problem.
 
 ---
 
 ## 4. Medidas
 
-**A seção que decide a compra.** Móvel se compra pela medida que tem de caber na
-parede; tudo aqui é número.
+**The section that decides the purchase.** Furniture is bought by the measurement
+that has to fit the wall; everything here is a figure.
 
-### 4.1 O desenho de escala
+### 4.1 The scale drawing
 
-Uma **elevação técnica cotada** da peça: filete de 1px em `--ink`, tiques
-perpendiculares, rótulos na voz de anotação, fundo `--plaster`. É a régua em sua
-expressão plena — a mesma linguagem visual do gesto da marca, aplicada onde a
-informação é o assunto inteiro.
+A **dimensioned technical elevation** of the piece: 1px hairline in `--ink`,
+perpendicular ticks, labels in the annotation voice, `--plaster` background. It is
+the régua in full expression — the same visual language as the brand gesture,
+applied where the information is the entire subject.
 
-Foi escolhida contra quatro alternativas:
+It was chosen against four alternatives:
 
-- **Só a cota na foto** não responde profundidade nem altura do assento.
-- **Comparação com objeto conhecido** exige pessoa ou porta no enquadramento, e
-  `marca.md` §7 fixa peça sozinha, sem pessoa, sem exceção fora de Inspirações.
-- **Comparação de escala compartilhada entre peças** já foi descartada por
-  [`catalogo.md`](catalogo.md) §4 — obriga o sistema de imagem a uma referência
-  comum entre produtos.
-- **Widget "cabe no meu espaço"** é um controle que calcula o que o leitor já
-  tem na tela.
+- **The cota on the photo alone** answers neither depth nor seat height.
+- **Comparison with a known object** requires a person or a door in the frame, and
+  `marca.md` §7 fixes the piece alone, no person, with no exception outside
+  Inspirações.
+- **Shared scale comparison between pieces** was already dropped by
+  [`catalogo.md`](catalogo.md) §4 — it forces the imagery system into a common
+  reference across products.
+- **A "does it fit my space" widget** is a control that computes what the reader
+  already has on screen.
 
-O desenho mora em `Familia.desenho`, não no produto (§10).
+The drawing lives in `Familia.desenho`, not on the product (§10).
 
-### 4.2 A tabela
+### 4.2 The table
 
 ```
 L 78 × P 82 × A 74 cm
 ```
 
-Sempre nesta ordem, sempre com `×` de multiplicação — nunca a letra `x`
-([`marca.md`](marca.md) §8). Voz de anotação, numerais tabulares.
+Always in this order, always with a multiplication `×` — never the letter `x`
+([`marca.md`](marca.md) §8). Annotation voice, tabular figures.
 
-Abaixo, `medidasExtras` como linhas de filete:
+Below it, `medidasExtras` as hairline rows:
 
 ```
 ALTURA DO ASSENTO        42 cm
 CAPACIDADE DE PESO      120 kg
 ```
 
-### 4.3 Embalagem
+### 4.3 Packaging
 
-Bloco recuado em `--kozo`, porque é outro conjunto de números com outra função —
-é o que tem de passar pela porta e pelo elevador:
+A block recessed in `--kozo`, because it is another set of figures with another
+function — it is what has to get through the door and the lift:
 
 ```
 EMBALAGEM
@@ -352,229 +357,225 @@ EMBALAGEM
 
 ## 5. Ficha técnica
 
-Tudo que é qualitativo. A divisão entre §4 e §5 é por **espécie de fato**, não
-por rótulo: número vai para Medidas, atributo vai para a Ficha.
+Everything qualitative. The split between §4 and §5 is by **species of fact**, not
+by label: a figure goes to Medidas, an attribute goes to the Ficha.
 
-| Linha | Fonte |
+| Row | Source |
 |---|---|
 | Materiais | `materiais[]` → `Material.label` |
 | Cor | `cor` → `Cor.label` |
 | Acabamento | `acabamento` |
-| Cuidados | **derivado** de `materiais[]` → `Material.cuidados` (§10) |
+| Cuidados | **derived** from `materiais[]` → `Material.cuidados` (§10) |
 | Garantia | `garantiaMeses ?? politicas.garantiaPadraoMeses` |
 | Itens inclusos | `itensInclusos[]` |
 
-Linhas em filete de 1px `--hairline`, rótulo em anotação `--muted` à esquerda,
-valor em Corpo à direita.
+Rows in 1px `--hairline`, label in annotation `--muted` on the left, value in Body
+on the right.
 
-**Cuidados é derivado, nunca autorado por produto.** Cuidado é propriedade do
-linho e do carvalho, não desta poltrona; autorar por peça é exatamente a deriva
-que a regra de derivação de [`produto.md`](produto.md) existe para impedir. Uma
-peça com dois materiais rende duas linhas de cuidado automaticamente, e nenhum
-produto novo pode nascer sem cópia de cuidado.
+**Cuidados is derived, never authored per product.** Care is a property of the
+linen and the oak, not of this armchair; authoring it per piece is exactly the drift
+[`produto.md`](produto.md)'s derivation rule exists to prevent. A piece with two
+materials yields two care lines automatically, and no new product can be born
+without care copy.
 
-`itensInclusos` sai da Descrição e vem para cá — é ficha, não prosa.
-
----
-
-## 6. Entrega e acesso
-
-**Prosa, não tabela.** O aviso de acesso é uma advertência, e uma linha de
-tabela a enterraria; a pesquisa (§7.3) trata isso como a divulgação específica de
-móvel para a qual um design genérico não tem lugar.
-
-Quatro parágrafos curtos, texto derivado de política e dos dados da peça — nada
-autorado por produto:
-
-1. **Prazo e agendamento.** O prazo depende do CEP e é contado em dias úteis
-   após a confirmação do pagamento; a entrega de peças volumosas é agendada por
-   data e janela.
-2. **Acesso.** Confira as medidas da embalagem (§4.3) contra portas, corredor e
-   elevador. Não passando pelo elevador, a entrega sobe por escada até o 3º
-   andar; acima disso não é realizada.
-3. **Montagem.** Contratada, acontece no mesmo dia da entrega agendada.
-4. **Arrependimento.** Sete dias corridos a partir do recebimento — ou **da data
-   da montagem**, quando contratada. Prosa autônoma, mesmo tratamento que
-   [`rodape.md`](rodape.md) §6 deu ao aviso do rodapé.
-
-Fundo `--plaster`, corpo normal, sem caixa, sem ícone de alerta.
+`itensInclusos` leaves the Description and comes here — it is spec sheet, not prose.
 
 ---
 
-## 7. Fecho
+## 6. Delivery and access
 
-**Se `colecoes` não estiver vazio** — uma tira das outras peças da coleção, na
-ordem autorada por `Colecao.produtos`, usando o card de
-[`catalogo.md`](catalogo.md) §6, com o título da coleção em anotação.
+**Prose, not a table.** The access warning is a caution, and a table row would bury
+it; the research (§7.3) treats this as the furniture-specific disclosure a generic
+design has no place for.
 
-**Senão** — uma linha só, em anotação, alinhada à esquerda:
+Four short paragraphs, text derived from policy and from the piece's data — nothing
+authored per product:
+
+1. **Prazo and scheduling.** The prazo depends on the CEP and is counted in business
+   days after payment confirmation; delivery of bulky pieces is scheduled by date
+   and window.
+2. **Access.** Check the packaging measurements (§4.3) against doors, hallway and
+   lift. If it does not fit the lift, delivery goes up by stairs to the 3rd floor;
+   above that it is not carried out.
+3. **Montagem.** When contracted, it happens on the same day as the scheduled
+   delivery.
+4. **Withdrawal.** Seven calendar days from receipt — or from the **montagem date**,
+   when contracted. Standalone prose, the same treatment [`rodape.md`](rodape.md) §6
+   gave the footer notice.
+
+`--plaster` background, normal body, no box, no alert icon.
+
+---
+
+## 7. Closing
+
+**If `colecoes` is not empty** — a strip of the coleção's other pieces, in the order
+authored by `Colecao.produtos`, using the card from [`catalogo.md`](catalogo.md) §6,
+with the collection's title in annotation.
+
+**Otherwise** — a single line, in annotation, left-aligned:
 
 ```
 VER TODAS AS POLTRONAS EM SALA →
 ```
 
-Apontando para `/{ambientePrincipal}/{tipo}`.
+Pointing at `/{ambientePrincipal}/{tipo}`.
 
-**Não há "quem viu também viu", não há "complete o ambiente".** Uma loja
-conceito não tem base honesta para recomendar — a mesma razão que
-[`catalogo.md`](catalogo.md) §8 deu ao recusar sugestões fabricadas no resultado
-zero. Um campo `complementos[]` autorado por produto foi descartado: inventa uma
-relação curatorial para cada peça do catálogo. Um **link de volta para uma
-listagem real** não é sugestão, é navegação.
+**There is no "quem viu também viu", no "complete o ambiente".** A concept store has
+no honest basis for recommending — the same reason [`catalogo.md`](catalogo.md) §8
+gave when refusing fabricated suggestions on zero results. A `complementos[]` field
+authored per product was dropped: it invents a curatorial relationship for every
+piece in the catalogue. A **link back to a real listing** is not a suggestion, it is
+navigation.
 
 ---
 
-## 8. Orçamento de régua
+## 8. Régua budget
 
-**Exatamente duas instâncias na página inteira**, e são estas:
+**Exactly two instances on the entire page**, and they are these:
 
-1. A cota sobre a imagem `principal`, lendo `imagens[0].cotas` — até largura
-   **e** altura, que `marca.md` §2 conta como *uma* instância ("duas cotas por
-   peça é o teto").
-2. O desenho de escala (§4.1), sozinho em sua viewport.
+1. The cota over the `principal` image, reading `imagens[0].cotas` — up to width
+   **and** height, which `marca.md` §2 counts as *one* instance ("two cotas per
+   piece is the ceiling").
+2. The scale drawing (§4.1), alone in its viewport.
 
-`ambientada` e `detalhe` renderizam com `cotas: []` **sempre**, nesta página.
-Nenhuma abertura de seção recebe régua: não há número a declarar que já não
-esteja dito melhor em §4.
+`ambientada` and `detalhe` render with `cotas: []` **always**, on this page. No
+section opening gets a régua: there is no figure to state that is not already better
+said in §4.
 
-Esta é a página em que o gesto atinge expressão plena sem estourar a ração — a
-mesma disciplina de duas por página que [`home.md`](home.md) impôs, gasta em
-lugar diferente.
+This is the page where the gesture reaches full expression without blowing the
+ration — the same two-per-page discipline [`home.md`](home.md) imposed, spent in a
+different place.
 
 ---
 
 ## 9. Mobile
 
-Coluna única, na ordem:
+A single column, in this order:
 
 ```
-principal → nome/designer → preço/parcelamento → acabamentos →
-disponibilidade → COMPRAR → CEP → montagem → descrição →
-ambientada → medidas → ficha técnica → entrega → fecho
+principal → name/designer → price/parcelamento → acabamentos →
+disponibilidade → COMPRAR → CEP → montagem → description →
+ambientada → medidas → ficha técnica → delivery → closing
 ```
 
-**Sem barra fixa inferior** com preço e CTA, apesar de ser quase universal em
-PDP brasileira no celular. É a mesma cromagem persistente recusada em §0, e no
-celular ela cobriria justamente o desenho de escala e a tabela de medidas — as
-duas coisas para as quais esta página existe. Com o bloco de CEP em fluxo, o
-desenho nunca fica ocluído.
+**No fixed bottom bar** with price and CTA, despite it being near-universal on
+Brazilian PDPs on mobile. It is the same persistent chrome refused in §0, and on
+mobile it would cover exactly the scale drawing and the measurements table — the two
+things this page exists for. With the CEP block in flow, the drawing is never
+occluded.
 
-O desenho de escala ocupa a largura do container e mantém a legibilidade da
-anotação; **não** ganha scroller horizontal.
+The scale drawing takes the container's width and keeps the annotation legible; it
+does **not** get a horizontal scroller.
 
-As amostras de acabamento quebram em duas linhas antes de virarem trilho
-rolável.
+The acabamento swatches wrap onto two lines before becoming a scrollable rail.
 
 ---
 
-## 10. Dados
+## 10. Data
 
-Quatro alterações em [`produto.md`](produto.md). Três aditivas, uma reversão
-declarada.
+Four changes to [`produto.md`](produto.md). Three additive, one declared reversal.
 
 ```ts
 type Familia = {
   slug: string;
   nome: string;
-  designer: string;                      // NOVO — autoria é da peça
-  desenho: { src: string; alt: string }; // NOVO — elevação técnica cotada
+  designer: string;                      // NEW — authorship belongs to the piece
+  desenho: { src: string; alt: string }; // NEW — dimensioned technical elevation
 };
 
 type Material = {
   slug: string;
   label: string;
-  cuidados: string;                      // NOVO — uma linha por material
+  cuidados: string;                      // NEW — one line per material
 };
 
 type Imagem = {
   src: string;
   alt: string;
-  papel: 'principal' | 'ambientada' | 'detalhe';  // 'escala' REMOVIDO
+  papel: 'principal' | 'ambientada' | 'detalhe';  // 'escala' REMOVED
   cotas: ('largura' | 'altura')[];
 };
 ```
 
-**Por que na `Familia` e não no `Produto`:** nem autoria nem geometria mudam com
-o tecido. A elevação técnica da Poltrona Lina é o mesmo desenho em linho cru e
-em bouclé carvalho, e o designer é o mesmo. Isso também dá à `Familia` —
-deliberadamente magra — duas razões de existir além de nomear uma tira, e reduz
-pela metade os desenhos que o [sistema de
-imagem](../../.wayfinder/tickets/014-imagery.md) deve.
+**Why on `Familia` and not on `Produto`:** neither authorship nor geometry changes
+with the fabric. The Poltrona Lina's technical elevation is the same drawing in
+linho cru and in bouclé carvalho, and the designer is the same. This also gives
+`Familia` — deliberately thin — two reasons to exist beyond naming a strip, and
+halves the drawings the [imagery system](../../.wayfinder/tickets/014-imagery.md)
+owes.
 
-**Invariante que isso cria:** produtos da mesma família **compartilham
-`medidas`**. Um desenho para dois acabamentos de medidas diferentes mentiria
-sobre um deles. Isto é verdade do móvel real — acabamento não muda geometria — e
-fica registrado como restrição do modelo, não como coincidência dos dados.
+**The invariant this creates:** products in the same família **share `medidas`**. One
+drawing for two acabamentos of different measurements would lie about one of them.
+This is true of real furniture — an acabamento does not change geometry — and it is
+recorded as a model constraint, not as a coincidence in the data.
 
-**`'escala'` sai do enum** porque nenhuma superfície o consome mais: a listagem
-já lia só `principal` ([`catalogo.md`](catalogo.md) §13) e a PDP passou a ler o
-desenho da família. É a única reversão deste ticket; o papel foi definido antes
-de existir uma página que o gastasse.
+**`'escala'` leaves the enum** because no surface consumes it any more: the listing
+already read only `principal` ([`catalogo.md`](catalogo.md) §13) and the PDP now
+reads the família's drawing. It is this ticket's only reversal; the role was defined
+before a page existed that would spend it.
 
-`Produto` não ganha campo nenhum.
-
----
-
-## 11. Restrições entregues a outros tickets
-
-- **[Carrinho](../../.wayfinder/tickets/010-cart.md)** — o item de linha carrega
-  um sinalizador de montagem e o preço derivado dela (§2.8); a quantidade é
-  **do carrinho**, porque a PDP não tem stepper (§2.6); o CEP digitado aqui já
-  chega preenchido (§2.7); e o prazo de arrependimento conta da montagem quando
-  ela foi contratada.
-- **[Checkout](../../.wayfinder/tickets/011-checkout.md)** — mesmo CEP lembrado,
-  já preenchido no primeiro campo de endereço.
-- **[Sistema de imagem](../../.wayfinder/tickets/014-imagery.md)** — três papéis
-  fotográficos, não quatro (§10), cada um com posição fixa na página (§2.1); e
-  um artefato novo que **não é fotografia**: a elevação técnica cotada por
-  família (§4.1), que precisa de especificação própria — traço, cotas mínimas,
-  vistas, proporção.
-- **[Metadata e SEO](../../.wayfinder/tickets/015-route-metadata.md)** — o `<h1>`
-  é o nome da peça no buy box. Continua sem campo de descrição curta; a meta
-  description sai truncada de `descricao` ou é autorada lá.
-- **[Superfícies de erro](../../.wayfinder/tickets/016-error-surfaces.md)** —
-  slug inexistente é 404 e é daquele ticket. O erro de CEP inválido está
-  resolvido aqui (§2.7) e segue o padrão sem cor.
-- **[Movimento](../../.wayfinder/tickets/017-motion.md)** — a PDP não tem
-  carrossel, troca de imagem, zoom, painel fixo nem revelação em scroll. A
-  substituição do CTA pela linha de confirmação (§2.6) é troca de conteúdo, não
-  animação; se ganhar transição, é daquele ticket.
-- **Dados de exemplo** (névoa do mapa) — a PDP endurece a demanda: toda família
-  precisa de `designer` e de um desenho técnico; todo material precisa de linha
-  de cuidado; e pelo menos uma família precisa de dois acabamentos, ou a tira de
-  §2.4 nunca renderiza.
+`Produto` gains no field at all.
 
 ---
 
-## 12. Omissões deliberadas
+## 11. Constraints handed to other tickets
 
-Consideradas e recusadas — registradas para não voltarem sem motivo novo:
+- **[Cart](../../.wayfinder/tickets/010-cart.md)** — the line item carries a montagem
+  flag and its derived price (§2.8); quantity belongs to **the cart**, because the
+  PDP has no stepper (§2.6); the CEP typed here arrives pre-filled (§2.7); and the
+  withdrawal window counts from the montagem when it was contracted.
+- **[Checkout](../../.wayfinder/tickets/011-checkout.md)** — the same remembered
+  CEP, pre-filled in the first address field.
+- **[Imagery system](../../.wayfinder/tickets/014-imagery.md)** — three photographic
+  roles, not four (§10), each with a fixed position on the page (§2.1); plus one new
+  artefact that is **not photography**: the per-família dimensioned technical
+  elevation (§4.1), which needs a specification of its own — stroke, minimum cotas,
+  views, proportion.
+- **[Metadata and SEO](../../.wayfinder/tickets/015-route-metadata.md)** — the `<h1>`
+  is the piece's name in the buy box. There is still no short-description field; the
+  meta description is truncated from `descricao` or authored there.
+- **[Error surfaces](../../.wayfinder/tickets/016-error-surfaces.md)** — a
+  non-existent slug is a 404 and belongs to that ticket. The invalid-CEP error is
+  resolved here (§2.7) and follows the colourless pattern.
+- **[Motion](../../.wayfinder/tickets/017-motion.md)** — the PDP has no carousel, no
+  image swap, no zoom, no fixed panel and no scroll reveal. Replacing the CTA with
+  the confirmation line (§2.6) is a content swap, not an animation; if it gains a
+  transition, that belongs to that ticket.
+- **Seed data** (map fog) — the PDP hardens the demand: every família needs a
+  `designer` and a technical drawing; every material needs a care line; and at least
+  one família needs two acabamentos, or §2.4's strip never renders.
 
-- **Avaliações e estrelas** — já fora do modelo por
-  [`produto.md`](produto.md): sem conta, ninguém escreve, e qualquer número é
-  prova social inventada.
-- **Buy box fixo / barra fixa no celular** (§0, §9).
-- **Seletor de quantidade** (§2.6).
-- **Gaveta de carrinho** — indisponível por [`navbar.md`](navbar.md).
-- **Miniaturas com troca ao clique, zoom, lightbox** (§2.1).
+---
+
+## 12. Deliberate omissions
+
+Considered and refused — recorded so they do not return without a new reason:
+
+- **Ratings and stars** — already out of the model per [`produto.md`](produto.md):
+  with no accounts nobody writes them, and any figure is invented social proof.
+- **Sticky buy box / fixed mobile bar** (§0, §9).
+- **Quantity selector** (§2.6).
+- **Cart drawer** — unavailable per [`navbar.md`](navbar.md).
+- **Click-to-swap thumbnails, zoom, lightbox** (§2.1).
 - **"Avise-me quando chegar"** (§2.6).
-- **"Quem viu também viu" e `complementos[]`** (§7).
-- **Widget "cabe no meu espaço"** (§4.1).
-- **Comparação de escala entre peças** — já descartada em
+- **"Quem viu também viu" and `complementos[]`** (§7).
+- **A "does it fit my space" widget** (§4.1).
+- **Scale comparison between pieces** — already dropped in
   [`catalogo.md`](catalogo.md) §4.
-- **Linha de política Pix/parcelamento repetida** — o buy box já a diz inteira
-  (§2.3).
+- **A repeated Pix/parcelamento policy line** — the buy box already states it in
+  full (§2.3).
 
 ---
 
-## Como isso foi decidido
+## How this was decided
 
-Três rodadas de grilling sobre o ticket 009. A primeira fixou a estrutura: duas
-colunas sem sticky, o desenho técnico como mecanismo de escala, o inventário do
-buy box, e as três decisões de modelo que a página exigiu (designer na família,
-acabamentos dentro do buy box, fecho sem recomendação). A segunda resolveu os
-internos: papéis de imagem como posição, orçamento de régua, cuidados derivados
-do material, estados do CTA, comportamento do CEP e a montagem com um só
-endereço. A terceira fechou mobile, moveu o desenho para a família — deletando
-`'escala'` do enum — corrigiu um Mincho a mais que o rascunho da espinha tinha
-inventado, e separou Medidas de Ficha técnica por espécie de fato.
+Three rounds of grilling on ticket 009. The first fixed the structure: two columns
+with no sticky, the technical drawing as the scale mechanism, the buy box inventory,
+and the three model decisions the page demanded (designer on the família,
+acabamentos inside the buy box, a closing without recommendation). The second
+resolved the internals: image roles as position, the régua budget, care derived from
+the material, CTA states, CEP behaviour and montagem with a single address. The
+third settled mobile, moved the drawing to the família — deleting `'escala'` from the
+enum — corrected one Mincho too many that the spine draft had invented, and separated
+Medidas from Ficha técnica by species of fact.

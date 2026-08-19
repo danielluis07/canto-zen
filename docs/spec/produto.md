@@ -1,4 +1,4 @@
-# Produto — modelo de dados
+# Produto — data model
 
 The fake data model the listing, product page and cart all read from, plus the
 related shapes it drags in. Resolved by
@@ -19,8 +19,8 @@ records physically live (TS module, JSON, MDX) is a build-session call.
    `Intl.NumberFormat('pt-BR')`. Centavos always shown. Query params
    (`?preco=2000-5000`) stay in whole reais — that is a URL surface, not storage.
 4. **Lengths are integers in centimetres.** Never inches, never metres.
-5. **Store-wide commercial policy is stated once**, in [Políticas
-   comerciais](#políticas-comerciais), and derived per product — never copied onto
+5. **Store-wide commercial policy is stated once**, in [Commercial
+   policies](#commercial-policies), and derived per product — never copied onto
    each record. An authored catalogue drifts; a derived one cannot.
 
 ## Produto
@@ -78,7 +78,7 @@ proof, and a row of gold stars is the loud commerce register that
 [`marca.md`](./marca.md) ruled out. Adding it later is purely additive; nothing
 below depends on its absence.
 
-## Nome e cota
+## Name and cota
 
 `nome` stays clean — `"Poltrona Lina"`, not `"Poltrona Lina Linho Cru 78cm"`.
 
@@ -182,7 +182,7 @@ type Montagem = {
 ```
 
 Physical facts on the product; **price derived** from `nivel` via
-[Políticas comerciais](#políticas-comerciais). Tok&Stok states the cost "é
+[Commercial policies](#commercial-policies). Tok&Stok states the cost "é
 calculado de acordo com o nível de complexidade e também o tempo de montagem", so
 a derived figure is the faithful model — and it stays provably consistent with the
 complexity shown directly above it, which a hand-authored number will not.
@@ -211,7 +211,7 @@ direction. The split must be visible **on the card**, not only the PDP
 dispatch, and the CEP-quoted prazo is counted in **dias úteis after confirmação de
 pagamento**.
 
-## Entidades relacionadas
+## Related entities
 
 Slugs are ASCII-folded, labels keep their accents — `escritorio` / "Escritório".
 
@@ -296,7 +296,7 @@ from each product, because a collection is a merchandising device whose sequence
 the editorial act. `Produto.colecoes` is kept alongside it as a convenience for the
 PDP badge; the collection's list is authoritative on order.
 
-## Políticas comerciais
+## Commercial policies
 
 Store-wide, stated once. Every price, badge and add-on figure derives from these.
 
@@ -314,15 +314,15 @@ const politicas = {
 };
 ```
 
-### Derivações
+### Derivations
 
-| Valor exibido | Derivação |
+| Displayed value | Derivation |
 | --- | --- |
-| preço à vista | `precoTabela × (1 − descontoPixPercent/100)` |
-| badge do desconto | `"{descontoPixPercent}% à vista no Pix"` |
-| linha de parcelamento | maior `N ≤ parcelasMax` tal que `precoTabela / N ≥ parcelaMinima` |
-| tabela 1x…Nx | `precoTabela / n` para cada `n` |
-| preço da montagem | `montagemCentavos[montagem.nivel]` |
+| à-vista price | `precoTabela × (1 − descontoPixPercent/100)` |
+| discount badge | `"{descontoPixPercent}% à vista no Pix"` |
+| parcelamento line | largest `N ≤ parcelasMax` such that `precoTabela / N ≥ parcelaMinima` |
+| 1x…Nx table | `precoTabela / n` for each `n` |
+| montagem price | `montagemCentavos[montagem.nivel]` |
 | garantia | `garantiaMeses ?? garantiaPadraoMeses` |
 
 One authored number per product means the catalogue cannot drift into
@@ -355,7 +355,7 @@ ship separately.
 The mock rule's regions, tiers and prazos are the **cart and checkout tickets'**
 to fix; this file only fixes where the inputs live.
 
-## Exemplo
+## Example
 
 ```ts
 {
@@ -389,7 +389,7 @@ to fix; this file only fixes where the inputs live.
 }
 ```
 
-## Restrições entregues a outros tickets
+## Constraints handed to other tickets
 
 - **[Catálogo](../../.wayfinder/tickets/008-catalog.md)** — *resolved*, see
   [`catalogo.md`](catalogo.md). Filters read `cor`, `materiais`, `precoTabela`,
@@ -413,7 +413,7 @@ to fix; this file only fixes where the inputs live.
   — delivery groups derive from `embalagem` + `freteGratis`; the resumo's
   à-vista and parcelado totals derive from `politicas`.
 
-## Omissões deliberadas
+## Deliberate omissions
 
 Considered and ruled out — recorded so they are not relitigated:
 

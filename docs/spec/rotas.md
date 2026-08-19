@@ -159,10 +159,10 @@ Considered and ruled out — recorded so they are not relitigated:
   no traffic to justify it.
 - **`/finalizar-compra`** — a button label, not a place. The URL says `/checkout`,
   which is the established term in BR e-commerce.
-- **`?q=` e superfície de resultados** — reservado por esta tabela, **nunca usado**.
-  [`navbar.md`](navbar.md) §12 recusou a busca: ~20 páginas de listagem curadas,
-  navegação room-primary como *o* caminho, e nenhum corpus real que torne relevância
-  significativa. A busca e sua página de resultados saíram do mapa como fora de escopo.
+- **`?q=` and the results surface** — reserved by this table, **never used**.
+  [`navbar.md`](navbar.md) §12 refused search: ~20 curated listing pages,
+  room-primary navigation as *the* path, and no real corpus that would make
+  relevance meaningful. Search and its results page left the map as out of scope.
 
 ## Open, elsewhere
 

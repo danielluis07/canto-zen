@@ -1,197 +1,201 @@
 # Rodapé — footer
 
-Resolve o ticket [Footer](../../.wayfinder/tickets/006-footer.md).
-Vale para todas as 15 rotas de [`rotas.md`](rotas.md), com uma variante reduzida em
-`/checkout` (§9). Vocabulário visual em [`marca.md`](marca.md); toda cor, medida e
-voz tipográfica citada aqui vem de lá e não é redefinida. As obrigações legais vêm
-de [`br-ecommerce-conventions.md`](../research/br-ecommerce-conventions.md).
+Resolves ticket [Footer](../../.wayfinder/tickets/006-footer.md).
+Applies to all 15 routes in [`rotas.md`](rotas.md), with a reduced variant on
+`/checkout` (§9). Visual vocabulary lives in [`marca.md`](marca.md); every colour,
+measurement and typographic voice quoted here comes from there and is not
+redefined. The legal obligations come from
+[`br-ecommerce-conventions.md`](../research/br-ecommerce-conventions.md).
+
+This file is written in English prose; every string quoted as copy is the pt-BR
+that ships, and domain terms stay pt-BR throughout.
 
 ---
 
-## 1. Propósito
+## 1. Purpose
 
-O rodapé faz três trabalhos, nesta ordem de prioridade:
+The footer does three jobs, in this order of priority:
 
-1. **Cumprir o Decreto 7.962/2013 art. 2º I–II** — identificação do fornecedor em
-   local de destaque: razão social, CNPJ, endereço físico completo, endereço
-   eletrônico e meios de contato.
-2. **Tornar ostensivo o direito de arrependimento** (CDC art. 49 + Decreto 7.962
-   art. 5º), incluindo o canal pelo qual ele se exerce.
-3. **Fechar a página com a posição do ateliê** — a única superfície da loja onde a
-   posição de §1 de `marca.md` (peças sob encomenda, marcenaria própria) é dita em
-   prosa.
+1. **Comply with Decreto 7.962/2013 art. 2º I–II** — supplier identification in a
+   prominent place: razão social, CNPJ, complete physical address, electronic
+   address and means of contact.
+2. **Make the right of withdrawal conspicuous** (CDC art. 49 + Decreto 7.962
+   art. 5º), including the channel through which it is exercised.
+3. **Close the page with the atelier's position** — the only surface in the store
+   where the position from `marca.md` §1 (made-to-order pieces, in-house
+   marcenaria) is stated in prose.
 
-Navegação é o quarto trabalho, não o primeiro. O rodapé recolhe o que a
-[`navbar.md`](navbar.md) empurrou para baixo — `/produtos`, `/sobre`, `/contato` —
-e as quatro políticas; ele não duplica a espinha dorsal room-primary, apenas a
-completa.
+Navigation is the fourth job, not the first. The footer picks up what
+[`navbar.md`](navbar.md) pushed downwards — `/produtos`, `/sobre`, `/contato` —
+plus the four policies; it does not duplicate the room-primary spine, it only
+completes it.
 
-**Peso: bloco substancial, não faixa utilitária.** Mas substancial em *texto*, não
-em imagem: uma segunda fotografia embaixo de toda página competiria com a peça
-acima dela. Não há foto no rodapé, em nenhuma rota.
+**Weight: a substantial block, not a utility strip.** But substantial in *text*,
+not in imagery: a second photograph at the bottom of every page would compete
+with the piece above it. There is no photo in the footer, on any route.
 
 ---
 
-## 2. Estrutura
+## 2. Structure
 
-Quatro zonas empilhadas, separadas por filete de 1px em `--hairline`.
+Four stacked zones, separated by 1px hairlines in `--hairline`.
 
 ```
-──────────────────────────────────────────────────────────────  filete superior
-                                                                 (separa da página)
-  Peças feitas sob encomenda em          AVISO DE NOVAS PEÇAS   zona A (§4, §5)
+──────────────────────────────────────────────────────────────  top hairline
+                                                                 (separates from page)
+  Peças feitas sob encomenda em          AVISO DE NOVAS PEÇAS   zone A (§4, §5)
   marcenaria própria, em São Paulo.      [ e-mail        ] →
                                          Ao assinar você concorda…
 ──────────────────────────────────────────────────────────────
-  AMBIENTES    A MARCA        AJUDA              ATENDIMENTO    zona B (§6, §7)
+  AMBIENTES    A MARCA        AJUDA              ATENDIMENTO    zone B (§6, §7)
   Sala         Inspirações    Trocas e devol.    WhatsApp …
   Quarto       Sobre          Entrega e frete    (11) 3000-0000
   Cozinha      Contato        Privacidade        oi@cantozen…
   Escritório                  Termos de uso      seg–sex, 9h–18h
   Todas as peças
 ──────────────────────────────────────────────────────────────
-  PIX  VISA  MASTER  ELO  AMEX  BOLETO      @cantozen  @cantozen  zona C (§8)
+  PIX  VISA  MASTER  ELO  AMEX  BOLETO      @cantozen  @cantozen  zone C (§8)
   COMPRA SEGURA
 ──────────────────────────────────────────────────────────────
-  Canto Zen Marcenaria e Comércio de Móveis Ltda. · CNPJ …       zona D (§3)
+  Canto Zen Marcenaria e Comércio de Móveis Ltda. · CNPJ …       zone D (§3)
   Você pode desistir da compra em até 7 dias corridos…
   © 2026 Canto Zen · Todos os direitos reservados
 ──────────────────────────────────────────────────────────────
 ```
 
-**Geometria**
+**Geometry**
 
-| Propriedade | Valor |
+| Property | Value |
 |---|---|
-| Fundo | `--plaster` — o mesmo da página |
-| Separação do conteúdo | filete de 1px em `--hairline` no topo, e nada mais |
-| Container | `max-width: 1360px`, goteira `clamp(1.5rem, 4vw, 4.5rem)` |
-| Grade | 12 colunas, iguais às de §5 de `marca.md` |
-| Respiro acima do rodapé | `7rem` |
-| Padding interno das zonas | `2.75rem` no topo e na base de cada zona |
-| Raio, sombra | 0, nenhuma |
+| Background | `--plaster` — the same as the page |
+| Separation from content | 1px hairline in `--hairline` at the top, and nothing else |
+| Container | `max-width: 1360px`, gutter `clamp(1.5rem, 4vw, 4.5rem)` |
+| Grid | 12 columns, the same as `marca.md` §5 |
+| Breathing room above the footer | `7rem` |
+| Inner padding per zone | `2.75rem` at the top and bottom of each zone |
+| Radius, shadow | 0, none |
 
-**Fundo `--plaster`, não `--kozo`.** `--kozo` já está gasto na faixa de aviso da
-navbar; repeti-lo embaixo emolduraria toda página numa moldura combinando, o que lê
-como template. O tom aparece uma vez só, e no ponto mais silencioso: a zona D (§3)
-recua para `--kozo`.
+**Background `--plaster`, not `--kozo`.** `--kozo` is already spent on the
+navbar's notice band; repeating it at the bottom would put every page in a
+matching frame, which reads as a template. The tone appears once only, and at the
+quietest point: zone D (§3) recesses into `--kozo`.
 
-**Alinhamento assimétrico**, como na navbar e como em §5 de `marca.md`: tudo
-agrupado à esquerda, a goteira direita deliberadamente vazia. Nenhuma zona é
-centralizada.
+**Asymmetric alignment**, as in the navbar and as in `marca.md` §5: everything
+grouped to the left, the right gutter deliberately empty. No zone is centred.
 
 ---
 
-## 3. Bloco legal (zona D)
+## 3. Legal block (zone D)
 
-A zona mais baixa, recuada em `--kozo`, padding vertical `2rem`. Três linhas, nesta
-ordem:
+The lowest zone, recessed in `--kozo`, vertical padding `2rem`. Three lines, in
+this order:
 
-**1 — Identificação do fornecedor.** Corpo S, `--muted`, em linha corrida separada
-por `·`:
+**1 — Supplier identification.** Body S, `--muted`, as a running line separated by
+`·`:
 
 > Canto Zen Marcenaria e Comércio de Móveis Ltda. · CNPJ 51.204.876/0001-40 ·
 > IE 116.482.930.114 · Rua Harmonia, 742, Vila Madalena, São Paulo — SP,
 > CEP 05435-000
 
-Campos obrigatórios pelo decreto: razão social, CNPJ, endereço físico com CEP,
-e-mail e meio de contato — os dois últimos vivem na zona de atendimento (§7), que
-está na mesma tela. **Inscrição Estadual entra** por convenção: não é exigida pelo
-decreto, custa uma vírgula, e sua ausência é mais conspícua que sua presença num
-rodapé de loja de móveis brasileira.
+Fields the decree requires: razão social, CNPJ, physical address with CEP, e-mail
+and a means of contact — the last two live in the atendimento zone (§7), which is
+on the same screen. **Inscrição Estadual is included** by convention: it is not
+required by the decree, it costs one comma, and its absence is more conspicuous
+than its presence in the footer of a Brazilian furniture store.
 
-> **Dados fictícios.** Razão social, CNPJ, IE, endereço, telefone e e-mail acima
-> são inventados para a loja-conceito. São bem formados de propósito, para que o
-> layout seja real, e **devem ser substituídos antes de qualquer transação real.**
-> Nenhuma sessão de build deve deixá-los em branco ou como placeholder: um bloco
-> legal vazio é exatamente a falha que este spec existe para impedir.
+> **Fictional data.** The razão social, CNPJ, IE, address, phone and e-mail above
+> are invented for the concept store. They are well-formed on purpose, so the
+> layout is real, and they **must be replaced before any real transaction.** No
+> build session should leave them blank or as placeholders: an empty legal block
+> is exactly the failure this spec exists to prevent.
 
-**2 — Aviso de arrependimento.** Corpo S, `--ink` (não `--muted` — é o único texto
-da zona que precisa ser lido):
+**2 — Withdrawal notice.** Body S, `--ink` (not `--muted` — it is the only text in
+the zone that has to be read):
 
 > Você pode desistir da compra em até 7 dias corridos a contar do recebimento — ou
 > da montagem, quando contratada. Para exercer, fale com a gente pelo WhatsApp ou
 > por oi@cantozen.com.br; respondemos em até 5 dias.
 > [Como funciona](/politicas/trocas-e-devolucoes)
 
-Isto **não** é substituível pelo link "Trocas e devoluções" da coluna Ajuda. O
-Decreto 7.962 art. 5º exige informação *"clara e ostensiva"* sobre os meios de
-exercício; um link enterrado numa coluna não satisfaz "ostensiva", e uma faixa
-gritada violaria a marca. Uma frase em prosa no bloco legal é o meio-termo correto.
+This is **not** replaceable by the "Trocas e devoluções" link in the Ajuda column.
+Decreto 7.962 art. 5º requires *"clear and conspicuous"* information about the
+means of exercising it; a link buried in a column does not satisfy "conspicuous",
+and a shouted banner would violate the brand. A prose sentence in the legal block
+is the correct middle ground.
 
-A contagem a partir da **data de montagem** quando ela é contratada é específica de
-móveis e vem da prática observada na pesquisa; entra porque a loja vende montagem
-como add-on.
+Counting from the **montagem date** when it is contracted is furniture-specific
+and comes from the practice observed in the research; it is included because the
+store sells montagem as an add-on.
 
-**3 — Copyright.** Voz de anotação, `--muted`:
+**3 — Copyright.** Annotation voice, `--muted`:
 
 > © 2026 Canto Zen · Todos os direitos reservados
 
-Nada mais. Sem "feito por", sem crédito de framework, sem selo de agência.
+Nothing else. No "made by", no framework credit, no agency badge.
 
-### O canal de cancelamento é o atendimento
+### The cancellation channel is atendimento
 
-O Decreto 7.962 art. 5º pede que o arrependimento seja exercível *"pela mesma
-ferramenta utilizada para a contratação"* — o que, numa loja com conta de usuário,
-seria uma tela self-service na área do cliente. **Autenticação está fora de escopo
-do mapa**, então não existe área do cliente para hospedá-la.
+Decreto 7.962 art. 5º asks that withdrawal be exercisable *"through the same tool
+used for the purchase"* — which, in a store with user accounts, would be a
+self-service screen in the customer area. **Authentication is out of scope in the
+map**, so there is no customer area to host it.
 
-A resolução: **o canal de atendimento nomeado é a ferramenta.** WhatsApp e e-mail
-aparecem explicitamente na frase de arrependimento (acima) e em
-`/politicas/trocas-e-devolucoes`, junto do prazo de 7 dias e do dever de resposta
-em 5 dias (art. 4º). Isso fecha a lacuna sem exigir uma área de conta que o mapa já
-descartou.
+The resolution: **the named atendimento channel is the tool.** WhatsApp and e-mail
+appear explicitly in the withdrawal sentence (above) and in
+`/politicas/trocas-e-devolucoes`, alongside the 7-day window and the duty to
+respond within 5 days (art. 4º). That closes the gap without requiring an account
+area the map already ruled out.
 
 ---
 
-## 4. Linha de fecho (zona A, esquerda)
+## 4. Closing line (zone A, left)
 
-Uma única linha em **Zen Old Mincho**, Display M (`1.35rem`/1.45), `--ink`,
-ocupando 5 das 12 colunas:
+A single line in **Zen Old Mincho**, Display M (`1.35rem`/1.45), `--ink`,
+occupying 5 of the 12 columns:
 
 > Peças feitas sob encomenda em marcenaria própria, em São Paulo.
 
-É a única linha de destaque do rodapé e consome a cota de "uma linha de destaque
-por página" de §4 de `marca.md` quando a página não tiver gasto antes. Não há
-repetição da assinatura, não há símbolo, não há ornamento.
+It is the footer's only feature line and consumes the "one feature line per page"
+allowance from `marca.md` §4 when the page has not spent it earlier. There is no
+repeat of the wordmark, no symbol, no ornament.
 
-**A régua não aparece aqui.** §2 de `marca.md` proíbe o gesto em rodapé,
-explicitamente. A identidade do rodapé vem da contenção e dos filetes, não da
-assinatura visual.
+**The régua does not appear here.** `marca.md` §2 explicitly prohibits the gesture
+in the footer. The footer's identity comes from restraint and hairlines, not from
+the visual signature.
 
 ---
 
-## 5. Newsletter (zona A, direita)
+## 5. Newsletter (zone A, right)
 
-Ocupa 4 das 12 colunas; a goteira direita fica vazia.
+Occupies 4 of the 12 columns; the right gutter stays empty.
 
-- **Rótulo**: `AVISO DE NOVAS PEÇAS`, voz de anotação, `--ink`.
-- **Um campo de e-mail e um botão**, lado a lado. Sem campo de nome, sem checkbox.
-  Campo com borda de 1px em `--hairline`, raio 0, fundo `--plaster`; botão primário
-  conforme §6 de `marca.md`.
-- **Nota LGPD** sob o campo, Corpo S `--muted`:
+- **Label**: `AVISO DE NOVAS PEÇAS`, annotation voice, `--ink`.
+- **One e-mail field and one button**, side by side. No name field, no checkbox.
+  Field with a 1px `--hairline` border, radius 0, `--plaster` background; primary
+  button per `marca.md` §6.
+- **LGPD note** under the field, Body S `--muted`:
   *"Enviamos só quando há peça nova. Cancele quando quiser. Veja a
   [Política de privacidade](/politicas/privacidade)."*
-  Uma nota, não um tick-box: uma loja-conceito não tem onde registrar o
-  consentimento, e um checkbox que não persiste nada é mentira de interface.
-- **Estado de sucesso**: o formulário é substituído *no lugar* por uma linha em voz
-  de anotação — `PRONTO. VOCÊ SERÁ AVISADO.` Sem modal, sem toast: ambos são
-  movimento que §9 de `marca.md` não autoriza.
-- **Estado de erro**: mensagem em Corpo S `--ink` sob o campo, borda do campo em
-  `--ink`. Sem vermelho — a paleta não tem semáforo (§3 de `marca.md`).
+  A note, not a tick-box: a concept store has nowhere to record consent, and a
+  checkbox that persists nothing is an interface lie.
+- **Success state**: the form is replaced *in place* by a line in the annotation
+  voice — `PRONTO. VOCÊ SERÁ AVISADO.` No modal, no toast: both are motion that
+  `marca.md` §9 does not authorise.
+- **Error state**: message in Body S `--ink` under the field, field border in
+  `--ink`. No red — the palette has no traffic lights (`marca.md` §3).
 
-**Proibido nesta zona**: percentual de desconto, "ganhe 10% na primeira compra",
-qualquer verbo no imperativo além do rótulo do botão, contagem de assinantes.
-A captura existe porque um ateliê sob encomenda plausivelmente anuncia peças — não
-porque converte.
+**Prohibited in this zone**: discount percentages, "ganhe 10% na primeira compra",
+any imperative verb beyond the button label, subscriber counts. The capture exists
+because a made-to-order atelier plausibly announces pieces — not because it
+converts.
 
 ---
 
-## 6. Colunas de link (zona B)
+## 6. Link columns (zone B)
 
-Três colunas de navegação, cada uma com título em voz de anotação `--muted` e itens
-em Corpo S `--ink`. Espaçamento vertical de `0.5rem` entre itens; hover leva a cor a
-`--indigo`, transição de 120ms.
+Three navigation columns, each with a title in the annotation voice `--muted` and
+items in Body S `--ink`. `0.5rem` vertical spacing between items; hover takes the
+colour to `--indigo`, 120ms transition.
 
 | AMBIENTES | A MARCA | AJUDA |
 |---|---|---|
@@ -201,151 +205,156 @@ em Corpo S `--ink`. Espaçamento vertical de `0.5rem` entre itens; hover leva a 
 | Escritório → `/escritorio` | | Termos de uso → `/politicas/termos-de-uso` |
 | Todas as peças → `/produtos` | | |
 
-**A coluna Ajuda renderiza da mesma lista** que gera as rotas `/politicas/[slug]` em
-`rotas.md` — quatro políticas, uma fonte, sem lista paralela.
+**The Ajuda column renders from the same list** that generates the
+`/politicas/[slug]` routes in `rotas.md` — four policies, one source, no parallel
+list.
 
-**Fora, deliberadamente:**
+**Deliberately out:**
 
-- **Tipos** (`/sala/sofas` etc.) — ~20 links achataria o rodapé numa mapa do site.
-  Os tipos vivem no painel da navbar, que é onde a decisão de navegação acontece.
-- **Coleções** — não têm índice (`rotas.md`, *Omissões deliberadas*).
-- **`/carrinho`, `/checkout`** — a navbar já os carrega; um destino de compra num
-  rodapé é ruído.
-- **Mapa do site, FAQ, blog, trabalhe conosco** — não existem no inventário de rotas.
+- **Tipos** (`/sala/sofas` etc.) — ~20 links would flatten the footer into a
+  sitemap. Tipos live in the navbar panel, which is where the navigation decision
+  happens.
+- **Coleções** — they have no index (`rotas.md`, *Deliberate omissions*).
+- **`/carrinho`, `/checkout`** — the navbar already carries them; a purchase
+  destination in a footer is noise.
+- **Sitemap, FAQ, blog, careers** — they do not exist in the route inventory.
 
 ---
 
-## 7. Atendimento (zona B, quarta coluna)
+## 7. Atendimento (zone B, fourth column)
 
-Coluna própria, **não dobrada dentro de Ajuda**: são dados de contato, não
-navegação, e o decreto os quer visíveis.
+A column of its own, **not folded inside Ajuda**: this is contact data, not
+navigation, and the decree wants it visible.
 
-Título `ATENDIMENTO`, voz de anotação. Conteúdo em Corpo S, numerais tabulares:
+Title `ATENDIMENTO`, annotation voice. Content in Body S, tabular figures:
 
 > WhatsApp (11) 90000-0000
 > Telefone (11) 3000-0000
 > oi@cantozen.com.br
 > Seg a sex, 9h às 18h
 
-WhatsApp e telefone são links (`https://wa.me/…`, `tel:`); o e-mail é `mailto:`.
-O horário não é link.
+WhatsApp and phone are links (`https://wa.me/…`, `tel:`); the e-mail is
+`mailto:`. The opening hours are not a link.
 
-**Isto não duplica `/contato`.** O rodapé carrega o *canal*; `/contato` carrega o
-formulário e o showroom. A navbar recusou o telefone (§1 de `navbar.md`) — a recusa
-vale para a barra, não para o rodapé, onde o decreto o exige de qualquer forma.
+**This does not duplicate `/contato`.** The footer carries the *channel*;
+`/contato` carries the form and the showroom. The navbar refused the phone number
+(`navbar.md` §1) — that refusal applies to the bar, not to the footer, where the
+decree requires it anyway.
 
 ---
 
-## 8. Marcas de pagamento e redes (zona C)
+## 8. Payment and social marks (zone C)
 
-Uma faixa de marcas monocromáticas, padding vertical `1.5rem`.
+A band of monochrome marks, vertical padding `1.5rem`.
 
-**Pagamento**, à esquerda: **Pix · Visa · Mastercard · Elo · American Express ·
-Boleto**, como marcas gráficas, altura uniforme de `18px`, renderizadas em
-`--muted`.
+**Payment**, on the left: **Pix · Visa · Mastercard · Elo · American Express ·
+Boleto**, as graphical marks, uniform `18px` height, rendered in `--muted`.
 
-**Redes**, à direita do mesmo eixo: marcas do **Instagram** e do **Pinterest**, mesmo
-tratamento e mesma altura, cada uma seguida do handle `@cantozen` em voz de
-anotação. **As marcas de rede não são links** — são sinal de presença, não saída da
-loja; o handle em texto é o que carrega a informação, e é ele que o leitor de tela
-anuncia. Sem Facebook, X ou TikTok.
+**Social**, on the right of the same axis: the **Instagram** and **Pinterest**
+marks, same treatment and same height, each followed by the handle `@cantozen` in
+the annotation voice. **The social marks are not links** — they are a signal of
+presence, not an exit from the store; the handle in text is what carries the
+information, and it is what a screen reader announces. No Facebook, X or TikTok.
 
-Sob as marcas de pagamento, uma linha em voz de anotação `--muted`:
+Under the payment marks, one line in the annotation voice `--muted`:
 `COMPRA SEGURA`.
 
-> **Exceção registrada.** §1 e §11 de [`navbar.md`](navbar.md) fixaram **zero
-> ícones em todos os breakpoints**, e a `MENU`/`CARRINHO` em palavra vem daquela
-> regra. O rodapé é a **única** superfície do storefront que exibe marcas gráficas,
-> e a exceção não se generaliza: nenhum outro elemento de chrome, em nenhuma rota,
-> ganha ícone por causa dela.
+> **Registered exception.** [`navbar.md`](navbar.md) §1 and §11 fixed **zero icons
+> at every breakpoint**, and the worded `MENU`/`CARRINHO` follows from that rule.
+> The footer is the **only** storefront surface that displays graphical marks, and
+> the exception does not generalise: no other chrome element, on any route, gains
+> an icon because of it.
 >
-> A razão: bandeira de cartão é uma declaração factual do que a loja aceita, e o
-> comprador brasileiro procura por ela literalmente — escrever `VISA` por extenso
-> não substitui a marca que ele varre com o olho. O custo cromático é neutralizado
-> pela monocromia: as marcas entram em `--muted`, não em cor de marca, para que o
-> índigo continue sendo o único acento da paleta (§3 de `marca.md`).
+> The reason: a card flag is a factual statement of what the store accepts, and
+> the Brazilian buyer looks for it literally — spelling out `VISA` does not
+> substitute for the mark their eye scans for. The chromatic cost is neutralised
+> by monochrome: the marks come in as `--muted`, not in brand colour, so that
+> índigo remains the palette's only accent (`marca.md` §3).
 
-**Fora, deliberadamente: selos de terceiros.** Reclame Aqui, Ebit e certificados
-PCI/SSL são marcas *conquistadas por um CNPJ real*. Exibi-los numa loja fictícia
-seria a única coisa no rodapé que constitui deturpação, não escolha de design. A
-linha `COMPRA SEGURA` cobre o reasseguramento sem falsificar credencial de
-terceiro.
+**Deliberately out: third-party badges.** Reclame Aqui, Ebit and PCI/SSL
+certificates are marks *earned by a real CNPJ*. Displaying them on a fictional
+store would be the one thing in the footer that constitutes misrepresentation
+rather than a design choice. The `COMPRA SEGURA` line covers the reassurance
+without faking a third-party credential.
 
 ---
 
-## 9. Rodapé reduzido em `/checkout`
+## 9. Reduced footer on `/checkout`
 
-`/checkout` recebe uma variante enxuta. Permanecem:
+`/checkout` gets a lean variant. Kept:
 
-- Zona C (marcas de pagamento e `COMPRA SEGURA`) — reasseguramento no ponto exato
-  em que ele importa.
-- A coluna **Ajuda** e a coluna **Atendimento**, lado a lado.
-- Zona D inteira — identificação, arrependimento e copyright. O dever de
-  identificação do decreto não para no checkout.
+- Zone C (payment marks and `COMPRA SEGURA`) — reassurance at exactly the point
+  where it matters.
+- The **Ajuda** column and the **Atendimento** column, side by side.
+- All of zone D — identification, withdrawal and copyright. The decree's
+  identification duty does not stop at checkout.
 
-Saem: a linha de fecho em Mincho, o newsletter, e as colunas Ambientes e A marca.
+Dropped: the Mincho closing line, the newsletter, and the Ambientes and A marca
+columns.
 
-`/carrinho` mantém o rodapé completo — ainda é navegação, e sair do carrinho para
-um ambiente é um caminho legítimo.
+`/carrinho` keeps the full footer — it is still navigation, and leaving the cart
+for an ambiente is a legitimate path.
 
-> **Restrição entregue ao ticket [Checkout sections](../../.wayfinder/tickets/011-checkout.md):**
-> o rodapé do checkout já está especificado aqui. Aquele ticket não precisa
-> inventá-lo, e não deve removê-lo inteiro — a zona D é obrigação legal.
+> **Constraint handed to ticket [Checkout sections](../../.wayfinder/tickets/011-checkout.md):**
+> the checkout footer is already specified here. That ticket does not need to
+> invent it, and must not remove it entirely — zone D is a legal obligation.
 
 ---
 
 ## 10. Mobile
 
-Abaixo de `768px`, tudo **empilha aberto**. Sem acordeão.
+Below `768px`, everything **stacks open**. No accordion.
 
-- Ordem: linha de fecho → newsletter → Ambientes → A marca → Ajuda → Atendimento →
-  marcas → bloco legal.
-- As três colunas de link viram três blocos empilhados, com `2rem` entre eles.
-  Em `480–768px` podem ir a duas colunas; abaixo de `480px`, uma.
-- O newsletter empilha campo sobre botão, ambos em largura total.
-- A faixa de marcas quebra em duas linhas: pagamento acima, redes abaixo.
+- Order: closing line → newsletter → Ambientes → A marca → Ajuda → Atendimento →
+  marks → legal block.
+- The three link columns become three stacked blocks, with `2rem` between them.
+  At `480–768px` they may go to two columns; below `480px`, one.
+- The newsletter stacks the field above the button, both full width.
+- The marks band breaks into two rows: payment above, social below.
 
-**Acordeão foi recusado**: é interação e movimento para ~13 links, e §9 de
-`marca.md` quase não autoriza movimento. Pior, um acordeão fechado esconde os links
-de política que o decreto quer visíveis. Rodapé longo no fim da página é aceitável;
-obrigação legal colapsada não é.
-
----
-
-## 11. Acessibilidade
-
-- O rodapé é um `<footer>` com `role="contentinfo"`, um por página.
-- Cada coluna de link é uma `<nav>` rotulada pelo próprio título (`aria-labelledby`),
-  com os itens em `<ul>`.
-- **Foco visível obrigatório**: `outline: 2px solid var(--indigo); outline-offset: 3px`
-  (§6 de `marca.md`).
-- As marcas gráficas de pagamento são decorativas (`aria-hidden`) e a informação vem
-  de um texto acessível equivalente na faixa — o leitor de tela ouve as formas de
-  pagamento como palavras, não como lista de imagens sem rótulo.
-- As marcas de rede, por não serem links, são igualmente `aria-hidden`; o handle em
-  texto ao lado é o conteúdo real.
-- O campo de e-mail tem `<label>` associado, `type="email"`, `autocomplete="email"`.
-  A mensagem de erro é referenciada por `aria-describedby`.
-- Contraste: `--muted` sobre `--plaster` e sobre `--kozo` deve ser verificado em
-  Corpo S; se não passar em AA, o texto do bloco legal sobe para `--ink`.
+**An accordion was refused**: it is interaction and motion for ~13 links, and
+`marca.md` §9 barely authorises motion at all. Worse, a closed accordion hides the
+policy links the decree wants visible. A long footer at the end of the page is
+acceptable; a collapsed legal obligation is not.
 
 ---
 
-## 12. Como isso foi decidido
+## 11. Accessibility
 
-Resolvido por conversa, sem protótipo — o rodapé não tinha uma pergunta de layout
-contestada, e sim uma pilha de decisões de conteúdo e de conformidade.
+- The footer is a `<footer>` with `role="contentinfo"`, one per page.
+- Each link column is a `<nav>` labelled by its own title (`aria-labelledby`),
+  with the items in a `<ul>`.
+- **Visible focus is mandatory**: `outline: 2px solid var(--indigo); outline-offset: 3px`
+  (`marca.md` §6).
+- The graphical payment marks are decorative (`aria-hidden`) and the information
+  comes from an equivalent accessible text in the band — a screen reader hears the
+  payment methods as words, not as a list of unlabelled images.
+- The social marks, not being links, are likewise `aria-hidden`; the handle in
+  text beside them is the real content.
+- The e-mail field has an associated `<label>`, `type="email"`,
+  `autocomplete="email"`. The error message is referenced via `aria-describedby`.
+- Contrast: `--muted` on `--plaster` and on `--kozo` must be verified at Body S;
+  if it does not pass AA, the legal block's text moves up to `--ink`.
 
-As três que custaram mais:
+---
 
-- **Ícones.** A recomendação inicial era manter a regra de zero ícones da navbar e
-  escrever as formas de pagamento por extenso. O dev decidiu o contrário; a decisão
-  vale, e §8 a registra como exceção nomeada, com a monocromia como o preço que
-  mantém a paleta intacta. Selos de terceiros, no entanto, ficaram fora — a
-  distinção é entre declarar um fato e exibir credencial que não se tem.
-- **O canal de cancelamento.** O mapa carregava isso como névoa desde a pesquisa.
-  Sem autenticação, não há área do cliente; a saída é nomear o canal de atendimento
-  como a ferramenta, no próprio rodapé. §3 fecha essa névoa sem abrir ticket novo.
-- **Peso do rodapé.** Bloco substancial venceu a faixa utilitária, mas apenas em
-  texto: a fotografia foi recusada porque uma segunda imagem embaixo de toda página
-  briga com a peça que a página inteira existe para mostrar.
+## 12. How this was decided
+
+Resolved in conversation, without a prototype — the footer had no contested layout
+question, but rather a stack of content and compliance decisions.
+
+The three that cost the most:
+
+- **Icons.** The initial recommendation was to keep the navbar's zero-icon rule
+  and spell out the payment methods. The dev decided otherwise; that decision
+  stands, and §8 records it as a named exception, with monochrome as the price
+  that keeps the palette intact. Third-party badges, however, stayed out — the
+  distinction is between stating a fact and displaying a credential you do not
+  have.
+- **The cancellation channel.** The map carried this as fog since the research.
+  Without authentication there is no customer area; the way out is to name the
+  atendimento channel as the tool, in the footer itself. §3 clears that fog
+  without opening a new ticket.
+- **Footer weight.** A substantial block beat the utility strip, but only in text:
+  photography was refused because a second image at the bottom of every page
+  fights the piece the whole page exists to show.

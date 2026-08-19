@@ -1,315 +1,319 @@
-# Home — seções da página inicial
+# Home — homepage sections
 
-Resolve o ticket [Home page sections](../../.wayfinder/tickets/007-home.md).
-Rota `/` ([`rotas.md`](rotas.md)). Sete seções, nesta ordem, entre a navbar
-([`navbar.md`](navbar.md)) e o rodapé ([`rodape.md`](rodape.md)).
+Resolves ticket [Home page sections](../../.wayfinder/tickets/007-home.md).
+Route `/` ([`rotas.md`](rotas.md)). Seven sections, in this order, between the
+navbar ([`navbar.md`](navbar.md)) and the footer ([`rodape.md`](rodape.md)).
 
-O trabalho desta página é um só: **fazer a navegação por ambiente parecer
-inevitável, não imposta.** Tudo aqui se justifica contra isso.
+This page has one job: **make navigation by ambiente feel inevitable, not
+imposed.** Everything here justifies itself against that.
+
+This file is written in English prose; every string quoted as copy is the pt-BR
+that ships, and domain terms stay pt-BR throughout.
 
 ---
 
-## 0. Ordem e ritmo
+## 0. Order and rhythm
 
-| # | Seção | Fundo | Par de grade |
+| # | Section | Background | Grid pair |
 |---|---|---|---|
-| 1 | Herói — a peça | `--plaster` | imagem 7 / bloco 5 |
-| 2 | Ambientes | `--plaster` | 7 + 5 empilhado |
-| 3 | Peças em destaque | `--plaster` | 3 × 3 col, 10–12 vazias |
-| 4 | Coleção em destaque | `--plaster` | imagem 7 / texto 5 |
-| 5 | Serviço | `--kozo` | banda, 4 × 3 col |
-| 6 | Inspirações | `--plaster` | 3 linhas com filete |
-| 7 | A marcenaria | `--plaster` | linha destaque + imagem 7 / texto 5 |
+| 1 | Hero — the piece | `--plaster` | image 7 / block 5 |
+| 2 | Ambientes | `--plaster` | 7 + 5 stacked |
+| 3 | Featured pieces | `--plaster` | 3 × 3 col, 10–12 empty |
+| 4 | Featured coleção | `--plaster` | image 7 / text 5 |
+| 5 | Service | `--kozo` | band, 4 × 3 col |
+| 6 | Inspirações | `--plaster` | 3 rows with hairlines |
+| 7 | The marcenaria | `--plaster` | feature line + image 7 / text 5 |
 
-Container `1360px`, goteira `clamp(1.5rem, 4vw, 4.5rem)`, grade de 12 colunas,
-`7rem` entre seções — tudo de [`marca.md`](marca.md) §5. Nenhuma seção usa menos
-que `7rem` de respiro nesta página; ela é a única que estabelece o ritmo para as
-outras 14 rotas.
+Container `1360px`, gutter `clamp(1.5rem, 4vw, 4.5rem)`, 12-column grid, `7rem`
+between sections — all from [`marca.md`](marca.md) §5. No section on this page
+uses less than `7rem` of breathing room; it is the one page that establishes the
+rhythm for the other 14 routes.
 
-**A banda de Serviço (§5) está no meio de propósito.** As seções 4, 6 e 7 são
-todas imagem-mais-texto; correndo em sequência, a metade de baixo da página
-rimaria consigo mesma três vezes seguidas a cada `7rem`. Sem dark mode e com um
-único acento, a troca de fundo para `--kozo` é o único deslocamento tonal
-disponível, e ele ganha o lugar quebrando essa sequência — além de entregar os
-fatos de entrega **depois** que o visitante já viu um preço em §3, que é quando
-"como isso chega até mim" de fato vira a pergunta.
+**The Service band (§5) sits in the middle on purpose.** Sections 4, 6 and 7 are
+all image-plus-text; running in sequence, the bottom half of the page would rhyme
+with itself three times in a row every `7rem`. With no dark mode and a single
+accent, the background swap to `--kozo` is the only tonal shift available, and it
+earns its place by breaking that sequence — while delivering the delivery facts
+**after** the visitor has seen a price in §3, which is when "how does this reach
+me" actually becomes the question.
 
 ---
 
-## 1. Herói — a peça
+## 1. Hero — the piece
 
-**Propósito.** Abrir com reverência a um objeto. Estabelece de uma vez a régua, a
-regra de fotografia e o fato de que esta loja **mostra preço** — as três coisas
-que toda outra página vai assumir como já ditas.
+**Purpose.** Open with reverence for an object. It establishes, all at once, the
+régua, the photography rule and the fact that this store **shows price** — the
+three things every other page will assume have already been said.
 
-Não abre com os quatro ambientes: isso abriria com uma taxonomia, que é
-exatamente o registro de parede-de-categorias que a marca recusa, e gastaria
-quatro fotografias antes de conquistar qualquer atenção.
+It does not open with the four ambientes: that would open with a taxonomy, which
+is exactly the wall-of-categories register the brand refuses, and would spend four
+photographs before earning any attention.
 
-**Forma.** Imagem nas colunas 1–7, bloco de texto nas 8–12 com medida máxima de
-`34ch`. A imagem usa a proporção real da peça e é limitada a `max-height: 78vh`,
-para que o filete superior de §2 fique visível acima da dobra — os ambientes
-aparecem como o próximo passo natural, não como uma demanda de abertura.
+**Form.** Image on columns 1–7, text block on 8–12 with a maximum measure of
+`34ch`. The image uses the piece's real proportion and is capped at
+`max-height: 78vh`, so that §2's top hairline is visible above the fold — the
+ambientes appear as the natural next step, not as an opening demand.
 
-**Régua.** Uma cota, `largura`, horizontal, junto à borda inferior da imagem.
-A cota vertical fica **suprimida** aqui: ela moraria fora da imagem à direita,
-onde começa a coluna de texto. Ver o orçamento de régua em §9.
+**Régua.** One cota, `largura`, horizontal, along the image's bottom edge. The
+vertical cota is **suppressed** here: it would live outside the image on the
+right, where the text column begins. See the régua budget in §9.
 
-**Conteúdo, de cima para baixo.**
+**Content, top to bottom.**
 
-| Elemento | Papel tipográfico | Fonte do dado |
+| Element | Typographic role | Data source |
 |---|---|---|
-| Sobrancelha | Anotação, `--muted` | fixo: `PEÇA EM DESTAQUE` |
-| Nome | Display XL (Mincho) | `produto.nome` |
-| Acabamento + designer | Anotação, `--muted` | `produto.acabamento`, `produto.designer` |
-| Preço à vista | Preço, tabular | derivado de `precoTabela` |
-| Selo Pix | Anotação, `--indigo` | derivado de `politicas` |
-| Parcelamento | Corpo S, `--muted` | derivado de `politicas` |
+| Eyebrow | Annotation, `--muted` | fixed: `PEÇA EM DESTAQUE` |
+| Name | Display XL (Mincho) | `produto.nome` |
+| Acabamento + designer | Annotation, `--muted` | `produto.acabamento`, `produto.designer` |
+| À-vista price | Price, tabular | derived from `precoTabela` |
+| Pix badge | Annotation, `--indigo` | derived from `politicas` |
+| Parcelamento | Body S, `--muted` | derived from `politicas` |
 | CTA | CTA | `VER A PEÇA` |
 
-**Direção de copy.** Nenhum slogan. A única prosa é o nome da peça; a
-sobrancelha e os dados comerciais falam na voz de anotação. Nada de "bem-vindo",
-"descubra" ou promessa de categoria.
+**Copy direction.** No slogan. The only prose is the piece's name; the eyebrow and
+the commercial data speak in the annotation voice. No "bem-vindo", "descubra" or
+category promise.
 
-**Destino do clique: a PDP da peça** (`/produtos/[slug]`), tanto na imagem quanto
-no CTA. Mandar o clique para a listagem do ambiente contradiria o argumento
-inteiro da seção; ambientes são o trabalho de §2, 400px abaixo.
+**Click destination: the piece's PDP** (`/produtos/[slug]`), from both the image
+and the CTA. Sending the click to the ambiente listing would contradict the
+section's entire argument; ambientes are §2's job, 400px below.
 
-**Dados.** `ConteudoHome.destaqueHome` (§8) — um slug de Produto, **autorado**.
-A peça específica não é fixada aqui: isso inventaria dado de catálogo que ainda
-está na névoa do mapa. O que o spec fixa são as restrições do slot:
+**Data.** `ConteudoHome.destaqueHome` (§8) — one Produto slug, **authored**. The
+specific piece is not fixed here: that would invent catalogue data still sitting
+in the map's fog. What the spec fixes are the slot's constraints:
 
-- deve resolver para um Produto com imagem `papel: 'principal'`;
-- essa imagem deve declarar `cotas: ['largura']` — **senão o herói não renderiza**,
-  porque régua vazia é proibida ([`marca.md`](marca.md) §2) e o tipo torna a
-  proibição verificável;
-- `disponibilidade` não pode ser `esgotado`.
+- it must resolve to a Produto with an image of `papel: 'principal'`;
+- that image must declare `cotas: ['largura']` — **otherwise the hero does not
+  render**, because an empty régua is prohibited ([`marca.md`](marca.md) §2) and
+  the type makes the prohibition checkable;
+- `disponibilidade` must not be `esgotado`.
 
 ---
 
 ## 2. Ambientes
 
-**Propósito.** A espinha da loja, oferecida como escolha e não como menu. É a
-seção que precisa fazer o resto da navegação parecer óbvia.
+**Purpose.** The store's spine, offered as a choice and not as a menu. It is the
+section that has to make the rest of the navigation feel obvious.
 
-**Forma: quatro campos fotográficos, deliberadamente desiguais.** Quatro tiles
-iguais é o padrão da categoria e lê como uma grade de botões. Aqui: um ambiente
-em destaque nas colunas 1–7, em altura cheia; os outros três empilhados nas
-colunas 8–12, cada um em faixa mais baixa, separados por filete de 1px em
-`--hairline`. A composição, não o alfabeto, decide qual ocupa as 7 colunas — é
-autorado, pela ordem de `ambientes[]`.
+**Form: four photographic fields, deliberately unequal.** Four equal tiles is the
+category default and reads as a grid of buttons. Here: one featured ambiente on
+columns 1–7, at full height; the other three stacked on columns 8–12, each in a
+shorter band, separated by 1px hairlines in `--hairline`. Composition, not the
+alphabet, decides which one takes the 7 columns — it is authored, by the order of
+`ambientes[]`.
 
-Fotografia de ambiente é o único lugar onde esta loja mostra escala e contexto;
-uma versão puramente tipográfica desta seção deixaria a página inteira como
-peças-sobre-reboco.
+Room photography is the only place this store shows scale and context; a purely
+typographic version of this section would leave the whole page as
+pieces-on-plaster.
 
-**Por campo.**
+**Per field.**
 
-| Elemento | Papel | Fonte |
+| Element | Role | Source |
 |---|---|---|
-| Fotografia | — | `ambiente.imagem` (§8) |
-| Rótulo | Anotação, `--ink` | `ambiente.label` |
-| Três tipos | Anotação, `--muted`, separados por `·` | primeiros 3 de `ambiente.tipos` |
+| Photograph | — | `ambiente.imagem` (§8) |
+| Label | Annotation, `--ink` | `ambiente.label` |
+| Three tipos | Annotation, `--muted`, separated by `·` | first 3 of `ambiente.tipos` |
 
-Os três tipos espelham o painel da navbar e reforçam que tipo é um caminho
-landável, não um filtro. Eles **não** são links independentes: o campo inteiro é
-um único link para `/[ambiente]`.
+The three tipos mirror the navbar panel and reinforce that a tipo is a landable
+path, not a filter. They are **not** independent links: the entire field is a
+single link to `/[ambiente]`.
 
-**Sobrancelha da seção:** `AMBIENTES`, voz de anotação. Sem título em Mincho —
-Mincho está racionado (§11).
+**Section eyebrow:** `AMBIENTES`, annotation voice. No Mincho title — Mincho is
+rationed (§11).
 
-**Sem régua.** Sem ícones. Sem numeração ordinal.
+**No régua.** No icons. No ordinal numbering.
 
 ---
 
-## 3. Peças em destaque
+## 3. Featured pieces
 
-**Propósito.** Provar que os preços existem e que são honestos. A direção de
-marca fechou a reconciliação como "preço discreto, nunca preço ausente"; uma home
-que mostrasse peças sem preço seria exatamente a evasão "sob consulta" que
-[`marca.md`](marca.md) §1 recusou por escrito.
+**Purpose.** Prove that the prices exist and that they are honest. The brand
+direction settled the reconciliation as "discreet price, never absent price"; a
+home that showed pieces without prices would be exactly the "sob consulta" evasion
+[`marca.md`](marca.md) §1 refused in writing.
 
-**Forma: três peças, não seis.** Seis é uma grade e puxa a página para a
-densidade de catálogo que §5 da marca raciona. Cards nas colunas 1–3, 4–6 e 7–9,
-com as **colunas 10–12 deixadas vazias** — a goteira grande à direita preservada,
-como em todo par padrão.
+**Form: three pieces, not six.** Six is a grid and pulls the page towards the
+catalogue density the brand's §5 rations. Cards on columns 1–3, 4–6 and 7–9, with
+**columns 10–12 left empty** — the large right gutter preserved, as in every
+default pair.
 
-**Por card.**
+**Per card.**
 
-| Elemento | Papel | Observação |
+| Element | Role | Note |
 |---|---|---|
-| Imagem `principal` | proporção real | sem régua |
-| Nome | Display M (Mincho) | `produto.nome` |
-| Acabamento | Anotação, `--muted` | |
-| Disponibilidade | Anotação, `--muted` | rótulo textual, sem cor |
-| Preço à vista | **Corpo**, tabular | ver abaixo |
-| Parcelamento | Corpo S, `--muted` | `ou {total} em {N}x de {v} sem juros` |
+| `principal` image | real proportion | no régua |
+| Name | Display M (Mincho) | `produto.nome` |
+| Acabamento | Annotation, `--muted` | |
+| Disponibilidade | Annotation, `--muted` | textual label, no colour |
+| À-vista price | **Body**, tabular | see below |
+| Parcelamento | Body S, `--muted` | `ou {total} em {N}x de {v} sem juros` |
 
-**Duas rações são gastas aqui e precisam ser ditas explicitamente.**
+**Two rations are spent here and need to be stated explicitly.**
 
-1. **O papel tipográfico Preço (`1.75rem`) fica reservado ao herói e à PDP.**
-   Na largura de um card de 3 colunas ele domina a composição e transforma a
-   tira em vitrine de oferta. O card usa Corpo com numeral tabular.
-2. **O selo Pix não renderiza por card.** Três cards com selo seriam três
-   ocorrências de índigo na mesma tela, e [`marca.md`](marca.md) §3 é explícita:
-   se o índigo aparece três vezes numa tela, duas estão erradas. Em vez disso, a
-   política aparece **uma vez**, como uma linha em anotação `--indigo` alinhada à
-   direita do filete que fecha a tira: `10% À VISTA NO PIX EM TODAS AS PEÇAS`.
-   O número vem de `politicas.descontoPixPercent`, nunca escrito à mão.
+1. **The Price typographic role (`1.75rem`) is reserved for the hero and the
+   PDP.** At the width of a 3-column card it dominates the composition and turns
+   the strip into a promotional shop window. The card uses Body with tabular
+   figures.
+2. **The Pix badge does not render per card.** Three badged cards would be three
+   occurrences of índigo on one screen, and [`marca.md`](marca.md) §3 is explicit:
+   if índigo appears three times on one screen, two of them are wrong. Instead the
+   policy appears **once**, as a line in annotation `--indigo` aligned to the
+   right of the hairline that closes the strip:
+   `10% À VISTA NO PIX EM TODAS AS PEÇAS`. The figure comes from
+   `politicas.descontoPixPercent`, never hand-written.
 
-**Sobrancelha:** `PEÇAS EM DESTAQUE`.
+**Eyebrow:** `PEÇAS EM DESTAQUE`.
 
-**Dados: `ConteudoHome.destaques` — três slugs autorados.** Não são os três
-primeiros da coleção de §4, o que faria duas seções mostrarem as mesmas peças a
-`7rem` de distância. E não são derivados: numa loja-conceito não existe "novo"
-honesto, não existe dado de venda, e [`produto.md`](produto.md) já recusou
-estoque numérico justamente para não fabricar sinal. Autorado é também como
-funciona todo o resto desta página.
+**Data: `ConteudoHome.destaques` — three authored slugs.** They are not the first
+three of §4's coleção, which would make two sections show the same pieces `7rem`
+apart. And they are not derived: in a concept store there is no honest "new",
+there is no sales data, and [`produto.md`](produto.md) already refused numeric
+stock precisely so as not to fabricate signal. Authored is also how the rest of
+this page works.
 
 ---
 
-## 4. Coleção em destaque
+## 4. Featured coleção
 
-**Propósito.** [`rotas.md`](rotas.md) decidiu que Coleções não têm página índice e
-são surfaced "in context on the home page and inside Inspirações". Esta seção é
-essa obrigação. Uma Coleção é um dispositivo de merchandising cuja **ordem é o
-ato editorial** — o que exige enquadramento editorial, não um trilho de cards.
+**Purpose.** [`rotas.md`](rotas.md) decided that Coleções have no index page and
+are surfaced "in context on the home page and inside Inspirações". This section is
+that obligation. A Coleção is a merchandising device whose **order is the editorial
+act** — which calls for editorial framing, not a rail of cards.
 
-**Forma.** Par padrão: imagem nas colunas 1–7, texto nas 8–12, medida `34ch`.
+**Form.** Default pair: image on columns 1–7, text on 8–12, `34ch` measure.
 
-**Régua — a segunda e última da página.** Régua de abertura de seção
-([`marca.md`](marca.md) §2, caso "número real a declarar"), rótulo `{n} PEÇAS`,
-com `n = colecao.produtos.length`. Derivada, nunca autorada: nenhum campo novo, e
-a figura não pode divergir da coleção.
+**Régua — the second and last on the page.** A section-opening régua
+([`marca.md`](marca.md) §2, the "real figure to state" case), label `{n} PEÇAS`,
+with `n = colecao.produtos.length`. Derived, never authored: no new field, and the
+figure cannot diverge from the collection.
 
-| Elemento | Papel | Fonte |
+| Element | Role | Source |
 |---|---|---|
-| Sobrancelha | Anotação | `COLEÇÃO` |
-| Nome | Display L (Mincho) | `colecao.nome` |
-| Descrição | Corpo | `colecao.descricao` |
+| Eyebrow | Annotation | `COLEÇÃO` |
+| Name | Display L (Mincho) | `colecao.nome` |
+| Description | Body | `colecao.descricao` |
 | CTA | CTA | `VER A COLEÇÃO` → `/colecoes/[slug]` |
 
-**Sem preços neste bloco.** O bloco vende a sequência curada, não uma peça; um
-preço aqui obrigaria a escolher *qual* peça, o que é precisamente a decisão que a
-coleção adia para a listagem.
+**No prices in this block.** The block sells the curated sequence, not a piece; a
+price here would force choosing *which* piece, which is precisely the decision the
+coleção defers to the listing.
 
-**Dados.** `ConteudoHome.colecaoDestaque` → `Colecao` ([`produto.md`](produto.md),
-*Entidades relacionadas*).
+**Data.** `ConteudoHome.colecaoDestaque` → `Colecao` ([`produto.md`](produto.md),
+*Related entities*).
 
 ---
 
-## 5. Serviço
+## 5. Service
 
-**Propósito.** Comércio brasileiro põe aqui uma faixa de selos ou depoimentos, e
-esta loja não tem nenhum honestamente disponível — [`produto.md`](produto.md)
-recusou avaliações por falta de fonte, e [`rodape.md`](rodape.md) manteve selos de
-terceiros fora por serem credenciais de um CNPJ real. O que **é** verdadeiro e
-decisivo é serviço: quem compra um sofá de milhares de reais decide sobre entrega
-e montagem antes de decidir sobre gosto.
+**Purpose.** Brazilian commerce puts a band of badges or testimonials here, and
+this store has none honestly available — [`produto.md`](produto.md) refused
+ratings for lack of a source, and [`rodape.md`](rodape.md) kept third-party badges
+out because they are credentials of a real CNPJ. What **is** true and decisive is
+service: someone buying a sofa costing thousands of reais decides about delivery
+and montagem before deciding about taste.
 
-**Forma.** Banda de largura total em `--kozo`, container interno, quatro campos
-nas colunas 1–3, 4–6, 7–9 e 10–12, divididos por filete vertical de 1px em
-`--hairline`. **Esta é a única seção da página que preenche até a coluna 12** — é
-um trilho, não uma composição, e a simetria é o que o faz ler como faixa de
-informação em vez de bloco editorial.
+**Form.** Full-bleed band in `--kozo`, inner container, four fields on columns
+1–3, 4–6, 7–9 and 10–12, divided by 1px vertical hairlines in `--hairline`. **This
+is the only section on the page that fills through to column 12** — it is a rail,
+not a composition, and the symmetry is what makes it read as an information band
+rather than an editorial block.
 
-Padding vertical `4rem`. Sem ícones (a exceção de ícones do rodapé não se estende
-até aqui). Sem régua. Sem índigo, exceto foco e hover de link.
+Vertical padding `4rem`. No icons (the footer's icon exception does not extend up
+here). No régua. No índigo, except focus and link hover.
 
-| Rótulo (anotação) | Linha (Corpo S) | Destino |
+| Label (annotation) | Line (Body S) | Destination |
 |---|---|---|
 | `FRETE` | Calculado por CEP na página da peça. | `/politicas/entrega-e-frete` |
 | `MONTAGEM` | Opcional, feita no dia da entrega. | `/politicas/entrega-e-frete` |
 | `PRAZO` | Em dias úteis, contado após a confirmação do pagamento. | — |
 | `ARREPENDIMENTO` | 7 dias para desistir, contados do recebimento — ou da montagem, quando contratada. | `/politicas/trocas-e-devolucoes` |
 
-Três dos quatro campos linkam e um não. Isso é levemente desalinhado e continua
-sendo a opção certa: inventar uma página para *prazo* seria pior. Frete e
-montagem apontam para a mesma política porque [`rotas.md`](rotas.md) decidiu que
-*Entrega e frete* absorve o detalhe de montagem em vez de gerar página própria.
+Three of the four fields link and one does not. That is slightly misaligned and is
+still the right call: inventing a page for *prazo* would be worse. Frete and
+montagem point at the same policy because [`rotas.md`](rotas.md) decided that
+*Entrega e frete* absorbs the montagem detail instead of generating its own page.
 
-O texto de arrependimento aqui é a versão curta; a prosa ostensiva completa vive
-no bloco legal do rodapé e em `/politicas/trocas-e-devolucoes`.
+The withdrawal text here is the short version; the full conspicuous prose lives in
+the footer's legal block and in `/politicas/trocas-e-devolucoes`.
 
-> Copy estatutária a ser conferida contra planalto.gov.br antes da implementação
-> — ver *Not yet specified* no mapa.
+> Statutory copy to be checked against planalto.gov.br before implementation —
+> see *Not yet specified* in the map.
 
 ---
 
 ## 6. Inspirações
 
-**Propósito.** Inspirações é um de apenas cinco itens da navbar; deixá-la
-inteiramente fora da home deixaria a promessa da seção sem sustentação no topo do
-funil.
+**Purpose.** Inspirações is one of only five navbar items; leaving it off the home
+entirely would leave the section's promise unsupported at the top of the funnel.
 
-**Forma: três linhas, não três cards.** Uma tira de cards repetiria o ritmo de §3
-a `7rem` de distância; dois artigos grandes competiriam com §4 e a página teria
-dois pares imagem-7/texto-5 seguidos. Três **linhas** horizontais separadas por
-filete são um terceiro ritmo e mantêm §4 como o único destaque editorial da
-página.
+**Form: three rows, not three cards.** A strip of cards would repeat §3's rhythm
+`7rem` away; two large articles would compete with §4 and the page would have two
+image-7/text-5 pairs in a row. Three horizontal **rows** separated by hairlines
+are a third rhythm and keep §4 as the page's only editorial feature.
 
-Por linha: miniatura 16:9 nas colunas 1–2, título nas 3–7, resumo nas 8–10,
-colunas 11–12 vazias. A linha inteira é um link para `/inspiracoes/[slug]`.
+Per row: 16:9 thumbnail on columns 1–2, title on 3–7, summary on 8–10, columns
+11–12 empty. The whole row is a link to `/inspiracoes/[slug]`.
 
-| Elemento | Papel |
+| Element | Role |
 |---|---|
-| Ambiente | Anotação, `--muted` |
-| Título | Display M (Mincho) |
-| Resumo | Corpo S, `--muted`, uma linha |
+| Ambiente | Annotation, `--muted` |
+| Title | Display M (Mincho) |
+| Summary | Body S, `--muted`, one line |
 
-**Sobrancelha:** `INSPIRAÇÕES`. **Fecho:** uma linha em CTA, `VER TODAS AS
+**Eyebrow:** `INSPIRAÇÕES`. **Closing:** one CTA line, `VER TODAS AS
 INSPIRAÇÕES` → `/inspiracoes`.
 
-**Dados.** `ConteudoHome.inspiracoes` — três slugs de artigo. A entidade de
-artigo ainda não existe; ver a restrição entregue a
-[Inspirações](../../.wayfinder/tickets/012-inspiracoes.md) em §12.
+**Data.** `ConteudoHome.inspiracoes` — three article slugs. The article entity does
+not exist yet; see the constraint handed to
+[Inspirações](../../.wayfinder/tickets/012-inspiracoes.md) in §12.
 
 ---
 
-## 7. A marcenaria
+## 7. The marcenaria
 
-**Propósito.** [`navbar.md`](navbar.md) §5 tirou *Sobre* e *Contato* da barra e
-mandou ambos para "rodapé e home". Mas o motivo real de o bloco existir é outro:
-a afirmação de ateliê — marcenaria própria, produção sob encomenda, designer
-nomeado — é o que **justifica os preços mostrados em §3**. Afirmá-la apenas como
-link de rodapé tornaria a posição inteira decorativa.
+**Purpose.** [`navbar.md`](navbar.md) §5 took *Sobre* and *Contato* out of the bar
+and sent both to "footer and home". But the real reason the block exists is
+another: the atelier claim — in-house marcenaria, made-to-order production, a named
+designer — is what **justifies the prices shown in §3**. Stating it only as a
+footer link would make the whole position decorative.
 
-É também o fecho da página: termina numa asserção, não numa tira de cards.
+It is also the page's closing: it ends on an assertion, not on a strip of cards.
 
-**Forma.** Duas partes:
+**Form.** Two parts:
 
-1. **A linha de destaque em Mincho**, atravessando as colunas 1–9, `Display L`.
-   Esta é a **única "linha de destaque por página"** que [`marca.md`](marca.md) §4
-   concede, e ela é gasta aqui — ver §11.
-2. Abaixo, o par padrão: imagem 7 / texto 5.
+1. **The Mincho feature line**, spanning columns 1–9, `Display L`. This is the
+   **only "one feature line per page"** [`marca.md`](marca.md) §4 grants, and it is
+   spent here — see §11.
+2. Below it, the default pair: image 7 / text 5.
 
-**Direção de copy.** A linha afirma o *fazer*, não vende. Direção, não copy final:
+**Copy direction.** The line asserts the *making*, it does not sell. Direction, not
+final copy:
 
 > Cada peça sai de uma marcenaria, não de um catálogo.
 
-Abaixo dela, no máximo três frases em Corpo — quem faz, onde, e o que "sob
-encomenda" significa em prática. CTA: `SOBRE O ATELIÊ` → `/sobre`.
+Below it, at most three sentences in Body — who makes it, where, and what "sob
+encomenda" means in practice. CTA: `SOBRE O ATELIÊ` → `/sobre`.
 
-**Fotografia: uma peça inacabada, sozinha.** Sem pessoa, sem mãos, sem bancada
-encenada. Isso mantém a regra de [`marca.md`](marca.md) §7 intacta — luz rasante,
-fundo de reboco, peça sozinha — e **não abre uma segunda exceção** ao "peça
-sozinha" além de Inspirações. Madeira crua ou junta à vista conta a história de
-marcenaria sem precisar de exceção.
+**Photography: an unfinished piece, alone.** No person, no hands, no staged
+workbench. That keeps [`marca.md`](marca.md) §7's rule intact — raking light,
+plaster background, the piece alone — and **does not open a second exception** to
+"the piece alone" beyond Inspirações. Raw wood or an exposed joint tells the
+marcenaria story without needing an exception.
 
-**Sem Contato aqui.** Contato é um formulário e um telefone; seria o quarto bloco
-de texto abaixo da dobra e não tem história para contar. A nota da navbar já está
-satisfeita pela coluna *Atendimento* que [`rodape.md`](rodape.md) promoveu a
-coluna própria justamente para dar casa ao contato.
+**No Contato here.** Contato is a form and a phone number; it would be the fourth
+text block below the fold and it has no story to tell. The navbar's note is already
+satisfied by the *Atendimento* column that [`rodape.md`](rodape.md) promoted to a
+column of its own precisely to house contact.
 
-**O scroll termina aqui.** Sem CTA de fecho, sem repetição dos ambientes, sem
-"ver todas as peças". Repetir os ambientes no fim da página é o conserto padrão
-de uma página que falhou em rotear antes; se §2 funciona, é uma admissão de
-fracasso. E `/produtos` já foi recusado como slot permanente pela navbar
-exatamente para não enfraquecer os ambientes.
+**The scroll ends here.** No closing CTA, no repeat of the ambientes, no "ver todas
+as peças". Repeating the ambientes at the end of the page is the standard fix for a
+page that failed to route earlier; if §2 works, it is an admission of failure. And
+`/produtos` was already refused as a permanent slot by the navbar, exactly so as
+not to weaken the ambientes.
 
 ---
 
-## 8. Dados
+## 8. Data
 
 ```ts
 type ConteudoHome = {
@@ -325,141 +329,141 @@ type ConteudoHome = {
 };
 ```
 
-Tudo autorado. A home não deriva nenhuma seleção.
+All authored. The home derives no selection.
 
-**Adição à entidade `Ambiente`** ([`produto.md`](produto.md), *Entidades
-relacionadas*) — §2 precisa de uma fotografia por ambiente e o modelo não tem
-nenhuma:
+**Addition to the `Ambiente` entity** ([`produto.md`](produto.md), *Related
+entities*) — §2 needs one photograph per ambiente and the model has none:
 
 ```ts
 type Ambiente = {
   slug: string;
   label: string;
   tipos: string[];
-  imagem: { src: string; alt: string };   // NOVO — foto do ambiente
+  imagem: { src: string; alt: string };   // NEW — ambiente photo
 };
 ```
 
-Deliberadamente **não** é um `Imagem`: aquele tipo carrega `papel` e `cotas`, e
-régua em foto de ambiente já está proibida por §9, então os campos existiriam
-apenas para ficarem sempre vazios. Também **não** é um shot `ambientada`
-emprestado de algum produto — [`produto.md`](produto.md) foi explícito que "a
-product with no ambientada shot must not silently promote" nada para um slot, e o
-risco é o mesmo um nível acima. Adição, não reversão; ver §12.
+Deliberately **not** an `Imagem`: that type carries `papel` and `cotas`, and a
+régua on a room photo is already prohibited by §9, so the fields would exist only
+to stay permanently empty. Also **not** an `ambientada` shot borrowed from some
+product — [`produto.md`](produto.md) was explicit that "a product with no
+ambientada shot must not silently promote" anything into a slot, and the risk is
+the same one level up. An addition, not a reversal; see §12.
 
 ---
 
-## 9. Orçamento de régua
+## 9. Régua budget
 
-`marca.md` limita a duas por *tela*, não por página — uma página deste tamanho
-poderia legalmente carregar mais. A home é mais dura que a regra:
+`marca.md` caps it at two per *screen*, not per page — a page this size could
+legally carry more. The home is stricter than the rule:
 
-**Exatamente duas em toda a página.**
+**Exactly two on the entire page.**
 
-| Onde | Cota |
+| Where | Cota |
 |---|---|
-| §1 Herói | `largura`, em cm, lida de `medidas` |
-| §4 Coleção | abertura de seção, `{n} PEÇAS` |
+| §1 Hero | `largura`, in cm, read from `medidas` |
+| §4 Coleção | section opening, `{n} PEÇAS` |
 
-**Proibida em:** campos de ambiente (§2), cards de destaque (§3), banda de
-serviço (§5), linhas de Inspirações (§6), bloco da marcenaria (§7).
+**Prohibited in:** ambiente fields (§2), featured cards (§3), the service band
+(§5), Inspirações rows (§6), the marcenaria block (§7).
 
-A home é a única página que ensina o que o gesto significa. Um visitante que o
-encontra seis vezes antes de chegar a uma página de produto aprendeu que ele é
-enfeite — e enfeite é exatamente o que a régua foi escolhida para não ser.
+The home is the only page that teaches what the gesture means. A visitor who meets
+it six times before reaching a product page has learned that it is ornament — and
+ornament is exactly what the régua was chosen not to be.
 
-## 10. Orçamento de índigo
+## 10. Índigo budget
 
-Índigo aparece na home em: o selo Pix do herói (§1), a linha única de política Pix
-da tira (§3), e estados de foco/hover. **Nunca dois selos na mesma tela.** Nenhum
-uso decorativo.
+Índigo appears on the home in: the hero's Pix badge (§1), the strip's single Pix
+policy line (§3), and focus/hover states. **Never two badges on the same screen.**
+No decorative use.
 
-## 11. Orçamento de Mincho
+## 11. Mincho budget
 
-| Uso | Onde | Categoria de `marca.md` §4 |
+| Use | Where | `marca.md` §4 category |
 |---|---|---|
-| Nome da peça | §1, §3 | nome de peça |
-| Nome da coleção | §4 | título de coleção |
-| Títulos de artigo | §6 | título editorial |
-| Linha da marcenaria | §7 | **a única linha de destaque da página** |
+| Piece name | §1, §3 | piece name |
+| Collection name | §4 | collection title |
+| Article titles | §6 | editorial title |
+| Marcenaria line | §7 | **the page's only feature line** |
 
-Sobrancelhas de seção são **anotação, não Mincho**. Títulos de seção em Mincho
-gastariam a família cinco vezes e a linha de §7 deixaria de ser destaque.
+Section eyebrows are **annotation, not Mincho**. Mincho section titles would spend
+the family five times and §7's line would stop being a feature.
 
 ---
 
-## 12. Restrições entregues a outros tickets
+## 12. Constraints handed to other tickets
 
 - **[Product data shape](../../.wayfinder/tickets/003-product-data-shape.md)** —
-  `Ambiente` ganha `imagem: { src, alt }` (§8). Adição aditiva a uma decisão
-  fechada, não uma reversão; `produto.md` traz uma nota apontando para cá.
-- **[Imagery system](../../.wayfinder/tickets/014-imagery.md)** — a home pede
-  quatro fotografias de ambiente (§2), uma miniatura 16:9 por artigo (§6) e uma
-  foto de peça inacabada (§7). A de §7 **não** é exceção ao "peça sozinha" e o
-  sistema de imagem deve tratá-la sob a regra normal.
-- **[Inspirações](../../.wayfinder/tickets/012-inspiracoes.md)** — §6 precisa que
-  um artigo exponha `slug`, `titulo`, `resumo` (uma linha), uma miniatura 16:9 e
-  um `ambiente` opcional. A forma da entidade é daquele ticket; estes são os
-  campos que a home consome.
+  `Ambiente` gains `imagem: { src, alt }` (§8). An additive addition to a settled
+  decision, not a reversal; `produto.md` carries a note pointing here.
+- **[Imagery system](../../.wayfinder/tickets/014-imagery.md)** — the home asks for
+  four ambiente photographs (§2), one 16:9 thumbnail per article (§6) and one
+  unfinished-piece photo (§7). The §7 one is **not** an exception to "the piece
+  alone" and the imagery system must handle it under the normal rule.
+- **[Inspirações](../../.wayfinder/tickets/012-inspiracoes.md)** — §6 needs an
+  article to expose `slug`, `titulo`, `resumo` (one line), a 16:9 thumbnail and an
+  optional `ambiente`. The entity's shape belongs to that ticket; these are the
+  fields the home consumes.
 - **[Institutional pages](../../.wayfinder/tickets/013-institucional.md)** —
-  `/sobre` recebe o clique de §7 e precisa continuar a afirmação de marcenaria,
-  não repeti-la. `/contato` não tem entrada pela home.
-- **[Motion](../../.wayfinder/tickets/017-motion.md)** — a home **não** tem
-  revelação em scroll, paralaxe ou animação de entrada de seção. A única transição
-  é a de cor em 120ms nos estados interativos ([`marca.md`](marca.md) §9).
-- **Catalogue seed data** (névoa do mapa) — a home consome 1 + 3 slugs de produto,
-  1 coleção com `produtos[]` não-vazio, 3 artigos e 4 fotos de ambiente. O slot do
-  herói exige um produto com `cotas: ['largura']` na imagem principal.
+  `/sobre` receives §7's click and must continue the marcenaria claim, not repeat
+  it. `/contato` has no entry point from the home.
+- **[Motion](../../.wayfinder/tickets/017-motion.md)** — the home has **no** scroll
+  reveal, parallax or section entry animation. The only transition is the 120ms
+  colour one on interactive states ([`marca.md`](marca.md) §9).
+- **Catalogue seed data** (map fog) — the home consumes 1 + 3 product slugs, 1
+  coleção with a non-empty `produtos[]`, 3 articles and 4 ambiente photos. The hero
+  slot requires a product with `cotas: ['largura']` on its principal image.
 
 ---
 
 ## 13. Mobile
 
-Uma coluna, na mesma ordem. Sem acordeão, sem carrossel.
+One column, in the same order. No accordion, no carousel.
 
-- §1 — imagem acima do bloco; a cota `largura` permanece.
-- §2 — quatro campos empilhados em altura igual; a assimetria é um recurso de
-  desktop e não sobrevive a uma coluna.
-- §3 — três cards empilhados; a linha de política Pix vai abaixo do último.
-- §4, §7 — imagem acima do texto.
-- §5 — quatro campos empilhados, divididos por filete **horizontal**.
-- §6 — miniatura acima de título e resumo.
+- §1 — image above the block; the `largura` cota stays.
+- §2 — four fields stacked at equal height; the asymmetry is a desktop device and
+  does not survive a single column.
+- §3 — three stacked cards; the Pix policy line goes below the last one.
+- §4, §7 — image above the text.
+- §5 — four stacked fields, divided by **horizontal** hairlines.
+- §6 — thumbnail above title and summary.
 
-Respiro entre seções cai para `4rem` — o piso de [`marca.md`](marca.md) §5, nunca
-abaixo.
+Breathing room between sections drops to `4rem` — the floor from
+[`marca.md`](marca.md) §5, never below.
 
 ---
 
-## Omissões deliberadas
+## Deliberate omissions
 
-Consideradas e descartadas — registradas para não serem relitigadas:
+Considered and dropped — recorded so they are not relitigated:
 
-- **Newsletter.** O rodapé já é dono dela (`AVISO DE NOVAS PEÇAS`,
-  [`rodape.md`](rodape.md) §5). Duplicar seria a mesma captura duas vezes em uma
-  tela de rolagem.
-- **Depoimentos, avaliações, selos de terceiros.** Sem fonte honesta —
-  [`produto.md`](produto.md) e [`rodape.md`](rodape.md) já fecharam isso.
-- **Seção de Contato.** Ver §7.
-- **Novidades / mais vendidos.** Sem inventário real, ambos são sinal fabricado.
-  [`rotas.md`](rotas.md) já recusou `/novidades` e `/promocoes` como destinos.
-- **CTA de fecho e repetição dos ambientes no fim.** Ver §7.
-- **Numeração ordinal (01 / 02 / 03)** em qualquer seção — fora do sistema por
+- **Newsletter.** The footer already owns it (`AVISO DE NOVAS PEÇAS`,
+  [`rodape.md`](rodape.md) §5). Duplicating it would be the same capture twice in
+  one scroll.
+- **Testimonials, ratings, third-party badges.** No honest source —
+  [`produto.md`](produto.md) and [`rodape.md`](rodape.md) already settled this.
+- **A Contato section.** See §7.
+- **New arrivals / best sellers.** With no real inventory, both are fabricated
+  signal. [`rotas.md`](rotas.md) already refused `/novidades` and `/promocoes` as
+  destinations.
+- **Closing CTA and a repeat of the ambientes at the end.** See §7.
+- **Ordinal numbering (01 / 02 / 03)** in any section — out of the system per
   [`marca.md`](marca.md) §2.
-- **Carrossel ou banner rotativo no herói.** Uma peça, parada.
-- **Busca.** Fora de escopo em todo o mapa.
-- **Contagem regressiva, faixa de frete grátis, banner de cupom.** O acordo de
-  "voz, não presença" mantém os fatos comerciais inteiros e sem grito.
+- **A carousel or rotating banner in the hero.** One piece, still.
+- **Search.** Out of scope across the whole map.
+- **Countdowns, free-shipping bars, coupon banners.** The "voice, not presence"
+  agreement keeps the commercial facts whole and unshouted.
 
-## Como isso foi decidido
+## How this was decided
 
-Duas rodadas de grilling sobre o ticket
-[Home page sections](../../.wayfinder/tickets/007-home.md). A primeira fixou
-*quais seções existem e em que forma* — herói de peça única contra herói de
-ambientes, se a home vende ou apenas roteia, coleção separada da tira de
-destaques, e o que substitui prova social numa loja sem avaliações. A segunda
-fixou ordem, os três orçamentos (régua, índigo, Mincho), a autoria do herói e a
-fotografia de ambiente que faltava no modelo de dados.
+Two rounds of grilling on ticket
+[Home page sections](../../.wayfinder/tickets/007-home.md). The first fixed *which
+sections exist and in what form* — single-piece hero versus ambientes hero, whether
+the home sells or merely routes, the coleção split from the featured strip, and
+what replaces social proof in a store with no ratings. The second fixed order, the
+three budgets (régua, índigo, Mincho), the hero's authorship, and the ambiente
+photograph missing from the data model.
 
-A decisão mais consequente é o **orçamento de régua**: duas na página inteira. É
-mais restritivo que a regra da marca, e é o que impede que a home ensine o gesto
-errado às outras 14 rotas.
+The most consequential decision is the **régua budget**: two on the entire page. It
+is stricter than the brand rule, and it is what stops the home from teaching the
+other 14 routes the wrong gesture.

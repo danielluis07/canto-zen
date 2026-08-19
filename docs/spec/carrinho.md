@@ -168,9 +168,9 @@ reasons the reader cannot see. Modelling it as an attribute makes the impossible
 state unrepresentable.
 
 > **Amendment.** [`pagina-produto.md`](pagina-produto.md) §2.8 previously read
-> that montagem "vira item de linha no carrinho com preço próprio", while §11 of
-> the same file said the line "carrega um sinalizador de montagem e o preço
-> derivado dela". This ticket resolves the contradiction in favour of §11, and
+> that montagem "becomes a line item in the cart with its own price", while §11 of
+> the same file said the line "carries a montagem flag and its derived price".
+> This ticket resolves the contradiction in favour of §11, and
 > `pagina-produto.md` §2.8 has been corrected to match.
 
 **Arrependimento.** When montagem is contracted, the 7-day withdrawal window
