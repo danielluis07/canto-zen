@@ -272,8 +272,11 @@ NO MESMO DIA DA ENTREGA AGENDADA.
 - A promessa modelada é a da Tok&Stok: montagem **no dia da entrega agendada**,
   não em agendamento separado ([pesquisa §7.2](../research/br-ecommerce-conventions.md)).
 
-**Consequência:** marcada, a montagem vira item de linha no carrinho com preço
-próprio, e o prazo de arrependimento de 7 dias passa a contar **da data da
+**Consequência:** marcada, a montagem viaja como **atributo da linha do
+carrinho** — sinalizador mais preço derivado, dentro da linha da peça, nunca uma
+linha irmã ([`carrinho.md`](carrinho.md) §4.3; corrigido ali, este parágrafo
+dizia "item de linha com preço próprio" e contradizia o §11 deste mesmo
+arquivo) — e o prazo de arrependimento de 7 dias passa a contar **da data da
 montagem** ([`rodape.md`](rodape.md), pesquisa §6.2).
 
 ---
