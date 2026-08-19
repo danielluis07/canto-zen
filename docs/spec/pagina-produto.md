@@ -246,8 +246,16 @@ ENTREGA AGENDADA    data à sua escolha       R$ 389,00
   `PRODUÇÃO DE {n} SEMANAS ANTES DO ENVIO.`
 
 **Error** — invalid CEP or an unserved region: one line below the field, in
-`--ink`, annotation voice, with no colour and no icon. `marca.md` §3 already decided
-that errors resolve in ink and typographic weight, not in traffic lights.
+`--ink`, with no colour and no icon. `marca.md` §3 already decided that errors
+resolve in ink and typographic weight, not in traffic lights.
+
+> **Corrected by [`erros.md`](erros.md) §5.3.** This section originally set the
+> message in the **annotation voice**; [`checkout.md`](checkout.md) §5 set the same
+> treatment in **Corpo S**, and the generalised rule resolves the conflict in
+> checkout's favour — the annotation voice is the *label* voice, so a message set in
+> it reads as another field label rather than as a response. `erros.md` §5.2 also
+> splits this single "Error" into two classes: the invalid CEP is *corrigível* and
+> states the fix, the unserved region is *fato* and states the limit plus the way on.
 
 **The CEP is remembered.** Typed once, it holds for the whole session: the cart and
 the checkout read the same value pre-filled. Asking for the same CEP three times is

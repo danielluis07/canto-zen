@@ -110,6 +110,20 @@ layout but not a heading skeleton, and each carries a date, because a policy
 without a version is a defect.
 
 **Ausência autorada** — something a surface deliberately does not have, recorded
-as a decision rather than an omission. Three so far: the carrinho has no Régua,
-Inspirações has neither price nor Régua, and the institutional pages have no
-photography.
+as a decision rather than an omission. Five so far: the carrinho has no Régua,
+Inspirações has neither price nor Régua, the institutional pages have no
+photography, and the error surfaces have neither photography nor Régua.
+
+## Estados
+
+**Corrigível** — an error the reader can fix. Its message states the fix and never
+the fault: `CEP tem 8 dígitos.`, never `CEP inválido.`
+
+**Fato** — an error the reader cannot fix, because it states a limit of the store
+rather than a mistake of theirs. Its message states the limit and offers the way
+on. The CEP field produces both classes, which is why they are named apart.
+
+**Conteúdo velho** — the store's loading language: content that is being replaced
+stays on screen at reduced contrast instead of being swapped for a placeholder of
+its own shape. The store never shows the silhouette of information it does not
+have yet.
