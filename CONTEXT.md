@@ -89,3 +89,27 @@ cart and confirmation, not only in a policy page.
 **Embalagem** — the box: its own measurements and weight, kept separate from the
 piece's. It is what has to fit through the door and the lift, so it drives both
 freight and the access disclosure.
+
+## Institucional
+
+**Manifesto** — the content of `/sobre`: five statements, four refusals and one
+affirmation, each carrying a short body. The store's voice at its most direct,
+and the only page whose copy is fixed rather than left as direction.
+
+**Loja** — the store's own identification facts as one object: razão social,
+CNPJ, IE, founding year, address, atendimento channels and showroom hours. Read
+by the footer and by `/contato`, so the two can never disagree. Fictional and
+well-formed, never a placeholder.
+
+**Showroom** — the store's physical space, at the address the footer publishes.
+Visitable without an appointment, but a specific piece may not be on the floor:
+the store carries no stock.
+
+**Política** — one of four legal documents at `/politicas/[slug]`. They share a
+layout but not a heading skeleton, and each carries a date, because a policy
+without a version is a defect.
+
+**Ausência autorada** — something a surface deliberately does not have, recorded
+as a decision rather than an omission. Three so far: the carrinho has no Régua,
+Inspirações has neither price nor Régua, and the institutional pages have no
+photography.
