@@ -83,8 +83,12 @@ arrependimento window from delivery to assembly.
 *esgotado*.
 
 **Arrependimento** — the buyer's statutory right to withdraw within 7 days of
-receipt. The notice is ostensive by law, so it appears inline in the buy-box,
-cart and confirmation, not only in a policy page.
+receipt. The notice is ostensive by law, so it appears inline in the **footer
+(sitewide), the cart and the confirmation**, not only in a policy page. The
+confirmation is the one surface that also carries the *means* of exercising it,
+which is the site's own contact form. Not the buy-box: nothing is bought there,
+and Decreto 7.962 art. 5º asks for the notice to be conspicuous, not repeated on
+every page.
 
 **Embalagem** — the box: its own measurements and weight, kept separate from the
 piece's. It is what has to fit through the door and the lift, so it drives both

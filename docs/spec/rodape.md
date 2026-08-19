@@ -58,6 +58,7 @@ Four stacked zones, separated by 1px hairlines in `--hairline`.
   COMPRA SEGURA
 ──────────────────────────────────────────────────────────────
   Canto Zen Marcenaria e Comércio de Móveis Ltda. · CNPJ …       zone D (§3)
+  DADOS DE IDENTIFICAÇÃO FICTÍCIOS — LOJA CONCEITO
   Você pode desistir da compra em até 7 dias corridos…
   © 2026 Canto Zen · Todos os direitos reservados
 ──────────────────────────────────────────────────────────────
@@ -87,8 +88,10 @@ grouped to the left, the right gutter deliberately empty. No zone is centred.
 
 ## 3. Legal block (zone D)
 
-The lowest zone, recessed in `--kozo`, vertical padding `2rem`. Three lines, in
-this order:
+The lowest zone, recessed in `--kozo`, vertical padding `2rem`. Four lines, in
+this order — the second added by the legal-copy verification pass, which is why
+the numbering below reads 1, 1b, 2, 3 rather than renumbering a block other specs
+cite by number:
 
 **1 — Supplier identification.** Body S, `--muted`, as a running line separated by
 `·`:
@@ -109,12 +112,35 @@ than its presence in the footer of a Brazilian furniture store.
 > build session should leave them blank or as placeholders: an empty legal block
 > is exactly the failure this spec exists to prevent.
 
+**1b — The fabrication is disclosed in shipped copy.** Immediately under the
+identification line, annotation voice, `--muted`:
+
+> DADOS DE IDENTIFICAÇÃO FICTÍCIOS — LOJA CONCEITO
+
+Added by the [legal-copy verification](../research/legal-copy-verification.md) §6.
+Everywhere else the store refuses a fabricated artefact outright — selos (§9),
+ratings, the order number ([`checkout.md`](checkout.md) §13). This block is the
+one it cannot refuse, because Decreto 7.962 art. 2º I–II is the footer's first
+job and an empty block fails it. So it ships, qualified.
+
+The qualification is not decoration. The block's entire function is to let a
+consumer **locate and identify a real supplier**, and a well-formed CNPJ performs
+that function convincingly and falsely — a number that collides with a real
+registration points a complaint at a real company. This is the only fabricated
+artefact in the store with a third party on the other end of it.
+
+One line, inside the block it qualifies. **Not** a banner, not repeated per zone,
+and it does not replace the concept-store line that
+[`institucional.md`](institucional.md) §11 puts atop each policy page — that one
+qualifies the *policy*, this one qualifies the *identity*.
+
 **2 — Withdrawal notice.** Body S, `--ink` (not `--muted` — it is the only text in
 the zone that has to be read):
 
 > Você pode desistir da compra em até 7 dias corridos a contar do recebimento — ou
-> da montagem, quando contratada. Para exercer, fale com a gente pelo WhatsApp ou
-> por oi@cantozen.com.br; respondemos em até 5 dias.
+> da montagem, quando contratada. Para desistir, use o
+> [formulário de contato](/contato); se preferir, fale pelo WhatsApp ou por
+> oi@cantozen.com.br. Confirmamos na hora e concluímos em até 5 dias úteis.
 > [Como funciona](/politicas/trocas-e-devolucoes)
 
 This is **not** replaceable by the "Trocas e devoluções" link in the Ajuda column.
@@ -123,9 +149,36 @@ means of exercising it; a link buried in a column does not satisfy "conspicuous"
 and a shouted banner would violate the brand. A prose sentence in the legal block
 is the correct middle ground.
 
+**The site's own form leads, and that is a correction, not a preference.** The
+earlier wording named WhatsApp and e-mail as *the* means. Decreto 7.962 art. 5º
+§1: *"O consumidor poderá exercer seu direito de arrependimento pela mesma
+ferramenta utilizada para a contratação, sem prejuízo de outros meios
+disponibilizados."* The contract is concluded on the site, so the site **is** the
+mesma ferramenta and has to accept the withdrawal; the two off-site channels are
+the *outros meios* the paragraph permits **in addition**, never instead. The store
+has no customer area — auth is out of scope map-wide — which was read as leaving
+no in-site tool. It leaves one: `/contato` is a form on the site, and a form on
+the site is the ferramenta.
+
+**Reached as `/contato?assunto=arrependimento`.** The query pre-fills `Mensagem`
+with `Quero desistir da compra nº ` and puts one annotation line above the form;
+[`institucional.md`](institucional.md) §9's refusal of an *assunto* select stands
+untouched, because this adds no field and claims no inbox that does not exist.
+
+**"Confirmamos na hora" is also a correction.** The old sentence promised a
+response *"em até 5 dias"* and that was the wrong duty attached to the wrong
+clock. Art. 5º §4 requires *confirmação imediata do recebimento* of the
+withdrawal, and art. 4º VI requires that confirmation **by the same channel the
+consumer used**. Five days is how long *resolving* it may take. One sentence
+cannot promise the slower thing about the faster duty.
+
 Counting from the **montagem date** when it is contracted is furniture-specific
 and comes from the practice observed in the research; it is included because the
-store sells montagem as an add-on.
+store sells montagem as an add-on. **It is a grant beyond art. 49, not a reading
+of it** — the statute counts from *assinatura ou recebimento*, and montagem
+happens after delivery, so the store's window is the longer one. Copy must never
+frame it as what the law requires, or a later session will "correct" a promise the
+store chose to make.
 
 **3 — Copyright.** Annotation voice, `--muted`:
 

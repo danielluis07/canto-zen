@@ -40,7 +40,7 @@ These hold for every route below.
 | `/checkout` | Checkout | `checkout.md` | Single page, accordion sections |
 | `/pedido-confirmado` | Order confirmation | `checkout.md` | Carries the "concept store, nothing was charged" disclosure |
 | `/sobre` | Brand story | `institucional.md` | Label reads "Sobre nós"; the path is a slug, not a sentence |
-| `/contato` | Contact | `institucional.md` | |
+| `/contato` | Contact | `institucional.md` | Accepts `?assunto=arrependimento` — the store's statutory withdrawal tool, see `institucional.md` §9 |
 | `/politicas/[slug]` | Policy | `institucional.md` | One shared template — see [Policies](#policies) |
 
 ## Rooms

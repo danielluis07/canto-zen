@@ -294,9 +294,17 @@ screens disagree about which number is "the" price.
   the page's only índigo that is not interactive state** (§2).
 - Parcelamento third: `ou {N}x de R$ {v} sem juros`, with `N` derived by
   [`produto.md`](produto.md)'s rule against the **cart total**, not per piece.
-- The discount is **visibly disclosed**, which is what makes the differential
-  price lawful (Lei 13.455 / CDC art. 5º-A —
-  [research §3](../research/br-ecommerce-conventions.md)).
+- The discount is **visibly disclosed**, because Lei 10.962/2004 art. 5º-A —
+  inserted by Lei 13.455/2017 — requires the supplier to inform *"em local e
+  formato visíveis"* any discount offered for the payment instrument used.
+  **Corrected by the [legal-copy verification](../research/legal-copy-verification.md)
+  §5**, which found two slips here: the article was cited as *CDC* art. 5º-A and
+  there is no such article in the CDC; and the disclosure was described as what
+  *makes the differential price lawful*, which it is not. **Lei 13.455 art. 1º
+  makes the differentiation lawful on its own.** The discount is optional;
+  disclosing one you do offer is mandatory, and failing to disclose is an
+  infraction — it does not void the price. Background in
+  [research §3](../research/br-ecommerce-conventions.md).
 
 **Arrependimento**, corpo S `--muted`, below the CTA. Prose, not a badge — the
 notice is ostensive by law and appears inline in buy box, cart and confirmation

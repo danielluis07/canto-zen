@@ -231,7 +231,31 @@ Four fields, in this order ([research §5](../research/br-ecommerce-conventions.
   scope map-wide.
 - **One LGPD purpose line** closes the section, Corpo S `--muted`:
 
-> Usamos estes dados apenas para emitir a nota e combinar a entrega.
+> Usamos estes dados apenas para emitir a nota e combinar a entrega. Sem eles não
+> há entrega. Veja a [Política de privacidade](/politicas/privacidade).
+
+**Two clauses added by the
+[legal-copy verification](../research/legal-copy-verification.md) §4**, and both
+earn their words:
+
+- *"Sem eles não há entrega"* discharges **LGPD art. 9º §3** — where the treatment
+  is a *condition* for supplying the product, the titular must be told so **com
+  destaque**. Checkout data is exactly such a condition, and the old line stated a
+  purpose without stating the conditionality.
+- The link discharges **art. 9º VII**, which requires explicit mention of the art.
+  18 rights. A purpose line cannot carry nine rights; a route to the page that
+  does is what art. 9º's *"acesso facilitado"* asks for. It **opens in a new tab**,
+  like the Termos de uso link the reduced footer already carries (§7.3) — a legal
+  duty may not cost the shopper their filled form.
+
+**The legal basis is art. 7º V — execução de contrato — not consent.** Recorded
+here because it is load-bearing for a decision already made elsewhere: **a consent
+checkbox on the checkout would be wrong, not merely redundant.** The store cannot
+honour a refusal and still deliver, so a tick-box would offer a choice that does
+not exist. The newsletter e-mail in [`rodape.md`](rodape.md) §10 is the opposite
+case — art. 7º I, consentimento, manifested by submitting the field under a clear
+notice, which is why *that* surface's "note, not a tick-box" also survives — see
+[`rodape.md`](rodape.md) §5.
 
 ### Errors
 
@@ -460,7 +484,8 @@ Total                                                      R$ 7.711,20
 O CÓDIGO PIX NÃO SERÁ GERADO
 
 Você pode desistir da compra em até 7 dias corridos após receber a
-peça — ou após a montagem, quando contratada.
+peça — ou após a montagem, quando contratada. Para desistir, use o
+formulário de contato. Como funciona →
 
 [ VER TODAS AS PEÇAS ]
 ```
@@ -477,7 +502,15 @@ peça — ou após a montagem, quando contratada.
   `NENHUM CARTÃO FOI COBRADO`.
 - **The arrependimento sentence repeats**, as [`carrinho.md`](carrinho.md) §11
   required, with its montagem clause conditional on some line having contracted
-  it.
+  it. **Here — and only here — it carries the means**, linking
+  `/contato?assunto=arrependimento` and `/politicas/trocas-e-devolucoes`: this is
+  the surface a buyer returns to when they decide to withdraw, and Decreto 7.962
+  art. 5º's duty is to inform the *means*, not only the window. The cart keeps the
+  bare sentence — nothing has been bought there yet, so a withdrawal route would be
+  offering an exit from a commitment not made. The
+  [legal-copy verification](../research/legal-copy-verification.md) §3 settles that
+  the means must be the **site's own form**, with WhatsApp and e-mail as *outros
+  meios*; the full reasoning is in [`rodape.md`](rodape.md) §3.
 - `VER TODAS AS PEÇAS` to `/produtos` — one way out, the pattern
   [`catalogo.md`](catalogo.md) §8 and [`carrinho.md`](carrinho.md) §7 set.
 - **The reduced footer stays**, not the full one. Zone D's identification duty

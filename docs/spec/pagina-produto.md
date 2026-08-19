@@ -573,6 +573,16 @@ Considered and refused — recorded so they do not return without a new reason:
   [`catalogo.md`](catalogo.md) §4.
 - **A repeated Pix/parcelamento policy line** — the buy box already states it in
   full (§2.3).
+- **An arrependimento line in the buy box.** [`CONTEXT.md`](../../CONTEXT.md)'s
+  glossary used to promise one here and this spec never wrote it; the
+  [legal-copy verification](../research/legal-copy-verification.md) resolved the
+  contradiction **against** the line and corrected the glossary. CDC art. 49 sets
+  no placement duty of its own, and Decreto 7.962 art. 5º asks for the means to be
+  clear and ostensive — which the sitewide footer, the cart at the moment of
+  commitment and the confirmation already satisfy. A fourth repetition on every
+  product page is the ornament this page keeps refusing. The **montagem
+  consequence** stated in [`produto.md`](produto.md) — the window counting from the
+  assembly date — is unaffected: it is a fact about the window, not a notice.
 
 ---
 

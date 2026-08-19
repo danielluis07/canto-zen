@@ -234,7 +234,19 @@ stacks in the same order.
 | Mensagem | textarea, 6 rows | required |
 
 No *assunto* select — it would route to inboxes that do not exist. No telefone — a
-field the store cannot act on. Zero radius, 1px `--muted` border, label above
+field the store cannot act on.
+
+**One query parameter, and it adds no field.** `/contato?assunto=arrependimento`
+renders one annotation line above the form — `PEDIDO DE ARREPENDIMENTO` — and
+pre-fills `Mensagem` with `Quero desistir da compra nº `, cursor at the end. This
+form is the store's **withdrawal tool**: Decreto 7.962 art. 5º §1 lets the consumer
+withdraw *pela mesma ferramenta utilizada para a contratação*, the contract is
+concluded on the site, and with auth out of scope this form is the only in-site
+tool there is ([`rodape.md`](rodape.md) §3). The refusal above still holds — the
+select would have been a control the *user* operates into inboxes that do not
+exist; this is a link the *store* aims, from the two surfaces that offer it.
+
+Unrecognised or absent `assunto` renders the plain form. No other value exists. Zero radius, 1px `--muted` border, label above
 the field in the annotation voice ([`marca.md`](marca.md) §6).
 
 Submit: `ENVIAR MENSAGEM`, CTA style.
@@ -339,18 +351,31 @@ sections; `privacidade` and `termos-de-uso` have nothing structural in common.
 
 ### Content points per page
 
-This spec fixes **what each page must state**, not its final statutory wording.
-The map's *Legal-copy verification* fog already covers three surfaces whose
-statutory text came from a mirror rather than planalto.gov.br; writing a fourth
-set of unverified legal text here would enlarge that debt rather than pay it.
-**That verification pass now covers four surfaces.**
+This section fixes **what each page must state**. The wording itself was
+deliberately deferred, because the statutory text behind it came from a mirror
+rather than planalto.gov.br and writing a fourth set of unverified legal text here
+would have enlarged that debt rather than paid it.
+
+**That debt is now paid.** The
+[legal-copy verification](../research/legal-copy-verification.md) read all four
+norms at the source, and **§11b below carries the shippable pt-BR wording** for the
+statutory paragraphs. The content points here stay as the contract that wording
+answers to: they say what must be stated, §11b says it.
 
 **`trocas-e-devolucoes`** — the 7-day arrependimento window; that it counts from
-recebimento, **or from montagem when contracted**; that the atendimento channel
-(WhatsApp / e-mail) **is** the tool for exercising it, since there is no customer
-area ([`rodape.md`](rodape.md) §3 already resolved this); the 5-day duty to
-respond; who pays return freight; how a sob-encomenda piece is treated; defect
-versus arrependimento as distinct paths.
+recebimento, **or from montagem when contracted**; that the **site's own form** is
+the tool for exercising it, with WhatsApp and e-mail as additional channels;
+immediate confirmation of receipt versus the 5-day resolution deadline; that the
+consumer bears **no cost at all**, including collection freight and montagem; how a
+sob-encomenda piece is treated; defect versus arrependimento as distinct paths.
+
+> Three of those points changed in the verification pass. The earlier version said
+> the atendimento channel **is** the tool (wrong — Decreto 7.962 art. 5º §1 makes
+> the site the ferramenta), spoke of a *5-day duty to respond* (two duties, one
+> immediate), and listed **"who pays return freight" as an open question**. It was
+> never open: art. 5º §2 rescinds accessory contracts *sem qualquer ônus para o
+> consumidor*, so the store pays collection and refunds montagem in full. See
+> [legal-copy verification](../research/legal-copy-verification.md) §3.
 
 **`entrega-e-frete`** — per-CEP quoting and the six freight regions
 ([`carrinho.md`](carrinho.md)); cubed weight; prazo de entrega in dias úteis
@@ -366,7 +391,14 @@ rights and how to exercise them, cookies, and a controller contact.
 
 **`termos-de-uso`** — who the supplier is (pointing at the identification block
 rather than restating it), what the site is, price and availability accuracy,
-image-versus-piece variance for natural wood, IP, and the governing forum.
+image-versus-piece variance for natural wood, IP, and the forum.
+
+> **The forum point inverted.** It read *"the governing forum"*, which invites the
+> boilerplate clause electing São Paulo. CDC art. 101, I: *"a ação pode ser proposta
+> no domicílio do autor."* A clause electing the supplier's seat against a consumer
+> is abusive, so this document does not elect one — it **states the consumer's
+> right to sue where they live**. The wood-variance point moves too: CDC art. 31
+> makes variance a *characteristic to disclose*, not a liability to disclaim.
 
 ### Concept-store honesty
 
@@ -378,6 +410,179 @@ Each policy page opens with one line in Body S `--muted`, above the first sectio
 The store has now refused six fabricated artefacts; four unqualified legal
 documents would be the seventh. One line, once, at the top — not a banner, and not
 repeated per section.
+
+---
+
+## 11b. Statutory wording — shippable pt-BR
+
+Written by the [legal-copy verification](../research/legal-copy-verification.md)
+against planalto.gov.br. **This is copy, not direction**: a build session ships
+these sentences as written. Everything §11 lists as a content point but that is
+*convention* rather than statute — freight regions, cubed weight, entrega agendada,
+cookie mechanics — is still the build's to phrase; what is fixed here is the part
+where being approximately right is being wrong.
+
+**Two rules govern all four documents.**
+
+1. **The first sentence is self-contained**, because
+   [`rotas.md`](rotas.md) ships it as the page's meta description. It has to read
+   correctly with no heading above it and nothing after it — so no *"Nesta
+   página…"*, no *"Conforme descrito acima"*, and the store's name inside it.
+2. **The statute is paraphrased in the store's voice, never quoted.** The store
+   speaks as *a gente* (§7) and a block quotation of art. 49 in a page written for
+   a person is the register break the whole institutional spec exists to avoid.
+   The article numbers appear once each, at the end of their paragraph, in the
+   annotation voice — visible for the reader who wants to check, silent for the one
+   who does not.
+
+**All four openers were measured against
+[`rotas.md`](rotas.md)'s 110–160 character window** and land at 116, 128, 130 and
+141. Two of them were lengthened for that reason and for no other; a build session
+that edits a first sentence has to re-measure, because that sentence is the page's
+meta description and nothing else generates one.
+
+### `trocas-e-devolucoes`
+
+> Você pode desistir de uma compra feita no site da Canto Zen em até 7 dias
+> corridos, contados do recebimento da peça.
+>
+> Se você contratou a montagem, o prazo passa a contar da data em que a peça foi
+> montada, e não da entrega. Isso é uma escolha nossa: a lei conta do recebimento,
+> e a gente entende que uma peça ainda embalada não foi de fato conhecida.
+>
+> Para desistir, use o formulário de contato aqui do site — é a mesma ferramenta
+> pela qual a compra foi feita, e por isso ela vale por si só. Se preferir, fale
+> pelo WhatsApp ou escreva para oi@cantozen.com.br. Confirmamos o recebimento do
+> seu pedido na hora, pelo mesmo canal em que ele chegou, e concluímos a devolução
+> em até 5 dias úteis.
+>
+> Desistir não tem custo nenhum para você. A coleta da peça é por nossa conta, os
+> serviços contratados junto com ela — a montagem, por exemplo — são cancelados sem
+> ônus, e devolvemos todos os valores pagos, corrigidos monetariamente. Se o
+> pagamento foi no cartão, avisamos a administradora para que a cobrança não seja
+> lançada ou, se já tiver sido, seja estornada.
+>
+> Peças sob encomenda seguem a mesma regra. A lei não abre exceção para peças
+> feitas depois do pedido, e a gente não abre também.
+>
+> Peça com defeito é outro caminho, e o prazo é maior. Você tem 90 dias, contados
+> da entrega, para reclamar de um defeito aparente. A partir do aviso, temos 30
+> dias para resolver; se não resolvermos, a escolha é sua entre trocar a peça,
+> receber o valor pago de volta corrigido, ou ficar com ela e pagar menos.
+>
+> Para a devolução, pedimos que a peça volte como chegou, com os acessórios e, se
+> possível, na embalagem original. Isso é um pedido nosso, não uma condição para o
+> seu direito.
+
+Notes for the build session, not copy:
+
+- **The montagem paragraph names itself as a store grant.** [`rodape.md`](rodape.md)
+  §3 requires this: a later session that "corrects" it back to the statutory count
+  would be silently shortening a promise the store chose to make.
+- **The last paragraph's second sentence is load-bearing.** Return conditions are
+  convention, and phrasing a convention as a requirement is how a policy page turns
+  into a trap. It says *pedimos*, and then says why that is not a condition.
+- **No "salvo casos de" anywhere.** The exceptions clause is where consumer policies
+  go to die, and the store has none to declare.
+
+### `entrega-e-frete`
+
+> O frete da Canto Zen é calculado pelo seu CEP, e o prazo de entrega começa a
+> contar da confirmação do pagamento — não do pedido.
+>
+> O preço mostrado no checkout já é o preço final: frete e montagem aparecem
+> discriminados, e não existe custo que apareça depois.
+>
+> Prazo de produção e prazo de entrega são coisas diferentes e somam. Uma peça sob
+> encomenda é feita depois do pedido; o prazo de entrega começa quando ela fica
+> pronta. Ambos são informados na página da peça antes da compra.
+>
+> A gente cumpre o prazo que informou. Se não conseguirmos, você escolhe: esperar
+> uma nova data, aceitar outra peça equivalente, ou cancelar a compra e receber
+> tudo o que pagou de volta, corrigido.
+
+Then the conventional detail §11 lists — six freight regions, cubed weight,
+montagem on the delivery day, the bulky-item access disclosure, entrega agendada —
+in the build's own words.
+
+- **"não do pedido" is the whole first sentence's point.** The single most common
+  Brazilian e-commerce complaint is a prazo the buyer counted from a different
+  event than the store did.
+- **The fourth paragraph is CDC art. 35** and it is the one delivery promise a
+  furniture store cannot write loosely, because sob-encomenda production is exactly
+  where dates slip.
+
+### `privacidade`
+
+> A Canto Zen trata seus dados pessoais para uma coisa só: concluir a compra que
+> você pediu — nome, CPF, e-mail, celular e endereço.
+>
+> Esses são os dados do checkout, e a base legal para eles é a execução do
+> contrato: sem eles não há nota nem entrega, e por isso a
+> gente não pede o seu consentimento para eles — não haveria escolha real a
+> oferecer. O CEP informado para calcular o frete é usado só para isso.
+>
+> O e-mail do aviso de novas peças é o único caso em que a base é o seu
+> consentimento, manifestado quando você envia o formulário. Você pode retirá-lo
+> quando quiser, pelo link de cancelamento em qualquer mensagem.
+>
+> Não vendemos, alugamos nem compartilhamos seus dados para publicidade.
+>
+> A qualquer momento você pode pedir: confirmação de que tratamos seus dados,
+> acesso a eles, correção do que estiver errado, anonimização ou eliminação do que
+> for desnecessário, portabilidade para outro fornecedor, informação sobre com quem
+> compartilhamos, e — no caso do aviso de novas peças — a revogação do consentimento
+> e a eliminação dos dados. Escreva para privacidade@cantozen.com.br. Respondemos
+> em até 15 dias.
+>
+> O controlador dos dados é a Canto Zen Marcenaria e Comércio de Móveis Ltda., no
+> endereço e CNPJ do rodapé desta página.
+
+- **The two bases are stated separately and that is the point.** Checkout is LGPD
+  art. 7º V; the newsletter is art. 7º I. Writing one basis for both is what
+  produces the consent checkbox that [`checkout.md`](checkout.md) §5 refuses.
+- **The rights paragraph enumerates art. 18 in full**, because art. 9º VII requires
+  explicit mention. It is one sentence rather than a bulleted list on purpose: a
+  nine-item list is the visual signature of a document written to be skipped.
+- **The controller paragraph points at the footer** instead of restating the
+  identification. The footer's own fiction disclosure ([`rodape.md`](rodape.md) §3)
+  then covers this page too, which is why this document needs no second one.
+- **Retention and cookies** are the build's to write, and both must say what is
+  true of a store with no backend: nothing is stored, nothing is set beyond what
+  the framework requires.
+
+### `termos-de-uso`
+
+> Estes termos valem para o uso do site da Canto Zen e para a compra das peças
+> oferecidas nele, que são feitas sob encomenda em madeira maciça.
+>
+> Quem vende é a empresa identificada no rodapé de todas as páginas, com razão
+> social, CNPJ e endereço.
+>
+> Preços e disponibilidade valem como anunciados. Se houver erro evidente de preço,
+> a gente avisa você antes de qualquer cobrança e você decide se mantém o pedido.
+>
+> Nossas peças são de madeira maciça. Cor, veio e nó variam de peça para peça, e a
+> foto mostra um exemplar, não a peça exata que você vai receber. Essa variação é
+> uma característica da madeira e a gente informa isso antes da compra — não é
+> defeito, e também não é uma isenção de responsabilidade nossa por defeito.
+>
+> Os textos, fotos, desenhos e o nome Canto Zen são nossos. Usar é preciso pedir.
+>
+> Se houver uma disputa, você pode processar a Canto Zen no foro do seu próprio
+> domicílio. Esta página não elege foro diferente disso.
+
+- **The last paragraph is the correction.** A boilerplate *"fica eleito o foro da
+  comarca de São Paulo"* is the single most common abusive clause in Brazilian
+  e-commerce terms, and CDC art. 101 I gives the consumer their own domicílio. The
+  document states the right rather than staying silent, because silence in a terms
+  page reads as the clause being elsewhere.
+- **The wood paragraph ends by refusing what it looks like.** Variance disclosure is
+  CDC art. 31 — a characteristic — and the sentence that discloses a characteristic
+  is one comma away from the sentence that disclaims liability. It says which it is.
+- **"Usar é preciso pedir"** keeps the IP paragraph to one line in the store's
+  voice. An IP section is where policy pages inflate; this one has nothing to
+  enforce.
 
 ---
 
