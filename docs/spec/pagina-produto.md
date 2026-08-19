@@ -550,7 +550,7 @@ before a page existed that would spend it.
   image swap, no zoom, no fixed panel and no scroll reveal. Replacing the CTA with
   the confirmation line (§2.6) is a content swap, not an animation; if it gains a
   transition, that belongs to that ticket.
-- **Seed data** (map fog) — the PDP hardens the demand: every família needs a
+- **Seed data** — *resolved*, see [`dados.md`](dados.md) — the PDP hardens the demand: every família needs a
   `designer` and a technical drawing; every material needs a care line; and at least
   one família needs two acabamentos, or §2.4's strip never renders.
 

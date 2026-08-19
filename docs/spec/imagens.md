@@ -362,7 +362,7 @@ three-image coverage is a catalogue; a store where the strongest pieces get the
 full treatment is an atelier.
 
 **Floor, so the full form is exercised:** at least one produto per ambiente
-carries all three roles. Handed to the catalogue seed data (map fog).
+carries all three roles. Handed to the catalogue seed data — *resolved*, see [`dados.md`](dados.md) §7.2.
 
 ---
 

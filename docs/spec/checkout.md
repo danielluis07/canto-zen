@@ -287,7 +287,7 @@ Brazilian expectation, not a nicety
 | `Bairro` · `Cidade` · `Estado (UF)` | auto-filled, editable |
 
 Plus an inline `NÃO SEI MEU CEP` link, annotation voice, to
-`/politicas/prazos-e-entrega`.
+`/politicas/entrega-e-frete`.
 
 **Autofill reads a fixture table, not a service.** The map rules out backend
 integration of any kind, so the spec fixes a small table of CEPs covering all six
@@ -634,7 +634,7 @@ prevent.
   and the *região não atendida* CEP error recurs here. Three instances is enough
   to generalise into a rule.
 - **[Institutional pages](../../.wayfinder/tickets/013-institucional.md)** —
-  `NÃO SEI MEU CEP` (§6.1) links to `/politicas/prazos-e-entrega`, and the
+  `NÃO SEI MEU CEP` (§6.1) links to `/politicas/entrega-e-frete`, and the
   reduced footer links Termos de uso; both must exist.
 - **[Imagery](../../.wayfinder/tickets/014-imagery.md)** — the resumo thumbnail
   is 64px square, **below the 96px lower bound** [`carrinho.md`](carrinho.md) §11

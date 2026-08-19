@@ -254,7 +254,7 @@ instances is enough to generalise into a rule". The three instances also
 | Class | The message states | Example |
 | --- | --- | --- |
 | **Corrigível** | the fix, never the fault | `CEP tem 8 dígitos.` — not `CEP inválido.` |
-| **Fato** | the fact, plus the way on | `Ainda não entregamos neste CEP.` + link to `/politicas/prazos-e-entrega` |
+| **Fato** | the fact, plus the way on | `Ainda não entregamos neste CEP.` + link to `/politicas/entrega-e-frete` |
 
 The distinction matters because the CEP field produces both, and they are not the
 same event: one is the reader's typo, the other is the store's limit. Telling a

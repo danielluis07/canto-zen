@@ -2,9 +2,9 @@
 title: Catalogue seed data
 parent: map
 labels: [wayfinder:grilling]
-assignee:
+assignee: wayfinder-session
 blocked-by: []
-status: open
+status: closed
 ---
 
 ## Question
@@ -65,3 +65,61 @@ Decide:
   corrected rather than a piece added.
 
 Output: whichever file the third bullet decides.
+
+## Resolution
+
+**65 produtos across 59 famílias**, authored to identity depth, in
+[`docs/spec/dados.md`](../../docs/spec/dados.md).
+
+**The volume was forced, not chosen.** The curated taxonomy is **20 tipos**, not the
+"~4–5 per ambiente" [`imagens.md`](../../docs/spec/imagens.md) §9.3 assumed when it
+guessed the catalogue at 60–150. Against a three-column grid, a tipo needs 3 pieces or
+it renders a broken row — so the floor is 60, and §9.3's estimate survives with no
+headroom at all. Three rooms get a bump on their spine tipo; **Escritório deliberately
+does not**, because 12 is the pagination boundary and the set needed one room that
+renders a single full page with no pagination control. That case was otherwise
+untested.
+
+**Depth: identity authored, everything else ruled.** The ticket framed this as whether
+to extend the [Institutional pages](013-institucional.md) copy exception or hold the
+line. It resolved on a different axis entirely: `ConteudoHome.destaqueHome`,
+`destaques[3]`, `colecaoDestaque`, `Colecao.produtos[]` and all twelve
+`FotoArtigo.pecas[]` arrays are **produto slugs**. A build session that invents names
+leaves `home.md` and `inspiracoes.md` pointing at nothing — so identity is authored for
+**reference integrity**, not because copy deserved a second exception. Prose stays
+direction-plus-template exactly as everywhere else. The nine derived fields each get a
+rule in §8 precise enough that two sessions produce the same catalogue; `descricao`
+gets a three-sentence structure, not sentences.
+
+**Location: one file, `docs/spec/dados.md`.** The deliverable *is* cross-reference
+integrity, and splitting the tables is how those references drift. The CEP fixtures
+ride along in their own section rather than earning a file.
+
+**The ticket predicted a conflict. There were three, and the first is the real one.**
+
+1. **The freight regions were unusable.** [`carrinho.md`](../../docs/spec/carrinho.md)
+   §8 double-assigned prefixes 76–78 — `custo` and `prazoDiasUteis` both undefined
+   there — and, worse, the six regions between them **covered every prefix 01–99**, so
+   *região não atendida* was **unreachable**. [`erros.md`](../../docs/spec/erros.md)
+   §5.2 builds its entire `Fato` copy class on that state and
+   [`checkout.md`](../../docs/spec/checkout.md) §6 demands a fixture for it. Three
+   specs describe an error the rule cannot produce. Corrected: 77 → Norte, 78–79 →
+   Centro-Oeste (real CEP geography), and **`69` carved out** as não atendida — Acre and
+   Roraima, plausibly beyond a São Paulo atelier's reach, and chosen over dropping
+   Norte precisely so `carrinho.md`'s own São Paulo-vs-Belém argument survives.
+2. **`home.md` §1 reads `produto.designer`**, a field that lives on `Familia`. Resolves
+   via `familia`.
+3. **`/politicas/prazos-e-entrega` is a 404** — three links across `checkout.md` and
+   `erros.md` point at a slug `rotas.md` never enumerated. The target is
+   `entrega-e-frete`.
+
+**One thing recorded rather than fixed:** cubed weight at `/6000` makes furniture
+freight genuinely enormous — the hero sofá quotes ≈ R$ 2.664 to São Paulo and
+≈ R$ 5.856 to Belém, over half its price. That is arithmetically right and true to
+Brazilian furniture freight, so it is written down as intentional, and `freteGratis`
+lands on the five largest pieces so the worst numbers never render.
+
+**Output**: new [`docs/spec/dados.md`](../../docs/spec/dados.md) — distribution and its
+derivation, the 65-row catalogue, six entity tables, cross-listings, the corrected
+freight regions and seven CEP fixtures, four article legends, `ConteudoHome`, nine
+derivation rules, and the handoff list for the build effort.

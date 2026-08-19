@@ -413,9 +413,24 @@ pesoFrete  = max(embalagem.pesoKg, pesoCubado) × embalagem.volumes
 | Sudeste capitais | `01`–`09`, `20`–`23`, `30`–`31` | R$ 90 | R$ 5,50 | 6 |
 | Sudeste interior | `10`–`19`, `24`–`29`, `32`–`39` | R$ 120 | R$ 6,50 | 9 |
 | Sul | `80`–`99` | R$ 140 | R$ 7,00 | 11 |
-| Centro-Oeste | `70`–`79` | R$ 170 | R$ 8,50 | 13 |
+| Centro-Oeste | `70`–`76`, `78`–`79` | R$ 170 | R$ 8,50 | 13 |
 | Nordeste | `40`–`65` | R$ 190 | R$ 9,50 | 15 |
-| Norte | `66`–`69`, `76`–`78` | R$ 240 | R$ 12,00 | 20 |
+| Norte | `66`–`68`, `77` | R$ 240 | R$ 12,00 | 20 |
+| *— não atendida —* | `69` | — | — | — |
+
+> **The prefixes above were corrected after this ticket closed**, by
+> [`dados.md`](dados.md) §4.1. As originally written, Centro-Oeste held `70`–`79`
+> and Norte `66`–`69`, `76`–`78`, so **76–78 matched two regions** and `custo`
+> returned two answers. Worse, the six regions **covered every prefix from 01 to
+> 99**, which made *região não atendida* **unreachable** — although
+> [`erros.md`](erros.md) §5.2 builds its entire `Fato` copy class on that state and
+> [`checkout.md`](checkout.md) §6 demands a CEP fixture for it. The overlap
+> resolves by real CEP geography (77 is Tocantins, 78–79 Mato Grosso and Mato
+> Grosso do Sul), and `69` — Acre, Roraima, the Amazonas interior — is carved out
+> so the unserved state exists at all. `69` rather than dropping Norte wholesale
+> **precisely so the São Paulo-vs-Belém argument below survives**: Belém is `66`.
+> Base, per-kg and prazo are untouched. Fixture CEPs for all seven rows are in
+> `dados.md` §4.2.
 
 `custo = base + perKg × pesoFrete`, rounded to the nearest R$ 1,00.
 

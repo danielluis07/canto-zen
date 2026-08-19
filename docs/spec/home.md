@@ -64,7 +64,7 @@ right, where the text column begins. See the régua budget in §9.
 |---|---|---|
 | Eyebrow | Annotation, `--muted` | fixed: `PEÇA EM DESTAQUE` |
 | Name | Display XL (Mincho) | `produto.nome` |
-| Acabamento + designer | Annotation, `--muted` | `produto.acabamento`, `produto.designer` |
+| Acabamento + designer | Annotation, `--muted` | `produto.acabamento`, `familias[produto.familia].designer` |
 | À-vista price | Price, tabular | derived from `precoTabela` |
 | Pix badge | Annotation, `--indigo` | derived from `politicas` |
 | Parcelamento | Body S, `--muted` | derived from `politicas` |
@@ -87,6 +87,14 @@ in the map's fog. What the spec fixes are the slot's constraints:
   render**, because an empty régua is prohibited ([`marca.md`](marca.md) §2) and
   the type makes the prohibition checkable;
 - `disponibilidade` must not be `esgotado`.
+
+> **Two corrections after this ticket closed**, both by [`dados.md`](dados.md).
+> §6.1: the table above originally read `produto.designer`, but **`Produto` has no
+> such field** — `designer` lives on `Familia` ([`pagina-produto.md`](pagina-produto.md)
+> §10), deliberately, because authorship does not change with the finish. The read
+> now resolves through `familia`, and the same resolution applies anywhere else a
+> designer is shown beside a produto. §6: the slot is **no longer unfixed** — the
+> hero is `sofa-heron-linho-cru`, and it satisfies all three constraints above.
 
 ---
 
@@ -412,7 +420,7 @@ the family five times and §7's line would stop being a feature.
 - **[Motion](../../.wayfinder/tickets/017-motion.md)** — the home has **no** scroll
   reveal, parallax or section entry animation. The only transition is the 120ms
   colour one on interactive states ([`marca.md`](marca.md) §9).
-- **Catalogue seed data** (map fog) — the home consumes 1 + 3 product slugs, 1
+- **Catalogue seed data** — *resolved*, see [`dados.md`](dados.md) — the home consumes 1 + 3 product slugs, 1
   coleção with a non-empty `produtos[]`, 3 articles and 4 ambiente photos. The hero
   slot requires a product with `cotas: ['largura']` on its principal image.
 

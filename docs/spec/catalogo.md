@@ -537,7 +537,7 @@ Breathing room between blocks drops to the floors in `marca.md` §5, never below
 - **[Motion](../../.wayfinder/tickets/017-motion.md)** — the listing has no scroll
   reveal, no hover image swap, no filter-panel animation and no transition between
   grid pages. Only the 120ms colour transition.
-- **Catalogue seed data** (map fog) — 12 per page fixes the demand: each curated tipo
+- **Catalogue seed data** — *resolved*, see [`dados.md`](dados.md) — 12 per page fixes the demand: each curated tipo
   needs enough pieces that the grid does not end up with two, and the set must
   exercise the three `disponibilidade` states, the four price ranges and at least
   one piece in more than one ambiente.
