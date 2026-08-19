@@ -167,19 +167,35 @@ leftover margin, it is the alcove (`tokonoma`) that gives the object presence.
 
 ## 7. Photography
 
-One rule, and it admits no exception: **raking late-afternoon light, raw plaster
+One light, and it admits no exception: **raking late-afternoon light, raw plaster
 background, hard long shadow.**
 
-- The piece **alone** — no styling, no plants, no cup, no person. The product is
-  not staged; it is observed.
 - The cast shadow is part of the frame, never cropped out.
-- Frame in the piece's real proportion wherever possible — the photo and the
-  régua tell the same truth.
-- A room shot (Inspirações) is the only exception to "the piece alone", and even
-  there the raking light and plaster background still hold.
+- Frame in the piece's real proportion — the photo and the régua tell the same
+  truth. The frame is **derived from `medidas`**, not chosen
+  ([`imagens.md`](imagens.md) §3).
+- **No person appears in any photograph in the store**, and no object implying
+  one just left — no cup, no open book, no throw folded back, no plants, no
+  fruit. This has no exception anywhere.
 
-The full detailing — ratios, crops per surface, `alt` treatment, fallback —
-belongs to ticket [Imagery system](../../.wayfinder/tickets/014-imagery.md).
+**Two genres**, and only two ([`imagens.md`](imagens.md) §1):
+
+- **Retrato** — the piece **alone**, no styling. The product is not staged; it is
+  observed. The store's default.
+- **Ambiente** — a furnished, empty room under the same light on the same
+  plaster. Consumed by `ambientada` shots, the home's ambiente fields, coleção
+  and Inspirações.
+
+> **Corrected by [`imagens.md`](imagens.md) §1.** This section originally stated
+> one rule with a single exception, naming Inspirações. That was already false
+> when written: `papel: 'ambientada'` ([`produto.md`](produto.md)) and
+> `Ambiente.imagem` ([`home.md`](home.md) §8) are both non-solo images outside
+> Inspirações. The rule is restated as two genres; what remains unique to
+> Inspirações is the **composition** — three photographs sequenced into an
+> argument — not the genre.
+
+The full detailing — ratios, crops per surface, `alt` treatment, loading,
+failure, sourcing — is [`imagens.md`](imagens.md).
 
 ---
 

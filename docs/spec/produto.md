@@ -249,7 +249,7 @@ type Colecao = {
   slug: string;
   nome: string;
   descricao: string;
-  imagem: Imagem;
+  imagem: { src: string; alt: string };  // corrected by imagens.md §9.2 — was Imagem
   produtos: string[];   // -> Produto.slug[] — CURATED ORDER
 };
 ```
@@ -406,9 +406,14 @@ to fix; this file only fixes where the inputs live.
   **no short description field**. A product has one `descricao`, the PDP body.
   Meta descriptions must be truncated from it or authored separately in that
   ticket; this file does not decide which.
-- **[Imagery](../../.wayfinder/tickets/014-imagery.md)** — `papel` fixes the four
-  shot types the imagery system must supply; `cotas` fixes where the régua may
-  land.
+- **[Imagery](../../.wayfinder/tickets/014-imagery.md)** — **resolved**, in
+  [`imagens.md`](imagens.md). `papel` fixed the shot types and `cotas` fixed
+  where the régua may land, both unchanged — that file adds **no fields at all**,
+  deriving each image's ratio from `medidas` rather than storing it (§3). It
+  makes two corrections here: `Colecao.imagem` drops to `{ src, alt }` (§9.2,
+  applied above) and only `principal` is **required** — `ambientada` and
+  `detalhe` become rare and authored (§9.3), which the named-not-positional rule
+  above already supports.
 - **[Carrinho](../../.wayfinder/tickets/010-cart.md)** / **[Checkout](../../.wayfinder/tickets/011-checkout.md)**
   — delivery groups derive from `embalagem` + `freteGratis`; the resumo's
   à-vista and parcelado totals derive from `politicas`.
