@@ -229,9 +229,15 @@ rather than an accessibility position. `alt=""` never appears.
 
 ## 6. Loading, reservation and failure
 
-`marca.md` §9 permits **a 120ms colour transition on interactive states, and
-nothing else**, and every page spec refuses scroll reveal by name. That ban
-extends to image loading without qualification.
+`marca.md` §9 is a **closed list of two motions** — a colour transition on
+pointer state, and the stale-content dim of §4.2 in [`erros.md`](erros.md) — over
+a closed property allowlist, and it refuses scroll reveal and every form of entry
+animation by name. That ban extends to image loading without qualification.
+
+> This paragraph originally quoted §9's *provisional* wording ("a 120ms colour
+> transition on interactive states, and nothing else"). §9 has since been
+> resolved and the quotation would now be false. **Nothing below changes** — the
+> resolved §9 §9.8 ratifies every refusal in this section by name.
 
 - **No fade-in.** An opacity transition on load would be the only motion in the
   store that is not a colour change on interaction.

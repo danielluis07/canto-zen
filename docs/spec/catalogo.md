@@ -353,8 +353,8 @@ the PDP that removes the purchase CTA ([`produto.md`](produto.md)).
 - Hover: the **name goes to `--indigo`** on the 120ms colour transition, like the
   navbar panel's links ([`navbar.md`](navbar.md) §6). Nothing else changes.
 - **No hover image swap** to the `ambientada` shot, no zoom, no elevation. An image
-  that changes under the cursor is motion, and [`marca.md`](marca.md) §9 grants
-  colour only.
+  that changes under the cursor is motion, and [`marca.md`](marca.md) §9.8 refuses
+  any hover state on the photograph system-wide.
 - Focus: the `--indigo` ring from `marca.md` §6, on the whole card.
 
 ---
@@ -500,7 +500,8 @@ wrap to two lines; it wraps.
   the foot: `VER {n} PEÇAS`, with `n` updated on each selection. Here the trade-off
   §3 refused inverts: there is no spare column, and the alternative is a bar that
   wraps onto four lines above every grid. The sheet appears and disappears without
-  animation — [`marca.md`](marca.md) §9 grants colour only.
+  animation — [`marca.md`](marca.md) §9.3 permits no `transform` and no size
+  transition, and §9.8 ratifies this refusal.
 - **Régua** — stays; it is one line.
 - **Policy line** — below the grid, left-aligned.
 - **Pagination** — the same.

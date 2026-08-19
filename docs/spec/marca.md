@@ -212,13 +212,193 @@ failure, sourcing — is [`imagens.md`](imagens.md).
 
 ## 9. Motion
 
-Provisional, and deliberately thin: a 120ms colour transition on interactive
-states, and nothing else. No scroll reveal, no page transition, no parallax.
-`prefers-reduced-motion: reduce` is respected.
+Resolves ticket [Motion & transition conventions](../../.wayfinder/tickets/017-motion.md).
+This section replaces the provisional §9 in full. It is **closed** — see §9.9.
 
-The full motion convention remains **Not yet specified** in the map — this
-section only guarantees that no build session invents motion before that ticket
-exists.
+### 9.1 What motion is permitted to mean
+
+**Motion may confirm that something changed, or is changing. It may never
+announce arrival.**
+
+That is the whole rule, and everything below is its application. Feedback is
+permitted because it is information — the store already reasons this way about
+ornament (§2: an empty régua is prohibited because it states no figure). Entry
+animation, scroll reveal, parallax and page transition are all *announcements of
+arrival*; they state nothing that was not already on the screen, so they are
+ornament in the time axis and are refused everywhere, without exception.
+
+**The régua does not animate.** This is the one place a motion gesture could
+carry brand meaning, and it is refused on §2's own test. The régua is permitted
+to exist because it is ornament and data at once — it never stops being true. A
+drawing or counting animation states no figure while it runs; it is the empty
+régua §2 already prohibits, moved into time. The signature is the hairline, the
+ticks and the number. It is not the arrival of them.
+
+**"No motion at all" was considered and rejected.** It is a coherent position and
+cheaper to hold, but a 12-item catalogue grid whose cards give no pointer
+feedback reads as dead rather than as calm, and [`erros.md`](erros.md) §4.2
+established that the loading dim is *state*, not decoration — removing it would
+remove information, not restraint.
+
+### 9.2 The closed list
+
+Two entries. There is no third.
+
+| # | Motion | Property | Duration | Where |
+|---|---|---|---|---|
+| 1 | Interactive state on **pointer** | colour (§9.3) | `--motion-duration` | Hover on links, CTAs, card names, filter items, `REMOVER` |
+| 2 | **Stale content dim** | `opacity` to `0.45` | `--motion-duration` | The region being replaced, per [`erros.md`](erros.md) §4.2 |
+
+Entry 2 is adopted from [`erros.md`](erros.md) §4.2 exactly as written, including
+its `120ms` pre-delay, its scoping to the replaced region only, its refusal to
+dim the chrome, and its `aria-busy` + `role="status"` obligations. That spec
+named itself an exception to the provisional §9 and handed it here to adopt
+rather than re-open; it is adopted.
+
+**Everything else in the store is a cut.** A cut is not a degraded transition —
+it is the system's default, and it needs no justification anywhere.
+
+### 9.3 Property allowlist
+
+A transition may animate **only** these properties:
+
+`color` · `background-color` · `border-color` · `text-decoration-color` ·
+`outline-color` · `opacity`
+
+Closed. In particular, and by name: **no `transform`** (of any kind — translate,
+scale, rotate), no `width`/`height`/`max-height` collapse, no `filter`, no
+`blur`, no `box-shadow` (§6 has none to animate), no `background-position`.
+
+`transform` is refused because it is **displacement** — it moves an object
+through space. A store built on a fixed frame, a real proportion derived from
+`medidas` (§7) and a cast shadow that is part of the photograph cannot afford
+things that slide. §6 also has no elevation vocabulary for a transform to
+express: there is no shadow and no radius for a lift to read against.
+
+The allowlist exists so that a future spec can test an idea against §9 in one
+read, instead of arguing from register and reaching a different answer each time.
+
+### 9.4 Tokens
+
+```css
+--motion-duration: 120ms;
+--motion-ease: linear;
+```
+
+One of each. Page specs name these; they never write a number.
+
+**No duration scale.** There is no `fast`/`slow`, because there are two motions
+and both are `120ms`. An unused token is an invitation to find a use for it,
+which is the drift this section exists to prevent.
+
+**`linear` is a choice, not a default.** At `120ms`, on `color` and `opacity`
+only, an easing curve sits below the perception threshold — a `cubic-bezier()`
+would be an unfalsifiable claim to a motion personality this store does not have.
+`ease-out` is worse than neutral: it *means* decelerating into place, which is
+arrival, which §9.1 refuses as a meaning. `linear` states no curve.
+
+### 9.5 The transition follows the pointer, never the keyboard
+
+- **Hover** — `--motion-duration`. A pointer's dwell is slow and continuous, and
+  the ramp suits it.
+- **Focus** — always a **cut**. The `--indigo` ring (§6) appears and disappears
+  instantly. A ramp makes the ring lag the Tab press, and on a fast pass down a
+  grid the rings smear, degrading the one thing the ring exists to state: *you
+  are here*.
+- **`:active` / press** — always a **cut**. Same reason: it is a discrete
+  acknowledgement of an input, not a continuous state.
+
+### 9.6 `prefers-reduced-motion: reduce`
+
+One global rule, and it covers every entry in §9.2 — present and future:
+
+> **The end state is kept. The interpolation is dropped.** `--motion-duration`
+> collapses to `0`. Nothing is removed, nothing is substituted, no motion is
+> replaced by a different effect.
+
+So the dim still dims to `0.45`, arriving as a cut ([`erros.md`](erros.md) §4.2,
+which is now an *instance* of this rule rather than its own branch); hover still
+changes colour, instantly. [`checkout.md`](checkout.md) §2.2's claim that it
+needs no branch is correct and stands — it has no interpolation to drop.
+
+A global rule also means a future entry cannot forget its branch: it inherits
+one. And note what it implies — with a two-property allowlist and no
+displacement anywhere, nothing in this store could trigger a vestibular
+response. `reduce` is honoured here as a **preference for stillness**, not as a
+safety mitigation, and the reduced-motion store is very nearly the default store.
+
+### 9.7 A delay is not motion
+
+§9 governs **interpolation** — a property changing over time. A delay moves
+nothing, so it has no easing, no reduced-motion branch, and no token here.
+
+Named so nobody has to look for them in §9:
+
+- [`checkout.md`](checkout.md) §2.2 — the **1500ms** `processando` beat. A
+  checkout constant. Its `--plaster/95` wash is a **state**, and it **arrives as
+  a cut**: a fade would dramatise the exact moment that surface exists to admit
+  was never real work.
+- [`erros.md`](erros.md) §4.2 — the **120ms** pre-delay before the dim begins, so
+  a prefetched navigation never flickers. Part of entry 2's mechanics, not a
+  motion of its own.
+
+### 9.8 Standing refusals
+
+Ten specs held the provisional §9 honestly and refused motion individually. Those
+refusals are ratified here as system rules, stated once, so no future surface has
+to re-argue them:
+
+- **No scroll reveal, section entry animation or parallax** — anywhere.
+  ([`home.md`](home.md), [`inspiracoes.md`](inspiracoes.md),
+  [`catalogo.md`](catalogo.md), [`imagens.md`](imagens.md))
+- **No page or route transition.** Navigation is a cut; entry 2's dim is the only
+  thing that marks a pending one.
+- **The photograph gains nothing on hover** — no image swap to the `ambientada`
+  shot, no zoom, no lightbox, no ground shift, no elevation. The frame includes
+  the cast shadow as content and is derived from real `medidas` (§7): any hover
+  state **edits the photograph**, and the photograph is the piece's truth. The
+  card is not inert — the name goes to `--indigo` and the whole card is the link.
+  ([`imagens.md`](imagens.md) §6, [`catalogo.md`](catalogo.md) §6,
+  [`pagina-produto.md`](pagina-produto.md))
+- **No fade-in, blur-up, LQIP, skeleton, shimmer or spinner** on image or content
+  load. ([`imagens.md`](imagens.md) §6, [`erros.md`](erros.md) §4.3)
+- **No navbar height change, background swap or hide-on-scroll.**
+  ([`navbar.md`](navbar.md) §8)
+- **No filter-panel animation, no transition between grid pages, no slider
+  drag.** ([`catalogo.md`](catalogo.md) §6–7)
+- **The cart line's removal is a cut.** [`carrinho.md`](carrinho.md) called this
+  the only place a transition would carry meaning — there is no undo, so removal
+  is irreversible. It is still a cut, for a specific reason: an opacity fade-out
+  would **invert** entry 2's meaning. `0.45` in this store says *stale, new
+  content is coming*; a row fading to `0` says nothing is coming. The same
+  property would carry opposite meanings on adjacent surfaces, which is how a
+  small vocabulary rots. A height collapse is worse — it displaces every row
+  below, in the one flow where the reader is checking figures. The
+  acknowledgement the reader needs is not the row's departure but that the
+  **totals and `CARRINHO (n)` changed**, and both do, instantly.
+- **Replacing the PDP's CTA with the confirmation line**
+  ([`pagina-produto.md`](pagina-produto.md) §2.6) is a content swap. It gains no
+  transition.
+
+### 9.9 Amending §9
+
+**This section is closed.** The list in §9.2 has two entries and the allowlist in
+§9.3 is exhaustive. A spec that needs a third entry does not get it by
+reinterpreting the wording — it **amends §9**, and an amendment must:
+
+1. **Name what it adds**, as a new numbered entry in §9.2.
+2. **Say why no existing entry covers it**, without stretching an existing term
+   to fit.
+3. **Land here**, in §9 — not only in the spec that wanted it.
+
+[`erros.md`](erros.md) §4.2 is the worked example, and it did all three: it
+declined to smuggle `opacity` in under the word "colour", said plainly that it
+was widening §9 by exactly one entry, and handed it over to be adopted. Do that.
+
+This protocol is the durable half of this ticket. The reason it had so little
+left to decide is that ten sessions held a provisional line by discipline — and
+discipline does not survive a build phase running several sessions in parallel.
+The protocol is what makes it structure instead of a lucky streak.
 
 ---
 
