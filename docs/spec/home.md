@@ -263,9 +263,11 @@ Per row: 16:9 thumbnail on columns 1–2, title on 3–7, summary on 8–10, col
 **Eyebrow:** `INSPIRAÇÕES`. **Closing:** one CTA line, `VER TODAS AS
 INSPIRAÇÕES` → `/inspiracoes`.
 
-**Data.** `ConteudoHome.inspiracoes` — three article slugs. The article entity does
-not exist yet; see the constraint handed to
-[Inspirações](../../.wayfinder/tickets/012-inspiracoes.md) in §12.
+**Data.** `ConteudoHome.inspiracoes` — three article slugs. The entity now exists:
+`Artigo` in [`inspiracoes.md`](inspiracoes.md) §8. Two notes on what it settled —
+`ambiente` came back **required**, not optional as §12 anticipated, so every row
+here always carries its annotation; and there are exactly **four** articles, so
+this section shows three of four and `VER TODAS AS INSPIRAÇÕES` leads to one more.
 
 ---
 

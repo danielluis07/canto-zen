@@ -34,7 +34,7 @@ These hold for every route below.
 | `/produtos` | All-products listing | `catalogo.md` | Same listing, no room scope. Accepts `?ambiente=` |
 | `/produtos/[slug]` | Product detail | `produto.md` | |
 | `/colecoes/[slug]` | Collection listing | `catalogo.md` | No index page — see [Deliberate omissions](#deliberate-omissions) |
-| `/inspiracoes` | Editorial index | `inspiracoes.md` | Accepts `?ambiente=` |
+| `/inspiracoes` | Editorial index | `inspiracoes.md` | Four articles, one per ambiente |
 | `/inspiracoes/[slug]` | Article | `inspiracoes.md` | |
 | `/carrinho` | Cart | `carrinho.md` | |
 | `/checkout` | Checkout | `checkout.md` | Single page, accordion sections |
@@ -84,10 +84,15 @@ Canonical keys. A surface ignores any key it does not support rather than errori
 | `preco` | listings | `min-max`, BRL integers | `?preco=2000-5000` |
 | `ordem` | listings | sort token | `?ordem=menor-preco` |
 | `pagina` | listings | integer, 1-based, omitted for page 1 | `?pagina=2` |
-| `ambiente` | `/produtos`, `/inspiracoes` | room slug | `?ambiente=quarto` |
+| `ambiente` | `/produtos` | room slug | `?ambiente=quarto` |
 
 Room routes take their room from the path and ignore `ambiente`. `/produtos`
 needs it because it has no room in its path.
+
+`/inspiracoes` originally reserved `ambiente` too. [`inspiracoes.md`](inspiracoes.md)
+§7.1 **retired it unused**, the second reservation to go that way after `?q=`: the
+index holds exactly four articles, one per ambiente, each row already annotated
+with its room, so the filter would compute what the reader already has on screen.
 
 Whether pagination is pages or infinite scroll is **ticket 008's** call; `pagina`
 is reserved either way.

@@ -35,6 +35,15 @@ not inferred from the catalogue.
 **Coleção** — a curated, ordered set of Produtos. A merchandising device surfaced
 in context, never an index page; the order is the editorial act.
 
+**Artigo** — one Ambiente, composed and photographed: the store's only editorial
+form. There are exactly four, one per Ambiente, and the set is closed. It is not
+a blog post — no date, no author, no category — and it carries no price and no
+Régua, the two things every other surface asserts.
+
+**Legenda** — the line beneath an Artigo's photograph naming the Produtos visible
+in that frame, each name a link. It is how a room story reaches the catalogue,
+and the only mechanism that does so.
+
 ## Marca
 
 **Régua** — the identity's signature: a hairline rule with end ticks carrying a
