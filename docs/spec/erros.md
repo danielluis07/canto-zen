@@ -245,7 +245,7 @@ instances is enough to generalise into a rule". The three instances also
 ### 5.1 Shape
 
 - Message in **Corpo S `--ink`**, `0.5rem` beneath its field.
-- The field's border goes `--hairline` → `--ink`, **still 1px**. It does not thicken
+- The field's border goes `--muted` → `--ink`, **still 1px**. It does not thicken
   and it does not change colour.
 - No icon, no colour, no `!`, no uppercase.
 

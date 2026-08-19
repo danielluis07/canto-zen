@@ -123,7 +123,7 @@ reorder — see §4.4.
 ```
 
 - A text stepper: two hairline glyphs with a tabular figure between them, 1px
-  `--hairline` borders, zero radius, `--ink` on hover.
+  `--muted` borders, zero radius, `--ink` on hover.
 - Chosen over a numeric field because the typical quantity is 1 and a field
   summons the mobile keyboard for a change of ±1; chosen over a `<select>`
   because a select needs an arbitrary ceiling.

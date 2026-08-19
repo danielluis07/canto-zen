@@ -234,7 +234,7 @@ stacks in the same order.
 | Mensagem | textarea, 6 rows | required |
 
 No *assunto* select — it would route to inboxes that do not exist. No telefone — a
-field the store cannot act on. Zero radius, 1px `--hairline` border, label above
+field the store cannot act on. Zero radius, 1px `--muted` border, label above
 the field in the annotation voice ([`marca.md`](marca.md) §6).
 
 Submit: `ENVIAR MENSAGEM`, CTA style.

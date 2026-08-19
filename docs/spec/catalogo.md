@@ -502,6 +502,10 @@ wrap to two lines; it wraps.
   wraps onto four lines above every grid. The sheet appears and disappears without
   animation — [`marca.md`](marca.md) §9.3 permits no `transform` and no size
   transition, and §9.8 ratifies this refusal.
+  Both sheets are overlays and obey the overlay rule in
+  [`acessibilidade.md`](acessibilidade.md) §4 — `Escape` closes, focus returns to
+  the trigger, focus is contained while open, `aria-expanded` on the trigger, one
+  open at a time.
 - **Régua** — stays; it is one line.
 - **Policy line** — below the grid, left-aligned.
 - **Pagination** — the same.

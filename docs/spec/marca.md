@@ -79,13 +79,18 @@ A light, warm identity. **No dark mode** — already settled in the map.
 | `--plaster` | Reboco | `#F5F4F0` | Page background |
 | `--kozo` | Kozo | `#EAE7E0` | Recessed panel, rail, band |
 | `--oak` | Carvalho | `#C6B49A` | Wood, warmth, subtle hover |
-| `--hairline` | Fio | `#D3CFC7` | Divider, field border |
+| `--hairline` | Fio | `#D3CFC7` | Divider, panel edge — **never a control border** |
 | `--indigo` | Índigo | `#223244` | **Sole chromatic accent** |
-| `--muted` | Apagado | `#7A756C` | Secondary text, caption |
+| `--muted` | Apagado | `#6B675F` | Secondary text, caption, resting control border |
 
 **Índigo is the only accent** and it is rationed: interactive state (focus, CTA
 hover, active link) and the Pix discount badge. Nothing else. If índigo appears
 three times on one screen, two of them are wrong.
+
+**Every pair is measured** in [`acessibilidade.md`](acessibilidade.md) §3, which sets
+the floors this palette answers to: 4.5:1 for text, 3:1 for control borders. Two
+values here — `--muted` and the resting control border — were set *by* that table
+rather than chosen and checked afterwards (§5 there).
 
 **Deliberately out:**
 

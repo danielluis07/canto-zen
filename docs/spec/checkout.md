@@ -237,7 +237,7 @@ Four fields, in this order ([research §5](../research/br-ecommerce-conventions.
 
 Ink and typographic weight only — no colour, no icon
 ([`marca.md`](marca.md) §3). The message sits beneath its field in Corpo S
-`--ink`, and the field's border goes from `--hairline` to `--ink`. This is the
+`--ink`, and the field's border goes from `--muted` to `--ink`. This is the
 third instance of the ink-only error treatment, after the PDP's and the cart's.
 
 ---
@@ -375,7 +375,7 @@ nothing. The Termos de uso link lives in the reduced footer, where
 
 **Selection resolves in ink, never índigo.** A selected row — payment method or
 freight modality — is a solid `--ink` fill in its 14px box plus a 1px `--ink`
-border on the row against `--kozo`; unselected is `--hairline` on `--plaster`.
+border on the row against `--kozo`; unselected is `--muted` on `--plaster`.
 
 [`marca.md`](marca.md) §3 declares three índigos on one screen wrong, and a
 checkout naively built wants at least four: the Pix badge, the selected Pix row,
