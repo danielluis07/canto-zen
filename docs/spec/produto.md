@@ -144,10 +144,18 @@ passa pelo elevador e portas").
 type Imagem = {
   src: string;
   alt: string;                          // required
-  papel: 'principal' | 'ambientada' | 'detalhe' | 'escala';
+  papel: 'principal' | 'ambientada' | 'detalhe';
   cotas: ('largura' | 'altura')[];      // default []
 };
 ```
+
+> **`'escala'` was removed from `papel` after this ticket closed**, by
+> [`pagina-produto.md`](pagina-produto.md) §10 — the only reversal that file
+> makes. The role was defined before any page spent it: listings read only
+> `principal` ([`catalogo.md`](catalogo.md) §13), and the PDP's scale mechanism
+> turned out to be a dimensioned technical elevation that belongs to the
+> **família**, not the produto, because geometry does not change with the finish.
+> See `Familia.desenho` below.
 
 - Exactly one `principal` — the plaster packshot, raking late-afternoon light,
   the piece alone — and it is first.
@@ -223,9 +231,19 @@ type Tipo = {
 };
 
 type Cor = { slug: string; label: string; amostra: string }; // amostra = hex swatch
-type Material = { slug: string; label: string };
 
-type Familia = { slug: string; nome: string };  // 'Poltrona Lina'
+type Material = {
+  slug: string;
+  label: string;
+  cuidados: string;   // added by pagina-produto.md §5 — one care line per material
+};
+
+type Familia = {
+  slug: string;
+  nome: string;                           // 'Poltrona Lina'
+  designer: string;                       // added by pagina-produto.md §10
+  desenho: { src: string; alt: string };  // added by pagina-produto.md §10
+};
 
 type Colecao = {
   slug: string;
@@ -260,6 +278,18 @@ Two things justify entities over bare strings on the product:
 `Familia` is deliberately thin — it exists so the PDP's *outros acabamentos* strip
 has a display name. It has **no route**; `familias` is not a reserved segment and
 must not become one.
+
+> **`Familia` gained `designer` and `desenho` after this ticket closed**, by
+> [`pagina-produto.md`](pagina-produto.md) §10. Both live here rather than on
+> `Produto` because neither authorship nor geometry changes with the finish:
+> Poltrona Lina has one designer and one technical elevation in linho cru and in
+> bouclé carvalho alike. `designer` closes a gap `marca.md` §1 opened — "nome do
+> designer sempre presente" — with no field to hold it. **New invariant:**
+> products sharing a família share `medidas`, or the one drawing lies about one
+> of them. `Material.cuidados` follows the same derivation rule as `politicas` —
+> care belongs to linho and carvalho, not to a particular chair, so the PDP's
+> Cuidados line is the union of the product's materials' lines and no product can
+> exist without care copy. All three additive.
 
 `Colecao.produtos` is an ordered list held by the collection, not a back-reference
 from each product, because a collection is a merchandising device whose sequence is
@@ -366,9 +396,12 @@ to fix; this file only fixes where the inputs live.
   `tipo` and `ambientes` (cor and material multi-select, any-match). The card
   renders `disponibilidade` as an annotation label, not a coloured badge, and adds
   `medidas.largura` — the promise this file made by keeping the cm out of `nome`.
-- **[Produto](../../.wayfinder/tickets/009-product-detail.md)** — the *outros
-  acabamentos* strip queries by `familia`. `medidasExtras` is the
-  Especificações table. The montagem block reads the derived price.
+- **[Produto](../../.wayfinder/tickets/009-product-detail.md)** — *resolved*, see
+  [`pagina-produto.md`](pagina-produto.md). The *outros acabamentos* strip queries
+  by `familia` and lives inside the buy box. `medidasExtras` renders in the
+  **Medidas** section, not Ficha técnica — that page splits by kind of fact, so
+  every number is together and every attribute is together. The montagem block
+  reads the derived price and is the sole home of `montagem`'s four facts.
 - **[Route metadata](../../.wayfinder/tickets/015-route-metadata.md)** — there is
   **no short description field**. A product has one `descricao`, the PDP body.
   Meta descriptions must be truncated from it or authored separately in that
