@@ -1,26 +1,360 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   Canto Zen — the identity as code.
+
+   Every value here is fixed by a spec: the palette and the type scale by
+   `docs/spec/marca.md` §§3–6, the motion vocabulary by §9, the contrast floors
+   by `docs/spec/acessibilidade.md`. A surface reads these tokens; it does not
+   type a hex, a duration or a font stack of its own.
+
+   Token names follow the document that fixes the thing — `marca.md` names the
+   palette in English, so the tokens are English too.
+--------------------------------------------------------------------------- */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Palette — marca.md §3. Índigo is the sole accent and is rationed to
+     interactive state and the Pix badge. No dark mode: the identity is light
+     and warm, and that is settled. */
+  --ink: #1b1a18;
+  --plaster: #f5f4f0;
+  --kozo: #eae7e0;
+  --oak: #c6b49a;
+  --hairline: #d3cfc7;
+  --indigo: #223244;
+  --muted: #6b675f;
+
+  /* Families — marca.md §4. The next/font variables are declared in `fonts/`
+     and already carry each family's metric-adjusted fallback; the generic
+     here is the last resort if the variable is out of scope. */
+  --font-mincho: var(--font-zen-old-mincho), serif;
+  --font-grotesk: var(--font-schibsted-grotesk), sans-serif;
+
+  /* Type scale — marca.md §4. Size, leading and tracking per role, so the
+     scale is a token rather than a per-page decision. */
+  --size-display-xl: clamp(2.1rem, 3.6vw, 3.25rem);
+  --leading-display-xl: 1.08;
+  --tracking-display-xl: 0.005em;
+
+  --size-display-l: 1.75rem;
+  --leading-display-l: 1.2;
+  --tracking-display-l: 0.005em;
+
+  --size-display-m: 1.35rem;
+  --leading-display-m: 1.45;
+  --tracking-display-m: 0.005em;
+
+  --size-price: 1.75rem;
+  --leading-price: 1.1;
+  --tracking-price: -0.01em;
+
+  --size-body: 1rem;
+  --leading-body: 1.55;
+  --tracking-body: 0;
+
+  --size-body-s: 0.875rem;
+  --leading-body-s: 1.5;
+  --tracking-body-s: 0;
+
+  --size-annotation: 0.6875rem;
+  --leading-annotation: 1.4;
+  --tracking-annotation: 0.16em;
+
+  --size-cta: 0.75rem;
+  --leading-cta: 1;
+  --tracking-cta: 0.18em;
+
+  /* Space and density — marca.md §5. The emptiness is the alcove, not
+     leftover margin. */
+  --measure-max: 1360px;
+  --measure-reading: 68ch;
+  --measure-aside: 34ch;
+  --gutter: clamp(1.5rem, 4vw, 4.5rem);
+  --rhythm-1: 0.5rem;
+  --rhythm-2: 0.75rem;
+  --rhythm-3: 1rem;
+  --rhythm-4: 1.5rem;
+  --rhythm-5: 2.75rem;
+  --rhythm-6: 4rem;
+  --rhythm-7: 7rem;
+
+  /* Stroke and corner — marca.md §6. No radius, no UI shadow, one hairline.
+     The resting border of a control is --muted and never --hairline: the
+     hairline measures 1.41 on plaster and is decorative structure only
+     (acessibilidade.md §5.2). --ink is the focused or filled border. */
+  --hairline-width: 1px;
+  --radius: 0;
+  --border-control: var(--muted);
+  --border-control-active: var(--ink);
+
+  /* Focus — marca.md §6, acessibilidade.md §2.3. Mandatory, and a cut. */
+  --focus-width: 2px;
+  --focus-offset: 3px;
+  --focus-color: var(--indigo);
+
+  /* Motion — marca.md §9.4. One duration, one easing, and no scale: there are
+     two motions and both are 120ms. `linear` states no curve, because at this
+     duration a curve would be a claim to a personality this store lacks. */
+  --motion-duration: 120ms;
+  --motion-ease: linear;
+
+  /* The closed list of two — marca.md §9.2. Entry 1 is interactive state on
+     pointer; entry 2 is the stale-content dim. The property allowlist (§9.3)
+     is exactly what these two values name; `transform` is refused. A third
+     entry requires the §9.9 amendment protocol, not another line here. */
+  --transition-color:
+    color var(--motion-duration) var(--motion-ease),
+    background-color var(--motion-duration) var(--motion-ease),
+    border-color var(--motion-duration) var(--motion-ease),
+    text-decoration-color var(--motion-duration) var(--motion-ease),
+    outline-color var(--motion-duration) var(--motion-ease);
+  --transition-opacity: opacity var(--motion-duration) var(--motion-ease);
+
+  /* Conteúdo velho — erros.md §4.2, and the glossary term is CONTEXT.md's.
+     The dim is state, not decoration, and the delay is not motion (§9.7): it
+     exists so a prefetched navigation never flickers. */
+  --conteudo-velho-opacity: 0.45;
+  --conteudo-velho-delay: 120ms;
 }
 
+/* Tokens are the source; Tailwind utilities read them. `inline` so a utility
+   emits `var(--ink)` rather than a copy of the value. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--ink);
+  --color-plaster: var(--plaster);
+  --color-kozo: var(--kozo);
+  --color-oak: var(--oak);
+  --color-hairline: var(--hairline);
+  --color-indigo: var(--indigo);
+  --color-muted: var(--muted);
+
+  /* Grotesk is the document's family. Mincho is deliberately absent from the
+     theme: it reaches a surface only through a `.t-display-*` role. */
+  --font-sans: var(--font-grotesk);
+
+  --text-display-xl: var(--size-display-xl);
+  --text-display-xl--line-height: var(--leading-display-xl);
+  --text-display-xl--letter-spacing: var(--tracking-display-xl);
+
+  --text-display-l: var(--size-display-l);
+  --text-display-l--line-height: var(--leading-display-l);
+  --text-display-l--letter-spacing: var(--tracking-display-l);
+
+  --text-display-m: var(--size-display-m);
+  --text-display-m--line-height: var(--leading-display-m);
+  --text-display-m--letter-spacing: var(--tracking-display-m);
+
+  --text-price: var(--size-price);
+  --text-price--line-height: var(--leading-price);
+  --text-price--letter-spacing: var(--tracking-price);
+
+  --text-body: var(--size-body);
+  --text-body--line-height: var(--leading-body);
+  --text-body--letter-spacing: var(--tracking-body);
+
+  --text-body-s: var(--size-body-s);
+  --text-body-s--line-height: var(--leading-body-s);
+  --text-body-s--letter-spacing: var(--tracking-body-s);
+
+  --text-annotation: var(--size-annotation);
+  --text-annotation--line-height: var(--leading-annotation);
+  --text-annotation--letter-spacing: var(--tracking-annotation);
+
+  --text-cta: var(--size-cta);
+  --text-cta--line-height: var(--leading-cta);
+  --text-cta--letter-spacing: var(--tracking-cta);
+
+  --container-measure: var(--measure-max);
+  --container-reading: var(--measure-reading);
+  --container-aside: var(--measure-aside);
+
+  --spacing-gutter: var(--gutter);
+  --spacing-rhythm-1: var(--rhythm-1);
+  --spacing-rhythm-2: var(--rhythm-2);
+  --spacing-rhythm-3: var(--rhythm-3);
+  --spacing-rhythm-4: var(--rhythm-4);
+  --spacing-rhythm-5: var(--rhythm-5);
+  --spacing-rhythm-6: var(--rhythm-6);
+  --spacing-rhythm-7: var(--rhythm-7);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    background-color: var(--plaster);
+    color: var(--ink);
+    font-family: var(--font-grotesk);
+    font-size: var(--size-body);
+    line-height: var(--leading-body);
+  }
+
+  /* The resting border of every control is --muted, at 5.11 on plaster and
+     4.56 on kozo — both over the 3:1 boundary floor (acessibilidade.md §3). */
+  input,
+  select,
+  textarea {
+    border: var(--hairline-width) solid var(--border-control);
+    background-color: transparent;
+    color: inherit;
+  }
+
+  /* The focused border goes to --ink — a two-step in one warm-grey ramp
+     rather than the near-invisible-to-black jump acessibilidade.md §5.2
+     repaired. The filled state is the field's own business: a control that
+     tracks its value says so on the element, not through a placeholder trick
+     that also matches every empty field without a placeholder. */
+  input:focus,
+  select:focus,
+  textarea:focus,
+  input[data-filled="true"],
+  textarea[data-filled="true"] {
+    border-color: var(--border-control-active);
+  }
+
+  /* The universal divider — decorative structure, never a control boundary. */
+  hr {
+    border: 0;
+    border-top-width: var(--hairline-width);
+    border-top-style: solid;
+    border-top-color: var(--hairline);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* The type scale as roles — marca.md §4. A surface picks a voice; it does
+     not pick a size. */
+  .t-display-xl {
+    font-family: var(--font-mincho);
+    font-weight: 400;
+    font-size: var(--size-display-xl);
+    line-height: var(--leading-display-xl);
+    letter-spacing: var(--tracking-display-xl);
+  }
+
+  .t-display-l {
+    font-family: var(--font-mincho);
+    font-weight: 400;
+    font-size: var(--size-display-l);
+    line-height: var(--leading-display-l);
+    letter-spacing: var(--tracking-display-l);
+  }
+
+  .t-display-m {
+    font-family: var(--font-mincho);
+    font-weight: 400;
+    font-size: var(--size-display-m);
+    line-height: var(--leading-display-m);
+    letter-spacing: var(--tracking-display-m);
+  }
+
+  .t-price {
+    font-weight: 400;
+    font-size: var(--size-price);
+    line-height: var(--leading-price);
+    letter-spacing: var(--tracking-price);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .t-body {
+    font-weight: 400;
+    font-size: var(--size-body);
+    line-height: var(--leading-body);
+    letter-spacing: var(--tracking-body);
+  }
+
+  /* Body S is the parcelamento voice — `ou {total} em {N}x de {v} sem juros` —
+     so it is a data context and takes tabular figures with the rest (§8). */
+  .t-body-s {
+    font-weight: 400;
+    font-size: var(--size-body-s);
+    line-height: var(--leading-body-s);
+    letter-spacing: var(--tracking-body-s);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* The annotation voice is the system's workhorse: labels, breadcrumbs,
+     measurements, cota labels, captions and every figure in a data context. */
+  .t-annotation {
+    font-weight: 500;
+    font-size: var(--size-annotation);
+    line-height: var(--leading-annotation);
+    letter-spacing: var(--tracking-annotation);
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .t-cta {
+    font-weight: 500;
+    font-size: var(--size-cta);
+    line-height: var(--leading-cta);
+    letter-spacing: var(--tracking-cta);
+    text-transform: uppercase;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   The floors below sit outside every layer on purpose: a utility cannot
+   remove the focus ring, turn a cut into a ramp, or widen the closed list.
+--------------------------------------------------------------------------- */
+
+/* marca.md §6: corner radius is 0 on everything that is interface, and the
+   only shadow in the store is the one raking light casts in the photograph.
+   Unlayered, so a `rounded-*` or `shadow-*` utility cannot reintroduce either. */
+*,
+::before,
+::after {
+  border-radius: var(--radius);
+  box-shadow: none;
+}
+
+/* Entry 1 — interactive state on pointer. A pointer's dwell is slow and
+   continuous, and the ramp suits it (§9.5). */
+a,
+button,
+summary,
+label,
+[role="button"],
+.motion-state {
+  transition: var(--transition-color);
+}
+
+/* Focus is mandatory and is a cut — marca.md §§6, 9.5. The ring must not lag
+   the Tab press, and on a fast pass down a grid a ramp would smear it.
+   Authored after entry 1 on purpose: `[role="button"]` and `.motion-state`
+   carry the same specificity as `:focus-visible`, so the cut has to come last
+   to win. */
+:focus-visible {
+  outline: var(--focus-width) solid var(--focus-color);
+  outline-offset: var(--focus-offset);
+  transition-duration: 0s;
+}
+
+/* A press is a discrete acknowledgement of an input, not a continuous state. */
+a:active,
+button:active,
+summary:active,
+label:active,
+[role="button"]:active,
+.motion-state:active {
+  transition-duration: 0s;
+}
+
+/* Entry 2 — conteúdo velho. The region being replaced carries `aria-busy`,
+   which is also what dims it: the state and its announcement cannot drift
+   apart. Scoped to the region, never to the chrome (erros.md §4.2). */
+.conteudo-velho {
+  transition: var(--transition-opacity);
+}
+
+.conteudo-velho[aria-busy="true"] {
+  opacity: var(--conteudo-velho-opacity);
+  transition-delay: var(--conteudo-velho-delay);
+}
+
+/* marca.md §9.6 — one global rule, for every entry present and future: the end
+   state is kept, the interpolation is dropped. The dim still dims; hover still
+   changes colour. Nothing is removed and nothing is substituted. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration: 0s;
+  }
 }
