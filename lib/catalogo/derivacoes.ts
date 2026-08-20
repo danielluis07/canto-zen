@@ -241,8 +241,13 @@ const MEDIDAS_EXTRAS = porTipo<Array<[string, MedidaExtra["unidade"]]>>([
       ["Soquete", "un"],
     ],
   ],
-  // Three tipos carry none on purpose, so the empty case is rendered somewhere.
-  [["aparadores", "carrinhos-e-apoios", "cabeceiras"], []],
+  // §8.3 names three tipos that carry none on purpose, so the empty case is
+  // rendered somewhere. This group holds a fourth: `mesas-de-centro` is not in
+  // §8.3's table at all — neither given rows nor listed among the dashes. Read
+  // as no rows, because the table assigns rows to tipos and this one was
+  // assigned none; the alternative is borrowing `mesas`' rows, and a coffee
+  // table seats nobody.
+  [["aparadores", "carrinhos-e-apoios", "cabeceiras", "mesas-de-centro"], []],
 ]);
 
 /**

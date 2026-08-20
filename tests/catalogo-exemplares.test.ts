@@ -6,21 +6,14 @@ import {
   linhaDeParcelamento,
   precoAVista,
   precoMontagem,
-  produto,
   rotulosMedidasExtras,
   todosOsProdutos,
 } from "../lib/catalogo";
-import type { Produto } from "../lib/catalogo";
+import { exigirProduto as exemplar } from "./helpers/catalogo";
 
 // dados.md §9 — six records written first, one per structural case, so the
 // derivation rules have a checkable output before the other 59 are transcribed.
 // Every figure below is the spec's, not this module's.
-
-const exemplar = (slug: string): Produto => {
-  const encontrado = produto(slug);
-  if (!encontrado) throw new Error(`exemplar missing from the catalogue: ${slug}`);
-  return encontrado;
-};
 
 describe("1 — sofa-heron-linho-cru, the hero", () => {
   const heron = exemplar("sofa-heron-linho-cru");
@@ -243,20 +236,26 @@ describe("6 — cadeira-junco-palhinha-freijo, cross-listed", () => {
 describe("what every exemplar shares", () => {
   const transcritos = todosOsProdutos();
 
+  const EXEMPLARES = [
+    "sofa-heron-linho-cru",
+    "sofa-taipa-couro-argila",
+    "poltrona-lina-linho-cru",
+    "poltrona-lina-boucle-carvalho",
+    "cadeira-junco-palhinha-freijo",
+    "luminaria-de-mesa-junco-palhinha",
+  ];
+
   test("all six structural cases are transcribed", () => {
-    expect(transcritos.map((p) => p.slug)).toEqual([
-      "sofa-heron-linho-cru",
-      "sofa-taipa-couro-argila",
-      "poltrona-lina-linho-cru",
-      "poltrona-lina-boucle-carvalho",
-      "cadeira-junco-palhinha-freijo",
-      "luminaria-de-mesa-junco-palhinha",
-    ]);
+    const slugs = transcritos.map((p) => p.slug);
+    for (const slug of EXEMPLARES) expect(slugs).toContain(slug);
   });
 
   test("ordem is the row each piece holds in dados.md §3, not its table slot", () => {
-    // §8.9 — global, 1 through 65. The other 59 rows land between these six.
-    expect(transcritos.map((p) => p.ordem)).toEqual([1, 4, 6, 7, 41, 65]);
+    // §8.9 — global, 1 through 65. The rows still to be transcribed land
+    // between these six, which is why this reads the exemplars' own ordens
+    // rather than the whole catalogue's.
+    expect(EXEMPLARES.map((slug) => exemplar(slug).ordem)).toEqual([1, 4, 6, 7, 41, 65]);
+    expect(new Set(transcritos.map((p) => p.ordem)).size).toBe(transcritos.length);
   });
 
   test("the catalogue reads in curatorial order whatever order it is written in", () => {
