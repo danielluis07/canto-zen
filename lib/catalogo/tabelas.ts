@@ -745,11 +745,138 @@ export const familias: FamiliaAutorada[] = [
   }),
 
   familiaComElevacao({
+    slug: "escrivaninha-tramo",
+    nome: "Escrivaninha Tramo",
+    // Tramo is the aço carbono language: bent tube and one diagonal brace.
+    medidas: { largura: 110, profundidade: 55, altura: 74 },
+    corpo: ["M0 0 H110 V4 H0 Z", "M6 4 V74 M104 4 V74", "M6 38 H104", "M6 74 L104 38"],
+    desenhoAlt: "Elevação frontal da Escrivaninha Tramo, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "escrivaninha-vau",
+    nome: "Escrivaninha Vau",
+    // Vau is the span: two splayed trestles and nothing between the legs.
+    medidas: { largura: 130, profundidade: 60, altura: 75 },
+    corpo: ["M0 0 H130 V5 H0 Z", "M14 5 L4 75 M116 5 L126 75", "M9 40 H121"],
+    desenhoAlt: "Elevação frontal da Escrivaninha Vau, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "escrivaninha-cais",
+    nome: "Escrivaninha Cais",
+    // Cais is the tall casework language, here as a three-drawer pedestal under
+    // one side and open vão under the other.
+    medidas: { largura: 160, profundidade: 70, altura: 78 },
+    corpo: [
+      "M0 0 H160 V5 H0 Z",
+      "M110 5 H155 V70 H110 Z",
+      "M110 27 H155 M110 49 H155",
+      "M5 5 V78",
+      "M114 70 V78 M151 70 V78",
+    ],
+    desenhoAlt: "Elevação frontal da Escrivaninha Cais, com as cotas de largura e altura",
+  }),
+
+  familiaComElevacao({
+    slug: "cadeira-de-trabalho-junco",
+    nome: "Cadeira de Trabalho Junco",
+    // The palhinha language on four legs — the assento reads at 44 cm.
+    medidas: { largura: 44, profundidade: 48, altura: 78 },
+    corpo: [
+      "M4 0 H40 V22 H4 Z",
+      "M4 12 H40",
+      "M0 34 H44 V40 H0 Z",
+      "M6 22 V34 M38 22 V34",
+      "M4 40 V78 M40 40 V78",
+      "M4 66 H40",
+    ],
+    desenhoAlt:
+      "Elevação frontal da Cadeira de Trabalho Junco, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "cadeira-de-trabalho-ripado",
+    nome: "Cadeira de Trabalho Ripado",
+    medidas: { largura: 48, profundidade: 52, altura: 84 },
+    corpo: [
+      "M5 0 H43 V26 H5 Z",
+      "M5 7 H43 M5 14 H43 M5 21 H43",
+      "M1 38 H47 V44 H1 Z",
+      "M7 26 V38 M41 26 V38",
+      "M5 44 V84 M43 44 V84",
+      "M5 70 H43",
+    ],
+    desenhoAlt:
+      "Elevação frontal da Cadeira de Trabalho Ripado, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "cadeira-de-trabalho-orla",
+    nome: "Cadeira de Trabalho Orla",
+    // The only giratória in the catalogue: column, spread base and castors.
+    medidas: { largura: 54, profundidade: 58, altura: 90 },
+    corpo: [
+      "M6 0 H48 V30 H6 Z",
+      "M27 30 V42",
+      "M4 42 H50 V48 H4 Z",
+      "M25 48 V74",
+      "M27 74 L8 86 M27 74 L46 86",
+      "M8 86 V90 M46 86 V90",
+    ],
+    desenhoAlt: "Elevação frontal da Cadeira de Trabalho Orla, com as cotas de largura e altura",
+  }),
+
+  familiaComElevacao({
+    slug: "estante-bruma",
+    nome: "Estante Bruma",
+    // Four shelves in one bay — the narrow case, no divider.
+    medidas: { largura: 90, profundidade: 32, altura: 160 },
+    corpo: ["M0 0 H90 V160 H0 Z", "M0 40 H90 M0 76 H90 M0 112 H90 M0 148 H90"],
+    desenhoAlt: "Elevação frontal da Estante Bruma, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "estante-vargem",
+    nome: "Estante Vargem",
+    medidas: { largura: 110, profundidade: 38, altura: 180 },
+    corpo: [
+      "M0 0 H110 V180 H0 Z",
+      "M0 30 H110 M0 60 H110 M0 90 H110 M0 120 H110 M0 150 H110",
+      "M55 0 V180",
+    ],
+    desenhoAlt: "Elevação frontal da Estante Vargem, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "estante-mirante",
+    nome: "Estante Mirante",
+    // Two montantes running the full height, which is the piece's whole idea.
+    medidas: { largura: 140, profundidade: 42, altura: 200 },
+    corpo: [
+      "M0 0 H140 V200 H0 Z",
+      "M0 28 H140 M0 56 H140 M0 84 H140 M0 112 H140 M0 140 H140 M0 168 H140",
+      "M46 0 V200 M94 0 V200",
+    ],
+    desenhoAlt: "Elevação frontal da Estante Mirante, com as cotas de largura e altura",
+  }),
+
+  familiaComElevacao({
     slug: "luminaria-de-mesa-junco",
     nome: "Luminária de Mesa Junco",
     medidas: { largura: 20, profundidade: 20, altura: 40 },
     corpo: ["M2 0 H18 L20 16 H0 Z", "M10 16 V37", "M4 37 H16 V40 H4 Z"],
     desenhoAlt: "Elevação frontal da Luminária de Mesa Junco, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "luminaria-de-mesa-seixo",
+    nome: "Luminária de Mesa Seixo",
+    // Seixo is the pebble: a turned ceramic base under a short stem.
+    medidas: { largura: 22, profundidade: 22, altura: 42 },
+    corpo: ["M3 0 H19 L21 12 H1 Z", "M11 12 V26", "M4 42 C4 26 18 26 18 42 Z"],
+    desenhoAlt: "Elevação frontal da Luminária de Mesa Seixo, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "luminaria-de-mesa-farol",
+    nome: "Luminária de Mesa Farol",
+    // A closed four-face lantern, which is why the light only goes down.
+    medidas: { largura: 26, profundidade: 26, altura: 50 },
+    corpo: ["M4 4 H22 V26 H4 Z", "M4 4 L13 0 L22 4", "M13 26 V44", "M6 44 H20 V50 H6 Z"],
+    desenhoAlt: "Elevação frontal da Luminária de Mesa Farol, com as cotas de largura e altura",
   }),
 ];
 
@@ -2333,6 +2460,336 @@ export const produtos: ProdutoAutorado[] = [
     ],
     descricao:
       "Uma mesa de apoio com tampo em mármore cru sobre coluna e base em carvalho, alta o bastante para servir ao lado de quem está sentado. O tampo é rebaixado no verso e encaixa na coluna por espiga, junta que dispensa cola e deixa a pedra assentar pelo próprio peso. Serve à cozinha ao lado da poltrona de leitura e à sala com a mesma naturalidade.",
+  },
+
+  // §3.4 row 54 — the room's full-coverage piece: all three papéis, and the
+  // only cota Escritório spends (§7.2, §7.3). It opens the Escritório article.
+  {
+    slug: "escrivaninha-cais-carvalho",
+    nome: "Escrivaninha Cais",
+    familia: "escrivaninha-cais",
+    acabamento: "Carvalho",
+    tipo: "escrivaninhas",
+    ambientePrincipal: "escritorio",
+    ambientes: ["escritorio"],
+    colecoes: [],
+    ordem: 54,
+    precoTabela: 590000,
+    // §8.3's table assigns `escrivaninhas` no rows, so the tipo renders the
+    // empty Medidas case — see the note in `derivacoes.ts`.
+    medidasExtras: [],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 6,
+    imagens: [
+      {
+        src: unsplash("1524758631624-e2822e304c36"),
+        alt: "Escrivaninha Cais em carvalho sobre reboco",
+        papel: "principal",
+        cotas: ["largura"],
+      },
+      {
+        src: unsplash("1567016432779-094069958ea5"),
+        alt: "Escrivaninha Cais em Escritório",
+        papel: "ambientada",
+        cotas: [],
+      },
+      {
+        src: unsplash("1592078615290-033ee584e267"),
+        alt: "O gaveteiro de três gavetas e o vão livre ao lado",
+        papel: "detalhe",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma escrivaninha de tampo largo em carvalho maciço, com gaveteiro de três gavetas de um lado e vão livre do outro. O tampo é montado em réguas coladas alternando o sentido do veio, o que impede a peça de empenar quando o cômodo seca. Encosta na parede ou fica solta no meio do escritório, porque o verso é acabado igual à frente.",
+  },
+
+  // §3.4 row 55
+  {
+    slug: "escrivaninha-vau-freijo",
+    nome: "Escrivaninha Vau",
+    familia: "escrivaninha-vau",
+    acabamento: "Freijó",
+    tipo: "escrivaninhas",
+    ambientePrincipal: "escritorio",
+    ambientes: ["escritorio"],
+    colecoes: [],
+    ordem: 55,
+    precoTabela: 480000,
+    medidasExtras: [],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1595526114035-0d45ed16cfbf"),
+        alt: "Escrivaninha Vau em freijó sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma escrivaninha leve em freijó, apoiada em dois cavaletes que vencem o vão sem travessa no meio das pernas. As pernas encaixam no travessão por cavilha passante, junta que se aperta com o próprio peso do tampo e dispensa ferragem à vista. Cabe em quarto pequeno, onde uma mesa de trabalho precisa desaparecer quando o dia termina.",
+  },
+
+  // §3.4 row 56
+  {
+    slug: "escrivaninha-tramo-aco-carvao",
+    nome: "Escrivaninha Tramo",
+    familia: "escrivaninha-tramo",
+    acabamento: "Aço Carvão",
+    tipo: "escrivaninhas",
+    ambientePrincipal: "escritorio",
+    ambientes: ["escritorio"],
+    colecoes: [],
+    ordem: 56,
+    precoTabela: 390000,
+    medidasExtras: [],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1513506003901-1e6a229e2d15"),
+        alt: "Escrivaninha Tramo em aço carvão sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma escrivaninha de estrutura tubular em aço carvão com tampo em carvalho, para quem quer a mesa de trabalho mais estreita que couber. A estrutura é dobrada em tubo contínuo e soldada só nos dois pontos de cruzamento, o que deixa a peça rígida sem ganhar volume. Fica bem contra a janela, onde a pintura fosca não devolve reflexo à tela.",
+  },
+
+  // §3.4 row 57
+  {
+    slug: "cadeira-de-trabalho-orla-couro-argila",
+    nome: "Cadeira de Trabalho Orla",
+    familia: "cadeira-de-trabalho-orla",
+    acabamento: "Couro Argila",
+    tipo: "cadeiras-de-trabalho",
+    ambientePrincipal: "escritorio",
+    ambientes: ["escritorio"],
+    colecoes: [],
+    ordem: 57,
+    precoTabela: 420000,
+    medidasExtras: [
+      { rotulo: "Altura do assento", valor: 48, unidade: "cm" },
+      { rotulo: "Capacidade de peso", valor: 120, unidade: "kg" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 5,
+    imagens: [
+      {
+        src: unsplash("1503602642458-232111445657"),
+        alt: "Cadeira de Trabalho Orla em couro argila sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cadeira de trabalho com assento e encosto em couro argila sobre base giratória, para o expediente que passa das quatro horas sentado. O couro é curtido ao vegetal e costurado sobre espuma de densidade alta, que cede no primeiro mês e depois guarda a forma de quem senta. Fica na escrivaninha e gira para a estante atrás sem que ninguém se levante.",
+  },
+
+  // §3.4 row 58
+  {
+    slug: "cadeira-de-trabalho-junco-palhinha-freijo",
+    nome: "Cadeira de Trabalho Junco",
+    familia: "cadeira-de-trabalho-junco",
+    acabamento: "Palhinha e Freijó",
+    tipo: "cadeiras-de-trabalho",
+    ambientePrincipal: "escritorio",
+    ambientes: ["escritorio"],
+    colecoes: [],
+    ordem: 58,
+    precoTabela: 260000,
+    medidasExtras: [
+      { rotulo: "Altura do assento", valor: 44, unidade: "cm" },
+      { rotulo: "Capacidade de peso", valor: 100, unidade: "kg" },
+    ],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1506439773649-6e0eb8cfb237"),
+        alt: "Cadeira de Trabalho Junco em palhinha e freijó sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cadeira de trabalho com assento em palhinha e estrutura em freijó, para a mesa que também é escrivaninha em casa. O assento é trançado sobre caixilho ranhurado e respira, o que muda a temperatura de uma tarde inteira sentado sem que ninguém repare no motivo. Serve ao escritório e volta para a mesa de jantar quando a casa recebe.",
+  },
+
+  // §3.4 row 59
+  {
+    slug: "cadeira-de-trabalho-ripado-carvalho",
+    nome: "Cadeira de Trabalho Ripado",
+    familia: "cadeira-de-trabalho-ripado",
+    acabamento: "Carvalho",
+    tipo: "cadeiras-de-trabalho",
+    ambientePrincipal: "escritorio",
+    ambientes: ["escritorio"],
+    colecoes: [],
+    ordem: 59,
+    precoTabela: 310000,
+    medidasExtras: [
+      { rotulo: "Altura do assento", valor: 46, unidade: "cm" },
+      { rotulo: "Capacidade de peso", valor: 110, unidade: "kg" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 4,
+    imagens: [
+      {
+        src: unsplash("1586023492125-27b2c045efd7"),
+        alt: "Cadeira de Trabalho Ripado em carvalho sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cadeira de trabalho com encosto ripado em carvalho maciço, desenhada para quem escreve à mão e apoia pouco as costas. As ripas são torneadas uma a uma e encaixadas em rasgo, com folga calculada para a madeira trabalhar sem abrir junta no inverno. Fica na escrivaninha e não destoa quando é puxada para a sala numa noite cheia.",
+  },
+
+  // §3.4 row 60
+  {
+    slug: "estante-bruma-freijo",
+    nome: "Estante Bruma",
+    familia: "estante-bruma",
+    acabamento: "Freijó",
+    tipo: "estantes",
+    ambientePrincipal: "escritorio",
+    ambientes: ["escritorio"],
+    colecoes: [],
+    ordem: 60,
+    precoTabela: 510000,
+    medidasExtras: [
+      { rotulo: "Prateleiras", valor: 4, unidade: "un" },
+      { rotulo: "Capacidade por prateleira", valor: 25, unidade: "kg" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 6,
+    imagens: [
+      {
+        src: unsplash("1594620302200-9a762244a156"),
+        alt: "Estante Bruma em freijó sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma estante estreita em freijó, de quatro prateleiras, para o canto de parede que sobra ao lado da escrivaninha. As prateleiras correm em rasgo usinado nas laterais e travam por cavilha, de modo que a peça não precisa de fundo para ficar em esquadro. Encosta na parede e some, que é o serviço de uma estante num cômodo pequeno.",
+  },
+
+  // §3.4 row 61
+  {
+    slug: "estante-vargem-carvalho",
+    nome: "Estante Vargem",
+    familia: "estante-vargem",
+    acabamento: "Carvalho",
+    tipo: "estantes",
+    ambientePrincipal: "escritorio",
+    ambientes: ["escritorio"],
+    colecoes: [],
+    ordem: 61,
+    precoTabela: 570000,
+    medidasExtras: [
+      { rotulo: "Prateleiras", valor: 5, unidade: "un" },
+      { rotulo: "Capacidade por prateleira", valor: 30, unidade: "kg" },
+    ],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1558211583-d26f610c1eb1"),
+        alt: "Estante Vargem em carvalho sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma estante de cinco prateleiras em carvalho maciço, com montante central que divide os vãos e sustenta o peso de livro em fila cheia. As prateleiras têm vinte e cinco milímetros de espessura e vão encaixadas em malhete, junta que segura sem parafuso e não cede com o tempo. Fica atrás da mesa, ao alcance de quem está sentado.",
+  },
+
+  // §3.4 row 62 — cross-listed to sala, §3.6, and one of `serra`'s five
+  {
+    slug: "estante-mirante-nogueira",
+    nome: "Estante Mirante",
+    familia: "estante-mirante",
+    acabamento: "Nogueira",
+    tipo: "estantes",
+    ambientePrincipal: "escritorio",
+    ambientes: ["escritorio", "sala"],
+    colecoes: ["serra"],
+    ordem: 62,
+    precoTabela: 660000,
+    medidasExtras: [
+      { rotulo: "Prateleiras", valor: 6, unidade: "un" },
+      { rotulo: "Capacidade por prateleira", valor: 35, unidade: "kg" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 7,
+    imagens: [
+      {
+        src: unsplash("1594026112284-02bb6f3352fe"),
+        alt: "Estante Mirante em nogueira sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma estante alta em nogueira, de seis prateleiras em três vãos, para a parede inteira de quem tem mais livro do que espaço. Os montantes atravessam as prateleiras de ponta a ponta e são a única peça estrutural, o que deixa o desenho com uma linha vertical contínua. Serve ao escritório e à sala com o mesmo desembaraço, e ancora as duas.",
+  },
+
+  // §3.4 row 63 — the third esgotado, §3.8, and the room's only one
+  {
+    slug: "luminaria-de-mesa-farol-latao",
+    nome: "Luminária de Mesa Farol",
+    familia: "luminaria-de-mesa-farol",
+    acabamento: "Latão",
+    tipo: "luminarias-de-mesa",
+    ambientePrincipal: "escritorio",
+    ambientes: ["escritorio"],
+    colecoes: [],
+    ordem: 63,
+    precoTabela: 142000,
+    medidasExtras: [
+      { rotulo: "Alcance do braço", valor: 24, unidade: "cm" },
+      { rotulo: "Soquete", valor: 1, unidade: "un" },
+    ],
+    disponibilidade: "esgotado",
+    imagens: [
+      {
+        src: unsplash("1550226891-ef816aed4a98"),
+        alt: "Luminária de Mesa Farol em latão sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma luminária de mesa em latão com base em carvalho, de corpo fechado em quatro faces, que joga a luz para baixo e não para os olhos de quem trabalha. O latão é deixado sem verniz de propósito, porque a patina que se forma nos primeiros anos é o acabamento pretendido. Fica na quina da escrivaninha, onde marca o canto de leitura.",
+  },
+
+  // §3.4 row 64 — one of `reboco`'s six
+  {
+    slug: "luminaria-de-mesa-seixo-ceramica-cru",
+    nome: "Luminária de Mesa Seixo",
+    familia: "luminaria-de-mesa-seixo",
+    acabamento: "Cerâmica Cru",
+    tipo: "luminarias-de-mesa",
+    ambientePrincipal: "escritorio",
+    ambientes: ["escritorio"],
+    colecoes: ["reboco"],
+    ordem: 64,
+    precoTabela: 98000,
+    medidasExtras: [
+      { rotulo: "Alcance do braço", valor: 16, unidade: "cm" },
+      { rotulo: "Soquete", valor: 1, unidade: "un" },
+    ],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1540574163026-643ea20ade25"),
+        alt: "Luminária de Mesa Seixo em cerâmica cru sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma luminária de mesa com base em cerâmica cru torneada e cúpula sobre haste curta em carvalho, para luz difusa ao lado do papel. A cerâmica é queimada em alta temperatura e esmaltada só por dentro, de modo que a superfície externa fica seca ao toque e não brilha sob a lâmpada. Fica na escrivaninha ou no criado-mudo, e pesa o bastante para não andar.",
   },
 
   // §3.4 row 65 — montagem.necessaria false, entry price, principal only
