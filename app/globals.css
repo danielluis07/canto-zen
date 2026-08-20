@@ -78,6 +78,14 @@
   --rhythm-6: 4rem;
   --rhythm-7: 7rem;
 
+  /* Chrome — navbar.md §2. The bar's height is constant and never changes,
+     not even when it sticks, so it is a token rather than a per-state value.
+     The notice band's height is what the sticky header is offset upwards by:
+     the band scrolls away and the bar arrives at the top at the same 72px
+     (navbar.md §8), which is exactly its padding plus its one annotation line. */
+  --altura-navbar: 72px;
+  --altura-aviso: calc((2 * 0.625rem) + (var(--size-annotation) * var(--leading-annotation)));
+
   /* Stroke and corner — marca.md §6. No radius, no UI shadow, one hairline.
      The resting border of a control is --muted and never --hairline: the
      hairline measures 1.41 on plaster and is decorative structure only

@@ -43,7 +43,7 @@ import type {
 export * from "./modelo";
 export * from "./derivacoes";
 export * from "./frete";
-export { politicas, loja } from "./politicas";
+export { politicas, loja, paginasDePolitica } from "./politicas";
 export { ambientes, tipos, cores, materiais, colecoes, artigos, conteudoHome } from "./tabelas";
 
 // The taxonomy is entities keyed by slug, so every surface resolves a facet the

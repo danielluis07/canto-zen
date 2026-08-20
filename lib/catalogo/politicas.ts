@@ -78,3 +78,21 @@ export const loja: Loja = {
     horario: ["Seg a sex, 10h às 19h", "Sáb, 10h às 14h"],
   },
 };
+
+/** `rotas.md` — Policies. One shared template, four pages. */
+export type PaginaDePolitica = { slug: string; titulo: string };
+
+/**
+ * The one list. It generates the four `/politicas/[slug]` routes *and* the
+ * footer's Ajuda column — `rodape.md` §6 asks for one source precisely so a
+ * fifth policy cannot appear in the footer without a page behind it.
+ *
+ * `prazos-e-entrega` is deliberately not among them: the three links that once
+ * pointed there target `entrega-e-frete`, and the old slug is a 404.
+ */
+export const paginasDePolitica: PaginaDePolitica[] = [
+  { slug: "trocas-e-devolucoes", titulo: "Trocas e devoluções" },
+  { slug: "entrega-e-frete", titulo: "Entrega e frete" },
+  { slug: "privacidade", titulo: "Privacidade" },
+  { slug: "termos-de-uso", titulo: "Termos de uso" },
+];
