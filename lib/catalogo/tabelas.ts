@@ -443,6 +443,167 @@ export const familias: FamiliaAutorada[] = [
     ],
     desenhoAlt: "Elevação frontal do Aparador Junco, com as cotas de largura e altura",
   }),
+
+  // §3.2's famílias, in §3.2's row order. `Vargem`, `Tramo`, `Bruma`, `Cais`,
+  // `Seixo`, `Luar`, `Junco` and `Ripado` also name pieces in other rooms: §3.5
+  // is explicit that those are distinct famílias with distinct slugs, sharing
+  // nothing but the atelier's line names, so `comoda-vargem` and
+  // `mesa-de-jantar-vargem` are two famílias and never one.
+  familiaComElevacao({
+    slug: "cama-nuvem",
+    nome: "Cama Nuvem",
+    medidas: { largura: 172, profundidade: 208, altura: 100 },
+    corpo: [
+      "M0 0 H172 V62 H0 Z",
+      "M0 62 H172 V88 H0 Z",
+      "M12 88 V100 M160 88 V100",
+      "M14 14 H158",
+    ],
+    desenhoAlt: "Elevação frontal da Cama Nuvem, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "cama-orvalho",
+    nome: "Cama Orvalho",
+    medidas: { largura: 168, profundidade: 205, altura: 45 },
+    corpo: ["M0 0 H168 V10 H0 Z", "M0 10 H168 V34 H0 Z", "M8 34 V45 M160 34 V45"],
+    desenhoAlt: "Elevação frontal da Cama Orvalho, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "cama-tatami",
+    nome: "Cama Tatami",
+    medidas: { largura: 148, profundidade: 202, altura: 38 },
+    corpo: [
+      "M0 0 H148 V8 H0 Z",
+      "M0 8 H148 V28 H0 Z",
+      "M74 8 V28",
+      "M6 28 V38 M142 28 V38",
+    ],
+    desenhoAlt: "Elevação frontal da Cama Tatami, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "cama-abrigo",
+    nome: "Cama Abrigo",
+    medidas: { largura: 200, profundidade: 215, altura: 110 },
+    corpo: [
+      "M0 0 H200 V70 H0 Z",
+      "M0 70 H200 V96 H0 Z",
+      "M14 16 H186 M14 44 H186",
+      "M12 96 V110 M188 96 V110",
+    ],
+    desenhoAlt: "Elevação frontal da Cama Abrigo, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "cabeceira-vela",
+    nome: "Cabeceira Vela",
+    medidas: { largura: 160, profundidade: 10, altura: 100 },
+    // No legs: the piece hangs on a francesa, which is what its descrição says
+    // and what an elevation of it has to show.
+    corpo: ["M0 0 H160 V100 H0 Z", "M10 10 H150 V90 H10 Z"],
+    desenhoAlt: "Elevação frontal da Cabeceira Vela, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "cabeceira-ripado",
+    nome: "Cabeceira Ripado",
+    medidas: { largura: 180, profundidade: 12, altura: 110 },
+    corpo: [
+      "M0 0 H180 V96 H0 Z",
+      "M20 0 V96 M40 0 V96 M60 0 V96 M80 0 V96",
+      "M100 0 V96 M120 0 V96 M140 0 V96 M160 0 V96",
+      "M9 96 V110 M171 96 V110",
+    ],
+    desenhoAlt: "Elevação frontal da Cabeceira Ripado, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "criado-mudo-seixo",
+    nome: "Criado-mudo Seixo",
+    medidas: { largura: 50, profundidade: 40, altura: 55 },
+    // One gaveta, so one drawer front and no divider — the same N−1 reading
+    // the cômodas and guarda-roupas below use.
+    corpo: ["M0 0 H50 V40 H0 Z", "M5 6 H45 V34 H5 Z", "M6 40 V55 M44 40 V55"],
+    desenhoAlt: "Elevação frontal do Criado-mudo Seixo, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "criado-mudo-luar",
+    nome: "Criado-mudo Luar",
+    medidas: { largura: 56, profundidade: 44, altura: 60 },
+    corpo: ["M0 0 H56 V44 H0 Z", "M0 22 H56", "M7 44 V60 M49 44 V60"],
+    desenhoAlt: "Elevação frontal do Criado-mudo Luar, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "criado-mudo-junco",
+    nome: "Criado-mudo Junco",
+    medidas: { largura: 46, profundidade: 38, altura: 52 },
+    corpo: ["M0 0 H46 V38 H0 Z", "M5 6 H41 V32 H5 Z", "M6 38 V52 M40 38 V52"],
+    desenhoAlt: "Elevação frontal do Criado-mudo Junco, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "comoda-vargem",
+    nome: "Cômoda Vargem",
+    medidas: { largura: 110, profundidade: 47, altura: 82 },
+    corpo: [
+      "M0 0 H110 V64 H0 Z",
+      "M0 13 H110 M0 26 H110 M0 39 H110 M0 52 H110",
+      "M9 64 V82 M101 64 V82",
+    ],
+    desenhoAlt: "Elevação frontal da Cômoda Vargem, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "comoda-tramo",
+    nome: "Cômoda Tramo",
+    medidas: { largura: 128, profundidade: 50, altura: 88 },
+    corpo: [
+      "M0 0 H128 V70 H0 Z",
+      "M64 0 V70",
+      "M0 23 H128 M0 46 H128",
+      "M10 70 V88 M118 70 V88",
+    ],
+    desenhoAlt: "Elevação frontal da Cômoda Tramo, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "comoda-bruma",
+    nome: "Cômoda Bruma",
+    medidas: { largura: 92, profundidade: 45, altura: 78 },
+    corpo: [
+      "M0 0 H92 V62 H0 Z",
+      "M0 15 H92 M0 30 H92 M0 46 H92",
+      "M8 62 V78 M84 62 V78",
+    ],
+    desenhoAlt: "Elevação frontal da Cômoda Bruma, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "guarda-roupa-cais",
+    nome: "Guarda-roupa Cais",
+    medidas: { largura: 240, profundidade: 64, altura: 236 },
+    corpo: [
+      "M0 0 H240 V236 H0 Z",
+      "M48 0 V236 M96 0 V236 M144 0 V236 M192 0 V236",
+      "M0 212 H240",
+    ],
+    desenhoAlt: "Elevação frontal do Guarda-roupa Cais, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "guarda-roupa-ripado",
+    nome: "Guarda-roupa Ripado",
+    medidas: { largura: 180, profundidade: 58, altura: 220 },
+    corpo: [
+      "M0 0 H180 V220 H0 Z",
+      "M45 0 V220 M90 0 V220 M135 0 V220",
+      "M0 200 H180",
+    ],
+    desenhoAlt: "Elevação frontal do Guarda-roupa Ripado, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "guarda-roupa-bruma",
+    nome: "Guarda-roupa Bruma",
+    medidas: { largura: 200, profundidade: 60, altura: 228 },
+    corpo: [
+      "M0 0 H200 V228 H0 Z",
+      "M50 0 V228 M100 0 V228 M150 0 V228",
+      "M0 206 H200",
+    ],
+    desenhoAlt: "Elevação frontal do Guarda-roupa Bruma, com as cotas de largura e altura",
+  }),
+
   familiaComElevacao({
     slug: "cadeira-junco",
     nome: "Cadeira Junco",
@@ -1068,6 +1229,499 @@ export const produtos: ProdutoAutorado[] = [
     ],
     descricao:
       "Um aparador em freijó com portas em palhinha trançada, leve o bastante para uma sala pequena. A palhinha é montada sobre caixilho ranhurado e pode ser refeita sem trocar a porta, técnica que o atelier mantém em toda a linha. Vai atrás do sofá ou sob um quadro, onde a trama respira contra a parede.",
+  },
+
+  // §3.2 row 21 — the room's full-coverage piece: all three papel roles, and
+  // the only cota §7.3's budget spends in Quarto
+  {
+    slug: "cama-nuvem-linho-cru",
+    nome: "Cama Nuvem",
+    familia: "cama-nuvem",
+    acabamento: "Linho Cru",
+    tipo: "camas",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: [],
+    ordem: 21,
+    precoTabela: 820000,
+    medidasExtras: [
+      { rotulo: "Altura do estrado", valor: 30, unidade: "cm" },
+      { rotulo: "Colchão recomendado", valor: 158, unidade: "cm" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 6,
+    imagens: [
+      {
+        src: unsplash("1505693416388-ac5ce068fe85"),
+        alt: "Cama Nuvem em linho cru sobre reboco",
+        papel: "principal",
+        cotas: ["largura"],
+      },
+      {
+        src: unsplash("1583847268964-b28dc8f51f92"),
+        alt: "Cama Nuvem em Quarto",
+        papel: "ambientada",
+        cotas: [],
+      },
+      {
+        src: unsplash("1540574163026-643ea20ade25"),
+        alt: "A costura que fecha a quina da cabeceira estofada",
+        papel: "detalhe",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cama de casal em linho cru, com cabeceira estofada alta o bastante para servir de encosto na leitura da noite. O estofamento é grampeado por trás do caixilho e o estrado apoia em travessas de carvalho, sem parafuso à vista na face interna. Ocupa a parede oposta à janela, onde a cabeceira clara devolve a pouca luz que entra.",
+  },
+
+  // §3.2 row 22 — the second acabamento: same família, same geometry
+  {
+    slug: "cama-nuvem-boucle-areia",
+    nome: "Cama Nuvem",
+    familia: "cama-nuvem",
+    acabamento: "Bouclé Areia",
+    tipo: "camas",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: [],
+    ordem: 22,
+    precoTabela: 910000,
+    medidasExtras: [
+      { rotulo: "Altura do estrado", valor: 30, unidade: "cm" },
+      { rotulo: "Colchão recomendado", valor: 158, unidade: "cm" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 6,
+    imagens: [
+      {
+        src: unsplash("1522708323590-d24dbb6b0267"),
+        alt: "Cama Nuvem em bouclé areia sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cama de casal em bouclé areia, com a mesma cabeceira alta e o mesmo estrado em carvalho do acabamento em linho. A lã é montada sobre espuma de densidade média e a costura das quinas é dupla, porque é ali que a trama abre primeiro. Pede a parede oposta à janela, com passagem livre dos dois lados.",
+  },
+
+  // §3.2 row 23
+  {
+    slug: "cama-orvalho-carvalho",
+    nome: "Cama Orvalho",
+    familia: "cama-orvalho",
+    acabamento: "Carvalho",
+    tipo: "camas",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: [],
+    ordem: 23,
+    precoTabela: 740000,
+    medidasExtras: [
+      { rotulo: "Altura do estrado", valor: 26, unidade: "cm" },
+      { rotulo: "Colchão recomendado", valor: 158, unidade: "cm" },
+    ],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1616594039964-ae9021a400a0"),
+        alt: "Cama Orvalho em carvalho sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cama baixa em carvalho maciço, de cabeceira curta, para quartos em que o pé-direito pede horizontalidade. As travessas encaixam por espiga e cavilha, sem ferragem aparente, e o estrado ripado dispensa base de molas sob o colchão. Fica bem centralizada na parede, com espaço para um criado-mudo de cada lado.",
+  },
+
+  // §3.2 row 24
+  {
+    slug: "cama-tatami-freijo",
+    nome: "Cama Tatami",
+    familia: "cama-tatami",
+    acabamento: "Freijó",
+    tipo: "camas",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: [],
+    ordem: 24,
+    precoTabela: 680000,
+    medidasExtras: [
+      { rotulo: "Altura do estrado", valor: 20, unidade: "cm" },
+      { rotulo: "Colchão recomendado", valor: 138, unidade: "cm" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 5,
+    imagens: [
+      {
+        src: unsplash("1595526114035-0d45ed16cfbf"),
+        alt: "Cama Tatami em freijó sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cama de plataforma em freijó, rente ao chão, desenhada para quartos pequenos que ganham com o volume baixo. A base avança dez centímetros além do colchão e funciona como apoio, e as ripas do estrado são encaixadas uma a uma no caixilho. Assenta bem sobre tapete, num quarto em que o piso conta tanto quanto as paredes.",
+  },
+
+  // §3.2 row 25 — freteGratis sudeste, §3.8
+  {
+    slug: "cama-abrigo-couro-argila",
+    nome: "Cama Abrigo",
+    familia: "cama-abrigo",
+    acabamento: "Couro Argila",
+    tipo: "camas",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: [],
+    ordem: 25,
+    precoTabela: 1350000,
+    medidasExtras: [
+      { rotulo: "Altura do estrado", valor: 34, unidade: "cm" },
+      { rotulo: "Colchão recomendado", valor: 193, unidade: "cm" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 8,
+    freteGratis: "sudeste",
+    imagens: [
+      {
+        src: unsplash("1560448204-e02f11c3d0e2"),
+        alt: "Cama Abrigo em couro argila sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cama king em couro natural argila, de cabeceira envolvente, feita para o quarto que é o cômodo mais usado da casa. O couro é curtido ao vegetal e costurado com pesponto aparente nas laterais da cabeceira, que é onde a peça encosta e marca. Pede a parede mais longa do quarto e circulação de setenta centímetros dos dois lados.",
+  },
+
+  // §3.2 row 26 — coleção reboco
+  {
+    slug: "cabeceira-vela-linho-areia",
+    nome: "Cabeceira Vela",
+    familia: "cabeceira-vela",
+    acabamento: "Linho Areia",
+    tipo: "cabeceiras",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: ["reboco"],
+    ordem: 26,
+    precoTabela: 320000,
+    medidasExtras: [],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1505693416388-ac5ce068fe85"),
+        alt: "Cabeceira Vela em linho areia sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cabeceira estofada em linho areia, para quem já tem a cama e quer só o encosto. O painel é montado sobre compensado naval de dezoito milímetros e fixado à parede por francesa, o que mantém a peça flutuando acima do colchão. Vai atrás de uma cama baixa, onde a altura de cem centímetros ainda cabe sob a moldura da janela.",
+  },
+
+  // §3.2 row 27 — the second acabamento: identical medidas, own slug and preço
+  {
+    slug: "cabeceira-vela-boucle-cru",
+    nome: "Cabeceira Vela",
+    familia: "cabeceira-vela",
+    acabamento: "Bouclé Cru",
+    tipo: "cabeceiras",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: [],
+    ordem: 27,
+    precoTabela: 360000,
+    medidasExtras: [],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 4,
+    imagens: [
+      {
+        src: unsplash("1522708323590-d24dbb6b0267"),
+        alt: "Cabeceira Vela em bouclé cru sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cabeceira estofada em bouclé cru, com o mesmo painel e a mesma fixação do acabamento em linho. A lã é esticada sobre espuma firme e presa por grampeamento oculto na face de trás, sem costura na frente que interrompa a trama. Fica acima de uma cama baixa, contra a parede que recebe a luz de lado.",
+  },
+
+  // §3.2 row 28
+  {
+    slug: "cabeceira-ripado-carvalho",
+    nome: "Cabeceira Ripado",
+    familia: "cabeceira-ripado",
+    acabamento: "Carvalho",
+    tipo: "cabeceiras",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: [],
+    ordem: 28,
+    precoTabela: 440000,
+    medidasExtras: [],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 4,
+    imagens: [
+      {
+        src: unsplash("1616594039964-ae9021a400a0"),
+        alt: "Cabeceira Ripado em carvalho sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cabeceira ripada em carvalho maciço, para o quarto que quer a marcenaria à vista em vez do estofado. Cada ripa é encaixada em ranhura no caixilho e não leva cola, de modo que a madeira trabalhe com a umidade sem abrir fresta. Ocupa a parede inteira atrás da cama e dispensa quadro acima.",
+  },
+
+  // §3.2 row 29
+  {
+    slug: "criado-mudo-seixo-freijo",
+    nome: "Criado-mudo Seixo",
+    familia: "criado-mudo-seixo",
+    acabamento: "Freijó",
+    tipo: "criados-mudos",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: [],
+    ordem: 29,
+    precoTabela: 185000,
+    medidasExtras: [{ rotulo: "Quantidade de gavetas", valor: 1, unidade: "un" }],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1611967164521-abae8fba4668"),
+        alt: "Criado-mudo Seixo em freijó sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Um criado-mudo em freijó com uma gaveta, dimensionado para caber ao lado de camas baixas. A gaveta corre em corrediça de madeira sobre guias fresadas no próprio corpo, sem metal, e o puxador é um rebaixo no topo da frente. Fica ao lado da cama, na altura em que o abajur ilumina a página sem acordar o outro lado.",
+  },
+
+  // §3.2 row 30
+  {
+    slug: "criado-mudo-luar-nogueira",
+    nome: "Criado-mudo Luar",
+    familia: "criado-mudo-luar",
+    acabamento: "Nogueira",
+    tipo: "criados-mudos",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: [],
+    ordem: 30,
+    precoTabela: 230000,
+    medidasExtras: [{ rotulo: "Quantidade de gavetas", valor: 2, unidade: "un" }],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 3,
+    imagens: [
+      {
+        src: unsplash("1558211583-d26f610c1eb1"),
+        alt: "Criado-mudo Luar em nogueira sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Um criado-mudo em nogueira com duas gavetas, um pouco mais alto que o usual para acompanhar camas de estrado elevado. As gavetas correm sobre corrediças ocultas e o topo leva um rebaixo de dois centímetros, que segura o que se apoia ali durante a noite. Fica ao lado da cama, onde a madeira escura recorta contra a parede clara.",
+  },
+
+  // §3.2 row 31 — cross-listed into sala, §3.6: it reads as a side table
+  {
+    slug: "criado-mudo-junco-palhinha",
+    nome: "Criado-mudo Junco",
+    familia: "criado-mudo-junco",
+    acabamento: "Palhinha e Freijó",
+    tipo: "criados-mudos",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto", "sala"],
+    colecoes: [],
+    ordem: 31,
+    precoTabela: 168000,
+    medidasExtras: [{ rotulo: "Quantidade de gavetas", valor: 1, unidade: "un" }],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1598300042247-d088f8ab3a91"),
+        alt: "Criado-mudo Junco em palhinha e freijó sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Um criado-mudo em freijó com frente de gaveta em palhinha trançada, leve o bastante para ser levado a outro cômodo. A palhinha é montada sobre caixilho ranhurado e pode ser refeita sem trocar a frente, técnica que o atelier mantém em toda a linha. Serve de apoio ao lado da cama e também de mesa lateral na sala.",
+  },
+
+  // §3.2 row 32
+  {
+    slug: "comoda-vargem-carvalho",
+    nome: "Cômoda Vargem",
+    familia: "comoda-vargem",
+    acabamento: "Carvalho",
+    tipo: "comodas",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: [],
+    ordem: 32,
+    precoTabela: 580000,
+    medidasExtras: [{ rotulo: "Quantidade de gavetas", valor: 5, unidade: "un" }],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 5,
+    imagens: [
+      {
+        src: unsplash("1558211583-d26f610c1eb1"),
+        alt: "Cômoda Vargem em carvalho sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cômoda em carvalho maciço com cinco gavetas, para o quarto que não tem armário embutido suficiente. As laterais são unidas ao tampo por rabo de andorinha à vista, e o fundo é encaixado em ranhura em vez de pregado. Fica na parede lateral do quarto, onde o tampo ainda serve de apoio para o que se tira do bolso.",
+  },
+
+  // §3.2 row 33 — coleção serra
+  {
+    slug: "comoda-tramo-nogueira",
+    nome: "Cômoda Tramo",
+    familia: "comoda-tramo",
+    acabamento: "Nogueira",
+    tipo: "comodas",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: ["serra"],
+    ordem: 33,
+    precoTabela: 690000,
+    medidasExtras: [{ rotulo: "Quantidade de gavetas", valor: 6, unidade: "un" }],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 6,
+    imagens: [
+      {
+        src: unsplash("1512918728675-ed5a9ecdebfd"),
+        alt: "Cômoda Tramo em nogueira sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cômoda em nogueira com seis gavetas em duas colunas, para quartos de casal em que a roupa dobrada não cabe no armário. Cada gaveta corre sobre guias de madeira encerada e a frente é lisa, sem puxador, aberta pelo rebaixo inferior. Ocupa a parede lateral e aceita um espelho acima, se o quarto pedir.",
+  },
+
+  // §3.2 row 34 — the room's esgotado piece, §3.8
+  {
+    slug: "comoda-bruma-freijo",
+    nome: "Cômoda Bruma",
+    familia: "comoda-bruma",
+    acabamento: "Freijó",
+    tipo: "comodas",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: [],
+    ordem: 34,
+    precoTabela: 470000,
+    medidasExtras: [{ rotulo: "Quantidade de gavetas", valor: 4, unidade: "un" }],
+    disponibilidade: "esgotado",
+    imagens: [
+      {
+        src: unsplash("1512918728675-ed5a9ecdebfd"),
+        alt: "Cômoda Bruma em freijó sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cômoda em freijó com quatro gavetas, a menor da linha, para quartos estreitos ou para servir de apoio ao trocador. O corpo é montado com cavilhas e o tampo tem três centímetros de espessura, o que mantém a peça firme mesmo com todas as gavetas abertas. Encosta na parede menor do quarto, ao lado da porta.",
+  },
+
+  // §3.2 row 35 — freteGratis nacional, §3.8, and the catalogue's largest box
+  {
+    slug: "guarda-roupa-cais-carvalho",
+    nome: "Guarda-roupa Cais",
+    familia: "guarda-roupa-cais",
+    acabamento: "Carvalho",
+    tipo: "guarda-roupas",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: [],
+    ordem: 35,
+    precoTabela: 1560000,
+    medidasExtras: [
+      { rotulo: "Quantidade de portas", valor: 5, unidade: "un" },
+      { rotulo: "Prateleiras internas", valor: 10, unidade: "un" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 10,
+    freteGratis: "nacional",
+    imagens: [
+      {
+        src: unsplash("1594620302200-9a762244a156"),
+        alt: "Guarda-roupa Cais em carvalho sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Um guarda-roupa em carvalho maciço com cinco portas, o maior da linha, para o quarto que dispensa marcenaria planejada. As portas correm em dobradiça de canivete e o interior combina prateleiras removíveis com dois cabideiros, montados sobre a mesma ranhura. Ocupa uma parede inteira e pede pé-direito de dois metros e meio.",
+  },
+
+  // §3.2 row 36
+  {
+    slug: "guarda-roupa-ripado-freijo",
+    nome: "Guarda-roupa Ripado",
+    familia: "guarda-roupa-ripado",
+    acabamento: "Freijó",
+    tipo: "guarda-roupas",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: [],
+    ordem: 36,
+    precoTabela: 1190000,
+    medidasExtras: [
+      { rotulo: "Quantidade de portas", valor: 4, unidade: "un" },
+      { rotulo: "Prateleiras internas", valor: 6, unidade: "un" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 8,
+    imagens: [
+      {
+        src: unsplash("1631049307264-da0ec9d70304"),
+        alt: "Guarda-roupa Ripado em freijó sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Um guarda-roupa em freijó com quatro portas ripadas, para o quarto que quer ventilação natural na roupa guardada. As ripas são encaixadas em ranhura no caixilho da porta e deixam passar o ar sem mostrar o que está dentro. Ocupa a parede oposta à cama, onde a trama vertical alonga o cômodo.",
+  },
+
+  // §3.2 row 37
+  {
+    slug: "guarda-roupa-bruma-nogueira",
+    nome: "Guarda-roupa Bruma",
+    familia: "guarda-roupa-bruma",
+    acabamento: "Nogueira",
+    tipo: "guarda-roupas",
+    ambientePrincipal: "quarto",
+    ambientes: ["quarto"],
+    colecoes: [],
+    ordem: 37,
+    precoTabela: 1320000,
+    medidasExtras: [
+      { rotulo: "Quantidade de portas", valor: 4, unidade: "un" },
+      { rotulo: "Prateleiras internas", valor: 8, unidade: "un" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 8,
+    imagens: [
+      {
+        src: unsplash("1631049307264-da0ec9d70304"),
+        alt: "Guarda-roupa Bruma em nogueira sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Um guarda-roupa em nogueira com quatro portas lisas, sem puxador, para quem quer o volume o mais silencioso possível. A abertura é por toque e as portas assentam sobre batente de feltro, o que elimina o estalo que uma porta de armário costuma dar. Fica na parede oposta à cama, onde a madeira escura fecha o cômodo sem pesar.",
   },
 
   // §3.3 row 41 — cross-listed, all three roles, opens the Cozinha article
