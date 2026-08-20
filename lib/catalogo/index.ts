@@ -5,8 +5,8 @@
 // a rule is composed here at read time and never stored, because a stored copy
 // is a second source that can drift.
 //
-// The catalogue tables are `tabelas.ts`; the derivations `derivacoes.ts`. The
-// freight rule and the invariant suite are the two siblings still to land.
+// The catalogue tables are `tabelas.ts`, the derivations `derivacoes.ts` and
+// the freight rule `frete.ts`. The invariant suite is the sibling still to land.
 
 import {
   corDoAcabamento,
@@ -38,6 +38,7 @@ import type {
 
 export * from "./modelo";
 export * from "./derivacoes";
+export * from "./frete";
 export { politicas, loja } from "./politicas";
 export { ambientes, tipos, cores, materiais, colecoes } from "./tabelas";
 
