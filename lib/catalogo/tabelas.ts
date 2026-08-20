@@ -605,12 +605,145 @@ export const familias: FamiliaAutorada[] = [
   }),
 
   familiaComElevacao({
+    slug: "mesa-taipa",
+    nome: "Mesa Taipa",
+    medidas: { largura: 150, profundidade: 82, altura: 76 },
+    corpo: ["M0 0 H150 V6 H0 Z", "M10 6 H140 V12 H10 Z", "M12 12 V76 M138 12 V76"],
+    desenhoAlt: "Elevação frontal da Mesa Taipa, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "mesa-orla",
+    nome: "Mesa Orla",
+    medidas: { largura: 130, profundidade: 78, altura: 74 },
+    corpo: ["M0 0 H130 V5 H0 Z", "M9 5 H121 V10 H9 Z", "M11 10 V74 M119 10 V74"],
+    desenhoAlt: "Elevação frontal da Mesa Orla, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "mesa-pedra",
+    nome: "Mesa Pedra",
+    medidas: { largura: 180, profundidade: 90, altura: 78 },
+    // Two slab legs rather than four posts — the tampo is mármore, and the
+    // drawing has to show what carries it.
+    corpo: ["M0 0 H180 V4 H0 Z", "M24 4 H48 V78 H24 Z", "M132 4 H156 V78 H132 Z"],
+    desenhoAlt: "Elevação frontal da Mesa Pedra, com as cotas de largura e altura",
+  }),
+
+  familiaComElevacao({
     slug: "cadeira-junco",
     nome: "Cadeira Junco",
     medidas: { largura: 52, profundidade: 56, altura: 88 },
     corpo: ["M6 42 H46 V46 H6 Z", "M8 0 H44 V42 H8 Z", "M8 46 V88 M44 46 V88", "M8 72 H44"],
     desenhoAlt: "Elevação frontal da Cadeira Junco, com as cotas de largura e altura",
   }),
+  familiaComElevacao({
+    slug: "cadeira-vime",
+    nome: "Cadeira Vime",
+    medidas: { largura: 48, profundidade: 52, altura: 84 },
+    corpo: [
+      "M6 0 H42 V38 H6 Z",
+      "M6 10 H42 M6 20 H42 M6 30 H42",
+      "M3 38 H45 V44 H3 Z",
+      "M7 44 V84 M41 44 V84",
+      "M7 70 H41",
+    ],
+    desenhoAlt: "Elevação frontal da Cadeira Vime, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "cadeira-tramo",
+    nome: "Cadeira Tramo",
+    // The aço carbono language: tube posts and two horizontal rails where the
+    // wooden famílias carry a panel.
+    medidas: { largura: 44, profundidade: 50, altura: 80 },
+    corpo: [
+      "M5 0 V36 M39 0 V36",
+      "M5 6 H39 M5 18 H39",
+      "M2 36 H42 V41 H2 Z",
+      "M5 41 V80 M39 41 V80",
+      "M5 66 H39",
+    ],
+    desenhoAlt: "Elevação frontal da Cadeira Tramo, com as cotas de largura e altura",
+  }),
+
+  familiaComElevacao({
+    slug: "banqueta-seixo",
+    nome: "Banqueta Seixo",
+    medidas: { largura: 40, profundidade: 40, altura: 68 },
+    corpo: ["M0 0 H40 V5 H0 Z", "M6 5 V68 M34 5 V68", "M8 46 H32"],
+    desenhoAlt: "Elevação frontal da Banqueta Seixo, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "banqueta-vau",
+    nome: "Banqueta Vau",
+    medidas: { largura: 42, profundidade: 42, altura: 72 },
+    corpo: ["M0 0 H42 V6 H0 Z", "M7 6 V72 M35 6 V72", "M9 48 H33"],
+    desenhoAlt: "Elevação frontal da Banqueta Vau, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "banqueta-tramo",
+    nome: "Banqueta Tramo",
+    medidas: { largura: 38, profundidade: 38, altura: 64 },
+    corpo: ["M0 0 H38 V4 H0 Z", "M4 4 V64 M34 4 V64", "M4 42 H34"],
+    desenhoAlt: "Elevação frontal da Banqueta Tramo, com as cotas de largura e altura",
+  }),
+
+  familiaComElevacao({
+    slug: "armario-cais",
+    nome: "Armário Cais",
+    // Cais is the tall casework language — the same door-per-module reading the
+    // guarda-roupas above use, on a shallower box.
+    medidas: { largura: 150, profundidade: 52, altura: 215 },
+    corpo: ["M0 0 H150 V215 H0 Z", "M50 0 V196 M100 0 V196", "M0 196 H150"],
+    desenhoAlt: "Elevação frontal do Armário Cais, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "armario-ripado",
+    nome: "Armário Ripado",
+    medidas: { largura: 120, profundidade: 46, altura: 200 },
+    corpo: [
+      "M0 0 H120 V200 H0 Z",
+      "M60 0 V182",
+      "M0 182 H120",
+      "M15 0 V182 M30 0 V182 M45 0 V182 M75 0 V182 M90 0 V182 M105 0 V182",
+    ],
+    desenhoAlt: "Elevação frontal do Armário Ripado, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "armario-bruma",
+    nome: "Armário Bruma",
+    medidas: { largura: 90, profundidade: 42, altura: 185 },
+    corpo: ["M0 0 H90 V185 H0 Z", "M45 0 V168", "M0 168 H90"],
+    desenhoAlt: "Elevação frontal do Armário Bruma, com as cotas de largura e altura",
+  }),
+
+  familiaComElevacao({
+    slug: "carrinho-roldana",
+    nome: "Carrinho Roldana",
+    // Two shelves and the castors the família is named for.
+    medidas: { largura: 56, profundidade: 44, altura: 68 },
+    corpo: [
+      "M0 0 H56 V4 H0 Z",
+      "M0 30 H56 V34 H0 Z",
+      "M5 4 V60 M51 4 V60",
+      "M2 60 H10 V68 H2 Z",
+      "M46 60 H54 V68 H46 Z",
+    ],
+    desenhoAlt: "Elevação frontal do Carrinho Roldana, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "carrinho-junco",
+    nome: "Carrinho Junco",
+    medidas: { largura: 44, profundidade: 40, altura: 60 },
+    corpo: ["M0 0 H44 V4 H0 Z", "M0 27 H44 V31 H0 Z", "M4 4 V60 M40 4 V60"],
+    desenhoAlt: "Elevação frontal do Carrinho Junco, com as cotas de largura e altura",
+  }),
+  familiaComElevacao({
+    slug: "mesa-de-apoio-luar",
+    nome: "Mesa de Apoio Luar",
+    medidas: { largura: 66, profundidade: 50, altura: 74 },
+    corpo: ["M0 0 H66 V5 H0 Z", "M26 5 H40 V66 H26 Z", "M14 66 H52 V74 H14 Z"],
+    desenhoAlt: "Elevação frontal da Mesa de Apoio Luar, com as cotas de largura e altura",
+  }),
+
   familiaComElevacao({
     slug: "luminaria-de-mesa-junco",
     nome: "Luminária de Mesa Junco",
@@ -1724,6 +1857,95 @@ export const produtos: ProdutoAutorado[] = [
       "Um guarda-roupa em nogueira com quatro portas lisas, sem puxador, para quem quer o volume o mais silencioso possível. A abertura é por toque e as portas assentam sobre batente de feltro, o que elimina o estalo que uma porta de armário costuma dar. Fica na parede oposta à cama, onde a madeira escura fecha o cômodo sem pesar.",
   },
 
+  // §3.3 row 38
+  {
+    slug: "mesa-taipa-jatoba",
+    nome: "Mesa Taipa",
+    familia: "mesa-taipa",
+    acabamento: "Jatobá",
+    tipo: "mesas",
+    ambientePrincipal: "cozinha",
+    ambientes: ["cozinha"],
+    colecoes: [],
+    ordem: 38,
+    precoTabela: 620000,
+    medidasExtras: [
+      { rotulo: "Quantidade de lugares", valor: 6, unidade: "un" },
+      { rotulo: "Espessura do tampo", valor: 4, unidade: "cm" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 6,
+    imagens: [
+      {
+        src: unsplash("1594620302200-9a762244a156"),
+        alt: "Mesa Taipa em jatobá sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma mesa de cozinha em jatobá maciço, dimensionada para seis lugares e para o uso diário de uma casa que come junto. O tampo é formado por lâminas coladas em sentidos alternados, arranjo que segura o empeno quando a madeira responde à umidade da pia próxima. Ocupa o centro do cômodo e aceita ser encostada à parede quando a passagem aperta.",
+  },
+
+  // §3.3 row 39
+  {
+    slug: "mesa-orla-carvalho",
+    nome: "Mesa Orla",
+    familia: "mesa-orla",
+    acabamento: "Carvalho",
+    tipo: "mesas",
+    ambientePrincipal: "cozinha",
+    ambientes: ["cozinha"],
+    colecoes: [],
+    ordem: 39,
+    precoTabela: 540000,
+    medidasExtras: [
+      { rotulo: "Quantidade de lugares", valor: 4, unidade: "un" },
+      { rotulo: "Espessura do tampo", valor: 3, unidade: "cm" },
+    ],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1595526114035-0d45ed16cfbf"),
+        alt: "Mesa Orla em carvalho sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma mesa de quatro lugares em carvalho, para cozinhas onde a refeição acontece no mesmo cômodo em que se cozinha. As pernas encaixam na saia por espiga passante, junta que dispensa ferragem e mantém o conjunto rígido depois de anos de arrasto. Cabe entre a bancada e a parede sem fechar a circulação em volta.",
+  },
+
+  // §3.3 row 40
+  {
+    slug: "mesa-pedra-marmore-carvao",
+    nome: "Mesa Pedra",
+    familia: "mesa-pedra",
+    acabamento: "Mármore Carvão",
+    tipo: "mesas",
+    ambientePrincipal: "cozinha",
+    ambientes: ["cozinha"],
+    colecoes: [],
+    ordem: 40,
+    precoTabela: 980000,
+    medidasExtras: [
+      { rotulo: "Quantidade de lugares", valor: 6, unidade: "un" },
+      { rotulo: "Espessura do tampo", valor: 2, unidade: "cm" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 8,
+    imagens: [
+      {
+        src: unsplash("1550226891-ef816aed4a98"),
+        alt: "Mesa Pedra em mármore carvão sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma mesa de tampo em mármore carvão sobre duas laterais do mesmo material, para quem quer a superfície fria que a cozinha pede. As faces são cortadas em fio contínuo e o veio segue de uma lateral à outra, o que só se consegue serrando o bloco inteiro na ordem. Fica bem sob luz baixa, onde o polimento não estoura.",
+  },
+
   // §3.3 row 41 — cross-listed, all three roles, opens the Cozinha article
   {
     slug: "cadeira-junco-palhinha-freijo",
@@ -1763,6 +1985,353 @@ export const produtos: ProdutoAutorado[] = [
     ],
     descricao:
       "Uma cadeira de jantar com assento em palhinha e estrutura em freijó, pensada para refeições longas à mesa. O assento é trançado sobre um caixilho ranhurado, técnica que mantém a palhinha esticada sem cola e permite refazer a trama anos depois. Serve à mesa da cozinha e também à mesa de jantar da sala, onde não destoa.",
+  },
+
+  // §3.3 row 42 — the second acabamento: same família, same geometry, and the
+  // coleção `serra` names this one rather than its palhinha sibling
+  {
+    slug: "cadeira-junco-couro-argila",
+    nome: "Cadeira Junco",
+    familia: "cadeira-junco",
+    acabamento: "Couro Argila",
+    tipo: "cadeiras",
+    ambientePrincipal: "cozinha",
+    ambientes: ["cozinha"],
+    colecoes: ["serra"],
+    ordem: 42,
+    precoTabela: 192000,
+    medidasExtras: [
+      { rotulo: "Altura do assento", valor: 46, unidade: "cm" },
+      { rotulo: "Capacidade de peso", valor: 110, unidade: "kg" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 4,
+    imagens: [
+      {
+        src: unsplash("1503602642458-232111445657"),
+        alt: "Cadeira Junco em couro argila sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cadeira de jantar com assento em couro argila e estrutura em freijó, a mesma armação do acabamento em palhinha. O couro é curtido ao vegetal e esticado sobre o caixilho ainda úmido, de modo que seca já na forma do assento e não afrouxa depois. Vai à mesa da cozinha e escurece devagar nos pontos de uso.",
+  },
+
+  // §3.3 row 43 — the third and last precoDe piece §3.8 names
+  {
+    slug: "cadeira-vime-rattan-cru",
+    nome: "Cadeira Vime",
+    familia: "cadeira-vime",
+    acabamento: "Rattan Cru",
+    tipo: "cadeiras",
+    ambientePrincipal: "cozinha",
+    ambientes: ["cozinha"],
+    colecoes: [],
+    ordem: 43,
+    precoTabela: 124000,
+    precoDe: 148000,
+    medidasExtras: [
+      { rotulo: "Altura do assento", valor: 44, unidade: "cm" },
+      { rotulo: "Capacidade de peso", valor: 100, unidade: "kg" },
+    ],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1506439773649-6e0eb8cfb237"),
+        alt: "Cadeira Vime em rattan cru sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cadeira leve com encosto e assento em rattan cru sobre estrutura em carvalho, para a mesa que muda de lugar. O rattan é curvado a vapor e amarrado no encosto com fibra da própria planta, sem prego, que é o que deixa a peça ceder um pouco ao sentar. Empilha em canto de cozinha quando a casa recebe mais gente.",
+  },
+
+  // §3.3 row 44
+  {
+    slug: "cadeira-tramo-aco-carvao",
+    nome: "Cadeira Tramo",
+    familia: "cadeira-tramo",
+    acabamento: "Aço Carvão",
+    tipo: "cadeiras",
+    ambientePrincipal: "cozinha",
+    ambientes: ["cozinha"],
+    colecoes: [],
+    ordem: 44,
+    precoTabela: 98000,
+    medidasExtras: [
+      { rotulo: "Altura do assento", valor: 42, unidade: "cm" },
+      { rotulo: "Capacidade de peso", valor: 130, unidade: "kg" },
+    ],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1503602642458-232111445657"),
+        alt: "Cadeira Tramo em aço carvão sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma cadeira de tubo em aço carvão com assento em carvalho, a peça mais direta do conjunto de cozinha. A estrutura é dobrada em um único tubo contínuo e soldada num ponto só, atrás do encosto, onde a solda não aparece nem incomoda as costas. Encaixa sob a bancada e some quando não está em uso.",
+  },
+
+  // §3.3 row 45 — cross-listed to sala, §3.6
+  {
+    slug: "banqueta-seixo-carvalho",
+    nome: "Banqueta Seixo",
+    familia: "banqueta-seixo",
+    acabamento: "Carvalho",
+    tipo: "banquetas",
+    ambientePrincipal: "cozinha",
+    ambientes: ["cozinha", "sala"],
+    colecoes: [],
+    ordem: 45,
+    precoTabela: 118000,
+    medidasExtras: [
+      { rotulo: "Altura do assento", valor: 66, unidade: "cm" },
+      { rotulo: "Capacidade de peso", valor: 120, unidade: "kg" },
+    ],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1594026112284-02bb6f3352fe"),
+        alt: "Banqueta Seixo em carvalho sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma banqueta em carvalho maciço com assento levemente escavado, para a bancada onde se toma café em pé. O assento é desbastado a goiva e depois lixado no sentido do veio, trabalho que deixa a superfície côncava sem marcar a madeira. Serve à cozinha e, fora dela, como apoio solto na sala.",
+  },
+
+  // §3.3 row 46
+  {
+    slug: "banqueta-vau-freijo",
+    nome: "Banqueta Vau",
+    familia: "banqueta-vau",
+    acabamento: "Freijó",
+    tipo: "banquetas",
+    ambientePrincipal: "cozinha",
+    ambientes: ["cozinha"],
+    colecoes: [],
+    ordem: 46,
+    precoTabela: 135000,
+    medidasExtras: [
+      { rotulo: "Altura do assento", valor: 70, unidade: "cm" },
+      { rotulo: "Capacidade de peso", valor: 120, unidade: "kg" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 4,
+    imagens: [
+      {
+        src: unsplash("1586023492125-27b2c045efd7"),
+        alt: "Banqueta Vau em freijó sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma banqueta alta em freijó, pensada para bancadas mais altas que a média e para quem passa tempo em pé na cozinha. Os pés abrem alguns graus para fora e travam num anel de apoio, geometria que segura a peça quando o peso vai todo para um lado. Fica encostada à ilha e sai dali só quando chega visita.",
+  },
+
+  // §3.3 row 47
+  {
+    slug: "banqueta-tramo-aco-carvao",
+    nome: "Banqueta Tramo",
+    familia: "banqueta-tramo",
+    acabamento: "Aço Carvão",
+    tipo: "banquetas",
+    ambientePrincipal: "cozinha",
+    ambientes: ["cozinha"],
+    colecoes: [],
+    ordem: 47,
+    precoTabela: 89000,
+    medidasExtras: [
+      { rotulo: "Altura do assento", valor: 62, unidade: "cm" },
+      { rotulo: "Capacidade de peso", valor: 130, unidade: "kg" },
+    ],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1594026112284-02bb6f3352fe"),
+        alt: "Banqueta Tramo em aço carvão sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma banqueta de tubo em aço carvão com assento em carvalho, a entrada do conjunto e a mais fácil de guardar. A pintura é eletrostática a pó e curada em estufa, camada que não descasca no ponto onde o pé raspa o travessão todos os dias. Vive sob a bancada e some inteira embaixo dela.",
+  },
+
+  // §3.3 row 48
+  {
+    slug: "armario-cais-carvalho",
+    nome: "Armário Cais",
+    familia: "armario-cais",
+    acabamento: "Carvalho",
+    tipo: "armarios",
+    ambientePrincipal: "cozinha",
+    ambientes: ["cozinha"],
+    colecoes: [],
+    ordem: 48,
+    precoTabela: 860000,
+    medidasExtras: [
+      { rotulo: "Quantidade de portas", valor: 3, unidade: "un" },
+      { rotulo: "Prateleiras internas", valor: 8, unidade: "un" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 7,
+    imagens: [
+      {
+        src: unsplash("1616594039964-ae9021a400a0"),
+        alt: "Armário Cais em carvalho sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Um armário alto de três portas em carvalho, para a louça e os secos que não cabem nos armários de parede. As portas correm sobre dobradiças embutidas com freio, e o topo é rebaixado alguns centímetros para não brigar com o forro. Encosta na parede mais livre da cozinha, onde a altura não corta a luz da janela.",
+  },
+
+  // §3.3 row 49
+  {
+    slug: "armario-ripado-freijo",
+    nome: "Armário Ripado",
+    familia: "armario-ripado",
+    acabamento: "Freijó",
+    tipo: "armarios",
+    ambientePrincipal: "cozinha",
+    ambientes: ["cozinha"],
+    colecoes: [],
+    ordem: 49,
+    precoTabela: 710000,
+    medidasExtras: [
+      { rotulo: "Quantidade de portas", valor: 2, unidade: "un" },
+      { rotulo: "Prateleiras internas", valor: 6, unidade: "un" },
+    ],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 6,
+    imagens: [
+      {
+        src: unsplash("1631049307264-da0ec9d70304"),
+        alt: "Armário Ripado em freijó sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Um armário de duas portas em freijó, com as frentes ripadas que dão nome à família e deixam o ar circular por dentro. Cada ripa é encaixada em rasgo na travessa, uma a uma, e o espaçamento é o mesmo em toda a altura para o desenho não tropeçar. Guarda mantimentos secos e pede parede sem umidade atrás.",
+  },
+
+  // §3.3 row 50 — the one acabamento in the catalogue that names a finish
+  // rather than a material; §8.1's structural clause supplies the wood
+  {
+    slug: "armario-bruma-off-white",
+    nome: "Armário Bruma",
+    familia: "armario-bruma",
+    acabamento: "Laca Off-white",
+    tipo: "armarios",
+    ambientePrincipal: "cozinha",
+    ambientes: ["cozinha"],
+    colecoes: [],
+    ordem: 50,
+    precoTabela: 630000,
+    medidasExtras: [
+      { rotulo: "Quantidade de portas", valor: 2, unidade: "un" },
+      { rotulo: "Prateleiras internas", valor: 5, unidade: "un" },
+    ],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1558211583-d26f610c1eb1"),
+        alt: "Armário Bruma em laca off-white sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Um armário de duas portas em laca off-white sobre estrutura em carvalho, para cozinhas que já têm madeira demais à vista. A laca é aplicada em três demãos com lixamento entre elas, e o acabamento fosco esconde marca de dedo melhor que qualquer brilho. Some contra a parede clara e devolve a atenção ao resto do cômodo.",
+  },
+
+  // §3.3 row 51
+  {
+    slug: "carrinho-roldana-aco-carvao",
+    nome: "Carrinho Roldana",
+    familia: "carrinho-roldana",
+    acabamento: "Aço Carvão",
+    tipo: "carrinhos-e-apoios",
+    ambientePrincipal: "cozinha",
+    ambientes: ["cozinha"],
+    colecoes: [],
+    ordem: 51,
+    precoTabela: 210000,
+    medidasExtras: [],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1513506003901-1e6a229e2d15"),
+        alt: "Carrinho Roldana em aço carvão sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Um carrinho de duas prateleiras em aço carvão, para levar louça, garrafas ou o café da manhã de um cômodo a outro. As rodas são de borracha maciça com trava em duas delas, o que basta para a peça ficar parada quando a bancada dela vira mesa. Guarda-se ao lado da geladeira, na folga que sempre sobra ali.",
+  },
+
+  // §3.3 row 52
+  {
+    slug: "carrinho-junco-rattan-cru",
+    nome: "Carrinho Junco",
+    familia: "carrinho-junco",
+    acabamento: "Rattan Cru",
+    tipo: "carrinhos-e-apoios",
+    ambientePrincipal: "cozinha",
+    ambientes: ["cozinha"],
+    colecoes: [],
+    ordem: 52,
+    precoTabela: 174000,
+    medidasExtras: [],
+    disponibilidade: "envio-imediato",
+    imagens: [
+      {
+        src: unsplash("1522708323590-d24dbb6b0267"),
+        alt: "Carrinho Junco em rattan cru sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Um carrinho leve de duas prateleiras em rattan cru sobre estrutura em carvalho, para frutas, pães e o que fica à mão. As prateleiras são trançadas em trama aberta, que escoa migalha e deixa a fruta respirar em vez de suar sobre superfície fechada. Fica perto da janela, onde a luz atravessa a trama e desenha no chão.",
+  },
+
+  // §3.3 row 53 — cross-listed to sala, §3.6
+  {
+    slug: "mesa-de-apoio-luar-marmore-cru",
+    nome: "Mesa de Apoio Luar",
+    familia: "mesa-de-apoio-luar",
+    acabamento: "Mármore Cru",
+    tipo: "carrinhos-e-apoios",
+    ambientePrincipal: "cozinha",
+    ambientes: ["cozinha", "sala"],
+    colecoes: [],
+    ordem: 53,
+    precoTabela: 268000,
+    medidasExtras: [],
+    disponibilidade: "sob-encomenda",
+    prazoProducaoSemanas: 5,
+    imagens: [
+      {
+        src: unsplash("1611967164521-abae8fba4668"),
+        alt: "Mesa de Apoio Luar em mármore cru sobre reboco",
+        papel: "principal",
+        cotas: [],
+      },
+    ],
+    descricao:
+      "Uma mesa de apoio com tampo e coluna em mármore cru, alta o bastante para servir ao lado de quem está sentado. O tampo e a base saem do mesmo bloco, e a coluna é torneada em uma peça só, sem cola nem junta aparente na altura toda. Serve à cozinha ao lado da poltrona de leitura e à sala com a mesma naturalidade.",
   },
 
   // §3.4 row 65 — montagem.necessaria false, entry price, principal only
