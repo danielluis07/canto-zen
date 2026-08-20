@@ -325,6 +325,14 @@ describe("the derivations produce sane output for every row", () => {
   });
 
   test("a piece that names only a surface gains its structural wood", () => {
+    // §8.1's rule, and the same deviation Sala and Quarto recorded: the
+    // section's stated consequence — that every produto has ≥2 materiais — does
+    // not follow for a bare-wood acabamento, because `Carvalho` names the
+    // structural material itself and the rule then adds nothing. Cozinha widens
+    // it by one class: `Laca Off-white` names a finish §2.4 has no row for, so
+    // nothing in the Cuidados union covers the lacquer either. Both are the rule
+    // winning over its own consequence; closing the gap needs a spec
+    // correction — a `laca` material row — not a record.
     for (const p of COZINHA) {
       expect(p.materiais.some((m) => MADEIRAS.includes(m))).toBe(true);
       if (!MADEIRAS.includes(p.materiais[0]!)) expect(p.materiais).toHaveLength(2);
@@ -419,4 +427,27 @@ describe("descrição — §8.6's copy direction", () => {
       expect(p.descricao).not.toContain("!");
     });
   }
+
+  test("a descrição never names a wood the record does not carry", () => {
+    // §8.6's second sentence is the marcenaria's, so it names materials — and
+    // §8.1 derives `materiais` from the acabamento rather than from the prose.
+    // Nothing else stops the two from disagreeing, and the PDP prints them side
+    // by side: the copy claims a joint in freijó while Cuidados carries
+    // carvalho's care line. `cadeira-junco`'s two acabamentos are where this
+    // bites — one is `['palhinha','freijo']` and the other `['couro-natural',
+    // 'carvalho']`, so the shared família does not imply a shared wood.
+    const MADEIRAS_POR_PALAVRA: Record<string, string> = {
+      carvalho: "carvalho",
+      freijó: "freijo",
+      nogueira: "nogueira",
+      jatobá: "jatoba",
+    };
+
+    for (const p of COZINHA) {
+      const prosa = p.descricao.toLowerCase();
+      for (const [palavra, slug] of Object.entries(MADEIRAS_POR_PALAVRA)) {
+        if (prosa.includes(palavra)) expect(p.materiais).toContain(slug);
+      }
+    }
+  });
 });

@@ -622,8 +622,8 @@ export const familias: FamiliaAutorada[] = [
     slug: "mesa-pedra",
     nome: "Mesa Pedra",
     medidas: { largura: 180, profundidade: 90, altura: 78 },
-    // Two slab legs rather than four posts — the tampo is mármore, and the
-    // drawing has to show what carries it.
+    // Two slab legs in carvalho rather than four posts — the tampo is mármore,
+    // and the drawing has to show what carries it.
     corpo: ["M0 0 H180 V4 H0 Z", "M24 4 H48 V78 H24 Z", "M132 4 H156 V78 H132 Z"],
     desenhoAlt: "Elevação frontal da Mesa Pedra, com as cotas de largura e altura",
   }),
@@ -1943,7 +1943,7 @@ export const produtos: ProdutoAutorado[] = [
       },
     ],
     descricao:
-      "Uma mesa de tampo em mármore carvão sobre duas laterais do mesmo material, para quem quer a superfície fria que a cozinha pede. As faces são cortadas em fio contínuo e o veio segue de uma lateral à outra, o que só se consegue serrando o bloco inteiro na ordem. Fica bem sob luz baixa, onde o polimento não estoura.",
+      "Uma mesa de tampo em mármore carvão sobre duas laterais em carvalho maciço, para quem quer a superfície fria que a cozinha pede. A pedra é assentada sobre um quadro de madeira com folga calculada, porque o mármore e o carvalho não se movem na mesma medida ao longo do ano. Fica bem sob luz baixa, onde o polimento não estoura.",
   },
 
   // §3.3 row 41 — cross-listed, all three roles, opens the Cozinha article
@@ -1987,8 +1987,9 @@ export const produtos: ProdutoAutorado[] = [
       "Uma cadeira de jantar com assento em palhinha e estrutura em freijó, pensada para refeições longas à mesa. O assento é trançado sobre um caixilho ranhurado, técnica que mantém a palhinha esticada sem cola e permite refazer a trama anos depois. Serve à mesa da cozinha e também à mesa de jantar da sala, onde não destoa.",
   },
 
-  // §3.3 row 42 — the second acabamento: same família, same geometry, and the
-  // coleção `serra` names this one rather than its palhinha sibling
+  // §3.3 row 42 — the second acabamento: same família and same geometry, but
+  // not the same wood, because §8.1 makes an upholstered piece carvalho and its
+  // palhinha sibling freijó. The coleção `serra` names this one of the two.
   {
     slug: "cadeira-junco-couro-argila",
     nome: "Cadeira Junco",
@@ -2015,7 +2016,7 @@ export const produtos: ProdutoAutorado[] = [
       },
     ],
     descricao:
-      "Uma cadeira de jantar com assento em couro argila e estrutura em freijó, a mesma armação do acabamento em palhinha. O couro é curtido ao vegetal e esticado sobre o caixilho ainda úmido, de modo que seca já na forma do assento e não afrouxa depois. Vai à mesa da cozinha e escurece devagar nos pontos de uso.",
+      "Uma cadeira de jantar com assento em couro argila sobre estrutura em carvalho, para a mesa que recebe todos os dias. O couro é curtido ao vegetal e esticado sobre o caixilho ainda úmido, de modo que seca já na forma do assento e não afrouxa depois. Vai à mesa da cozinha e escurece devagar nos pontos de uso, como o couro faz.",
   },
 
   // §3.3 row 43 — the third and last precoDe piece §3.8 names
@@ -2331,7 +2332,7 @@ export const produtos: ProdutoAutorado[] = [
       },
     ],
     descricao:
-      "Uma mesa de apoio com tampo e coluna em mármore cru, alta o bastante para servir ao lado de quem está sentado. O tampo e a base saem do mesmo bloco, e a coluna é torneada em uma peça só, sem cola nem junta aparente na altura toda. Serve à cozinha ao lado da poltrona de leitura e à sala com a mesma naturalidade.",
+      "Uma mesa de apoio com tampo em mármore cru sobre coluna e base em carvalho, alta o bastante para servir ao lado de quem está sentado. O tampo é rebaixado no verso e encaixa na coluna por espiga, junta que dispensa cola e deixa a pedra assentar pelo próprio peso. Serve à cozinha ao lado da poltrona de leitura e à sala com a mesma naturalidade.",
   },
 
   // §3.4 row 65 — montagem.necessaria false, entry price, principal only

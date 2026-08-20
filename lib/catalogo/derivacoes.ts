@@ -92,7 +92,7 @@ const materialPorPalavra = new Map(
 const corPorLabel = new Map(cores.map((c) => [c.label.toLowerCase(), c.slug]));
 
 /**
- * Words that open an acabamento but name a **finish**, not a material.
+ * Opening words of an acabamento that name a **finish**, not a material.
  *
  * `dados.md` §3.3 row 50 writes `Laca Off-white`, and §2.4's material table has
  * no `laca` — the fourteen rows there are all substances a piece is built from,
@@ -101,7 +101,7 @@ const corPorLabel = new Map(cores.map((c) => [c.label.toLowerCase(), c.slug]));
  * it does for `Mármore Cru`. The set is closed and explicit rather than a
  * fallback for any unrecognised word, so a mistyped material still says so.
  */
-const ACABAMENTOS_SEM_MATERIAL = new Set(["laca"]);
+const PALAVRAS_SEM_MATERIAL = new Set(["laca"]);
 
 const aoMaterial = (palavra: string): string => {
   const slug = materialPorPalavra.get(palavra.toLowerCase());
@@ -114,7 +114,7 @@ const nomeados = (acabamento: string): string[] => {
   if (acabamento.includes(" e ")) return acabamento.split(" e ").map(aoMaterial);
 
   const [primeiro, ...resto] = acabamento.split(" ");
-  if (ACABAMENTOS_SEM_MATERIAL.has(primeiro!.toLowerCase())) return [];
+  if (PALAVRAS_SEM_MATERIAL.has(primeiro!.toLowerCase())) return [];
 
   const materiaisNomeados = [aoMaterial(primeiro!)];
   if (resto.length === 0) return materiaisNomeados;
