@@ -6,7 +6,9 @@
 // is a second source that can drift.
 //
 // The catalogue tables are `tabelas.ts`, the derivations `derivacoes.ts` and
-// the freight rule `frete.ts`. The invariant suite is the sibling still to land.
+// the freight rule `frete.ts`. The cross-reference invariants the tables rely on
+// — none of which the type system catches — are asserted over the whole
+// catalogue in `tests/catalogo-invariantes.test.ts`, never at runtime.
 
 import {
   corDoAcabamento,
@@ -18,6 +20,7 @@ import {
 } from "./derivacoes";
 import {
   ambientes,
+  artigos,
   colecoes,
   cores,
   familias,
@@ -27,6 +30,7 @@ import {
 } from "./tabelas";
 import type {
   Ambiente,
+  Artigo,
   Colecao,
   Cor,
   Familia,
@@ -40,7 +44,7 @@ export * from "./modelo";
 export * from "./derivacoes";
 export * from "./frete";
 export { politicas, loja } from "./politicas";
-export { ambientes, tipos, cores, materiais, colecoes } from "./tabelas";
+export { ambientes, tipos, cores, materiais, colecoes, artigos, conteudoHome } from "./tabelas";
 
 // The taxonomy is entities keyed by slug, so every surface resolves a facet the
 // same way instead of carrying its own lookup table.
@@ -54,6 +58,7 @@ export const tipo = porSlug<Tipo>(tipos);
 export const cor = porSlug<Cor>(cores);
 export const material = porSlug<Material>(materiais);
 export const colecao = porSlug<Colecao>(colecoes);
+export const artigo = porSlug<Artigo>(artigos);
 
 const familiaAutorada = (slug: string) => {
   const encontrada = familias.find((f) => f.slug === slug);

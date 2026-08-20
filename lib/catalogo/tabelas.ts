@@ -10,7 +10,9 @@
 import { elevacao } from "./desenho";
 import type {
   Ambiente,
+  Artigo,
   Colecao,
+  ConteudoHome,
   Cor,
   FamiliaAutorada,
   Material,
@@ -2821,3 +2823,221 @@ export const produtos: ProdutoAutorado[] = [
       "Uma luminária de mesa com cúpula em palhinha trançada e base em carvalho, para luz de leitura pontual. A palhinha é trançada à mão sobre um aro de madeira, e a trama aberta deixa passar o desenho da luz na parede atrás. Fica sobre a escrivaninha ou o criado-mudo, onde o alcance de 18 cm cobre a área de trabalho sem invadir o resto.",
   },
 ];
+
+// ---------------------------------------------------------------------------
+// Artigos — `dados.md` §5. One per ambiente, `ambiente` required and unique;
+// `ordem` is authored index order, never recency. Three fotos per article,
+// `[0]` ampla and `[1]`/`[2]` detalhe, each carrying 2–5 produto slugs.
+//
+// The legends are authored in §5.1 and are the file's load-bearing references:
+// the union across an article's three `pecas[]` holds no duplicate, and every
+// piece named lists under the article's room. `abertura` and `passagens` are
+// copy direction, not copy — written here to §6.3 and §6.4's direction.
+// ---------------------------------------------------------------------------
+
+export const artigos: Artigo[] = [
+  {
+    slug: "a-luz-da-tarde-na-sala",
+    titulo: "A luz da tarde",
+    resumo:
+      "Como uma sala muda quando o sol baixa, e o que fica bem nela às cinco da tarde.",
+    ambiente: "sala",
+    ordem: 1,
+    thumb: {
+      src: unsplash("1616486338812-3dadae4b4ace"),
+      alt: "Sala ao fim da tarde, com a luz rasante atravessando o estofado",
+    },
+    abertura:
+      "Às cinco da tarde a luz entra deitada e encontra as superfícies de lado. É a hora em que a sala mostra a trama de tudo que tem dentro.",
+    fotos: [
+      {
+        src: unsplash("1567538096630-e0c55bd6374c"),
+        alt: "Sala com sofá de linho cru voltado para a janela e mesa de centro em freijó",
+        papel: "ampla",
+        pecas: [
+          "sofa-heron-linho-cru",
+          "mesa-de-centro-seixo-freijo",
+          "poltrona-lina-linho-cru",
+        ],
+      },
+      {
+        src: unsplash("1594026112284-02bb6f3352fe"),
+        alt: "Estante em freijó junto ao aparador de mármore, na parede oposta à janela",
+        papel: "detalhe",
+        pecas: ["estante-cais-freijo", "aparador-pedra-marmore-cru"],
+      },
+      {
+        src: unsplash("1513506003901-1e6a229e2d15"),
+        alt: "Mesa de apoio em mármore com a banqueta de carvalho encostada",
+        papel: "detalhe",
+        pecas: ["mesa-de-apoio-luar-marmore-cru", "banqueta-seixo-carvalho"],
+      },
+    ],
+    passagens: [
+      "A sala foi montada para o fim do dia, não para o meio. O sofá ficou de frente para a janela e não de costas, porque a luz rasante revela a trama do linho cru em vez de apagá-la. A mesa de centro em freijó tem o tampo baixo o bastante para não cortar essa faixa de luz.",
+      "A parede oposta recebe o que a tarde já não alcança. A estante e o aparador de mármore trabalham na sombra, e por isso puderam ser as peças de mais peso visual do cômodo. É a mesma lógica da coleção Reboco: tons de cal para uma casa que recebe pouca luz direta.",
+    ],
+  },
+  {
+    slug: "o-quarto-como-abrigo",
+    titulo: "O quarto como abrigo",
+    resumo:
+      "Menos peças, mais silêncio: o argumento para esvaziar o cômodo em que se dorme.",
+    ambiente: "quarto",
+    ordem: 2,
+    thumb: {
+      src: unsplash("1583847268964-b28dc8f51f92"),
+      alt: "Quarto de poucas peças, com a cama afastada da parede da janela",
+    },
+    abertura:
+      "Um quarto cheio pede atenção na hora em que a atenção deveria estar acabando. Esvaziá-lo é uma decisão de sono, não de estética.",
+    fotos: [
+      {
+        src: unsplash("1505693416388-ac5ce068fe85"),
+        alt: "Cama de linho cru com cabeceira estofada e criado-mudo em freijó ao lado",
+        papel: "ampla",
+        pecas: [
+          "cama-nuvem-linho-cru",
+          "cabeceira-vela-linho-areia",
+          "criado-mudo-seixo-freijo",
+        ],
+      },
+      {
+        src: unsplash("1595526114035-0d45ed16cfbf"),
+        alt: "Cômoda de carvalho com o criado-mudo de nogueira à sua direita",
+        papel: "detalhe",
+        pecas: ["comoda-vargem-carvalho", "criado-mudo-luar-nogueira"],
+      },
+      {
+        src: unsplash("1540932239986-30128078f3c5"),
+        alt: "Poltrona de linho no canto de leitura, diante do guarda-roupa ripado",
+        papel: "detalhe",
+        pecas: ["poltrona-lina-linho-cru", "guarda-roupa-ripado-freijo"],
+      },
+    ],
+    passagens: [
+      "São sete peças no cômodo inteiro, e nenhuma delas guarda o que poderia estar em outro lugar da casa. A cama ficou afastada da parede da janela para que a luz da manhã chegue ao pé e não ao rosto. A cabeceira em linho areia é a única superfície macia acima da altura do colchão.",
+      "O canto de leitura existe porque a poltrona já servia à sala e serve aqui pelo mesmo motivo: é a peça que muda de cômodo sem mudar de função. O guarda-roupa ripado fecha a parede oposta e é o único volume alto do quarto, o que mantém o teto onde ele está.",
+    ],
+  },
+  {
+    slug: "a-cozinha-que-recebe",
+    titulo: "A cozinha que recebe",
+    resumo: "Quando a mesa da cozinha passa a ser a mesa da casa.",
+    ambiente: "cozinha",
+    ordem: 3,
+    thumb: {
+      src: unsplash("1598300042247-d088f8ab3a91"),
+      alt: "Mesa de cozinha posta para o fim da tarde, com cadeiras de palhinha",
+    },
+    abertura:
+      "A sala de jantar da casa brasileira foi ficando cerimoniosa e vazia. A mesa da cozinha absorveu o que ela deixou de fazer.",
+    fotos: [
+      {
+        src: unsplash("1556909212-d5b604d0c90d"),
+        alt: "Mesa de jatobá com cadeiras de palhinha e uma banqueta de carvalho na ponta",
+        papel: "ampla",
+        pecas: [
+          "mesa-taipa-jatoba",
+          "cadeira-junco-palhinha-freijo",
+          "banqueta-seixo-carvalho",
+        ],
+      },
+      {
+        src: unsplash("1600585154340-be6161a56a0c"),
+        alt: "Armário de carvalho ao lado do carrinho de aço carvão, junto à bancada",
+        papel: "detalhe",
+        pecas: ["armario-cais-carvalho", "carrinho-roldana-aco-carvao"],
+      },
+      {
+        src: unsplash("1567016432779-094069958ea5"),
+        alt: "Mesa de apoio em mármore com a cadeira de rattan cru encostada na parede",
+        papel: "detalhe",
+        pecas: ["mesa-de-apoio-luar-marmore-cru", "cadeira-vime-rattan-cru"],
+      },
+    ],
+    passagens: [
+      "A mesa de jatobá tem 180 cm e trabalha todos os dias, o que é diferente de trabalhar aos domingos. O tampo maciço aceita marca, e a cor amadurece nos primeiros meses; depois disso ela estabiliza e para de contar o que aconteceu em cima dele. As cadeiras de palhinha somam pouco peso porque saem do lugar várias vezes por refeição.",
+      "A banqueta na ponta é a cadeira a mais que sempre falta e nunca justifica uma sexta cadeira. O carrinho de aço carvão faz o mesmo em outra direção: sai da parede quando a cozinha recebe e volta quando ela não recebe. Nenhuma das duas peças ocupa lugar fixo, e é isso que as torna úteis.",
+    ],
+  },
+  {
+    slug: "trabalhar-em-silencio",
+    titulo: "Trabalhar em silêncio",
+    resumo:
+      "Uma escrivaninha, uma luminária, uma cadeira — e o resto é disciplina.",
+    ambiente: "escritorio",
+    ordem: 4,
+    thumb: {
+      src: unsplash("1524758631624-e2822e304c36"),
+      alt: "Escrivaninha de carvalho vazia, com a luminária acesa no canto",
+    },
+    abertura:
+      "Um escritório em casa não compete com o escritório da empresa em equipamento. Compete em silêncio, e o silêncio se monta com poucas peças.",
+    fotos: [
+      {
+        src: unsplash("1593062096033-9a26b09da705"),
+        alt: "Escrivaninha de carvalho diante da estante de nogueira, com cadeira de couro argila",
+        papel: "ampla",
+        pecas: [
+          "escrivaninha-cais-carvalho",
+          "cadeira-de-trabalho-orla-couro-argila",
+          "estante-mirante-nogueira",
+        ],
+      },
+      {
+        src: unsplash("1507473885765-e6ed057f782c"),
+        alt: "Luminária de cerâmica cru acesa ao lado da luminária de palhinha apagada",
+        papel: "detalhe",
+        pecas: [
+          "luminaria-de-mesa-seixo-ceramica-cru",
+          "luminaria-de-mesa-junco-palhinha",
+        ],
+      },
+      {
+        src: unsplash("1555041469-a586c61ea9bc"),
+        alt: "Escrivaninha estreita de freijó com a cadeira de carvalho recolhida sob o tampo",
+        papel: "detalhe",
+        pecas: ["escrivaninha-vau-freijo", "cadeira-de-trabalho-ripado-carvalho"],
+      },
+    ],
+    passagens: [
+      "A escrivaninha está de lado para a janela, e não de frente nem de costas. De frente a tela recebe o contraluz; de costas, o reflexo. De lado a luz cai no papel pela esquerda, e a luminária de cerâmica cru cobre o resto da mesa depois das seis.",
+      "A estante de nogueira fica atrás e não ao lado, porque o que está atrás não entra no campo de visão de quem trabalha. A segunda escrivaninha, mais estreita, mostra que o cômodo funciona com metade da superfície — a mesa grande é conforto, não requisito.",
+    ],
+  },
+];
+
+// ---------------------------------------------------------------------------
+// ConteudoHome — `dados.md` §6. All authored; the home derives no selection.
+// The hero is the one slug in the file whose image record is not optional: its
+// `principal` declares `cotas: ['largura']`, and without that it cannot render.
+// ---------------------------------------------------------------------------
+
+export const conteudoHome: ConteudoHome = {
+  destaqueHome: "sofa-heron-linho-cru",
+  // One per price bracket above the entry tier, one per ambiente other than
+  // Cozinha — authored, because a concept store has no sales data to derive.
+  destaques: [
+    "poltrona-lina-linho-cru",
+    "mesa-de-jantar-vargem-carvalho",
+    "luminaria-de-mesa-seixo-ceramica-cru",
+  ],
+  colecaoDestaque: "reboco",
+  // Three of four: `a-cozinha-que-recebe` is held back because it is the only
+  // article whose room `destaques` never names, so the home does not repeat.
+  inspiracoes: [
+    "a-luz-da-tarde-na-sala",
+    "o-quarto-como-abrigo",
+    "trabalhar-em-silencio",
+  ],
+  marcenaria: {
+    linha: "A marcenaria é nossa, e fica a quarenta minutos daqui.",
+    texto:
+      "Cada peça é produzida sob encomenda na nossa marcenaria no interior de São Paulo, por uma equipe de nove marceneiros. Nada é feito antes de ser vendido, e é por isso que o prazo é contado em semanas. A madeira é maciça e certificada, os encaixes são de espiga e cavilha, e o acabamento leva uma demão por dia até fechar. O desenho é assinado por um dos oito designers do quadro, e o nome dele acompanha a peça.",
+    imagem: {
+      src: unsplash("1601058268499-e52e4d8f8e0f"),
+      alt: "Bancada de marcenaria com peças em acabamento e ferramentas de mão",
+    },
+  },
+};

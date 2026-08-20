@@ -158,3 +158,45 @@ export type Colecao = {
 
 /** One entry of the 1..N parcelamento table. */
 export type Parcela = { parcelas: number; valorCentavos: Centavos };
+
+/**
+ * One frame of an article, with the legend beneath it. `pecas` holds **produto**
+ * slugs, never famílias — `inspiracoes.md` §6.5, because a Família has no page,
+ * so the acabamento actually photographed is the one the reader lands on.
+ */
+export type FotoArtigo = {
+  src: string;
+  alt: string;
+  papel: "ampla" | "detalhe";
+  /** 2..5 names, in reading order, each listed once per article. */
+  pecas: string[];
+};
+
+/**
+ * A room, composed and photographed — `inspiracoes.md` §8. `ambiente` is
+ * required and unique across the four; `ordem` is authored index order and not
+ * recency. The tuple types are §6.2's determinism made enforceable.
+ */
+export type Artigo = {
+  slug: string;
+  titulo: string;
+  /** ONE line — the index row and the home row read the same field. */
+  resumo: string;
+  ambiente: string;
+  ordem: number;
+  /** 16:9, authored `alt` — `imagens.md` §5.2. */
+  thumb: Figura;
+  abertura: string;
+  fotos: [FotoArtigo, FotoArtigo, FotoArtigo];
+  passagens: [string, string];
+};
+
+/** The home's authored selection — `home.md` §8. The home derives nothing. */
+export type ConteudoHome = {
+  /** Its `principal` must declare `cotas: ['largura']`, or the hero has no régua. */
+  destaqueHome: string;
+  destaques: string[];
+  colecaoDestaque: string;
+  inspiracoes: string[];
+  marcenaria: { linha: string; texto: string; imagem: Figura };
+};
