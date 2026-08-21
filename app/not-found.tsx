@@ -8,7 +8,7 @@ import { Rodape } from "@/components/chrome/rodape";
  * It exists **now** because of §2.4's contract rather than because this issue
  * owns the surface. Reading the query (`catalogo.md` §3) renders the listing
  * routes per request, which is what took the room × tipo `404` out of Next's
- * prerendered not-found and into a rendered one; `middleware.ts` puts it back
+ * prerendered not-found and into a rendered one; `proxy.ts` puts it back
  * at the routing layer, and this file is the page that layer serves.
  *
  * It sits outside both route groups, so it states its own `<main>` and its own

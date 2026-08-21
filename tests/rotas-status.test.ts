@@ -47,7 +47,7 @@ describe("the status contract", () => {
     expect((await buscar("/varanda")).status).toBe(404);
   });
 
-  // The pair is refused **before routing** (`middleware.ts`), which is what
+  // The pair is refused **before routing** (`proxy.ts`), which is what
   // keeps the 404 the store's own page rather than Next's minimal error
   // document: a `notFound()` raised during a render is served outside the root
   // layout, and `rodape.md` §6 makes the footer's identification

@@ -1,5 +1,8 @@
 // `rotas.md` §6 at the routing layer — **enumerated, not generated**.
 //
+// `proxy.ts` is the Next 16 convention; `middleware.ts` is the deprecated name
+// for the same file, and only the file and the export changed.
+//
 // This file exists because of one Next 16 behaviour, and it is worth stating
 // plainly so nobody deletes it as ceremony:
 //
@@ -19,7 +22,10 @@
 //
 // So the pair is decided before routing, from the same declaration the router
 // reads. There is no second list here: `parEnumerado` is `Ambiente.tipos`,
-// which is `rotas.md`'s own table.
+// which is `rotas.md`'s own table. Sharing that module with the render is
+// exactly what `proxy.js`'s "do not rely on shared modules" caveat is about,
+// and it does not bite: the taxonomy is static, pure data, so a copy of it in
+// this bundle is the same table and not a second source of truth.
 //
 // It handles the **pair** only. A two-segment path whose first segment is one of
 // the four rooms can only ever be a room × tipo listing — `rotas.md` §1 reserves
@@ -34,7 +40,7 @@ import { ambientesEnumerados, parEnumerado } from "@/lib/listagem/rotas";
 /** Three segments, which no route in `rotas.md`'s table has. A routing miss. */
 const NAO_EXISTE = "/nao-existe/nao-existe/nao-existe";
 
-export function middleware(requisicao: NextRequest) {
+export function proxy(requisicao: NextRequest) {
   const [, ambiente, tipo, ...resto] = requisicao.nextUrl.pathname.split("/");
 
   const parInvalido =
