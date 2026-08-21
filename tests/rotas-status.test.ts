@@ -46,6 +46,18 @@ describe("the status contract", () => {
   test("a room that does not exist is a 404", async () => {
     expect((await buscar("/varanda")).status).toBe(404);
   });
+
+  // The pair is refused **before routing** (`middleware.ts`), which is what
+  // keeps the 404 the store's own page rather than Next's minimal error
+  // document: a `notFound()` raised during a render is served outside the root
+  // layout, and `rodape.md` §6 makes the footer's identification
+  // non-negotiable on a public page.
+  test("that 404 is the store's own page, with its chrome", async () => {
+    const html = semScripts((await buscar("/cozinha/sofas")).html);
+    expect(html).toContain("Não há nada neste endereço.");
+    expect(html).toContain(">Canto Zen</a>");
+    expect(html).toContain("CNPJ");
+  });
 });
 
 // marca.md §4, restated as an assertion over what is actually served
