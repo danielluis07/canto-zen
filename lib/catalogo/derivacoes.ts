@@ -434,3 +434,25 @@ export const itensInclusosDe = ({
     ...(tipo === "luminarias-de-mesa" ? ["lâmpada não inclusa"] : []),
   ];
 };
+
+// ---------------------------------------------------------------------------
+// The frame a packshot is shown in — imagens.md §3
+// ---------------------------------------------------------------------------
+
+export type Proporcao = "3:2" | "1:1" | "4:5";
+
+/**
+ * The `principal` image's ratio, computed from `medidas` and never authored.
+ *
+ * `imagens.md` §3 makes the frame follow the piece's real proportion by
+ * arithmetic rather than by a photographer's instruction: an authored token can
+ * contradict the piece it frames, a derived one cannot. Three ratios and no
+ * fourth — the enumeration is what removes arbitrariness while still letting
+ * the listing grid stay ragged (`catalogo.md` §5).
+ */
+export const proporcaoDoPrincipal = ({ largura, altura }: Medidas): Proporcao => {
+  const razao = largura / altura;
+  if (razao > 1.15) return "3:2";
+  if (razao < 0.87) return "4:5";
+  return "1:1";
+};

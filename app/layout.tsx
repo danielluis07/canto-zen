@@ -4,8 +4,13 @@ import { schibstedGrotesk, zenOldMincho } from "@/fonts";
 import { Navbar } from "@/components/chrome/navbar";
 import { ProvedorCarrinho } from "@/lib/carrinho/estado";
 
+/**
+ * The suffix `rotas.md` §1 puts on every route but the home, where appending
+ * the brand to the brand stutters. A page states its own name and nothing else;
+ * the template is the only place the wordmark is spelled into a `<title>`.
+ */
 export const metadata: Metadata = {
-  title: "Canto Zen",
+  title: { default: "Canto Zen", template: "%s | Canto Zen" },
 };
 
 /**

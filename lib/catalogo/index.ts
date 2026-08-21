@@ -42,6 +42,7 @@ import type {
 
 export * from "./modelo";
 export * from "./derivacoes";
+export * from "./formato";
 export * from "./frete";
 export { politicas, loja, paginasDePolitica } from "./politicas";
 export { ambientes, tipos, cores, materiais, colecoes, artigos, conteudoHome } from "./tabelas";
