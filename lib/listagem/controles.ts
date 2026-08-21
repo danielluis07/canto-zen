@@ -277,6 +277,38 @@ const paginacaoDe = (
   };
 };
 
+/**
+ * One page of a set whose **order is already decided** — `/colecoes/[slug]`.
+ *
+ * It is `controlesDaListagem` minus the controls, and the subtraction is the
+ * point: `catalogo.md` §9 gives the coleção neither the tipo band nor the
+ * filter and sort bar, because `Colecao.produtos` is an ordered list whose
+ * sequence is the editorial act. So nothing here filters and nothing here
+ * sorts — the conjunto is sliced exactly as it arrived.
+ *
+ * Pagination survives, because §9 says a coleção over twelve pieces paginates
+ * like any other. It reads `pagina` and nothing else: every other key is one
+ * this surface does not support, and an unsupported key is ignored rather than
+ * an error (`rotas.md`).
+ */
+export const paginarNaOrdemAutorada = ({
+  caminho,
+  conjunto,
+  pagina,
+}: {
+  caminho: string;
+  conjunto: Produto[];
+  pagina: number;
+}): { pagina: Pagina; total: number; paginacao: Paginacao | null } => {
+  const consulta = { ...consultaVazia(), pagina };
+  const fatia = paginar(conjunto, pagina);
+  return {
+    pagina: fatia,
+    total: fatia.total,
+    paginacao: paginacaoDe((proxima) => href(caminho, proxima), consulta, fatia),
+  };
+};
+
 /** The zero-results copy — `catalogo.md` §8, verbatim and not paraphrased. */
 export const SEM_RESULTADOS = "Nenhuma peça com esses filtros.";
 export const LIMPAR_FILTROS = "LIMPAR FILTROS";

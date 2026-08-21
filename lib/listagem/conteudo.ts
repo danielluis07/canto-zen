@@ -11,12 +11,14 @@
 
 import {
   ambiente,
+  colecao,
   linhaDeParcelamento,
   politicas,
   precoAVista,
   reais,
   tipo,
   todosOsProdutos,
+  type Colecao,
   type Produto,
 } from "../catalogo";
 
@@ -46,6 +48,35 @@ export const produtosDoAmbiente = (slug: string): Produto[] =>
 /** That room's slice of one tipo. A produto carries exactly one tipo. */
 export const produtosDoTipo = (slugAmbiente: string, slugTipo: string): Produto[] =>
   produtosDoAmbiente(slugAmbiente).filter((p) => p.tipo === slugTipo);
+
+/**
+ * The whole catalogue, unscoped — `/produtos` (`catalogo.md` §10). It is the
+ * same selection a room listing makes with the room taken away, which is the
+ * entire difference between that surface and this one.
+ */
+export const produtosDaLoja = (): Produto[] => emOrdemDeCuradoria(todosOsProdutos());
+
+/**
+ * A coleção's pieces **in the sequence the coleção authored** — never
+ * re-sorted, not into curadoria order and not even to push `esgotado` last.
+ *
+ * `produto.md` fixed that `Colecao.produtos` is an ordered list whose sequence
+ * *is* the editorial act, and `catalogo.md` §9 draws the consequence: the page
+ * renders no sort control, because a sort control offers to destroy the only
+ * thing the page exists for. `emOrdemDeCuradoria` would do the same thing
+ * silently, so this function deliberately does not call it — the global
+ * `produto.ordem` is a different composition from this one.
+ */
+export const produtosDaColecao = (slug: string): Produto[] => {
+  const catalogo = todosOsProdutos();
+  return exigirColecao(slug).produtos.map((slugDoProduto) => {
+    const encontrado = catalogo.find((p) => p.slug === slugDoProduto);
+    if (!encontrado) {
+      throw new Error(`coleção ${slug} points at an unknown produto: ${slugDoProduto}`);
+    }
+    return encontrado;
+  });
+};
 
 // ---------------------------------------------------------------------------
 // The lines a surface states
@@ -148,6 +179,32 @@ export const cabecalhoDoTipo = (slugAmbiente: string, slugTipo: string): Cabecal
   prosa: null,
 });
 
+/**
+ * `TODAS AS PEÇAS`, in the **annotation** voice and not in Mincho.
+ *
+ * Mincho is for piece names, coleção titles and editorial titles
+ * (`marca.md` §4). "Todas as peças" is none of the three — it is a system
+ * label, and the annotation voice states exactly what `catalogo.md` §10 says
+ * the surface is: a filter and direct-link destination, not an offered path.
+ */
+export const cabecalhoDaLoja = (): Cabecalho => ({
+  sobretitulo: null,
+  titulo: "TODAS AS PEÇAS",
+  mincho: false,
+  prosa: null,
+});
+
+/** `COLEÇÃO` over the coleção's own name and its authored sentence (§1). */
+export const cabecalhoDaColecao = (slug: string): Cabecalho => {
+  const encontrada = exigirColecao(slug);
+  return {
+    sobretitulo: "COLEÇÃO",
+    titulo: encontrada.nome,
+    mincho: true,
+    prosa: encontrada.descricao,
+  };
+};
+
 // ---------------------------------------------------------------------------
 // The tipo band — catalogo.md §2
 // ---------------------------------------------------------------------------
@@ -182,6 +239,12 @@ const exigirAmbiente = (slug: string) => {
   const encontrado = ambiente(slug);
   if (!encontrado) throw new Error(`no such ambiente: ${slug}`);
   return encontrado;
+};
+
+const exigirColecao = (slug: string): Colecao => {
+  const encontrada = colecao(slug);
+  if (!encontrada) throw new Error(`no such coleção: ${slug}`);
+  return encontrada;
 };
 
 const exigirTipo = (slug: string) => {
@@ -221,4 +284,23 @@ export const metadadosDoTipo = (slugAmbiente: string, slugTipo: string): Metadad
     titulo: `${tip.label} para ${amb.label.toLowerCase()}`,
     descricao: `${tip.label} para ${amb.label}: ${n} peças assinadas, feitas sob encomenda em madeira maciça.`,
   };
+};
+
+/**
+ * `/produtos` — a derived description over the whole catalogue, and the one
+ * title in `rotas.md` §1's table that is a system label rather than a name.
+ */
+export const metadadosDaLoja = (): Metadados => ({
+  titulo: "Todas as peças",
+  descricao: `Todo o catálogo Canto Zen: ${produtosDaLoja().length} peças para sala, quarto, cozinha e escritório.`,
+});
+
+/**
+ * The coleção's description is **authored** — `colecao.descricao`, verbatim,
+ * the same sentence the header sets at `34ch`. Where an authored sentence
+ * already exists it *is* the description (`rotas.md` §2).
+ */
+export const metadadosDaColecao = (slug: string): Metadados => {
+  const encontrada = exigirColecao(slug);
+  return { titulo: encontrada.nome, descricao: encontrada.descricao };
 };

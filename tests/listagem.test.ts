@@ -1,8 +1,16 @@
 import { describe, expect, test } from "bun:test";
-import { ambientes, proporcaoDoPrincipal, reais, tipos } from "../lib/catalogo";
-import { ambientesEnumerados, paresEnumerados, parEnumerado } from "../lib/listagem/rotas";
+import { ambientes, colecoes, proporcaoDoPrincipal, reais, tipos } from "../lib/catalogo";
+import {
+  ambientesEnumerados,
+  colecaoEnumerada,
+  colecoesEnumeradas,
+  paresEnumerados,
+  parEnumerado,
+} from "../lib/listagem/rotas";
 import {
   bandaDeTipos,
+  cabecalhoDaColecao,
+  cabecalhoDaLoja,
   cabecalhoDoAmbiente,
   cabecalhoDoTipo,
   disponibilidadeEmTexto,
@@ -12,10 +20,16 @@ import {
   parcelamentoEmTexto,
   precoAnteriorDoCartao,
   precoDoCartao,
+  metadadosDaColecao,
+  metadadosDaLoja,
+  produtosDaColecao,
+  produtosDaLoja,
   produtosDoAmbiente,
   produtosDoTipo,
   rotuloDaContagem,
 } from "../lib/listagem/conteudo";
+import { paginarNaOrdemAutorada } from "../lib/listagem/controles";
+import { POR_PAGINA } from "../lib/listagem/consulta";
 import { exigirProduto } from "./helpers/catalogo";
 
 // rotas.md §6 — enumerated, not generated
@@ -249,5 +263,155 @@ describe("the derived ratio", () => {
     expect(proporcaoDoPrincipal({ largura: 116, profundidade: 1, altura: 100 })).toBe("3:2");
     expect(proporcaoDoPrincipal({ largura: 87, profundidade: 1, altura: 100 })).toBe("1:1");
     expect(proporcaoDoPrincipal({ largura: 86, profundidade: 1, altura: 100 })).toBe("4:5");
+  });
+});
+
+// rotas.md — /colecoes/[slug], and the index that is deliberately absent
+describe("the coleção route space", () => {
+  test("is every authored coleção, in the table's order", () => {
+    expect(colecoesEnumeradas()).toEqual(colecoes.map((c) => c.slug));
+    expect(colecoesEnumeradas().length).toBeGreaterThan(0);
+  });
+
+  test("refuses a slug no coleção carries", () => {
+    expect(colecaoEnumerada("reboco")).toBe(true);
+    expect(colecaoEnumerada("jatoba")).toBe(false);
+  });
+
+  // The absence is the decision: rotas.md's Deliberate omissions refused the
+  // index, so no module here enumerates one and nothing points at `/colecoes`.
+  test("declares no index — the segment enumerates slugs, never itself", () => {
+    expect(colecoesEnumeradas()).not.toContain("");
+    expect(colecaoEnumerada("")).toBe(false);
+  });
+});
+
+// catalogo.md §9 — the sequence is the editorial act
+describe("a coleção's selection", () => {
+  test("is the authored sequence, verbatim", () => {
+    for (const colecao of colecoes) {
+      expect(produtosDaColecao(colecao.slug).map((p) => p.slug)).toEqual(colecao.produtos);
+    }
+  });
+
+  // The two orders differ, which is what makes the preservation testable at
+  // all: re-sorting into curadoria would be a silent no-op on an already-sorted
+  // list and would show up nowhere.
+  test("is not curadoria order, and is not re-sorted into it", () => {
+    const reordenadas = colecoes.filter((colecao) => {
+      const autorada = produtosDaColecao(colecao.slug).map((p) => p.slug);
+      const curadoria = emOrdemDeCuradoria(produtosDaColecao(colecao.slug)).map((p) => p.slug);
+      return autorada.join() !== curadoria.join();
+    });
+    expect(reordenadas.length).toBeGreaterThan(0);
+  });
+
+  test("never pushes esgotado last, unlike every other listing", () => {
+    const comEsgotado = colecoes
+      .map((c) => produtosDaColecao(c.slug))
+      .find((lista) => lista.some((p, i) => p.disponibilidade === "esgotado" && i < lista.length - 1));
+    if (comEsgotado === undefined) return;
+    const ultimo = comEsgotado.at(-1)!;
+    expect(ultimo.disponibilidade).not.toBe("esgotado");
+  });
+
+  test("throws rather than silently dropping a produto that moved", () => {
+    expect(() => produtosDaColecao("nao-existe")).toThrow();
+  });
+});
+
+// catalogo.md §§1, 9, 10 and rotas.md §§1, 2
+describe("the two remaining headers", () => {
+  test("/produtos is a system label in the annotation voice, never Mincho", () => {
+    expect(cabecalhoDaLoja()).toEqual({
+      sobretitulo: null,
+      titulo: "TODAS AS PEÇAS",
+      mincho: false,
+      prosa: null,
+    });
+  });
+
+  test("a coleção is COLEÇÃO over its name, with its authored sentence", () => {
+    const reboco = colecoes[0]!;
+    expect(cabecalhoDaColecao(reboco.slug)).toEqual({
+      sobretitulo: "COLEÇÃO",
+      titulo: reboco.nome,
+      mincho: true,
+      prosa: reboco.descricao,
+    });
+  });
+
+  test("/produtos derives its description from the catalogue it lists", () => {
+    expect(metadadosDaLoja()).toEqual({
+      titulo: "Todas as peças",
+      descricao: `Todo o catálogo Canto Zen: ${produtosDaLoja().length} peças para sala, quarto, cozinha e escritório.`,
+    });
+  });
+
+  test("a coleção's description is authored, verbatim", () => {
+    const reboco = colecoes[0]!;
+    expect(metadadosDaColecao(reboco.slug)).toEqual({
+      titulo: reboco.nome,
+      descricao: reboco.descricao,
+    });
+  });
+});
+
+// catalogo.md §10 — the same listing with the room taken away
+describe("the unscoped selection", () => {
+  test("is the whole catalogue, in curadoria order", () => {
+    const todas = produtosDaLoja();
+    const disponiveis = todas.filter((p) => p.disponibilidade !== "esgotado");
+    const ordens = disponiveis.map((p) => p.ordem);
+    expect(ordens).toEqual([...ordens].sort((a, b) => a - b));
+  });
+
+  test("holds every piece each room lists, and loses none between them", () => {
+    const slugs = new Set(produtosDaLoja().map((p) => p.slug));
+    for (const ambiente of ambientes) {
+      for (const produto of produtosDoAmbiente(ambiente.slug)) {
+        expect(slugs.has(produto.slug)).toBe(true);
+      }
+    }
+  });
+});
+
+// catalogo.md §9 — no bar, but pages like any other listing
+describe("a coleção's pagination", () => {
+  const conjunto = produtosDaColecao(colecoes[0]!.slug);
+
+  test("renders no control at all where the coleção fits on one page", () => {
+    expect(conjunto.length).toBeLessThanOrEqual(POR_PAGINA);
+    expect(paginarNaOrdemAutorada({ caminho: "/colecoes/reboco", conjunto, pagina: 1 }).paginacao)
+      .toBeNull();
+  });
+
+  test("states the coleção's own length, never the cards on screen", () => {
+    expect(paginarNaOrdemAutorada({ caminho: "/colecoes/reboco", conjunto, pagina: 1 }).total).toBe(
+      conjunto.length,
+    );
+  });
+
+  // The pages carry `?pagina=` and nothing else: no filter and no sort exists
+  // on this surface to survive into a link.
+  test("pages a longer coleção without inventing state to carry", () => {
+    const longa = [...conjunto, ...conjunto, ...conjunto];
+    const { paginacao, pagina } = paginarNaOrdemAutorada({
+      caminho: "/colecoes/reboco",
+      conjunto: longa,
+      pagina: 2,
+    });
+    expect(pagina.itens).toEqual(longa.slice(POR_PAGINA, POR_PAGINA * 2));
+    expect(paginacao!.paginas.map((p) => p.href)).toEqual([
+      "/colecoes/reboco",
+      "/colecoes/reboco?pagina=2",
+    ]);
+    expect(paginacao!.anterior).toBe("/colecoes/reboco");
+    expect(paginacao!.proxima).toBeNull();
+  });
+
+  test("keeps the authored order inside the page it slices", () => {
+    const { pagina } = paginarNaOrdemAutorada({ caminho: "/colecoes/reboco", conjunto, pagina: 1 });
+    expect(pagina.itens.map((p) => p.slug)).toEqual(colecoes[0]!.produtos);
   });
 });

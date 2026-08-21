@@ -5,7 +5,12 @@ import {
   type Cabecalho,
   type ItemDaBanda,
 } from "@/lib/listagem/conteudo";
-import { LIMPAR_FILTROS, SEM_RESULTADOS, type Controles } from "@/lib/listagem/controles";
+import {
+  LIMPAR_FILTROS,
+  SEM_RESULTADOS,
+  type Controles,
+  type Paginacao as DadosDePaginacao,
+} from "@/lib/listagem/controles";
 import { Regua } from "@/components/marca/regua";
 import { BandaDeTipos } from "./banda-de-tipos";
 import { BarraDeFiltros } from "./barra-de-filtros";
@@ -22,8 +27,15 @@ type Props = {
   produtos: Produto[];
   /** The régua's figure: the count **after filtering**, not the cards on screen. */
   total?: number;
-  /** Absent on `/colecoes/[slug]`, which renders neither the bar nor pagination. */
+  /** The filter and sort bar. Absent on `/colecoes/[slug]` — `catalogo.md` §9. */
   controles?: Controles;
+  /**
+   * Kept separate from `controles` because the coleção takes one and not the
+   * other: §9 refuses it the bar, and in the same breath says a coleção over
+   * twelve pieces paginates like any other. Folding the two into one prop would
+   * make the refusal of the bar silently refuse the pages too.
+   */
+  paginacao?: DadosDePaginacao | null;
 };
 
 /**
@@ -41,7 +53,14 @@ type Props = {
  * `404`-vs-`200` contract `rotas.md` §7 fixes may never swap. The loading
  * language is the stale-content dim instead, which needs no boundary at all.
  */
-export function Listagem({ cabecalho, banda, produtos, total, controles }: Props) {
+export function Listagem({
+  cabecalho,
+  banda,
+  produtos,
+  total,
+  controles,
+  paginacao = controles?.paginacao,
+}: Props) {
   const contagem = rotuloDaContagem(total ?? produtos.length);
 
   return (
@@ -123,7 +142,7 @@ export function Listagem({ cabecalho, banda, produtos, total, controles }: Props
           <p className="t-annotation text-indigo lg:text-right">{linhaDePolitica()}</p>
         </div>
 
-        {controles?.paginacao && <Paginacao paginacao={controles.paginacao} />}
+        {paginacao && <Paginacao paginacao={paginacao} />}
       </div>
     </ProvedorDeConteudoVelho>
   );

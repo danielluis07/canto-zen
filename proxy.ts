@@ -27,30 +27,38 @@
 // and it does not bite: the taxonomy is static, pure data, so a copy of it in
 // this bundle is the same table and not a second source of truth.
 //
-// It handles the **pair** only. A two-segment path whose first segment is one of
-// the four rooms can only ever be a room × tipo listing — `rotas.md` §1 reserves
-// the top-level namespace around the four — so the judgement is certain and no
-// future route can collide with it. A one-segment path is not certain (`/sobre`
-// and `/varanda` are the same shape until the route exists), so it is left to
-// the page's `notFound()`.
+// It handles **two-segment paths** only, and only the two whose first segment
+// already decides what the second must be. A path under one of the four rooms
+// can only ever be a room × tipo listing — `rotas.md` §1 reserves the top-level
+// namespace around the four — and a path under `colecoes` can only ever be a
+// coleção, that segment being reserved by the same table. Both judgements are
+// certain, and no future route can collide with either. A one-segment path is
+// not certain (`/sobre` and `/varanda` are the same shape until the route
+// exists), so it is left to the page's `notFound()`.
+//
+// `/colecoes` itself is one segment and has no `page.tsx`, so it 404s through
+// the router with the app's own not-found — which is exactly what `rotas.md`'s
+// *Deliberate omissions* asks of the index it refused. Nothing here has to
+// arrange that, and nothing here may undo it.
 
 import { NextResponse, type NextRequest } from "next/server";
-import { ambientesEnumerados, parEnumerado } from "@/lib/listagem/rotas";
+import { ambientesEnumerados, colecaoEnumerada, parEnumerado } from "@/lib/listagem/rotas";
 
 /** Three segments, which no route in `rotas.md`'s table has. A routing miss. */
 const NAO_EXISTE = "/nao-existe/nao-existe/nao-existe";
 
 export function proxy(requisicao: NextRequest) {
-  const [, ambiente, tipo, ...resto] = requisicao.nextUrl.pathname.split("/");
+  const [, primeiro, segundo, ...resto] = requisicao.nextUrl.pathname.split("/");
+  const doisSegmentos = resto.length === 0 && segundo !== undefined && segundo !== "";
 
   const parInvalido =
-    resto.length === 0 &&
-    ambientesEnumerados().includes(ambiente) &&
-    tipo !== undefined &&
-    tipo !== "" &&
-    !parEnumerado(ambiente, tipo);
+    doisSegmentos &&
+    ambientesEnumerados().includes(primeiro) &&
+    !parEnumerado(primeiro, segundo);
 
-  if (!parInvalido) return NextResponse.next();
+  const colecaoInvalida = doisSegmentos && primeiro === "colecoes" && !colecaoEnumerada(segundo);
+
+  if (!parInvalido && !colecaoInvalida) return NextResponse.next();
 
   const destino = requisicao.nextUrl.clone();
   destino.pathname = NAO_EXISTE;
@@ -58,4 +66,4 @@ export function proxy(requisicao: NextRequest) {
 }
 
 /** Two-segment paths only. Everything else is none of this file's business. */
-export const config = { matcher: "/:ambiente/:tipo" };
+export const config = { matcher: "/:primeiro/:segundo" };

@@ -1,8 +1,9 @@
 import { readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { afterAll, beforeAll, describe, expect, test } from "bun:test";
-import { ambiente } from "../lib/catalogo";
-import { paresEnumerados } from "../lib/listagem/rotas";
+import { ambiente, colecoes } from "../lib/catalogo";
+import { colecoesEnumeradas, paresEnumerados } from "../lib/listagem/rotas";
+import { produtosDaColecao } from "../lib/listagem/conteudo";
 import { buscar, encerrarServidor, semScripts, servidorDeTeste } from "./helpers/servidor";
 
 // Seam 2 — the rendered route. Everything here is asserted against a built app
@@ -45,6 +46,33 @@ describe("the status contract", () => {
 
   test("a room that does not exist is a 404", async () => {
     expect((await buscar("/varanda")).status).toBe(404);
+  });
+
+  test("/produtos is a 200, with and without the room cut", async () => {
+    expect((await buscar("/produtos")).status).toBe(200);
+    expect((await buscar("/produtos?ambiente=quarto")).status).toBe(200);
+  });
+
+  test("every coleção is a 200", async () => {
+    for (const slug of colecoesEnumeradas()) {
+      const resposta = await buscar(`/colecoes/${slug}`);
+      expect({ slug, status: resposta.status }).toEqual({ slug, status: 200 });
+    }
+  });
+
+  // rotas.md's Deliberate omissions: the index was refused as a thin page, and
+  // the segment stays reserved. A 200 here would be the stub the map ruled out.
+  test("/colecoes has no index, and says so with a 404", async () => {
+    const resposta = await buscar("/colecoes");
+    expect(resposta.status).toBe(404);
+    expect(semScripts(resposta.html)).not.toMatch(/\d+ PEÇAS/);
+  });
+
+  test("a coleção that does not exist is a 404 with the store's chrome", async () => {
+    const resposta = await buscar("/colecoes/jatoba");
+    expect(resposta.status).toBe(404);
+    expect(semScripts(resposta.html)).toContain("Não há nada neste endereço.");
+    expect(semScripts(resposta.html)).toContain("CNPJ");
   });
 
   // The pair is refused **before routing** (`proxy.ts`), which is what
@@ -154,5 +182,91 @@ describe("the route tree", () => {
     expect(arquivos(app).filter((caminho) => /(^|\/)loading\.(tsx|ts|jsx|js)$/.test(caminho))).toEqual(
       [],
     );
+  });
+});
+
+// catalogo.md §10 — the same listing with the room taken away
+describe("/produtos", () => {
+  let html = "";
+
+  beforeAll(async () => {
+    html = semScripts((await buscar("/produtos")).html);
+  });
+
+  test("is a system label in the annotation voice, not a Mincho title", () => {
+    expect(html).toContain("<title>Todas as peças | Canto Zen</title>");
+    expect(html).toContain("TODAS AS PEÇAS");
+    expect(html).not.toContain("AMBIENTE</p>");
+  });
+
+  test("carries no tipo band — there is no room whose curation to show", () => {
+    expect(html).not.toContain(">TODAS<");
+  });
+
+  test("offers AMBIENTE as a facet, which no room route does", async () => {
+    expect(html).toContain("AMBIENTE");
+    expect(html).toContain('href="/produtos?ambiente=quarto"');
+    expect(semScripts((await buscar("/sala")).html)).not.toContain("?ambiente=");
+  });
+
+  test("offers no TIPO facet — type is a path segment, not a query key", () => {
+    expect(html).not.toContain("?tipo=");
+  });
+
+  test("lists pieces from every room at once", async () => {
+    const primeiraPagina = html;
+    expect(primeiraPagina).toMatch(/\d+ PEÇAS/);
+    expect(primeiraPagina).toContain('href="/produtos?pagina=2"');
+  });
+
+  test("cuts to one room on ?ambiente=, and says so in the trigger", async () => {
+    const filtrada = semScripts((await buscar("/produtos?ambiente=quarto")).html);
+    expect(filtrada).toContain("AMBIENTE · QUARTO");
+  });
+});
+
+// catalogo.md §9 — the coleção preserves what a sort would destroy
+describe("a coleção listing", () => {
+  const reboco = colecoes[0]!;
+  let html = "";
+
+  beforeAll(async () => {
+    html = semScripts((await buscar(`/colecoes/${reboco.slug}`)).html);
+  });
+
+  test("is titled and described by the coleção's own authored copy", () => {
+    expect(html).toContain(`<title>${reboco.nome} | Canto Zen</title>`);
+    expect(html).toContain("COLEÇÃO");
+    expect(html).toContain(reboco.descricao);
+  });
+
+  test("states the coleção's length as its régua", () => {
+    expect(html).toContain(`${reboco.produtos.length} PEÇAS`);
+  });
+
+  test("renders neither the tipo band nor the filter and sort bar", () => {
+    expect(html).not.toContain(">TODAS<");
+    expect(html).not.toContain("ORDENAR");
+    expect(html).not.toContain("MATERIAL");
+  });
+
+  // The order in the markup is the order the coleção authored — the one thing
+  // the page exists for, and the thing a sort control would offer to destroy.
+  test("renders the pieces in the authored sequence", () => {
+    const posicoes = produtosDaColecao(reboco.slug).map((produto) =>
+      html.indexOf(`href="/produtos/${produto.slug}"`),
+    );
+    expect(posicoes.every((posicao) => posicao > -1)).toBe(true);
+    expect(posicoes).toEqual([...posicoes].sort((a, b) => a - b));
+  });
+
+  test("ignores the sort it does not support rather than erroring on it", async () => {
+    const resposta = await buscar(`/colecoes/${reboco.slug}?ordem=maior-preco&cor=cru`);
+    expect(resposta.status).toBe(200);
+    const posicoes = produtosDaColecao(reboco.slug).map((produto) =>
+      semScripts(resposta.html).indexOf(`href="/produtos/${produto.slug}"`),
+    );
+    expect(posicoes.every((posicao) => posicao > -1)).toBe(true);
+    expect(posicoes).toEqual([...posicoes].sort((a, b) => a - b));
   });
 });
