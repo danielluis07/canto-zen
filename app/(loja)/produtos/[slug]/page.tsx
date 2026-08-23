@@ -49,8 +49,8 @@ import { Intervalo, Principal } from "@/components/produto/fotos";
  * bar would cover exactly the scale drawing and the measurements table, the two
  * things this page exists for.
  *
- * The CEP block of §2.7 is the next ticket's and is not here; the rest of the
- * page is.
+ * The CEP block of §2.7 renders inside the buy box, below the CTA: frete is
+ * answered here rather than first met at checkout.
  */
 export const dynamicParams = false;
 
@@ -159,6 +159,14 @@ export default async function PaginaDeProduto({ params }: PageProps<"/produtos/[
             <Compra
               slug={produto.slug}
               esgotado={produto.disponibilidade === "esgotado"}
+              // The four fields §2.7's quote reads, and not the whole record:
+              // this is the client boundary, and what crosses it is named.
+              peca={{
+                embalagem: produto.embalagem,
+                freteGratis: produto.freteGratis,
+                disponibilidade: produto.disponibilidade,
+                prazoProducaoSemanas: produto.prazoProducaoSemanas,
+              }}
               irmao={irmaoDisponivel(produto)}
               montagem={montagemDaPagina(produto)}
             />

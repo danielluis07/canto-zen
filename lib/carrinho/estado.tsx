@@ -54,6 +54,24 @@ export function adicionarAoCarrinho(
   };
 }
 
+/**
+ * The session CEP — `pagina-produto.md` §2.7, `build-spec.md` §State.
+ *
+ * Typed once on the produto page and read pre-filled by the cart and the
+ * checkout: asking for the same CEP three times is the defect the convention
+ * exists to avoid, and one field on `Carrinho` is what makes the three surfaces
+ * unable to disagree. Stored as the **bare eight digits**, so a reader who typed
+ * the hyphen and one who did not leave the same value behind, and the surfaces
+ * downstream mask it themselves.
+ *
+ * A malformed CEP is not remembered: it is the `Corrigível` the field answers,
+ * and carrying it forward would pre-fill checkout with a known typo.
+ */
+export function lembrarCep(carrinho: Carrinho, cep: string): Carrinho {
+  const digitos = cep.replace(/\D/g, "");
+  return digitos.length === 8 ? { ...carrinho, cep: digitos } : carrinho;
+}
+
 type EstadoCarrinho = {
   carrinho: Carrinho;
   definirCarrinho: Dispatch<SetStateAction<Carrinho>>;

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import { adicionarAoCarrinho, useDefinirCarrinho } from "@/lib/carrinho/estado";
+import type { PecaParaFrete } from "@/lib/produto/cep";
+import { Cep } from "./cep";
 import {
   CTA_ADICIONADO,
   CTA_COMPRAR,
@@ -14,6 +16,8 @@ import {
 type Props = {
   slug: string;
   esgotado: boolean;
+  /** What §2.7's quote reads: the box, the freteGratis scope, the prazo facts. */
+  peca: PecaParaFrete;
   /** `null` for a piece whose família holds nothing available — §2.6. */
   irmao: { rotulo: string; href: string } | null;
   /** `null` for a piece that needs no assembly — §2.8. */
@@ -25,8 +29,10 @@ type Props = {
  *
  * They are one component because they are one decision: montagem travels as an
  * **attribute of the cart line** (`carrinho.md` §4.3), so the CTA has to read
- * the checkbox beside it. The CEP block that §2.7 puts between them is the next
- * ticket's and is deliberately absent.
+ * the checkbox beside it. The CEP block §2.7 puts between them renders here for
+ * the neighbouring reason: it is the third control of the same buy box, and it
+ * has to sit below the CTA and above montagem, which is a position and not a
+ * component boundary.
  *
  * **No quantity selector.** The decision this page asks for is *this piece or
  * not*; quantity belongs to the cart, which has to edit it anyway.
@@ -37,7 +43,7 @@ type Props = {
  * of `navbar.md`, and navigating to `/carrinho` would end the browsing session
  * on exactly the page where *outros acabamentos* invites lateral movement.
  */
-export function Compra({ slug, esgotado, irmao, montagem }: Props) {
+export function Compra({ slug, esgotado, peca, irmao, montagem }: Props) {
   const [contratarMontagem, definirMontagem] = useState(false);
   const [adicionado, definirAdicionado] = useState(false);
   const definirCarrinho = useDefinirCarrinho();
@@ -82,6 +88,8 @@ export function Compra({ slug, esgotado, irmao, montagem }: Props) {
           {CTA_COMPRAR}
         </button>
       )}
+
+      <Cep peca={peca} />
 
       {montagem && (
         <div className="mt-rhythm-5">

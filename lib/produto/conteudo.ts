@@ -7,8 +7,9 @@
 // only place it: the same split `lib/listagem/conteudo.ts` makes for the four
 // listing surfaces.
 //
-// The CEP block (`pagina-produto.md` §2.7) is deliberately absent. It is the
-// next ticket's, and `lib/catalogo/frete.ts` already holds the rule it will read.
+// The CEP block (`pagina-produto.md` §2.7) is the one part of the page that
+// answers a reader rather than a record, so it lives in `cep.ts` beside this
+// file: same split, one file per species of reasoning.
 
 import {
   ambiente,
