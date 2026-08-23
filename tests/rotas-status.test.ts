@@ -4,11 +4,13 @@ import { afterAll, beforeAll, describe, expect, test } from "bun:test";
 import {
   ambiente,
   colecoes,
+  conteudoHome,
   precoAVista,
   precoMontagem,
   produto,
   reais,
 } from "../lib/catalogo";
+import { CAMPOS_DE_SERVICO, descricaoDaHome } from "../lib/home/conteudo";
 import { colecoesEnumeradas, paresEnumerados } from "../lib/listagem/rotas";
 import { produtosDaColecao } from "../lib/listagem/conteudo";
 import {
@@ -116,6 +118,57 @@ describe("every route", () => {
     for (const rota of ["/", "/sala", "/escritorio/estantes", "/cozinha/sofas"]) {
       expect((await buscar(rota)).html).toContain('lang="pt-BR"');
     }
+  });
+});
+
+// home.md — the seven sections as the document actually served. The budgets and
+// the section order are asserted on the markup in `tests/home-marcacao.test.tsx`;
+// what only the response can answer is the title and the description.
+describe("the home", () => {
+  let html = "";
+
+  beforeAll(async () => {
+    html = semScripts((await buscar("/")).html);
+  });
+
+  // rotas.md §1 — appending the brand to the brand stutters, so the one route
+  // that is the brand carries no suffix.
+  test("is titled by the wordmark alone, unsuffixed", () => {
+    expect(html).toContain("<title>Canto Zen</title>");
+    expect(html).not.toContain("<title>Canto Zen | Canto Zen</title>");
+  });
+
+  test("is described over the catalogue, counting it", () => {
+    expect(html).toContain(`content="${descricaoDaHome()}"`);
+  });
+
+  test("opens on the authored piece, with its price and its cota", () => {
+    const heroi = produto(conteudoHome.destaqueHome)!;
+    expect(html).toContain(heroi.nome);
+    expect(html).toContain(assinatura(heroi));
+    expect(html).toContain(reais(precoAVista(heroi.precoTabela)));
+    expect(html).toContain(`L ${heroi.medidas.largura} CM`);
+    expect(html).toContain(`href="/produtos/${heroi.slug}"`);
+  });
+
+  test("offers the four ambientes and one coleção in context", () => {
+    for (const slug of ["sala", "quarto", "cozinha", "escritorio"]) {
+      expect(html).toContain(`href="/${slug}"`);
+    }
+    expect(html).toContain(`href="/colecoes/${conteudoHome.colecaoDestaque}"`);
+    expect(html).toContain("6 PEÇAS");
+  });
+
+  test("states the service facts and the marcenaria claim", () => {
+    for (const campo of CAMPOS_DE_SERVICO) expect(html).toContain(campo.linha);
+    expect(html).toContain(conteudoHome.marcenaria.linha);
+  });
+
+  test("surfaces the editorial lane, and the way to the article it held back", () => {
+    for (const slug of conteudoHome.inspiracoes) {
+      expect(html).toContain(`href="/inspiracoes/${slug}"`);
+    }
+    expect(html).toContain("VER TODAS AS INSPIRAÇÕES");
   });
 });
 
