@@ -27,14 +27,22 @@
 // and it does not bite: the taxonomy is static, pure data, so a copy of it in
 // this bundle is the same table and not a second source of truth.
 //
-// It handles **two-segment paths** only, and only the two whose first segment
+// It handles **two-segment paths** only, and only the three whose first segment
 // already decides what the second must be. A path under one of the four rooms
 // can only ever be a room × tipo listing — `rotas.md` §1 reserves the top-level
-// namespace around the four — and a path under `colecoes` can only ever be a
-// coleção, that segment being reserved by the same table. Both judgements are
-// certain, and no future route can collide with either. A one-segment path is
-// not certain (`/sobre` and `/varanda` are the same shape until the route
-// exists), so it is left to the page's `notFound()`.
+// namespace around the four — a path under `colecoes` can only ever be a
+// coleção, and a path under `produtos` can only ever be a produto, both segments
+// being reserved by the same table. All three judgements are certain, and no
+// future route can collide with any of them. A one-segment path is not certain
+// (`/sobre` and `/varanda` are the same shape until the route exists), so it is
+// left to the page's `notFound()`.
+//
+// `/produtos/{slug}` is here for the *document* and not for the status. That
+// route reads no query, so it prerenders and `dynamicParams = false` already
+// answers an unenumerated slug with a real `404` — but Next serves that one from
+// its minimal error document, outside the root layout, which loses the navbar and
+// the footer exactly as a rendered `notFound()` does. Refusing the slug before
+// routing is what keeps the store's own page around it.
 //
 // `/colecoes` itself is one segment and has no `page.tsx`, so it 404s through
 // the router with the app's own not-found — which is exactly what `rotas.md`'s
@@ -42,7 +50,12 @@
 // arrange that, and nothing here may undo it.
 
 import { NextResponse, type NextRequest } from "next/server";
-import { ambientesEnumerados, colecaoEnumerada, parEnumerado } from "@/lib/listagem/rotas";
+import {
+  ambientesEnumerados,
+  colecaoEnumerada,
+  parEnumerado,
+  produtoEnumerado,
+} from "@/lib/listagem/rotas";
 
 /** Three segments, which no route in `rotas.md`'s table has. A routing miss. */
 const NAO_EXISTE = "/nao-existe/nao-existe/nao-existe";
@@ -58,7 +71,9 @@ export function proxy(requisicao: NextRequest) {
 
   const colecaoInvalida = doisSegmentos && primeiro === "colecoes" && !colecaoEnumerada(segundo);
 
-  if (!parInvalido && !colecaoInvalida) return NextResponse.next();
+  const produtoInvalido = doisSegmentos && primeiro === "produtos" && !produtoEnumerado(segundo);
+
+  if (!parInvalido && !colecaoInvalida && !produtoInvalido) return NextResponse.next();
 
   const destino = requisicao.nextUrl.clone();
   destino.pathname = NAO_EXISTE;

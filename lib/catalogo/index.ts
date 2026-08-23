@@ -99,6 +99,17 @@ export const produto = (slug: string): Produto | undefined => {
 };
 
 /**
+ * Whether a slug names a row, asked without composing one. `proxy.ts` decides
+ * `/produtos/{slug}` before routing and runs on every request in that shape, so
+ * it wants the key set and not sixty-five derived records.
+ */
+export const existeProduto = (slug: string): boolean =>
+  produtosAutorados.some((p) => p.slug === slug);
+
+/** Every produto slug, in table order — the enumeration the router prerenders. */
+export const slugsDeProdutos = (): string[] => produtosAutorados.map((p) => p.slug);
+
+/**
  * Routeless: `familias` is not a reserved segment and must not become one. The
  * designer is derived from the tipo of the produtos that carry this família,
  * which is why it is not stored on the record.

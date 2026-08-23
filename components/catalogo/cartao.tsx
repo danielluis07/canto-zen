@@ -1,20 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { proporcaoDoPrincipal, type Produto, type Proporcao } from "@/lib/catalogo";
+import { proporcaoDoPrincipal, type Produto } from "@/lib/catalogo";
 import { linhaDoCartao, precoAnteriorDoCartao, precoDoCartao } from "@/lib/listagem/conteudo";
-
-/**
- * The three enumerated ratios — `imagens.md` §2. The box declares the piece's
- * own proportion before anything loads and holds a flat `--kozo` field until
- * the photograph paints, so the ragged grid `catalogo.md` §5 asked for never
- * shifts a row. On failure the field simply stays: no icon, no placeholder
- * glyph, no `IMAGEM INDISPONÍVEL`.
- */
-const CLASSE_DA_PROPORCAO: Record<Proporcao, string> = {
-  "3:2": "aspect-[3/2]",
-  "1:1": "aspect-square",
-  "4:5": "aspect-[4/5]",
-};
+import { CLASSE_DA_PROPORCAO } from "@/components/marca/proporcao";
 
 /**
  * The piece plus the text under it — there is no box, no border, no background

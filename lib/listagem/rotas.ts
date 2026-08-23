@@ -9,7 +9,7 @@
 // The router spends these at build time (`generateStaticParams`), which is why
 // an unenumerated pair never reaches a page that would have to validate it.
 
-import { ambiente, ambientes, colecoes } from "../catalogo";
+import { ambiente, ambientes, colecoes, existeProduto, slugsDeProdutos } from "../catalogo";
 
 export type ParDeRota = { ambiente: string; tipo: string };
 
@@ -47,3 +47,18 @@ export const colecoesEnumeradas = (): string[] => colecoes.map((c) => c.slug);
 /** Whether `/colecoes/{slug}` is a place. Everything else under it is a 404. */
 export const colecaoEnumerada = (slug: string): boolean =>
   colecoes.some((c) => c.slug === slug);
+
+// ---------------------------------------------------------------------------
+// Produtos — rotas.md's `/produtos/[slug]`, flat
+// ---------------------------------------------------------------------------
+
+/**
+ * Every produto slug. The router prerenders exactly these and answers `404` for
+ * anything else, which is what makes `dynamicParams = false` a real enumeration
+ * on this route rather than a declaration: the page reads no query, so it never
+ * renders per request the way the listings do.
+ */
+export const produtosEnumerados = (): string[] => slugsDeProdutos();
+
+/** Whether `/produtos/{slug}` is a place. `produtos` is a reserved segment. */
+export const produtoEnumerado = (slug: string): boolean => existeProduto(slug);

@@ -9,7 +9,32 @@
 // caller with no figure to state does not render this at all — see
 // `rotuloDaContagem`, which returns `null` at zero for exactly that reason.
 
-export function Regua({ rotulo }: { rotulo: string }) {
+/**
+ * The horizontal cota runs along the bottom edge of a piece; the vertical one
+ * sits **outside** the image, to its right, with the label rotated 90°
+ * (`marca.md` §2). `writing-mode` rather than a `transform`, so the label keeps
+ * a real box the flow can reserve.
+ */
+export function Regua({
+  rotulo,
+  orientacao = "horizontal",
+}: {
+  rotulo: string;
+  orientacao?: "horizontal" | "vertical";
+}) {
+  if (orientacao === "vertical") {
+    return (
+      <div className="relative flex w-[13px] justify-center self-stretch">
+        <span aria-hidden className="absolute inset-y-0 left-[6px] w-px bg-ink" />
+        <span aria-hidden className="absolute top-0 left-0 h-px w-[13px] bg-ink" />
+        <span aria-hidden className="absolute bottom-0 left-0 h-px w-[13px] bg-ink" />
+        <span className="t-annotation relative mt-rhythm-4 bg-plaster py-rhythm-2 text-ink [writing-mode:vertical-rl]">
+          {rotulo}
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div className="relative flex h-[13px] items-center">
       <span aria-hidden className="absolute inset-x-0 top-[6px] h-px bg-ink" />

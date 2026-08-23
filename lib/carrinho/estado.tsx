@@ -23,6 +23,37 @@ export function quantidadeTotal(carrinho: Carrinho): number {
   return carrinho.itens.reduce((total, item) => total + item.quantidade, 0);
 }
 
+/**
+ * What the produto page's `COMPRAR` hands over — `carrinho.md` §§4.1, 4.3.
+ *
+ * Adding a slug already present **increments** rather than appending a second
+ * line: one acabamento is one line, and two acabamentos of one família are two,
+ * which the slug already decides. Montagem travels as an attribute of the line
+ * and takes the choice made on this visit, the later statement of the same
+ * preference — the cart's own checkbox stays editable either way.
+ *
+ * A pure function over the state rather than a method on the provider, so the
+ * rule is testable below the DOM. The rest of the mutations — the stepper,
+ * removal, the montagem toggle — land with the carrinho surface.
+ */
+export function adicionarAoCarrinho(
+  carrinho: Carrinho,
+  { slug, montagem }: { slug: string; montagem: boolean },
+): Carrinho {
+  const presente = carrinho.itens.some((item) => item.slug === slug);
+
+  return {
+    ...carrinho,
+    itens: presente
+      ? carrinho.itens.map((item) =>
+          item.slug === slug
+            ? { ...item, quantidade: item.quantidade + 1, montagem }
+            : item,
+        )
+      : [...carrinho.itens, { slug, quantidade: 1, montagem }],
+  };
+}
+
 type EstadoCarrinho = {
   carrinho: Carrinho;
   definirCarrinho: Dispatch<SetStateAction<Carrinho>>;
