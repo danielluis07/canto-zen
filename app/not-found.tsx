@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import { Navbar } from "@/components/chrome/navbar";
 import { Rodape } from "@/components/chrome/rodape";
 import { BlocoDeRecuperacao } from "@/components/erros/recuperacao";
 import {
@@ -13,9 +14,9 @@ import {
  * The one not-found surface — `erros.md` §2.3: every `404` in the route table
  * lands here, and there is no second one.
  *
- * It sits outside both route groups, so it states its own `<main>` and its own
- * footer rather than inheriting one — `app/layout.tsx` gives a route outside
- * the groups neither, deliberately. The footer is not optional here:
+ * It sits outside both route groups, so it states its own navbar, `<main>` and
+ * footer rather than inheriting them — `app/layout.tsx` gives a route outside
+ * the groups none of the three, deliberately. The footer is not optional here:
  * `rodape.md` §6 makes the razão social, the CNPJ and the arrependimento notice
  * non-negotiable on a public page, and §2.1 asks this surface for the full
  * chrome because a 404 has no funnel to protect — it *is* navigation.
@@ -49,6 +50,7 @@ export default async function NaoEncontrada() {
 
   return (
     <>
+      <Navbar />
       <main className="flex-1">
         <div className="mx-auto w-full max-w-measure px-gutter pt-rhythm-7 pb-rhythm-7">
           <h1 className="t-display-l max-w-aside text-ink">{TITULO_DO_404}</h1>
