@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Rodape } from "@/components/chrome/rodape";
+import { BlocoDeRecuperacao } from "@/components/erros/recuperacao";
+import {
+  CABECALHO_DE_AMBIENTE,
+  CORPO_DO_404,
+  TITULO_DO_404,
+  recuperacao,
+} from "@/lib/erros/conteudo";
 
 /**
  * The one not-found surface — `erros.md` §2.3: every `404` in the route table
  * lands here, and there is no second one.
- *
- * It exists **now** because of §2.4's contract rather than because this issue
- * owns the surface. Reading the query (`catalogo.md` §3) renders the listing
- * routes per request, which is what took the room × tipo `404` out of Next's
- * prerendered not-found and into a rendered one; `proxy.ts` puts it back
- * at the routing layer, and this file is the page that layer serves.
  *
  * It sits outside both route groups, so it states its own `<main>` and its own
  * footer rather than inheriting one — `app/layout.tsx` gives a route outside
@@ -18,27 +20,40 @@ import { Rodape } from "@/components/chrome/rodape";
  * non-negotiable on a public page, and §2.1 asks this surface for the full
  * chrome because a 404 has no funnel to protect — it *is* navigation.
  *
- * Copy is `erros.md` §2.1, verbatim. **The recovery block of §2.2 is not here
- * yet**: it offers `/produtos`, which is not a route until that work lands, and
- * the ambiente-matched variant needs a path this page cannot read. Both belong
- * to the error-surfaces issue. What this file fixes is the contract — `404`,
- * `noindex`, the title, and the store's own chrome around it.
+ * **No photograph and no régua** (§1's two ausências autoradas). A photograph
+ * would force the page to pick a piece, which turns a failure into a
+ * merchandising act; a régua is reverence for an object, and there is no object
+ * here.
+ *
+ * Reading the header makes this page dynamic, and the `force-dynamic` below is
+ * not ceremony: without it Next builds `/_not-found` as a static shell and puts
+ * the header-reading subtree behind a Suspense boundary, which on a non-streamed
+ * `404` is never filled in — the response comes back with the right status, the
+ * right title and an **empty body**. Declaring the route dynamic renders it
+ * whole, in one pass, with no boundary to postpone.
+ *
+ * The `404` survives that because §2.4's contract holds around it: there is no
+ * `loading.tsx` anywhere, so nothing puts a fallback in front of the response
+ * and the status is still the router's to set when the first byte goes out.
+ * `tests/erros.test.ts` asserts both halves — the status and the body.
  */
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Página não encontrada",
   robots: { index: false, follow: true },
 };
 
-export default function NaoEncontrada() {
+export default async function NaoEncontrada() {
+  const ambiente = (await headers()).get(CABECALHO_DE_AMBIENTE);
+
   return (
     <>
       <main className="flex-1">
         <div className="mx-auto w-full max-w-measure px-gutter pt-rhythm-7 pb-rhythm-7">
-          <h1 className="t-display-l max-w-aside text-ink">Não há nada neste endereço.</h1>
-          <p className="t-body mt-rhythm-4 max-w-reading text-ink">
-            O catálogo é enumerado: cada ambiente e cada tipo têm um endereço próprio. Este não é
-            um deles.
-          </p>
+          <h1 className="t-display-l max-w-aside text-ink">{TITULO_DO_404}</h1>
+          <p className="t-body mt-rhythm-4 max-w-reading text-ink">{CORPO_DO_404}</p>
+          <BlocoDeRecuperacao recuperacao={recuperacao(ambiente)} />
         </div>
       </main>
       <Rodape variante="completo" />

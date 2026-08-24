@@ -1,69 +1,73 @@
-// `rotas.md` §6 at the routing layer — **enumerated, not generated**.
+// `rotas.md` §6 and §7 at the routing layer — **enumerated, not generated**.
 //
 // `proxy.ts` is the Next 16 convention; `middleware.ts` is the deprecated name
 // for the same file, and only the file and the export changed.
 //
 // This file exists because of one Next 16 behaviour, and it is worth stating
-// plainly so nobody deletes it as ceremony:
+// plainly so nobody deletes it as ceremony. There are **three** ways a request
+// can end up a `404` in this app, and only one of them renders the store's own
+// page:
 //
-// `dynamicParams = false` is enforced against the *prerendered* param set. The
-// listing routes read the query (`catalogo.md` §3 makes every filter selection a
-// real navigation to a server-rendered URL), so they render per request, and a
-// request-rendered path never meets that check — `/cozinha/sofas` reached the
-// page and answered `200` with an empty grid, which is precisely the soft-404
-// the declaration exists to prevent.
+// 1. **`dynamicParams = false` refuses a param.** Answered from Next's minimal
+//    error document — a real `404` status with an empty `<body>`, no
+//    `lang="pt-BR"`, no navbar and no footer.
+// 2. **`notFound()` is raised during a render.** The same minimal document, for
+//    the same reason: it is served outside the root layout.
+// 3. **No route matches the path at all.** *This* one renders `app/not-found.tsx`
+//    inside the root layout, with the full chrome.
 //
-// The page's own `notFound()` fixes the status but not the document: a
-// `notFound()` raised during a render is served from Next's minimal error
-// document, outside the root layout, so it loses `lang="pt-BR"`, the navbar and
-// the footer — and `rodape.md` §6 makes the footer's identification
-// non-negotiable on a public page. A **routing** miss does not: it serves the
-// app's own `not-found` inside the root layout, with the full chrome.
+// `rodape.md` §6 makes the footer's razão social, CNPJ and arrependimento notice
+// non-negotiable on a public page, and `erros.md` §2.1 asks the 404 for that
+// chrome because a 404 has no funnel to protect — it *is* navigation. So every
+// `404` in the route table has to be turned into case 3, before routing, and
+// that is the whole of this file: a path the table does not enumerate is
+// rewritten to a path Next cannot resolve.
 //
-// So the pair is decided before routing, from the same declaration the router
-// reads. There is no second list here: `parEnumerado` is `Ambiente.tipos`,
-// which is `rotas.md`'s own table. Sharing that module with the render is
-// exactly what `proxy.js`'s "do not rely on shared modules" caveat is about,
-// and it does not bite: the taxonomy is static, pure data, so a copy of it in
-// this bundle is the same table and not a second source of truth.
+// Two consequences worth naming:
 //
-// It handles **two-segment paths** only, and only the four whose first segment
-// already decides what the second must be. A path under one of the four rooms
-// can only ever be a room × tipo listing — `rotas.md` §1 reserves the top-level
-// namespace around the four — a path under `colecoes` can only ever be a
-// coleção, a path under `produtos` can only ever be a produto, and a path under
-// `inspiracoes` can only ever be an article, every segment being reserved by the
-// same table, and a path under `politicas` can only ever be one of the four
-// documents. All five judgements are certain, and no future route can collide
-// with any of them. A one-segment path is not certain (`/sobre` and `/varanda`
-// are the same shape until the route exists), so it is left to the page's
-// `notFound()`.
+// - **`/cozinha/sofas` never reaches the page.** `dynamicParams = false` is
+//   enforced against the *prerendered* param set, and the listing routes read
+//   the query (`catalogo.md` §3 makes every filter selection a real navigation),
+//   so they render per request and never meet that check at all. The page's own
+//   `notFound()` fixes the status but not the document (case 2). Deciding the
+//   pair here fixes both.
+// - **The room travels with it.** `erros.md` §2.2's ambiente-matched recovery
+//   block needs to know which room was asked for, and the rewrite destroys the
+//   path. It goes as a request header, set only when the first segment is one of
+//   the four — see `CABECALHO_DE_AMBIENTE`.
 //
-// `/produtos/{slug}`, `/inspiracoes/{slug}` and `/politicas/{slug}` are here for
-// the *document* and not for the status. Both routes read no query, so they prerender and
-// `dynamicParams = false` already answers an unenumerated slug with a real
-// `404` — but Next serves that one from its minimal error document, outside the
-// root layout, which loses the navbar and the footer exactly as a rendered
-// `notFound()` does. Refusing the slug before routing is what keeps the store's
-// own page around it. `inspiracoes.md` §7.2 makes that the editorial lane's
-// **only** negative state: the index cannot be empty and it has no filter to
-// return nothing, so an unknown article slug is the whole of what can go wrong.
-// `/politicas/{slug}` is the same case, and it is the one with a named
-// casualty: `institucional.md` §11 retires `prazos-e-entrega`, so that URL is a
-// live inbound link in the wild and has to land on the store's own 404 rather
-// than on Next's bare one.
+// There is no second list here. `parEnumerado` is `Ambiente.tipos`, which is
+// `rotas.md`'s own table; `paginasDeTopo` is that table's one-segment column,
+// transcribed once and held to the route tree by `tests/erros.test.ts`. Sharing
+// those modules with the render is exactly what `proxy.js`'s "do not rely on
+// shared modules" caveat is about, and it does not bite: the taxonomy is static,
+// pure data, so a copy of it in this bundle is the same table and not a second
+// source of truth.
 //
-// `/colecoes` itself is one segment and has no `page.tsx`, so it 404s through
-// the router with the app's own not-found — which is exactly what `rotas.md`'s
-// *Deliberate omissions* asks of the index it refused. Nothing here has to
-// arrange that, and nothing here may undo it.
+// The judgements it makes are all certain, and no future route can collide with
+// any of them:
+//
+// - **One segment** is a page or it is nothing — `rotas.md` §1 reserves the
+//   whole top-level namespace, and `paginasDeTopo` is what it reserves it for.
+//   `/colecoes` and `/politicas` are absent from that list on purpose: neither
+//   has an index, so both are a `404` the map asked for.
+// - **Two segments** can only ever be what their first segment already decides —
+//   a room × tipo listing, a coleção, a produto, an article or a policy — and
+//   under any other first segment, nothing. `institucional.md` §11 retires
+//   `prazos-e-entrega`, so that URL is a live inbound link in the wild and has
+//   to land on the store's own 404 rather than on Next's bare one.
+// - **Three or more** matches no route in the table, so it is already case 3 and
+//   this file leaves it alone. `NAO_EXISTE` is one of them, which is why it is
+//   the destination.
 
 import { NextResponse, type NextRequest } from "next/server";
+import { CABECALHO_DE_AMBIENTE } from "@/lib/erros/conteudo";
 import { artigoEnumerado } from "@/lib/inspiracoes/conteudo";
 import { politicaEnumerada } from "@/lib/institucional/politicas";
 import {
   ambientesEnumerados,
   colecaoEnumerada,
+  paginaDeTopo,
   parEnumerado,
   produtoEnumerado,
 } from "@/lib/listagem/rotas";
@@ -71,37 +75,49 @@ import {
 /** Three segments, which no route in `rotas.md`'s table has. A routing miss. */
 const NAO_EXISTE = "/nao-existe/nao-existe/nao-existe";
 
+/** What a two-segment path may be, by the segment that decides it. */
+const SOB_O_PRIMEIRO: Record<string, (slug: string) => boolean> = {
+  colecoes: colecaoEnumerada,
+  produtos: produtoEnumerado,
+  inspiracoes: artigoEnumerado,
+  politicas: politicaEnumerada,
+};
+
 export function proxy(requisicao: NextRequest) {
-  const [, primeiro, segundo, ...resto] = requisicao.nextUrl.pathname.split("/");
-  const doisSegmentos = resto.length === 0 && segundo !== undefined && segundo !== "";
+  const [, primeiro = "", segundo, ...resto] = requisicao.nextUrl.pathname.split("/");
 
-  const parInvalido =
-    doisSegmentos &&
-    ambientesEnumerados().includes(primeiro) &&
-    !parEnumerado(primeiro, segundo);
+  // The home, and anything three segments deep: already case 3, or a real page.
+  if (primeiro === "" || resto.length > 0) return NextResponse.next();
 
-  const colecaoInvalida = doisSegmentos && primeiro === "colecoes" && !colecaoEnumerada(segundo);
+  const umSegmento = segundo === undefined || segundo === "";
+  const emUmAmbiente = ambientesEnumerados().includes(primeiro);
 
-  const produtoInvalido = doisSegmentos && primeiro === "produtos" && !produtoEnumerado(segundo);
+  const existe = umSegmento
+    ? paginaDeTopo(primeiro)
+    : emUmAmbiente
+      ? parEnumerado(primeiro, segundo)
+      : (SOB_O_PRIMEIRO[primeiro]?.(segundo) ?? false);
 
-  const artigoInvalido = doisSegmentos && primeiro === "inspiracoes" && !artigoEnumerado(segundo);
-
-  const politicaInvalida = doisSegmentos && primeiro === "politicas" && !politicaEnumerada(segundo);
-
-  if (
-    !parInvalido &&
-    !colecaoInvalida &&
-    !produtoInvalido &&
-    !artigoInvalido &&
-    !politicaInvalida
-  ) {
-    return NextResponse.next();
-  }
+  if (existe) return NextResponse.next();
 
   const destino = requisicao.nextUrl.clone();
   destino.pathname = NAO_EXISTE;
-  return NextResponse.rewrite(destino);
+
+  // Only the pair carries the room. A one-segment miss has no room to offer —
+  // `/varanda` is not an ambiente, which is why it missed — and a bad produto or
+  // article slug says nothing about where in the catalogue the reader was.
+  if (umSegmento || !emUmAmbiente) return NextResponse.rewrite(destino);
+
+  const cabecalhos = new Headers(requisicao.headers);
+  cabecalhos.set(CABECALHO_DE_AMBIENTE, primeiro);
+  return NextResponse.rewrite(destino, { request: { headers: cabecalhos } });
 }
 
-/** Two-segment paths only. Everything else is none of this file's business. */
-export const config = { matcher: "/:primeiro/:segundo" };
+/**
+ * Every path but Next's own assets and the files served from `public/`. The
+ * matcher has to be this wide because case 1 above reaches routes this file
+ * used to ignore — a one-segment miss lands on `[ambiente]`, not on nothing.
+ */
+export const config = {
+  matcher: "/((?!_next/|favicon\\.ico|.*\\.[^/]+$).*)",
+};

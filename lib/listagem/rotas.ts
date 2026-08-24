@@ -62,3 +62,41 @@ export const produtosEnumerados = (): string[] => slugsDeProdutos();
 
 /** Whether `/produtos/{slug}` is a place. `produtos` is a reserved segment. */
 export const produtoEnumerado = (slug: string): boolean => existeProduto(slug);
+
+// ---------------------------------------------------------------------------
+// The top-level namespace — rotas.md §1's reserved segments
+// ---------------------------------------------------------------------------
+
+/**
+ * Every one-segment path that is a page, in the order `rotas.md`'s route table
+ * lists them.
+ *
+ * This exists for `proxy.ts` and for one Next behaviour it has to work around:
+ * a path that reaches `[ambiente]` and fails `dynamicParams = false` is answered
+ * from Next's **minimal error document** — a real `404`, with an empty `<body>`
+ * and no chrome at all. Only a path that matches *no route whatsoever* renders
+ * the app's own `not-found` inside the root layout. So the proxy has to know
+ * which one-segment paths are real in order to send the rest somewhere Next
+ * cannot resolve, and this is that list.
+ *
+ * Two segments the table reserves are deliberately **absent**, because neither
+ * has an index and both are a `404` on purpose: `/colecoes` (`rotas.md`'s
+ * *Deliberate omissions*) and `/politicas`, whose four documents are only ever
+ * reached by slug.
+ *
+ * It is a transcription of a table and not a second source of truth, and
+ * `tests/erros.test.ts` holds it to that: every directory with a `page.tsx`
+ * directly under a route group must appear here, and nothing else may.
+ */
+export const paginasDeTopo = (): string[] => [
+  ...ambientesEnumerados(),
+  "produtos",
+  "inspiracoes",
+  "carrinho",
+  "sobre",
+  "contato",
+];
+
+/** Whether `/{segmento}` is a page. The home is not a segment and never asks. */
+export const paginaDeTopo = (segmento: string): boolean =>
+  paginasDeTopo().includes(segmento);
