@@ -18,9 +18,18 @@
 export function Regua({
   rotulo,
   orientacao = "horizontal",
+  alinhamento = "inicio",
 }: {
   rotulo: string;
   orientacao?: "horizontal" | "vertical";
+  /**
+   * Where the label sits on the rule. `inicio` is the cota's position — it
+   * annotates a piece and reads from the same edge the measurement starts at.
+   * `centro` exists for the one régua in the store that annotates no object:
+   * `/sobre`'s closing `DESDE 2014` (`institucional.md` §5), which spans the
+   * full container and has no left edge to belong to.
+   */
+  alinhamento?: "inicio" | "centro";
 }) {
   if (orientacao === "vertical") {
     return (
@@ -36,11 +45,13 @@ export function Regua({
   }
 
   return (
-    <div className="relative flex h-[13px] items-center">
+    <div
+      className={`relative flex h-[13px] items-center ${alinhamento === "centro" ? "justify-center" : ""}`}>
       <span aria-hidden className="absolute inset-x-0 top-[6px] h-px bg-ink" />
       <span aria-hidden className="absolute top-0 left-0 h-[13px] w-px bg-ink" />
       <span aria-hidden className="absolute top-0 right-0 h-[13px] w-px bg-ink" />
-      <span className="t-annotation relative ml-rhythm-4 bg-plaster px-rhythm-2 text-ink">
+      <span
+        className={`t-annotation relative bg-plaster px-rhythm-2 text-ink ${alinhamento === "centro" ? "" : "ml-rhythm-4"}`}>
         {rotulo}
       </span>
     </div>
