@@ -27,22 +27,26 @@
 // and it does not bite: the taxonomy is static, pure data, so a copy of it in
 // this bundle is the same table and not a second source of truth.
 //
-// It handles **two-segment paths** only, and only the three whose first segment
+// It handles **two-segment paths** only, and only the four whose first segment
 // already decides what the second must be. A path under one of the four rooms
 // can only ever be a room × tipo listing — `rotas.md` §1 reserves the top-level
 // namespace around the four — a path under `colecoes` can only ever be a
-// coleção, and a path under `produtos` can only ever be a produto, both segments
-// being reserved by the same table. All three judgements are certain, and no
-// future route can collide with any of them. A one-segment path is not certain
-// (`/sobre` and `/varanda` are the same shape until the route exists), so it is
-// left to the page's `notFound()`.
+// coleção, a path under `produtos` can only ever be a produto, and a path under
+// `inspiracoes` can only ever be an article, every segment being reserved by the
+// same table. All four judgements are certain, and no future route can collide
+// with any of them. A one-segment path is not certain (`/sobre` and `/varanda`
+// are the same shape until the route exists), so it is left to the page's
+// `notFound()`.
 //
-// `/produtos/{slug}` is here for the *document* and not for the status. That
-// route reads no query, so it prerenders and `dynamicParams = false` already
-// answers an unenumerated slug with a real `404` — but Next serves that one from
-// its minimal error document, outside the root layout, which loses the navbar and
-// the footer exactly as a rendered `notFound()` does. Refusing the slug before
-// routing is what keeps the store's own page around it.
+// `/produtos/{slug}` and `/inspiracoes/{slug}` are here for the *document* and
+// not for the status. Both routes read no query, so they prerender and
+// `dynamicParams = false` already answers an unenumerated slug with a real
+// `404` — but Next serves that one from its minimal error document, outside the
+// root layout, which loses the navbar and the footer exactly as a rendered
+// `notFound()` does. Refusing the slug before routing is what keeps the store's
+// own page around it. `inspiracoes.md` §7.2 makes that the editorial lane's
+// **only** negative state: the index cannot be empty and it has no filter to
+// return nothing, so an unknown article slug is the whole of what can go wrong.
 //
 // `/colecoes` itself is one segment and has no `page.tsx`, so it 404s through
 // the router with the app's own not-found — which is exactly what `rotas.md`'s
@@ -50,6 +54,7 @@
 // arrange that, and nothing here may undo it.
 
 import { NextResponse, type NextRequest } from "next/server";
+import { artigoEnumerado } from "@/lib/inspiracoes/conteudo";
 import {
   ambientesEnumerados,
   colecaoEnumerada,
@@ -73,7 +78,11 @@ export function proxy(requisicao: NextRequest) {
 
   const produtoInvalido = doisSegmentos && primeiro === "produtos" && !produtoEnumerado(segundo);
 
-  if (!parInvalido && !colecaoInvalida && !produtoInvalido) return NextResponse.next();
+  const artigoInvalido = doisSegmentos && primeiro === "inspiracoes" && !artigoEnumerado(segundo);
+
+  if (!parInvalido && !colecaoInvalida && !produtoInvalido && !artigoInvalido) {
+    return NextResponse.next();
+  }
 
   const destino = requisicao.nextUrl.clone();
   destino.pathname = NAO_EXISTE;

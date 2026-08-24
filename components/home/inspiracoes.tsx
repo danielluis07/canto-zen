@@ -19,7 +19,9 @@ import {
  *
  * Thumbnail on columns 1–2, title on 3–7, summary on 8–10, 11–12 empty. The
  * whole row is one link; the thumbnail is the article's own `16:9` generation
- * and not a crop of one of its photographs. No régua and no price — Inspirações
+ * and not a crop of one of its photographs — and it is contained on its `--kozo`
+ * field rather than cropped to the slot, since nothing in this store is cropped
+ * to fit a container (`imagens.md` §4). No régua and no price — Inspirações
  * asserts neither, and that absence is authored.
  */
 export function Inspiracoes({ linhas }: { linhas: LinhaDeInspiracao[] }) {
@@ -39,7 +41,7 @@ export function Inspiracoes({ linhas }: { linhas: LinhaDeInspiracao[] }) {
                 alt={linha.thumb.alt}
                 fill
                 sizes="(min-width: 64rem) 17vw, 100vw"
-                className="object-cover"
+                className="object-contain"
               />
             </div>
 

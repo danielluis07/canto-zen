@@ -11,8 +11,17 @@ import {
   reais,
 } from "../lib/catalogo";
 import { CAMPOS_DE_SERVICO, descricaoDaHome } from "../lib/home/conteudo";
+import {
+  LINHA_DO_INDICE,
+  TITULO_DO_INDICE,
+  artigosEnumerados,
+  linhasDoIndice,
+  metadadosDoArtigo,
+  paginaDoArtigo,
+} from "../lib/inspiracoes/conteudo";
 import { colecoesEnumeradas, paresEnumerados } from "../lib/listagem/rotas";
 import { produtosDaColecao } from "../lib/listagem/conteudo";
+import { SEM_RESULTADOS } from "../lib/listagem/controles";
 import {
   acabamentosDaFamilia,
   assinatura,
@@ -533,5 +542,184 @@ describe("a coleção listing", () => {
     );
     expect(posicoes.every((posicao) => posicao > -1)).toBe(true);
     expect(posicoes).toEqual([...posicoes].sort((a, b) => a - b));
+  });
+});
+
+// inspiracoes.md — the editorial lane, both routes, as the documents served.
+//
+// This is the seam that proves the legends are real: every slug in every legend
+// is resolved here from the catálogo module and matched against the links the
+// server actually sent, so an article that names a piece the store does not
+// carry — or carries in another room — fails.
+describe("the Inspirações index", () => {
+  let html = "";
+
+  beforeAll(async () => {
+    html = semScripts((await buscar("/inspiracoes")).html);
+  });
+
+  test("is a 200", async () => {
+    expect((await buscar("/inspiracoes")).status).toBe(200);
+  });
+
+  // rotas.md §1 — §5.2 keeps the word out of the cabeçalho because the navbar
+  // has already said it, which makes the tab the only place it appears.
+  test("says the word in the tab that the cabeçalho withheld", () => {
+    expect(html).toContain("<title>Inspirações | Canto Zen</title>");
+    expect(html).toContain(TITULO_DO_INDICE);
+    expect(TITULO_DO_INDICE).not.toContain("Inspirações");
+    expect(html).toContain(`content="${LINHA_DO_INDICE}"`);
+  });
+
+  test("lists exactly four rows, one per ambiente, each annotated with its room", () => {
+    const linhas = linhasDoIndice();
+    expect(linhas).toHaveLength(4);
+
+    const posicoes = linhas.map((linha) => html.indexOf(`href="${linha.href}"`));
+    expect(posicoes).not.toContain(-1);
+    // The authored `ordem`, in the markup — never recency, and never the table.
+    expect(posicoes).toEqual([...posicoes].sort((a, b) => a - b));
+
+    for (const linha of linhas) {
+      expect(html).toContain(linha.titulo);
+      expect(html).toContain(linha.resumo);
+      expect(html).toContain(`>${linha.ambiente}<`);
+    }
+  });
+
+  // §7.1 — `?ambiente=` is retired unused, because with four articles where each
+  // article *is* a room the filter computes what is already on screen. §7.2 —
+  // there is no empty state to reach, so there is no zero-result copy either.
+  test("offers no ?ambiente= filter and no empty state", () => {
+    expect(html).not.toContain("?ambiente=");
+    expect(html).not.toContain(SEM_RESULTADOS);
+  });
+
+  // §3 — the two authored absences, asserted as absences in output.
+  test("states no price and spends no régua", () => {
+    expect(html).not.toContain("R$");
+    expect(html).not.toContain("h-[13px] items-center");
+    expect(html).not.toContain("4 ARTIGOS");
+  });
+
+  // §5.2 — a photograph over a list of photographs is the page competing with
+  // itself, and it would spend the room-shot licence on a page that is not one.
+  test("carries no photography above the rows", () => {
+    const pagina = html.slice(html.indexOf("<main"), html.indexOf("</main>"));
+    const cabecalho = pagina.slice(0, pagina.indexOf(linhasDoIndice()[0]!.href));
+    expect(cabecalho).toContain(TITULO_DO_INDICE);
+    expect(cabecalho).not.toContain("<img");
+  });
+});
+
+describe("an article", () => {
+  const artigo = paginaDoArtigo("a-luz-da-tarde-na-sala");
+  let html = "";
+
+  beforeAll(async () => {
+    html = semScripts((await buscar(`/inspiracoes/${artigo.slug}`)).html);
+  });
+
+  test("is a 200 on every one of the four, and a real 404 outside them", async () => {
+    for (const slug of artigosEnumerados()) {
+      const resposta = await buscar(`/inspiracoes/${slug}`);
+      expect({ slug, status: resposta.status }).toEqual({ slug, status: 200 });
+    }
+
+    // rotas.md §7 — the lane's one negative state, and it keeps the store's own
+    // chrome because `proxy.ts` decides it before routing.
+    const ausente = await buscar("/inspiracoes/a-varanda-ao-meio-dia");
+    expect(ausente.status).toBe(404);
+    expect(semScripts(ausente.html)).toContain("Não há nada neste endereço.");
+    expect(semScripts(ausente.html)).toContain("CNPJ");
+  });
+
+  test("is titled by the título and described by the resumo", () => {
+    const { titulo, descricao } = metadadosDoArtigo(artigo.slug);
+    expect(html).toContain(`<title>${titulo} | Canto Zen</title>`);
+    expect(html).toContain(`content="${descricao}"`);
+  });
+
+  test("opens on the room as annotation and the título as its one Mincho line", () => {
+    expect(html).toContain(`>${artigo.ambiente}<`);
+    expect(html).toContain(`<h1 class="t-display-xl mt-rhythm-3 text-ink">${artigo.titulo}</h1>`);
+    expect(html).toContain(artigo.abertura);
+    // §6.3 — the título is the page's single Display XL, and the passagens are
+    // Body throughout: a second one would give the article two heroes.
+    expect(html.match(/t-display-xl/g) ?? []).toHaveLength(1);
+  });
+
+  test("renders the fixed skeleton — three fotos and two passagens, interleaved", () => {
+    const ordem = [
+      artigo.fotos[0].alt,
+      artigo.passagens[0],
+      artigo.fotos[1].alt,
+      artigo.passagens[1],
+      artigo.fotos[2].alt,
+      artigo.fecho.rotulo,
+    ].map((marca) => html.indexOf(marca));
+
+    expect(ordem).not.toContain(-1);
+    expect([...ordem].sort((a, b) => a - b)).toEqual(ordem);
+  });
+
+  // §6.5 — the legend is the only route from a room story into the catálogo,
+  // and §10 requires every piece named to list under the article's own room.
+  test("names the visible pieces beneath each photograph, as links that resolve", () => {
+    for (const foto of artigo.fotos) {
+      expect(foto.legenda.length).toBeGreaterThanOrEqual(2);
+      for (const peca of foto.legenda) {
+        expect(html).toContain(`href="${peca.href}"`);
+        expect(html).toContain(peca.nome);
+        expect(produto(peca.slug)!.ambientes).toContain("sala");
+      }
+    }
+    // The legend sits in the figure's caption, and there is no thumbnail, no
+    // price, no availability and no cart affordance beside a name.
+    expect(html).toContain("<figcaption");
+    expect(html).not.toContain("COMPRAR");
+  });
+
+  test("closes on exactly one exit, and it is the room listing", () => {
+    expect(html).toContain(`href="${artigo.fecho.href}"`);
+    expect(html).toContain(artigo.fecho.rotulo);
+    expect(html).not.toContain("Próximo artigo");
+    expect(html).not.toContain("Peças neste ambiente");
+  });
+
+  // §3 — no price, no régua; §8 — no date, no author, no category.
+  //
+  // Scoped to the `<article>`, because the chrome is not this surface: the
+  // notice band above the navbar states `ATÉ 10X SEM JUROS` on every route in
+  // the store, and §3.1's refusal is of price *inside the story*, not of the
+  // sitewide disclosure `rodape.md` and `navbar.md` place around it.
+  test("carries neither of the two refusals, and none of the blog affordances", () => {
+    const corpo = html.slice(html.indexOf("<article"), html.indexOf("</article>"));
+
+    expect(corpo).not.toContain("R$");
+    expect(corpo).not.toContain("SEM JUROS");
+    expect(corpo).not.toContain("À VISTA NO PIX");
+    expect(corpo).not.toContain("h-[13px] items-center");
+    expect(corpo).not.toContain("<time");
+    expect(corpo).not.toContain("datePublished");
+    expect(corpo).not.toContain("CATEGORIA");
+  });
+
+  // imagens.md §4 and §6 — nothing is cropped, and loading is not a motion.
+  test("crops nothing and animates nothing into place", () => {
+    expect(html).toContain("object-contain");
+    expect(html).not.toContain("object-cover");
+    expect(html).not.toContain("blur");
+    expect(html).not.toContain("animate-");
+  });
+
+  // §4 and imagens.md §1.2 — the prohibition is binding, not stylistic, and
+  // every `alt` is authored, so the absence is observable in the document.
+  test("shows no person and no human trace in any frame", () => {
+    for (const foto of artigo.fotos) {
+      expect(html).toContain(`alt="${foto.alt}"`);
+      expect(foto.alt).not.toMatch(/pessoa|homem|mulher|mão|xícara|planta|livro/i);
+    }
+    expect(html).not.toContain('alt=""');
   });
 });
