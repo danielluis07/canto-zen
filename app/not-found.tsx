@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Navbar } from "@/components/chrome/navbar";
 import { Rodape } from "@/components/chrome/rodape";
 
 /**
@@ -11,9 +12,9 @@ import { Rodape } from "@/components/chrome/rodape";
  * prerendered not-found and into a rendered one; `proxy.ts` puts it back
  * at the routing layer, and this file is the page that layer serves.
  *
- * It sits outside both route groups, so it states its own `<main>` and its own
- * footer rather than inheriting one — `app/layout.tsx` gives a route outside
- * the groups neither, deliberately. The footer is not optional here:
+ * It sits outside both route groups, so it states its own navbar, `<main>` and
+ * footer rather than inheriting them — `app/layout.tsx` gives a route outside
+ * the groups none of the three, deliberately. The footer is not optional here:
  * `rodape.md` §6 makes the razão social, the CNPJ and the arrependimento notice
  * non-negotiable on a public page, and §2.1 asks this surface for the full
  * chrome because a 404 has no funnel to protect — it *is* navigation.
@@ -32,6 +33,7 @@ export const metadata: Metadata = {
 export default function NaoEncontrada() {
   return (
     <>
+      <Navbar />
       <main className="flex-1">
         <div className="mx-auto w-full max-w-measure px-gutter pt-rhythm-7 pb-rhythm-7">
           <h1 className="t-display-l max-w-aside text-ink">Não há nada neste endereço.</h1>

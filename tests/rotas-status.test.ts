@@ -778,3 +778,95 @@ describe("/carrinho", () => {
     expect(corpo).not.toMatch(/\d+ PEÇAS?/);
   });
 });
+
+// checkout.md §§2, 3, 10, 11 — the flow, as the server actually answers it
+describe("/checkout", () => {
+  let resposta = { status: 0, html: "" };
+  let html = "";
+
+  beforeAll(async () => {
+    resposta = await buscar("/checkout");
+    html = semScripts(resposta.html);
+  });
+
+  test("is a 200 that carries a title and no description", () => {
+    expect(resposta.status).toBe(200);
+    expect(html).toContain("<title>Checkout | Canto Zen</title>");
+    expect(html).not.toContain('name="description"');
+    expect(html).not.toContain("application/ld+json");
+    expect(html).not.toContain('property="og:image"');
+  });
+
+  test("is noindex, follow", () => {
+    expect(html).toContain("noindex");
+    expect(html).toContain("follow");
+  });
+
+  // rodape.md §9 — zones withheld, and the whole legal block kept: the decree's
+  // identification duty does not stop at checkout
+  test("renders the reduced footer, legal block intact", () => {
+    expect(html).toContain("CNPJ");
+    expect(html).toContain("AJUDA");
+    expect(html).not.toContain("AVISO DE NOVAS PEÇAS");
+    expect(html).not.toContain("AMBIENTES");
+  });
+
+  // §3 — the wordmark, and nothing else. Advertising four exits mid-purchase is
+  // chrome working against the page it sits on.
+  test("renders the wordmark-only navbar, with no cart affordance", () => {
+    expect(html).toContain(">Canto Zen<");
+    expect(html).not.toContain('href="/sala"');
+    expect(html).not.toContain("CARRINHO");
+    expect(html).not.toContain("FRETE CALCULADO POR CEP");
+  });
+
+  // §11 — the cart is browser state, so a cold arrival has none and is sent to
+  // `/carrinho`, which owns the empty state. Nothing is prerendered over it.
+  test("prerenders no form and no figure for a cart the server cannot see", () => {
+    expect(html).not.toContain("R$ 0,00");
+    expect(html).not.toContain("FINALIZAR PEDIDO");
+  });
+});
+
+describe("/pedido-confirmado", () => {
+  let resposta = { status: 0, html: "" };
+  let html = "";
+
+  beforeAll(async () => {
+    resposta = await buscar("/pedido-confirmado");
+    html = semScripts(resposta.html);
+  });
+
+  test("is a 200 that carries a title and no description", () => {
+    expect(resposta.status).toBe(200);
+    expect(html).toContain("<title>Pedido | Canto Zen</title>");
+    expect(html).not.toContain('name="description"');
+    expect(html).not.toContain("application/ld+json");
+  });
+
+  test("is noindex, follow", () => {
+    expect(html).toContain("noindex");
+    expect(html).toContain("follow");
+  });
+
+  // build-spec.md §Seam 2 — copy that is a commitment rather than direction, and
+  // the one string in this flow where a paraphrase is a defect
+  test("states verbatim that nothing was charged and nothing left the browser", () => {
+    expect(html).toContain("Nada foi cobrado, e nada que você digitou saiu deste navegador.");
+  });
+
+  // §11 — a page that renders a fictional order to somebody who did not just
+  // place one is the one genuinely misleading artefact this flow could produce
+  test("serves no order to a cold arrival", () => {
+    expect(html).not.toContain("PEDIDO Nº 0000");
+    expect(html).not.toContain("Pedido confirmado");
+    expect(html).not.toContain("R$");
+  });
+
+  test("keeps the reduced footer and offers the one way out", () => {
+    expect(html).toContain("CNPJ");
+    expect(html).not.toContain("AVISO DE NOVAS PEÇAS");
+    expect(html).toContain("VER TODAS AS PEÇAS");
+    expect(html).toContain('href="/produtos"');
+  });
+});

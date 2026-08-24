@@ -188,12 +188,18 @@ const compor = (peca: PecaDoCarrinho, item: ItemCarrinho): LinhaDoCarrinho => {
  * sells, and the honest rendering of a piece that is not in the catálogue is its
  * absence. Every reading below starts here, so the line list and the resumo can
  * never disagree about which items exist.
+ *
+ * Exported as `itensResolvidos` because `/checkout` starts from the same reading
+ * (`checkout.md` §§6.2, 12): a second resolver over the same cart is a second
+ * answer to "which items exist", and the two surfaces share a resumo.
  */
 const resolver = (carrinho: Carrinho, catalogo: CatalogoDoCarrinho) =>
   carrinho.itens.flatMap((item) => {
     const peca = catalogo[item.slug];
     return peca ? [{ peca, item }] : [];
   });
+
+export const itensResolvidos = resolver;
 
 export const linhasDoCarrinho = (
   carrinho: Carrinho,

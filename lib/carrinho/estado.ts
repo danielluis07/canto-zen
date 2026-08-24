@@ -113,6 +113,23 @@ export function definirMontagem(carrinho: Carrinho, slug: string, montagem: bool
 }
 
 /**
+ * What the checkout's transition leaves behind — `checkout.md` §11.
+ *
+ * **The cart is cleared at the transition**, and clearing is what makes the
+ * confirmation mean anything: a cart that survives its own purchase is a bug the
+ * reader will correctly read as one. The navbar counter returns to zero and the
+ * word `CARRINHO` loses its `(n)` (`navbar.md` §7).
+ *
+ * **The session CEP stays.** It is not cart contents — it is the reader's own
+ * CEP, typed on a PDP and shared by three surfaces (`build-spec.md` §State), and
+ * forgetting it here would ask for it a fourth time on the next visit. §11 names
+ * the counter and the items; it does not name this.
+ */
+export function esvaziarCarrinho(carrinho: Carrinho): Carrinho {
+  return carrinho.cep ? { itens: [], cep: carrinho.cep } : carrinhoVazio;
+}
+
+/**
  * The session CEP — `pagina-produto.md` §2.7, `build-spec.md` §State.
  *
  * Typed once on the produto page and read pre-filled by the cart and the
@@ -142,6 +159,7 @@ type LojaDoCarrinho = {
   remover: (slug: string) => void;
   alternarMontagem: (slug: string, montagem: boolean) => void;
   lembrarCepDe: (cep: string) => void;
+  esvaziar: () => void;
 };
 
 /**
@@ -167,6 +185,7 @@ export const useLojaDoCarrinho = create<LojaDoCarrinho>()((set) => ({
   alternarMontagem: (slug, montagem) =>
     set(({ carrinho }) => ({ carrinho: definirMontagem(carrinho, slug, montagem) })),
   lembrarCepDe: (cep) => set(({ carrinho }) => ({ carrinho: lembrarCep(carrinho, cep) })),
+  esvaziar: () => set(({ carrinho }) => ({ carrinho: esvaziarCarrinho(carrinho) })),
 }));
 
 /** The whole cart — the navbar counter's reading, and the cart page's. */

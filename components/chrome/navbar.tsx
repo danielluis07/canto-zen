@@ -12,6 +12,13 @@ import { NavegacaoAmbientes } from "./navegacao-ambientes";
 const AVISO = "FRETE CALCULADO POR CEP · ATÉ 10X SEM JUROS · PEÇAS SOB ENCOMENDA";
 
 /**
+ * `reduzida` is `/checkout`'s bar — `checkout.md` §3 — and it is this same
+ * component with zones withheld, the way `rodape.md` §9's reduced footer is that
+ * same footer. Not a second navbar.
+ */
+export type VarianteNavbar = "completa" | "reduzida";
+
+/**
  * The bar keeps the four ambientes one gesture away from anywhere in the store,
  * and does nothing else: no search, no icons, no mini-cart, no wishlist, no
  * language switcher, no phone number (`navbar.md` §1).
@@ -23,8 +30,39 @@ const AVISO = "FRETE CALCULADO POR CEP · ATÉ 10X SEM JUROS · PEÇAS SOB ENCOM
  *
  * The taxonomy is authored and renders on the server; only the cart count is
  * client state (§13).
+ *
+ * **`reduzida` is the wordmark and nothing else** — `checkout.md` §3, at the
+ * same constant 72px on the same 1px `--hairline` rule:
+ *
+ * - **No room links, no Inspirações, no mega menu.** Advertising four exits
+ *   mid-purchase is chrome working against the page it sits on. Leaving stays
+ *   possible through the wordmark; it is simply not offered.
+ * - **No `CARRINHO (n)`.** The resumo itemises the same cart half a screen away,
+ *   so the counter is a second answer to a question already answered. This is
+ *   the only surface where `navbar.md` §7's cart affordance is absent, and the
+ *   reason is redundancy, not concealment.
+ * - **No notice band.** `FRETE CALCULADO POR CEP · ATÉ 10X SEM JUROS` is
+ *   reassurance for a reader deciding whether to buy, and this reader has
+ *   decided; §3 describes the reduced bar as one band on one rule, and a
+ *   promotional line above a payment form is the register §3 refuses.
  */
-export function Navbar() {
+export function Navbar({ variante = "completa" }: { variante?: VarianteNavbar }) {
+  if (variante === "reduzida") {
+    return (
+      <header className="sticky top-0 z-50 border-b border-hairline bg-plaster">
+        <div className="mx-auto flex h-[var(--altura-navbar)] w-full max-w-measure items-center px-gutter">
+          <Link href="/" className="t-display-m text-ink">
+            Canto Zen
+          </Link>
+        </div>
+      </header>
+    );
+  }
+
+  return <Completa />;
+}
+
+function Completa() {
   const paineis: Record<string, PainelAmbiente> = Object.fromEntries(
     itensDeNavegacao
       .filter((item) => item.abrePainel)
