@@ -16,7 +16,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { lembrarCep, useCarrinho, useDefinirCarrinho } from "@/lib/carrinho/estado";
+import { useCarrinho, useLojaDoCarrinho } from "@/lib/carrinho/estado";
 import {
   BUSCA_CORREIOS,
   CEP_BOTAO,
@@ -31,7 +31,7 @@ import {
 
 export function Cep({ peca }: { peca: PecaParaFrete }) {
   const carrinho = useCarrinho();
-  const definirCarrinho = useDefinirCarrinho();
+  const lembrarCepDe = useLojaDoCarrinho((estado) => estado.lembrarCepDe);
 
   // Typed once, it holds for the whole session: a reader who quoted a CEP on
   // another produto finds this field filled and already answered. Asking for the
@@ -49,9 +49,7 @@ export function Cep({ peca }: { peca: PecaParaFrete }) {
     definirResultado(resposta);
     // A `Corrigível` is a typo, and a typo is not a CEP to carry into checkout.
     // Both `Fato` answers are remembered: an unserved CEP is still the reader's.
-    if (resposta.estado !== "corrigivel") {
-      definirCarrinho?.((atual) => lembrarCep(atual, entrada));
-    }
+    if (resposta.estado !== "corrigivel") lembrarCepDe(entrada);
   };
 
   const corrigivel = resultado?.estado === "corrigivel";

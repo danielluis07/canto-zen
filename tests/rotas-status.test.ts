@@ -723,3 +723,58 @@ describe("an article", () => {
     expect(html).not.toContain('alt=""');
   });
 });
+
+// carrinho.md — the served document.
+//
+// What only this seam can answer about `/carrinho` is the status, the metadata
+// and the chrome: the cart's own contents are browser state, so the prerendered
+// page is the **empty** surface by construction, which is also §7's designed
+// state rather than an accident. The three populated states are asserted as
+// markup in `tests/carrinho-marcacao.test.tsx`, and the arithmetic behind them
+// at seam 1 in `tests/carrinho.test.ts`.
+describe("/carrinho", () => {
+  let resposta = { status: 0, html: "" };
+  let html = "";
+
+  beforeAll(async () => {
+    resposta = await buscar("/carrinho");
+    html = semScripts(resposta.html);
+  });
+
+  test("is a 200 that carries a title and no description", () => {
+    expect(resposta.status).toBe(200);
+    expect(html).toContain("<title>Carrinho | Canto Zen</title>");
+    expect(html).not.toContain('name="description"');
+    expect(html).not.toContain("application/ld+json");
+    expect(html).not.toContain('property="og:image"');
+  });
+
+  // rotas.md §4 — the cart is a private surface, and follow keeps the links live
+  test("is noindex, follow", () => {
+    expect(html).toContain("noindex");
+    expect(html).toContain("follow");
+  });
+
+  // §1, rodape.md §9 — the reduced footer belongs to the checkout, not here:
+  // leaving the cart for an ambiente is a legitimate path.
+  test("keeps the complete footer, and the navbar's cart link", () => {
+    expect(html).toContain("CNPJ");
+    expect(html).toContain("AVISO DE NOVAS PEÇAS");
+    expect(html).toContain('href="/carrinho"');
+  });
+
+  // §7 — one sentence and one link, and the count vanishes rather than claiming (0)
+  test("opens on the empty surface, stating the fact and offering the way on", () => {
+    expect(html).toContain("Seu carrinho está vazio.");
+    expect(html).toContain("VER TODAS AS PEÇAS →");
+    expect(html).not.toContain("CARRINHO (0)");
+  });
+
+  // §2 — the first authored absence, and the índigo ration that follows from it
+  test("carries no régua and no price of any kind", () => {
+    const corpo = html.slice(html.indexOf("<main"), html.indexOf("<footer"));
+    expect(corpo).not.toContain("absolute inset-x-0 top-[6px] h-px bg-ink");
+    expect(corpo).not.toContain("R$");
+    expect(corpo).not.toMatch(/\d+ PEÇAS?/);
+  });
+});

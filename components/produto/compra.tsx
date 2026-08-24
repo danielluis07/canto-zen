@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { adicionarAoCarrinho, useDefinirCarrinho } from "@/lib/carrinho/estado";
+import { useLojaDoCarrinho } from "@/lib/carrinho/estado";
 import type { PecaParaFrete } from "@/lib/produto/cep";
 import { Cep } from "./cep";
 import {
@@ -46,12 +46,10 @@ type Props = {
 export function Compra({ slug, esgotado, peca, irmao, montagem }: Props) {
   const [contratarMontagem, definirMontagem] = useState(false);
   const [adicionado, definirAdicionado] = useState(false);
-  const definirCarrinho = useDefinirCarrinho();
+  const adicionar = useLojaDoCarrinho((estado) => estado.adicionar);
 
   const comprar = () => {
-    definirCarrinho?.((carrinho) =>
-      adicionarAoCarrinho(carrinho, { slug, montagem: contratarMontagem }),
-    );
+    adicionar({ slug, montagem: contratarMontagem });
     definirAdicionado(true);
   };
 

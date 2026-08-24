@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { schibstedGrotesk, zenOldMincho } from "@/fonts";
 import { Navbar } from "@/components/chrome/navbar";
-import { ProvedorCarrinho } from "@/lib/carrinho/estado";
 
 /**
  * The suffix `rotas.md` §1 puts on every route but the home, where appending
@@ -25,6 +24,10 @@ export const metadata: Metadata = {
  * `acessibilidade.md` §6 weighs seven stops before content against a permanent
  * visible affordance and records the omission, with the note that if the navbar
  * ever grows this is the first thing to revisit.
+ *
+ * There is **no cart provider** either. The cart is one store at module scope
+ * (`lib/carrinho/estado.ts`), which is what lets the navbar counter here and the
+ * `/carrinho` page below read the same state without a boundary wrapping both.
  */
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
@@ -32,10 +35,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="pt-BR"
       className={`${zenOldMincho.variable} ${schibstedGrotesk.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
-        <ProvedorCarrinho>
-          <Navbar />
-          {children}
-        </ProvedorCarrinho>
+        <Navbar />
+        {children}
       </body>
     </html>
   );
