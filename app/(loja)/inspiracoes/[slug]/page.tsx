@@ -7,6 +7,10 @@ import {
   metadadosDoArtigo,
   paginaDoArtigo,
 } from "@/lib/inspiracoes/conteudo";
+import { artigo as registroDoArtigo } from "@/lib/catalogo";
+import { compartilhamento, indexavel, tituloCompleto } from "@/lib/metadados/conteudo";
+import { noDoArtigo } from "@/lib/metadados/estrutura";
+import { DadosEstruturados } from "@/components/metadados/dados-estruturados";
 
 /**
  * `/inspiracoes/[slug]` — `inspiracoes.md` §6.
@@ -43,8 +47,22 @@ export async function generateMetadata({
 }: PageProps<"/inspiracoes/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   if (!artigoEnumerado(slug)) return {};
+
   const { titulo, descricao } = metadadosDoArtigo(slug);
-  return { title: titulo, description: descricao };
+  return {
+    title: titulo,
+    description: descricao,
+    ...indexavel(`/inspiracoes/${slug}`),
+    // The one route in the store where `og:type` is `article` (`rotas.md` §5).
+    // The thumb is 16:9 and is contained like any other frame — the field does
+    // the reconciling, so nothing is cropped to reach 1.91:1.
+    ...compartilhamento({
+      titulo: tituloCompleto(titulo),
+      descricao,
+      imagem: registroDoArtigo(slug)?.thumb,
+      tipo: "article",
+    }),
+  };
 }
 
 export default async function PaginaDeArtigo({ params }: PageProps<"/inspiracoes/[slug]">) {
@@ -53,9 +71,15 @@ export default async function PaginaDeArtigo({ params }: PageProps<"/inspiracoes
   // this renders. It is here so the read narrows on a fact the route already
   // guarantees, never as a second enumeration.
   const artigo = paginaDoArtigo(slug);
+  const registro = registroDoArtigo(slug)!;
 
   return (
     <article className="pt-rhythm-5 pb-rhythm-7">
+      {/* rotas.md §6 — one of the three node types the store emits. No
+          datePublished and no named author: Artigo carries no date, and a
+          byline is the founder biography institucional.md refused, arriving in
+          JSON-LD. */}
+      <DadosEstruturados nos={[noDoArtigo(registro)]} />
       {/* §6.3 — left five columns, right gutter empty. The título is the page's
           single Mincho headline; the passagens are Body throughout. */}
       <header className="mx-auto w-full max-w-measure px-gutter">

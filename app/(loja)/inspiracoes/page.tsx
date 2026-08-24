@@ -6,6 +6,7 @@ import {
   TITULO_DO_INDICE,
   linhasDoIndice,
 } from "@/lib/inspiracoes/conteudo";
+import { compartilhamento, indexavel, tituloCompleto } from "@/lib/metadados/conteudo";
 
 /**
  * `/inspiracoes` — `inspiracoes.md` §5.
@@ -30,6 +31,16 @@ import {
 export const metadata: Metadata = {
   title: METADADOS_DO_INDICE.titulo,
   description: METADADOS_DO_INDICE.descricao,
+  ...indexavel("/inspiracoes"),
+  // `rotas.md` §5's table gives this route `artigo.thumb`, and the four rows are
+  // peers in one authored order — so the card takes the **first** row's thumb.
+  // It is the same photograph that opens the page, which is what keeps a share
+  // preview about the page rather than about a piece chosen for the card.
+  ...compartilhamento({
+    titulo: tituloCompleto(METADADOS_DO_INDICE.titulo),
+    descricao: METADADOS_DO_INDICE.descricao,
+    imagem: linhasDoIndice()[0]?.thumb,
+  }),
 };
 
 export default function PaginaDeInspiracoes() {

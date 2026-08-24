@@ -15,6 +15,7 @@ import {
   marcenariaDaHome,
   pecasEmDestaque,
 } from "@/lib/home/conteudo";
+import { compartilhamento, indexavel } from "@/lib/metadados/conteudo";
 
 /**
  * The home — `home.md`. Seven sections in one order, and the page has one job:
@@ -37,7 +38,19 @@ import {
  * entry animation: the only transition on this page is the 120ms colour one on
  * interactive states.
  */
-export const metadata: Metadata = { description: descricaoDaHome() };
+export const metadata: Metadata = {
+  description: descricaoDaHome(),
+  ...indexavel("/"),
+  // The card carries the hero piece's `principal` (`rotas.md` §5's table), and
+  // its `og:title` is the bare wordmark: the home is the one route where the
+  // tab and the card are both just `Canto Zen`, for the same reason the title
+  // is unsuffixed.
+  ...compartilhamento({
+    titulo: "Canto Zen",
+    descricao: descricaoDaHome(),
+    imagem: destaqueDaHome()?.imagem,
+  }),
+};
 
 export default function Home() {
   // `null` only where the authored hero would have to be drawn without its

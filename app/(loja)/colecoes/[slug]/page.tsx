@@ -9,6 +9,8 @@ import {
 import { lerConsulta } from "@/lib/listagem/consulta";
 import { paginarNaOrdemAutorada } from "@/lib/listagem/controles";
 import { colecaoEnumerada, colecoesEnumeradas } from "@/lib/listagem/rotas";
+import { colecao } from "@/lib/catalogo";
+import { metadadosDeListagem } from "@/lib/metadados/conteudo";
 
 /**
  * The same template as the other three listings, minus two blocks and minus a
@@ -46,11 +48,25 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps<"/colecoes/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   if (!colecaoEnumerada(slug)) return {};
+
   const { titulo, descricao } = metadadosDaColecao(slug);
-  return { title: titulo, description: descricao };
+  return metadadosDeListagem({
+    caminho: `/colecoes/${slug}`,
+    titulo,
+    descricao,
+    imagem: colecao(slug)?.imagem,
+    consulta: lerConsulta(await searchParams),
+    conjunto: produtosDaColecao(slug),
+    // The grid holds the coleção's curated order and drops the facet keys, so
+    // the page number is clamped against that order rather than a filtered one.
+    // A facet key still makes the URL `noindex` (`rotas.md` §4) — that is a
+    // property of the URL, not of what this route chose to do with it.
+    filtravel: false,
+  });
 }
 
 export default async function PaginaDeColecao({

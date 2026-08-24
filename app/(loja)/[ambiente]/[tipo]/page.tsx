@@ -11,6 +11,7 @@ import {
 import { lerConsulta } from "@/lib/listagem/consulta";
 import { controlesDaListagem } from "@/lib/listagem/controles";
 import { parEnumerado, paresEnumerados } from "@/lib/listagem/rotas";
+import { metadadosDeListagem } from "@/lib/metadados/conteudo";
 
 /**
  * **Enumerated, not generated** — `rotas.md` §6. The declared room × tipo pairs
@@ -36,11 +37,23 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps<"/[ambiente]/[tipo]">): Promise<Metadata> {
   const { ambiente: slugAmbiente, tipo: slugTipo } = await params;
   if (!parEnumerado(slugAmbiente, slugTipo)) return {};
+
   const { titulo, descricao } = metadadosDoTipo(slugAmbiente, slugTipo);
-  return { title: titulo, description: descricao };
+  return metadadosDeListagem({
+    caminho: `/${slugAmbiente}/${slugTipo}`,
+    titulo,
+    descricao,
+    // **The type listing borrows the room's photograph** rather than its first
+    // result (`rotas.md` §5): a card whose image changes when a piece is
+    // reordered or sells out is a share preview that is not about the page.
+    imagem: ambiente(slugAmbiente)!.imagem,
+    consulta: lerConsulta(await searchParams),
+    conjunto: produtosDoTipo(slugAmbiente, slugTipo),
+  });
 }
 
 export default async function PaginaDeTipo({

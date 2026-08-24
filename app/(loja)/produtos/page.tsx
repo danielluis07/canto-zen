@@ -3,6 +3,8 @@ import { Listagem } from "@/components/catalogo/listagem";
 import { cabecalhoDaLoja, metadadosDaLoja, produtosDaLoja } from "@/lib/listagem/conteudo";
 import { lerConsulta } from "@/lib/listagem/consulta";
 import { controlesDaListagem } from "@/lib/listagem/controles";
+import { destaqueDaHome } from "@/lib/home/conteudo";
+import { metadadosDeListagem } from "@/lib/metadados/conteudo";
 
 /**
  * The listing with the room taken away — `catalogo.md` §10.
@@ -30,9 +32,23 @@ import { controlesDaListagem } from "@/lib/listagem/controles";
  * single literal path. It renders per request because it reads the query, like
  * every other listing.
  */
-export function generateMetadata(): Metadata {
+export async function generateMetadata({
+  searchParams,
+}: PageProps<"/produtos">): Promise<Metadata> {
   const { titulo, descricao } = metadadosDaLoja();
-  return { title: titulo, description: descricao };
+  return metadadosDeListagem({
+    caminho: "/produtos",
+    titulo,
+    descricao,
+    // `rotas.md` §5's table sends this route to the **home hero's** `principal`.
+    // It has no room and therefore no room photograph, and the alternative —
+    // the first card in the grid — is the result-dependent image §5 refuses.
+    imagem: destaqueDaHome()?.imagem,
+    // `?ambiente=` is supported here and nowhere else, and it is filter state:
+    // §4 canonicalises `/produtos?ambiente=quarto` to `/produtos`.
+    consulta: lerConsulta(await searchParams, { ambiente: true }),
+    conjunto: produtosDaLoja(),
+  });
 }
 
 export default async function PaginaDeProdutos({ searchParams }: PageProps<"/produtos">) {

@@ -21,6 +21,9 @@ import {
   trilha,
   trioDeMedidas,
 } from "@/lib/produto/conteudo";
+import { compartilhamento, indexavel, tituloCompleto } from "@/lib/metadados/conteudo";
+import { nosDoProduto } from "@/lib/metadados/estrutura";
+import { DadosEstruturados } from "@/components/metadados/dados-estruturados";
 import { Cartao } from "@/components/catalogo/cartao";
 import { Acabamentos } from "@/components/produto/acabamentos";
 import { Compra } from "@/components/produto/compra";
@@ -66,7 +69,20 @@ export async function generateMetadata({
   if (!produto) return {};
 
   const { titulo, descricao } = metadadosDoProduto(produto);
-  return { title: titulo, description: descricao };
+  return {
+    title: titulo,
+    description: descricao,
+    ...indexavel(`/produtos/${slug}`),
+    // The piece's own photograph, contained in the field. `og:type` stays
+    // `website` and is **never `product`**: that type expects `og:price:amount`
+    // and `product:availability`, which is the offer claim `rotas.md` §6
+    // refuses in machine-readable form.
+    ...compartilhamento({
+      titulo: tituloCompleto(titulo),
+      descricao,
+      imagem: produto.imagens.find((imagem) => imagem.papel === "principal"),
+    }),
+  };
 }
 
 export default async function PaginaDeProduto({ params }: PageProps<"/produtos/[slug]">) {
@@ -87,6 +103,13 @@ export default async function PaginaDeProduto({ params }: PageProps<"/produtos/[
 
   return (
     <div className="pt-rhythm-5 pb-rhythm-7">
+      {/* `rotas.md` §6 — the two nodes this route emits, and the only two. The
+          `Product` carries facts, a `Brand` holding a name, and **no `offers`**;
+          the `BreadcrumbList` mirrors the trail below it exactly. Without
+          `offers` the node is ineligible for merchant and product rich results,
+          and that is the decision rather than an omission: adding one to make
+          the rich result appear reverses the ticket. */}
+      <DadosEstruturados nos={nosDoProduto(produto)} />
       <div className="mx-auto w-full max-w-measure px-gutter">
         {/* §1 — annotation voice, `/` separator, and no chevron: the system's
             arrows are characters, and here the character is the separator. */}

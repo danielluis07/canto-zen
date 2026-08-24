@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { compartilhamento, indexavel, tituloCompleto } from "@/lib/metadados/conteudo";
 import { FormularioDeContato } from "@/components/institucional/formulario-de-contato";
 import {
   METADADOS_DE_CONTATO,
@@ -31,6 +32,15 @@ import {
 export const metadata: Metadata = {
   title: METADADOS_DE_CONTATO.titulo,
   description: METADADOS_DE_CONTATO.descricao,
+  ...indexavel("/contato"),
+  // No card image (`rotas.md` §5), and **no `LocalBusiness` node** either (§6)
+  // — despite this being the one page a showroom section would invite one onto.
+  // A name is not a credential; an address, a CNPJ and a telephone are, and
+  // this page holds all three.
+  ...compartilhamento({
+    titulo: tituloCompleto(METADADOS_DE_CONTATO.titulo),
+    descricao: METADADOS_DE_CONTATO.descricao,
+  }),
 };
 
 export default async function PaginaDeContato({ searchParams }: PageProps<"/contato">) {

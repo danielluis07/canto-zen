@@ -11,6 +11,7 @@ import {
 import { lerConsulta } from "@/lib/listagem/consulta";
 import { controlesDaListagem } from "@/lib/listagem/controles";
 import { ambientesEnumerados } from "@/lib/listagem/rotas";
+import { metadadosDeListagem } from "@/lib/metadados/conteudo";
 
 /**
  * The four rooms are the store's spine, so they take the shortest paths and the
@@ -33,11 +34,23 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps<"/[ambiente]">): Promise<Metadata> {
   const { ambiente: slug } = await params;
-  if (!ambiente(slug)) return {};
+  const encontrado = ambiente(slug);
+  if (!encontrado) return {};
+
   const { titulo, descricao } = metadadosDoAmbiente(slug);
-  return { title: titulo, description: descricao };
+  return metadadosDeListagem({
+    caminho: `/${slug}`,
+    titulo,
+    descricao,
+    // The room's own photograph — never a piece from the grid, whose card would
+    // change when a result is reordered (`rotas.md` §5).
+    imagem: encontrado.imagem,
+    consulta: lerConsulta(await searchParams),
+    conjunto: produtosDoAmbiente(slug),
+  });
 }
 
 export default async function PaginaDeAmbiente({

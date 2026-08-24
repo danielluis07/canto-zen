@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { compartilhamento, indexavel, tituloCompleto } from "@/lib/metadados/conteudo";
 import { notFound } from "next/navigation";
 import {
   LINHA_DE_LOJA_CONCEITO,
@@ -54,7 +55,16 @@ export async function generateMetadata({
   const { slug } = await params;
   if (!politicaEnumerada(slug)) return {};
   const { titulo, descricao } = metadadosDaPolitica(slug);
-  return { title: titulo, description: descricao };
+  return {
+    title: titulo,
+    description: descricao,
+    ...indexavel(`/politicas/${slug}`),
+    // The description is the document's **first sentence**, which is why
+    // `rotas.md` §2 hands the legal-copy pass a writing constraint rather than
+    // a `Politica.resumo` field: the opener must stand alone, because it ships
+    // as the description. No card image (§5).
+    ...compartilhamento({ titulo: tituloCompleto(titulo), descricao }),
+  };
 }
 
 export default async function PaginaDePolitica({ params }: PageProps<"/politicas/[slug]">) {

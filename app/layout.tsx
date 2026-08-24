@@ -1,13 +1,25 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { schibstedGrotesk, zenOldMincho } from "@/fonts";
+import { ORIGEM } from "@/lib/metadados/conteudo";
 
 /**
  * The suffix `rotas.md` §1 puts on every route but the home, where appending
  * the brand to the brand stutters. A page states its own name and nothing else;
  * the template is the only place the wordmark is spelled into a `<title>`.
+ *
+ * `metadataBase` is here and only here. §4 requires canonicals to be **absolute
+ * URLs**, and Next resolves every relative `alternates.canonical` and every
+ * `og:image` against this one origin — so a route states a path and the
+ * document gets a URL, and there is no second place the domain is written down.
+ *
+ * **Nothing else is declared at the root.** An `openGraph` default here would
+ * put an `og:title` and an `og:description` on `/carrinho`, `/checkout`,
+ * `/pedido-confirmado` and the 404, and §3 gives those four a `<title>` and
+ * nothing else. The share card is stated per route, by the routes that have one.
  */
 export const metadata: Metadata = {
+  metadataBase: ORIGEM,
   title: { default: "Canto Zen", template: "%s | Canto Zen" },
 };
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { compartilhamento, indexavel, tituloCompleto } from "@/lib/metadados/conteudo";
 import { Regua } from "@/components/marca/regua";
 import { DECLARACOES, METADADOS_DE_SOBRE, ROTULO_DA_REGUA } from "@/lib/institucional/sobre";
 
@@ -32,6 +33,15 @@ import { DECLARACOES, METADADOS_DE_SOBRE, ROTULO_DA_REGUA } from "@/lib/instituc
 export const metadata: Metadata = {
   title: METADADOS_DE_SOBRE.titulo,
   description: METADADOS_DE_SOBRE.descricao,
+  ...indexavel("/sobre"),
+  // **No card image, and no fallback wordmark card** (`rotas.md` §5). §4 made
+  // photography-free an authored absence, and manufacturing a typographic card
+  // to fill the slot re-adds the image the page refused, one layer down.
+  // WhatsApp renders a text-only preview, which is what this page is.
+  ...compartilhamento({
+    titulo: tituloCompleto(METADADOS_DE_SOBRE.titulo),
+    descricao: METADADOS_DE_SOBRE.descricao,
+  }),
 };
 
 export default function PaginaSobre() {

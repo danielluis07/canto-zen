@@ -93,6 +93,8 @@ export const paginasDeTopo = (): string[] => [
   "produtos",
   "inspiracoes",
   "carrinho",
+  "checkout",
+  "pedido-confirmado",
   "sobre",
   "contato",
 ];
