@@ -15,8 +15,12 @@ import { EYEBROW_AMBIENTES, type CampoDeAmbiente } from "@/lib/home/conteudo";
  * typographic version of this section would leave the whole page as
  * pieces-on-plaster.
  *
- * On mobile the four stack **at equal height** (§13): the asymmetry is a
- * desktop device and does not survive a single column.
+ * On mobile the asymmetry does not survive — it is a desktop device (§13) — but
+ * the four fields are not four full-bleed photographs either. The featured one
+ * keeps the full width, because it is the one the composition chose; the three
+ * shorter bands run **two columns from the smallest screen**, as the listing
+ * grid and §3's strip do. Four stacked room photographs read as four screens of
+ * scroll before the page has offered anything else.
  */
 export function Ambientes({ campos }: { campos: CampoDeAmbiente[] }) {
   const [primeiro, ...restantes] = campos;
@@ -39,7 +43,7 @@ export function Ambientes({ campos }: { campos: CampoDeAmbiente[] }) {
             and no piece to misrepresent, which is what lets §2's composition
             exist at all. The hairlines sit *between* the bands, never above the
             first: the column opens level with the featured field. */}
-        <div className="flex flex-col gap-y-rhythm-5 lg:col-span-5 lg:h-full lg:gap-y-0">
+        <div className="grid grid-cols-2 gap-x-gutter gap-y-rhythm-5 lg:col-span-5 lg:flex lg:h-full lg:flex-col lg:gap-x-0 lg:gap-y-0">
           {restantes.map((campo, indice) => (
             <div
               key={campo.slug}
@@ -72,7 +76,7 @@ function Campo({ campo, destaque = false }: { campo: CampoDeAmbiente; destaque?:
           src={campo.imagem.src}
           alt={campo.imagem.alt}
           fill
-          sizes={destaque ? "(min-width: 64rem) 58vw, 100vw" : "(min-width: 64rem) 42vw, 100vw"}
+          sizes={destaque ? "(min-width: 64rem) 58vw, 100vw" : "(min-width: 64rem) 42vw, 50vw"}
           className="object-cover"
         />
       </div>

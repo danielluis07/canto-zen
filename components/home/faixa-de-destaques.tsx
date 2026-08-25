@@ -22,6 +22,14 @@ import {
  * would be three índigos on one screen, so the policy is stated once, on the
  * hairline that closes the strip.
  *
+ * **Two columns from the smallest screen**, the way the listing grid runs them.
+ * The strip is the same anatomy as a listing row, and one column below `lg`
+ * spent roughly 1,900px on three pieces — the Serviço band, which is where the
+ * frete and montagem promises live, then arrived past five full-width
+ * photographs on the device this category is shopped on. The third card is left
+ * alone on the second row; the Ragged Grid Rule already made uneven rows the
+ * house behaviour.
+ *
  * No régua on these cards (§9), and no hover on the photographs. The width is
  * stated anyway, in the annotation voice — a régua is not the only way to give
  * a number, and three featured pieces with no dimension at all was the page
@@ -32,7 +40,7 @@ export function FaixaDeDestaques({ cartoes }: { cartoes: CartaoEmDestaque[] }) {
     <section className="mx-auto w-full max-w-measure px-gutter">
       <h2 className="t-annotation text-muted">{EYEBROW_DESTAQUES}</h2>
 
-      <div className="mt-rhythm-5 grid gap-y-rhythm-6 lg:grid-cols-12 lg:gap-x-gutter">
+      <div className="mt-rhythm-5 grid grid-cols-2 gap-x-gutter gap-y-rhythm-6 lg:grid-cols-12 lg:gap-x-gutter">
         {cartoes.map((cartao) => (
           <Link key={cartao.slug} href={cartao.href} className="block lg:col-span-3">
             <div
@@ -41,7 +49,7 @@ export function FaixaDeDestaques({ cartoes }: { cartoes: CartaoEmDestaque[] }) {
                 src={cartao.imagem.src}
                 alt={cartao.imagem.alt}
                 fill
-                sizes="(min-width: 64rem) 25vw, 100vw"
+                sizes="(min-width: 64rem) 25vw, 50vw"
                 className="object-contain"
               />
             </div>

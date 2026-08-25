@@ -285,9 +285,11 @@ home's ambientes band splits 7/5 the same way. A text block is never centred
 under its image.
 
 Responsive behaviour is a single hinge at `lg` (1024px). Below it, everything is
-one column in source order; above it, the 12-column relationships engage. The
-listing grid is the one exception, running two columns from the smallest screen
-and going to three at `lg`. There is no tablet-specific layer.
+one column in source order; above it, the 12-column relationships engage. Card
+grids are the exception: they run two columns from the smallest screen — the
+listing grid going to three at `lg`, the home's featured strip and its three
+shorter ambiente bands to their 12-column places. There is no tablet-specific
+layer.
 
 The chrome is a constant `72px` bar that never shrinks, never gains a shadow and
 never swaps its background. Two stacked bands, only the second sticks: the
