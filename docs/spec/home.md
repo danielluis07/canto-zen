@@ -81,11 +81,28 @@ held in stock — and it is declarative. §1's copy rule holds here unchanged: n
 "bem-vindo", no "descubra", no category promise.
 
 **Text placement and contrast.** The block sits on the photograph's left third,
-which is flat cream stone; `--ink` clears the 4.5:1 floor against it by a wide
-margin. There is **no scrim and no gradient**, and neither is available to fix a
-future image that lacks such a region — `marca.md` §6 permits no shadow and the
-token set has no scrim. A replacement photograph must hold the flat light region;
-that is a constraint on the image, not a licence to overlay one.
+which is a flat travertine wall; `--ink` clears the 4.5:1 floor against it by a
+wide margin. There is **no scrim and no gradient**, and neither is available to
+fix a future image that lacks such a region — `marca.md` §6 permits no shadow and
+the token set has no scrim. A replacement photograph must hold the flat light
+region; that is a constraint on the image, not a licence to overlay one.
+
+> **Correction — the region was described, then measured, and the description
+> was wrong.** The implementation documented it as "roughly `#EDE6DC`", a value
+> `hero.webp` does not contain. Sampled across the block's own footprint — the
+> left `30%` of the frame, vertically centred — it runs `#D0CCC7` to `#E1DDD8`,
+> mean `#D8D4D1`, where `--ink` measures **10.4:1 at the worst pixel** and about
+> 11:1 at the mean. The no-scrim call was right; its stated evidence was not.
+>
+> The same sampling fixes the **width**: past roughly a third of the frame the
+> plant and the woven chair arrive and the worst pixel falls to 1:1, so the
+> block's measure is a fact about the photograph and not a preference. It is
+> **four columns of the page's own grid** (`30%` of the container at every
+> viewport from `lg` up), not the `34ch` aside measure it was built with — `ch`
+> resolves against the element's own font, and the element inherits Grotesk at
+> 16px, so the box came out around `272px` while the line inside it renders in
+> Mincho at up to `52px`. A `ch` cap is a reading measure for body text; a
+> display line is measured in columns.
 
 Below `lg` the block drops **below** the image. A 21:9 band at 360px is 154px
 tall and cannot hold a Display XL line, and the drop is also what keeps the
@@ -144,12 +161,24 @@ the budget in §9.
 | Element | Typographic role | Data source |
 |---|---|---|
 | Eyebrow | Annotation, `--muted` | fixed: `PEÇA EM DESTAQUE` |
-| Name | Display XL (Mincho) | `produto.nome` |
+| Name | Display L (Mincho) | `produto.nome` |
 | Acabamento + designer | Annotation, `--muted` | `produto.acabamento`, `familias[produto.familia].designer` |
 | À-vista price | Price, tabular | derived from `precoTabela` |
 | Pix badge | Annotation, `--indigo` | derived from `politicas` |
 | Parcelamento | Body S, `--muted` | derived from `politicas` |
 | CTA | CTA | `VER A PEÇA` |
+
+> **Correction — the name is Display L, not Display XL.** The table read
+> `Display XL` from the version of this section that opened the page, and §0.5
+> took the position without taking the role with it: the home then printed the
+> store's loudest voice twice, on a page [`marca.md`](marca.md) §4 grants one
+> feature line — while §7's line, which §11 called *the* feature line, rendered
+> at Display L. Three statements, no two of which agreed. Display XL now belongs
+> to §0.5's `h1` alone, which is where "used once, on the page's own statement"
+> lands. §1's name is a section heading and Display L is *section and editorial
+> titles*; it is still the largest Mincho below the `h1`, and nothing else about
+> the section moved. The PDP is unaffected — there the piece's name **is** the
+> page's one feature line, and it stays Display XL.
 
 **Copy direction.** No slogan. The only prose is the piece's name; the eyebrow and
 the commercial data speak in the annotation voice. No "bem-vindo", "descubra" or
@@ -204,8 +233,17 @@ pieces-on-plaster.
 | Three tipos | Annotation, `--muted`, separated by `·` | first 3 of `ambiente.tipos` |
 
 The three tipos mirror the navbar panel and reinforce that a tipo is a landable
-path, not a filter. They are **not** independent links: the entire field is a
-single link to `/[ambiente]`.
+path, not a filter. They are **not** independent links: the photograph and the
+room's label are a single link to `/[ambiente]`.
+
+> **Correction — the tipo line sits outside the anchor.** "Not independent
+> links" was implemented as *unlinked inside the field's link*, which is the
+> worst of the two available readings: `SOFÁS` names a real destination, sits in
+> a click target, and lands on `/sala`. The field promised a path it did not
+> have. Outside the anchor the line is what this section says it is — a statement
+> of what the room holds — and the only clickable thing in the field goes where
+> the field says it goes. The tipos are still not links, and the field still
+> reads as one choice rather than a menu.
 
 **Section eyebrow:** `AMBIENTES`, annotation voice. No Mincho title — Mincho is
 rationed (§11).
@@ -348,6 +386,14 @@ the footer's legal block and in `/politicas/trocas-e-devolucoes`.
 > Statutory copy to be checked against planalto.gov.br before implementation —
 > see *Not yet specified* in the map.
 
+**Heading: `SERVIÇO`, visually hidden.** This is the one section on the page that
+renders no eyebrow, and the price of that silence was a section with no name at
+all: the document outline ran from §4's coleção straight to `INSPIRAÇÕES`, with
+the frete and montagem facts unnamed in between and unreachable by heading. An
+`sr-only` `h2` restores the outline entry and adds nothing to the band — the four
+labels are still the only annotation voices in it, which is what the eyebrow was
+withheld to protect.
+
 ---
 
 ## 6. Inspirações
@@ -370,7 +416,12 @@ Per row: 16:9 thumbnail on columns 1–2, title on 3–7, summary on 8–10, col
 | Summary | Body S, `--muted`, one line |
 
 **Eyebrow:** `INSPIRAÇÕES`. **Closing:** one CTA line, `VER TODAS AS
-INSPIRAÇÕES` → `/inspiracoes`.
+INSPIRAÇÕES` → `/inspiracoes`. It is `marca.md` §6's **quiet button** and takes
+that variant's states unchanged: `--ink` at rest, `--indigo` on hover. It shipped
+hovering to `--muted`, which spent the only hover state in the section on *less*
+contrast — 16.94:1 down to 5.48:1 — and read as the link disabling itself under
+the pointer. It was also the one interactive element on the page not reaching for
+the accent, on a system where the accent is what marks interaction.
 
 **Data.** `ConteudoHome.inspiracoes` — three article slugs. The entity now exists:
 `Artigo` in [`inspiracoes.md`](inspiracoes.md) §8. Two notes on what it settled —
@@ -392,9 +443,10 @@ It is also the page's closing: it ends on an assertion, not on a strip of cards.
 
 **Form.** Two parts:
 
-1. **The Mincho feature line**, spanning columns 1–9, `Display L`. This is the
-   **only "one feature line per page"** [`marca.md`](marca.md) §4 grants, and it is
-   spent here — see §11.
+1. **The Mincho line**, spanning columns 1–9, `Display L` — an *editorial title*,
+   which is the role it always rendered in. It is **no longer** described as the
+   page's one feature line: [`marca.md`](marca.md) §4 grants that once per page
+   and §0.5's `h1` spends it, at Display XL. See the correction in §11.
 2. Below it, the default pair: image 7 / text 5.
 
 **Copy direction.** The line asserts the *making*, it does not sell. Direction, not
@@ -513,15 +565,27 @@ No decorative use.
 
 ## 11. Mincho budget
 
-| Use | Where | `marca.md` §4 category |
-|---|---|---|
-| Piece name | §1, §3 | piece name |
-| Collection name | §4 | collection title |
-| Article titles | §6 | editorial title |
-| Marcenaria line | §7 | **the page's only feature line** |
+| Use | Where | Role | `marca.md` §4 category |
+|---|---|---|---|
+| Abertura line | §0.5 | Display XL | **the page's only feature line** |
+| Piece name | §1 | Display L | editorial title |
+| Piece name | §3 | Display M | piece name |
+| Collection name | §4 | Display L | collection title |
+| Article titles | §6 | Display M | editorial title |
+| Marcenaria line | §7 | Display L | editorial title |
 
 Section eyebrows are **annotation, not Mincho**. Mincho section titles would spend
 the family five times and §7's line would stop being a feature.
+
+> **Correction — the feature line is §0.5's, and Display XL is spent once.** This
+> table named §7 as the page's only feature line and §1's table set the hero name
+> in Display XL, which put the loudest voice on the page twice while the line
+> called *the* feature rendered a step below both. The role column above is new,
+> because naming the *category* without naming the *size* is what let the two
+> drift apart in the first place: §7's line was an editorial title all along, and
+> §0.5's `h1` is the one line the page is allowed to say loudest. Rows are
+> unchanged in every other respect — the family is still spent on piece names,
+> the coleção, the article titles and one feature line.
 
 ---
 

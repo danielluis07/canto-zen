@@ -301,7 +301,7 @@ without drawing the hairline. An ambiente can be open and active at the same tim
 
 ## 11. Mobile
 
-Below `768px`:
+Below `1024px`:
 
 - The bar keeps `72px`, the wordmark on the left and **`MENU` on the right, as a
   word in the annotation voice — not a hamburger icon.** The zero-icon rule holds
@@ -317,6 +317,24 @@ Below `768px`:
 - One accordion open at a time. `MENU` becomes `FECHAR` while the panel is open.
 - The panel's footer repeats Sobre, Contato and the policies — on mobile the
   footer is too far away to be the only path to them.
+- The panel is a `<nav>` labelled `Menu`, not a `<div>` carrying an `aria-label`:
+  ARIA names only elements with a role that supports naming, so on a bare `div`
+  the label was discarded and the overlay announced as nothing — [`acessibilidade.md`](acessibilidade.md)
+  §4's "labelled by the trigger's own text" satisfied in markup and nowhere else.
+  The same correction applies to the desktop ambiente panel (§6), which takes
+  `role="group"`: it opens *inside* `Navegação principal`, so a second `nav` there
+  would be a landmark inside a landmark, and it is not a dialog — §4.2 forbids it
+  containing focus.
+
+> **Correction — the threshold is `1024px`, not `768px`.** This section said
+> `768px` and the implementation followed it, which put the store's one hinge in
+> a different place from every page under it: `DESIGN.md`'s Layout section allows
+> a **single** hinge at `lg` (`1024px`), card grids excepted, and states there is
+> no tablet-specific layer. Between `768` and `1024` there was one — the page in
+> its single-column arrangement under a bar running five labels and four hover
+> panels, each hanging a 260px column. Everything this section actually fixes is
+> unchanged: the word `MENU`, the full-screen panel, the accordion, the cart
+> staying in the bar. Only the number moves.
 
 ---
 

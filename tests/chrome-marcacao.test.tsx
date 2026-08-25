@@ -133,6 +133,42 @@ describe("the navbar", () => {
     expect(semTags(html())).toContain("MENU");
   });
 
+  // DESIGN.md, Layout — one hinge at `lg`, and no tablet-specific layer. The
+  // bar used to swap at `md`, so between 768 and 1024 the chrome ran a desktop
+  // layout over a page that was still one column.
+  test("hinges where every page hinges", () => {
+    const markup = html();
+    expect(markup).toContain("lg:block");
+    expect(markup).toContain("lg:hidden");
+    expect(markup).not.toContain("md:block");
+    expect(markup).not.toContain("md:hidden");
+  });
+
+  // acessibilidade.md §4 — the overlay is labelled by its trigger's own text,
+  // which needs a role that can carry a name: `aria-label` on a bare `<div>` is
+  // discarded, and the panel announced as nothing.
+  test("labels each panel on an element that can hold a name", () => {
+    const markup = html();
+    expect(markup.match(/role="group"/g)?.length).toBe(4); // one per ambiente
+    expect(markup).toContain('<nav id="menu-mobile"');
+
+    // Nothing in the bar carries a name it cannot hold: every `aria-label` sits
+    // on an element with a role of its own, explicit or implicit.
+    const nomeados = markup.match(/<[a-z]+[^>]*aria-label=[^>]*>/g) ?? [];
+    expect(nomeados.length).toBeGreaterThan(0);
+    for (const tag of nomeados) {
+      expect(/^<(nav|a|button)\b/.test(tag) || tag.includes("role=")).toBe(true);
+    }
+  });
+
+  // marca.md §4 — a surface picks a voice, not a size. The `text-body-s`
+  // utility sets the size and drops the tabular figures that make Body S a data
+  // voice; the role class is the whole voice.
+  test("speaks in role classes, never in a size utility", () => {
+    expect(html()).not.toContain("text-body-s");
+    expect(html()).toContain("t-body-s");
+  });
+
   // navbar.md §§1, 11 — one icon at every breakpoint, and it is the cart's
   test("draws exactly one glyph, and it is hidden from the accessible tree", () => {
     const markup = html();
@@ -180,6 +216,15 @@ describe("the footer", () => {
       expect(markup).toContain(`aria-labelledby="${id}"`);
       expect(markup).toContain(`id="${id}"`);
     }
+    expect(markup).toContain('aria-labelledby="rodape-atendimento"');
+  });
+
+  // The column titles label their landmarks; they are not document headings.
+  // `AMBIENTES` is the home's §2 band as well, and two identical `<h2>`s on one
+  // document gave a reader moving by heading no way to tell the store's primary
+  // navigation from a footer column.
+  test("titles its columns without adding a second AMBIENTES heading", () => {
+    expect(completo()).not.toContain("<h2");
   });
 
   test("names the channel a person is reached through", () => {
@@ -221,11 +266,18 @@ describe("the footer", () => {
   // rodape.md §8
   test("states what the store accepts, in words a screen reader hears", () => {
     const texto = semTags(completo());
-    expect(texto).toContain("COMPRA SEGURA");
     for (const meio of ["Pix", "Visa", "Mastercard", "Elo", "American Express", "Boleto"]) {
       expect(texto).toContain(meio);
     }
     expect(texto).toContain("@cantozen");
+  });
+
+  // rodape.md §8 — the reassurance line is withdrawn, on the same argument that
+  // kept the third-party seals out: the store can state what it accepts, not
+  // that a purchase is safe. Asserted on both variants, since §9 had kept it.
+  test("asserts nothing about the purchase it cannot back", () => {
+    expect(semTags(completo())).not.toContain("COMPRA SEGURA");
+    expect(semTags(reduzido())).not.toContain("COMPRA SEGURA");
   });
 
   test("hides the marks themselves from the accessibility tree", () => {
@@ -255,7 +307,7 @@ describe("the footer", () => {
       const texto = semTags(reduzido());
       expect(texto).toContain("AJUDA");
       expect(texto).toContain("ATENDIMENTO");
-      expect(texto).toContain("COMPRA SEGURA");
+      expect(texto).toContain("Pix");
       expect(texto).toContain("CNPJ 51.204.876/0001-40");
       expect(texto).toContain("DADOS DE IDENTIFICAÇÃO FICTÍCIOS — LOJA CONCEITO");
       expect(texto).toContain("Você pode desistir da compra em até 7 dias corridos");

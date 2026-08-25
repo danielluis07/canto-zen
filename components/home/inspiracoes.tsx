@@ -57,8 +57,14 @@ export function Inspiracoes({ linhas }: { linhas: LinhaDeInspiracao[] }) {
         ))}
       </div>
 
-      {/* Three of four rows above; this leads to the one the home held back. */}
-      <Link href="/inspiracoes" className="t-cta mt-rhythm-4 inline-block text-ink hover:text-muted">
+      {/* Three of four rows above; this leads to the one the home held back.
+
+          The quiet variant is `--ink` going `--indigo` on hover (`marca.md` §6,
+          `button-quiet-hover`). Dropping to `--muted` instead spent the one
+          hover state this element has on *less* contrast — 16.94:1 to 5.48:1 —
+          which reads as the link disabling itself under the pointer, and left
+          it as the only action on the page not reaching for the accent. */}
+      <Link href="/inspiracoes" className="t-cta mt-rhythm-4 inline-block text-ink hover:text-indigo">
         {`${CTA_INSPIRACOES} →`}
       </Link>
     </section>

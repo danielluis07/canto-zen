@@ -72,8 +72,18 @@ export function PecaEmDestaque({ destaque }: { destaque: DestaqueDaHome }) {
               takes the single `h1`. The piece is now the second section and its
               name is a section heading — which is what it always was
               structurally, and was only an `h1` because it happened to be
-              first. */}
-          <h2 className="t-display-xl mt-rhythm-3 text-ink">{destaque.nome}</h2>
+              first.
+
+              **And Display L, not Display XL, for exactly the same reason.**
+              `marca.md` §4 grants one feature line per page — the store's
+              loudest voice, used once — and §0.5 now spends it. The name kept
+              the XL role when it lost the position, so the home was the one
+              route printing that voice twice; the PDP, the article and every
+              other page print it once. Display L is *section and editorial
+              titles*, which is what this heading became. Nothing else about the
+              section changed: it still opens on the object, the régua is still
+              drawn on it, and it is still the largest Mincho under the h1. */}
+          <h2 className="t-display-l mt-rhythm-3 text-ink">{destaque.nome}</h2>
 
           {/* The designer is read through the família — `dados.md` §6.1's
               correction. Authorship does not change with the finish. */}

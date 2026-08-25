@@ -1,8 +1,22 @@
 "use client";
 
-// Below 768px the bar keeps its 72px, the wordmark and `CARRINHO (n)`; the way
+// Below 1024px the bar keeps its 72px, the wordmark and `CARRINHO (n)`; the way
 // into the rest of the store is the word `MENU` — not a hamburger, because the
 // zero-icon rule holds at every breakpoint (`navbar.md` §11).
+//
+// **The threshold is `lg`, not `md`.** `navbar.md` §11 said `768px` and this
+// file implemented it, which put the store's one hinge in a different place from
+// every page it sits above — `DESIGN.md`'s Layout section allows exactly one, at
+// `1024px`, and refuses a tablet-specific layer. Between `768` and `1024` the
+// page was one column and the chrome was not. §11 is corrected to `1024px`; what
+// the section actually fixes is the *word* `MENU` and the panel's contents, and
+// neither of those changes with the number.
+//
+// The tipo and policy links speak in `.t-body-s`, the **role class**, not in the
+// `text-body-s` size utility they used to carry. `marca.md` §4 has a surface pick
+// a voice rather than a size, and the two are not interchangeable here: the
+// utility sets the size and drops `font-variant-numeric: tabular-nums`, which is
+// half of what makes Body S the data voice.
 //
 // It opens a full-screen panel in `--plaster` with no translucent overlay: the
 // four ambientes as an accordion, one open at a time, Inspirações flat, and a
@@ -29,7 +43,7 @@ export function MenuMobile({ itens, paineis }: Props) {
   const aberto = abertoEm === pathname;
   const [expandido, setExpandido] = useState<string | null>(null);
   const gatilho = useRef<HTMLButtonElement | null>(null);
-  const painel = useRef<HTMLDivElement | null>(null);
+  const painel = useRef<HTMLElement | null>(null);
 
   const fechar = useCallback((devolverFoco: boolean) => {
     setAbertoEm(null);
@@ -73,7 +87,7 @@ export function MenuMobile({ itens, paineis }: Props) {
   const inspiracoes = itens.filter((item) => !item.abrePainel);
 
   return (
-    <div className="md:hidden" onKeyDown={aoTeclar}>
+    <div className="lg:hidden" onKeyDown={aoTeclar}>
       <button
         type="button"
         ref={gatilho}
@@ -84,7 +98,15 @@ export function MenuMobile({ itens, paineis }: Props) {
         {aberto ? "FECHAR" : "MENU"}
       </button>
 
-      <div
+      {/* A `<nav>`, so the `aria-label` is attached to something that can carry
+          a name. On a bare `<div>` it was discarded — ARIA names only elements
+          with a role that supports naming — and `acessibilidade.md` §4's
+          "labelled by the trigger's own text" was satisfied in the markup and
+          nowhere else. `nav` is the honest role for what this holds: the four
+          ambientes, Inspirações and the closing policy links. It is not nested
+          inside the desktop group; the two are siblings in the bar, and only one
+          of them is ever displayed. */}
+      <nav
         id="menu-mobile"
         ref={painel}
         hidden={!aberto}
@@ -112,7 +134,7 @@ export function MenuMobile({ itens, paineis }: Props) {
                       <li key={tipo.slug}>
                         <Link
                           href={tipo.href}
-                          className="block py-[0.375rem] text-body-s text-ink hover:text-indigo">
+                          className="t-body-s block py-[0.375rem] text-ink hover:text-indigo">
                           {tipo.label}
                         </Link>
                       </li>
@@ -149,13 +171,13 @@ export function MenuMobile({ itens, paineis }: Props) {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="block py-[0.375rem] text-body-s text-muted hover:text-indigo">
+                className="t-body-s block py-[0.375rem] text-muted hover:text-indigo">
                 {link.label}
               </Link>
             </li>
           ))}
         </ul>
-      </div>
+      </nav>
     </div>
   );
 }

@@ -74,14 +74,25 @@ export function Rodape({ variante = "completo" }: { variante?: VarianteRodape })
         </div>
       ) : null}
 
-      {/* Zone B — the link columns, and Atendimento as a column of its own. */}
+      {/* Zone B — the link columns, and Atendimento as a column of its own.
+
+          **The column titles are not headings.** `rodape.md` §11 asks for a
+          `<nav>` labelled by its own title, and `aria-labelledby` does that from
+          any element — so the title does the labelling and stops duplicating the
+          document outline. As `<h2>`s they collided with the page: the home's
+          §2 band is `<h2>AMBIENTES</h2>` and so was this column, two identical
+          headings on one document with nothing to tell them apart, on a store
+          whose primary navigation *is* the ambientes. A reader moving by heading
+          could not tell which one they had landed on; moving by landmark they
+          now hear `Ambientes` as the name of a navigation region inside
+          `contentinfo`, which is what it actually is. */}
       <div className="border-b border-hairline">
         <div className="mx-auto grid w-full max-w-measure grid-cols-1 gap-rhythm-5 px-gutter py-rhythm-5 sm:grid-cols-2 md:grid-cols-4">
           {colunas.map((coluna) => (
             <nav key={coluna.id} aria-labelledby={coluna.id}>
-              <h2 id={coluna.id} className="t-annotation text-muted">
+              <p id={coluna.id} className="t-annotation text-muted">
                 {coluna.titulo}
-              </h2>
+              </p>
               <ul className="mt-rhythm-3 flex flex-col gap-rhythm-1">
                 {coluna.itens.map((item) => (
                   <li key={item.href}>
@@ -95,8 +106,13 @@ export function Rodape({ variante = "completo" }: { variante?: VarianteRodape })
           ))}
 
           {zonas.atendimento ? (
-            <div>
-              <h2 className="t-annotation text-muted">ATENDIMENTO</h2>
+            // Not a `<nav>` — it is a channel, not a route — but named the same
+            // way its neighbours are, so the four columns are four labelled
+            // things rather than three plus an anonymous one.
+            <div role="group" aria-labelledby="rodape-atendimento">
+              <p id="rodape-atendimento" className="t-annotation text-muted">
+                ATENDIMENTO
+              </p>
               <ul className="mt-rhythm-3 flex flex-col gap-rhythm-1">
                 <li>
                   <a
@@ -129,7 +145,18 @@ export function Rodape({ variante = "completo" }: { variante?: VarianteRodape })
 
       {/* Zone C — payment and social marks. No third-party badge: Reclame Aqui,
           Ebit and a PCI certificate are marks earned by a real CNPJ, and showing
-          one here would be misrepresentation rather than a design choice. */}
+          one here would be misrepresentation rather than a design choice.
+
+          **`COMPRA SEGURA` is withdrawn**, and it goes for the reason the badges
+          did. `rodape.md` §8 kept it as the reassurance that "covers" what a
+          third-party seal would have claimed — which is the objection restated,
+          not answered: the store cannot state that a purchase is safe, because
+          nothing here is backing that. It is not a fact about the store the way
+          the CNPJ, the flags and the seven-day withdrawal are; it is the
+          sentiment of a seal without the seal, on a page that has just disclosed
+          its own identification as fictional. What remains is what was always
+          doing the work: the flags say what the store accepts, and they say it
+          in words a screen reader hears. */}
       {zonas.marcas ? (
         <div className="border-b border-hairline">
           <div className="mx-auto flex w-full max-w-measure flex-col gap-rhythm-4 px-gutter py-rhythm-4 md:flex-row md:items-center md:justify-between">
@@ -142,7 +169,6 @@ export function Rodape({ variante = "completo" }: { variante?: VarianteRodape })
               <p className="sr-only">
                 Formas de pagamento: {MEIOS_DE_PAGAMENTO.map((meio) => meio.nome).join(", ")}.
               </p>
-              <p className="t-annotation mt-rhythm-2 text-muted">COMPRA SEGURA</p>
             </div>
 
             {/* Not links: a signal of presence, not an exit from the store. */}

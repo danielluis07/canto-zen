@@ -16,6 +16,20 @@
 // `acessibilidade.md` §4.2 reserves containment for the modal overlays: a
 // disclosure that swallowed Tab in both directions would leave Escape as the only
 // way out, which is a trap however well it is documented.
+//
+// **The bar hinges at `lg`, with the rest of the store.** `DESIGN.md`'s Layout
+// section fixes one breakpoint — `1024px`, card grids the only exception, "no
+// tablet-specific layer" — and the group used to appear at `md` (`768px`). In
+// the 256px between them the chrome ran its desktop layout, five labels and four
+// hover panels hanging a 260px column, over a page still in its single-column
+// arrangement. That gap was the tablet layer the rule forbids, arrived at by
+// accident rather than by design; `navbar.md` §11 is corrected to match.
+//
+// The tipo links inside a panel speak in `.t-body-s`, the **role class**, not in
+// the `text-body-s` size utility. `marca.md` §4 has a surface pick a voice rather
+// than a size, and the difference is load-bearing rather than stylistic: the
+// utility sets the size and leaves `font-variant-numeric` alone, so the tabular
+// figures that make Body S a data voice never arrive.
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -133,7 +147,7 @@ export function NavegacaoAmbientes({ itens, paineis }: Props) {
       ref={grupo}
       onKeyDown={aoTeclar}
       onBlur={aoDesfocar}
-      className="ml-[3.5rem] hidden self-stretch md:block">
+      className="ml-[3.5rem] hidden self-stretch lg:block">
       {/*
         The group stretches to the bar's full 72px and so does every `<li>`,
         which settles two things that were one bug each. Each panel is now
@@ -183,9 +197,19 @@ export function NavegacaoAmbientes({ itens, paineis }: Props) {
               </Link>
 
               {painel ? (
+                // `role="group"` is what makes the `aria-label` real.
+                // `acessibilidade.md` §4 requires the overlay to be labelled by
+                // its trigger's own text, and a bare `<div>` cannot hold a name:
+                // ARIA only names elements with a role that supports naming, so
+                // every major screen reader discarded this one and the panel
+                // announced as nothing. `group` is the accurate role for a
+                // non-modal disclosure hanging off a link — it is not a dialog
+                // (§4.2 forbids containing focus here) and it is not a second
+                // `nav`, since it opens inside `Navegação principal`.
                 <div
                   id={`painel-${item.slug}`}
                   hidden={!escancarado}
+                  role="group"
                   aria-label={painel.rotulo}
                   className="absolute left-0 top-full z-40 mt-px w-[260px] border-b border-hairline bg-plaster py-[2rem]">
                   <ul>
@@ -193,7 +217,7 @@ export function NavegacaoAmbientes({ itens, paineis }: Props) {
                       <li key={tipo.slug}>
                         <Link
                           href={tipo.href}
-                          className="block py-[0.375rem] text-body-s text-ink hover:text-indigo">
+                          className="t-body-s block py-[0.375rem] text-ink hover:text-indigo">
                           {tipo.label}
                         </Link>
                       </li>

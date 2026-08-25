@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CAMPOS_DE_SERVICO } from "@/lib/home/conteudo";
+import { CAMPOS_DE_SERVICO, TITULO_SERVICO } from "@/lib/home/conteudo";
 
 /**
  * §5 — the band Brazilian commerce fills with badges and testimonials, filled
@@ -19,11 +19,19 @@ import { CAMPOS_DE_SERVICO } from "@/lib/home/conteudo";
  * information band rather than an editorial block. No icons, no régua, no
  * índigo beyond focus and link hover. On mobile the four fields stack and the
  * dividing hairlines turn horizontal (§13).
+ *
+ * **Its heading is the page's only hidden one.** §5 withholds the eyebrow every
+ * other section renders, and the price of that was a section with no name: the
+ * document outline ran from §4's coleção to `INSPIRAÇÕES` with the delivery
+ * facts, unnamed, in between. `sr-only` is the whole fix — nothing is added to
+ * the band and nothing about it is announced twice.
  */
 export function Servico() {
   return (
     <section className="bg-kozo py-rhythm-6">
       <div className="mx-auto w-full max-w-measure px-gutter">
+        <h2 className="sr-only">{TITULO_SERVICO}</h2>
+
         <div className="grid lg:grid-cols-12 lg:gap-x-gutter">
           {CAMPOS_DE_SERVICO.map((campo, indice) => (
             <div

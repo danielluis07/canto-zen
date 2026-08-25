@@ -4,9 +4,11 @@ import Home from "../app/(loja)/page";
 import { conteudoHome, produto } from "../lib/catalogo";
 import {
   CAMPOS_DE_SERVICO,
+  CTA_INSPIRACOES,
   LINHA_ABERTURA,
   marcenariaDaHome,
   pecasEmDestaque,
+  TITULO_SERVICO,
 } from "../lib/home/conteudo";
 
 // The home renders on the server, so its markup is observable without a
@@ -45,7 +47,17 @@ describe("§0.5 — the Abertura", () => {
     // statement about the store rather than the name of one piece.
     expect(vezes("<h1")).toBe(1);
     expect(html).toContain(`<h1 class="t-display-xl text-ink">${LINHA_ABERTURA}</h1>`);
-    expect(html).toContain('<h2 class="t-display-xl mt-rhythm-3 text-ink">');
+    expect(html).toContain('<h2 class="t-display-l mt-rhythm-3 text-ink">');
+  });
+
+  test("measures the line in columns, not in a `ch` cap read against Grotesk", () => {
+    // `max-w-aside` is 34ch resolved against the wrapping div's *body* font,
+    // which is roughly 272px — five or six characters of a 52px Mincho line.
+    // Four columns of the page's own grid is the measure, and it is also the
+    // width of the photograph's flat region (see the file's contrast note).
+    expect(abertura).toContain("lg:col-span-4");
+    expect(abertura).not.toContain("max-w-aside");
+    expect(abertura).not.toContain("pl-[6%]");
   });
 
   test("is contained in the reserved 21:9 slot, never cropped", () => {
@@ -126,6 +138,15 @@ describe("§2 — the ambientes are the first navigational offer", () => {
     expect(semTags).toContain("SOFÁS · POLTRONAS · MESAS DE CENTRO");
     expect(html).not.toContain('href="/sala/sofas"');
   });
+
+  test("and they sit outside the anchor, so no tipo name is a click target", () => {
+    // Unlinked *inside* the link is the worst of the two readings: `SOFÁS` names
+    // a real destination, sits in a click target, and lands on `/sala`. Each
+    // field's anchor must close before its tipo line opens.
+    const campo = html.slice(html.indexOf('href="/sala"'), html.indexOf('href="/quarto"'));
+    expect(campo).toContain("SOFÁS · POLTRONAS · MESAS DE CENTRO");
+    expect(campo.indexOf("</a>")).toBeLessThan(campo.indexOf("SOFÁS"));
+  });
 });
 
 describe("§9 — the régua budget: exactly one on the entire page", () => {
@@ -169,9 +190,17 @@ describe("§10 — the índigo budget", () => {
 
 describe("§11 — the Mincho budget", () => {
   test("piece names, the coleção, the article titles and one feature line", () => {
-    expect(vezes("t-display-xl")).toBe(2); // §0.5's line and §1's piece
-    expect(vezes("t-display-l")).toBe(2); // §4's coleção, §7's feature line
+    expect(vezes("t-display-xl")).toBe(1); // §0.5's line, and it is the only one
+    expect(vezes("t-display-l")).toBe(3); // §1's piece, §4's coleção, §7's line
     expect(vezes("t-display-m")).toBe(6); // §3's three cards, §6's three titles
+  });
+
+  test("the loudest voice is spent once, and the h1 is where it goes", () => {
+    // `marca.md` §4 grants one feature line per page. §1's name kept Display XL
+    // when §0.5 took the position from it, so the home printed the store's
+    // loudest voice twice while every other route printed it once.
+    expect(vezes("t-display-xl")).toBe(1);
+    expect(html.indexOf("t-display-xl")).toBeLessThan(html.indexOf("PEÇA EM DESTAQUE"));
   });
 
   test("section eyebrows are annotation, never Mincho", () => {
@@ -201,6 +230,15 @@ describe("§5 — the service band", () => {
     expect(vezes('href="/politicas/entrega-e-frete"')).toBe(2);
     expect(vezes('href="/politicas/trocas-e-devolucoes"')).toBe(1);
   });
+
+  test("has a name, and it is the one heading on the page nobody sees", () => {
+    // §5 withholds the eyebrow every other section renders, which left the band
+    // out of the outline entirely: coleção → INSPIRAÇÕES, with the frete and
+    // montagem facts unnamed in between. Hidden, not absent.
+    expect(html).toContain(`<h2 class="sr-only">${TITULO_SERVICO}</h2>`);
+    expect(html.indexOf(TITULO_SERVICO)).toBeLessThan(html.indexOf("FRETE"));
+    expect(vezes('class="sr-only"')).toBe(1);
+  });
 });
 
 describe("§4 — the coleção is surfaced in context", () => {
@@ -221,6 +259,13 @@ describe("§6 — the editorial lane has an entrance", () => {
       expect(vezes(`href="/inspiracoes/${slug}"`)).toBe(1);
     }
     expect(html).toContain('href="/inspiracoes"');
+  });
+
+  test("its closing CTA is the quiet variant: ink, going índigo", () => {
+    // `marca.md` §6's quiet button. Hovering to `--muted` took the only action
+    // in the section *down* from 16.94:1 to 5.48:1, which reads as disabling.
+    expect(html).toContain(`${CTA_INSPIRACOES} →`);
+    expect(html).not.toContain("hover:text-muted");
   });
 });
 

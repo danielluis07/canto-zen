@@ -60,29 +60,45 @@ export function Ambientes({ campos }: { campos: CampoDeAmbiente[] }) {
 }
 
 /**
- * The whole field is one link — the three tipos are **not** links of their own.
- * They mirror the navbar panel and are there to reinforce that a tipo is a
- * landable path rather than a filter; making them clickable here would turn the
- * field into a menu, which is the one thing §2 exists not to be.
+ * The photograph and the room's name are one link — the three tipos are **not**
+ * links of their own. They mirror the navbar panel and are there to reinforce
+ * that a tipo is a landable path rather than a filter; making them clickable
+ * here would turn the field into a menu, which is the one thing §2 exists not to
+ * be.
+ *
+ * **And the tipo line sits outside the anchor, not merely unlinked inside it.**
+ * `SOFÁS · POLTRONAS · MESAS DE CENTRO` inside the link to `/sala` is the worst
+ * of the two available readings: the words name three real destinations, they
+ * are inside a click target, and clicking `SOFÁS` lands on the room instead —
+ * the field promising a path it does not have. Outside the anchor the line is
+ * what §2 says it is, a statement of what the room holds, and the only clickable
+ * thing in the field goes where the field says it goes.
  */
 function Campo({ campo, destaque = false }: { campo: CampoDeAmbiente; destaque?: boolean }) {
   return (
-    <Link href={campo.href} className="flex h-full flex-col">
-      <div
-        className={`relative w-full bg-kozo aspect-[3/2] ${
-          destaque ? "" : "lg:aspect-auto lg:min-h-0 lg:flex-1"
-        }`}>
-        <Image
-          src={campo.imagem.src}
-          alt={campo.imagem.alt}
-          fill
-          sizes={destaque ? "(min-width: 64rem) 58vw, 100vw" : "(min-width: 64rem) 42vw, 50vw"}
-          className="object-cover"
-        />
-      </div>
+    <div className="flex h-full flex-col">
+      {/* `flex-1` only from `lg`: above it the band's height comes from the
+          column and the anchor absorbs what the tipo line does not use, while
+          below it the field is a plain stack and a zero flex-basis would
+          collapse the photograph the `3:2` box exists to reserve. */}
+      <Link href={campo.href} className="flex flex-col lg:min-h-0 lg:flex-1">
+        <div
+          className={`relative w-full bg-kozo aspect-[3/2] ${
+            destaque ? "" : "lg:aspect-auto lg:min-h-0 lg:flex-1"
+          }`}>
+          <Image
+            src={campo.imagem.src}
+            alt={campo.imagem.alt}
+            fill
+            sizes={destaque ? "(min-width: 64rem) 58vw, 100vw" : "(min-width: 64rem) 42vw, 50vw"}
+            className="object-cover"
+          />
+        </div>
 
-      <p className="t-annotation mt-rhythm-3 text-ink">{campo.label}</p>
+        <p className="t-annotation mt-rhythm-3 text-ink">{campo.label}</p>
+      </Link>
+
       <p className="t-annotation mt-rhythm-1 text-muted">{campo.tipos}</p>
-    </Link>
+    </div>
   );
 }

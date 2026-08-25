@@ -12,13 +12,27 @@ import { CTA_MARCENARIA } from "@/lib/home/conteudo";
  * prices legible. Stating it only as a footer link would make the whole
  * position decorative.
  *
- * The Mincho line spanning columns 1–9 is the **one feature line** `marca.md`
- * §4 grants a page, and the home spends it here (§11). Below it, the default
- * pair: image on 7, text on 5.
+ * The Mincho line spans columns 1–9 at Display L — an **editorial title**, which
+ * is the role it always rendered in. It is no longer described as the page's one
+ * feature line: `marca.md` §4 grants that once per page and §0.5's `h1` spends
+ * it, so the two claims could not both stand. Below the line, the default pair:
+ * image on 7, text on 5.
  *
  * The photograph is an unfinished piece, **alone** — no person, no hands, no
  * staged workbench — so `marca.md` §7's rule holds and no second exception to
  * "the piece alone" is opened beyond Inspirações.
+ *
+ * **It is contained, not covered, and that is not an inconsistency with §2 and
+ * §4.** `imagens.md` §0 files this slot under *retrato* — the piece alone — and
+ * §1.1 keeps the cast shadow inside the frame; §4 then forbids cropping a
+ * photograph to fit a container outright. `object-cover` here would crop the one
+ * genre the rule exists for, so the kozo field showing through is the correct
+ * failure mode, not a defect: the slot's contract is `3:2` (§0) and a conforming
+ * asset fills the box exactly. Today's is a phase-1 Unsplash hotlink at whatever
+ * ratio it was uploaded in (§10.1, ADR 0003), and the bars are that schedule
+ * showing, which the phase-2 pass closes. Ambientes and Coleção cover because
+ * their fields have no shadow to cut and, in §2's three shorter bands, no fixed
+ * ratio to contain against at all.
  *
  * **No Contato here** (§7) and no closing CTA: the scroll ends on an assertion,
  * not on a repeat of the ambientes.

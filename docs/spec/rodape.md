@@ -55,7 +55,6 @@ Four stacked zones, separated by 1px hairlines in `--hairline`.
   Todas as peças
 ──────────────────────────────────────────────────────────────
   PIX  VISA  MASTER  ELO  AMEX  BOLETO      @cantozen  @cantozen  zone C (§8)
-  COMPRA SEGURA
 ──────────────────────────────────────────────────────────────
   Canto Zen Marcenaria e Comércio de Móveis Ltda. · CNPJ …       zone D (§3)
   DADOS DE IDENTIFICAÇÃO FICTÍCIOS — LOJA CONCEITO
@@ -321,8 +320,20 @@ the annotation voice. **The social marks are not links** — they are a signal o
 presence, not an exit from the store; the handle in text is what carries the
 information, and it is what a screen reader announces. No Facebook, X or TikTok.
 
-Under the payment marks, one line in the annotation voice `--muted`:
-`COMPRA SEGURA`.
+Under the payment marks: **nothing.** The band is the marks and their equivalent
+text, and it closes there.
+
+> **Correction — `COMPRA SEGURA` is withdrawn.** This section carried one line in
+> the annotation voice under the payment marks, and defended it below as the
+> reassurance that "covers" what a third-party seal would have claimed. That is
+> the objection restated rather than answered: the store cannot assert that a
+> purchase is safe, because nothing here backs the assertion. It is not a fact
+> about the store the way the CNPJ, the accepted flags and the seven-day
+> withdrawal are — it is the *sentiment* of a seal without the seal, printed one
+> zone above the disclosure that the identification is fictional. The same
+> argument that kept Reclame Aqui and the PCI badge out reaches it. What remains
+> is what was doing the work already: the flags state what the store accepts, in
+> words a screen reader hears.
 
 > **Registered exception.** [`navbar.md`](navbar.md) §1 and §11 fixed **zero icons
 > at every breakpoint**, and the worded `MENU`/`CARRINHO` follows from that rule.
@@ -339,8 +350,8 @@ Under the payment marks, one line in the annotation voice `--muted`:
 **Deliberately out: third-party badges.** Reclame Aqui, Ebit and PCI/SSL
 certificates are marks *earned by a real CNPJ*. Displaying them on a fictional
 store would be the one thing in the footer that constitutes misrepresentation
-rather than a design choice. The `COMPRA SEGURA` line covers the reassurance
-without faking a third-party credential.
+rather than a design choice. Nothing stands in for them: the reassurance line
+that used to sit under the marks is withdrawn above, for the same reason.
 
 ---
 
@@ -348,8 +359,8 @@ without faking a third-party credential.
 
 `/checkout` gets a lean variant. Kept:
 
-- Zone C (payment marks and `COMPRA SEGURA`) — reassurance at exactly the point
-  where it matters.
+- Zone C (the payment marks) — a statement of what the store accepts, at exactly
+  the point where it matters.
 - The **Ajuda** column and the **Atendimento** column, side by side.
 - All of zone D — identification, withdrawal and copyright. The decree's
   identification duty does not stop at checkout.
@@ -388,7 +399,15 @@ acceptable; a collapsed legal obligation is not.
 
 - The footer is a `<footer>` with `role="contentinfo"`, one per page.
 - Each link column is a `<nav>` labelled by its own title (`aria-labelledby`),
-  with the items in a `<ul>`.
+  with the items in a `<ul>`. The **title is not a heading**: `aria-labelledby`
+  names the landmark from any element, and as `<h2>`s these titles duplicated the
+  page's own outline — `AMBIENTES` is [`home.md`](home.md) §2's band as well, so
+  a reader moving by heading met the same word twice with nothing to tell the
+  store's primary navigation from a footer column. Announced as a named region
+  inside `contentinfo`, which is what it is, the ambiguity does not arise.
+  *Atendimento* is not navigation and stays a `<div>`, but is labelled the same
+  way (`role="group"`), so the four columns are four named things rather than
+  three plus an anonymous one.
 - **Visible focus is mandatory**: `outline: 2px solid var(--indigo); outline-offset: 3px`
   (`marca.md` §6).
 - The graphical payment marks are decorative (`aria-hidden`) and the information

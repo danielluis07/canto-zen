@@ -309,6 +309,18 @@ export const colecaoEmDestaque = (): ColecaoEmDestaque => {
 // §5 — the service band
 // ---------------------------------------------------------------------------
 
+/**
+ * The band's heading, and the **only** one on the page that is not rendered.
+ *
+ * §5 gives this section four labels and no eyebrow, on purpose: an annotation
+ * line above four annotation labels would blur both. The consequence was that
+ * the section had no name at all — a reader moving by heading went straight from
+ * the coleção to `INSPIRAÇÕES` and the band in between, which is where the frete
+ * and montagem facts live, was not a stop. So the heading exists and is
+ * visually hidden: the outline gets its entry, the page keeps its silence.
+ */
+export const TITULO_SERVICO = "SERVIÇO";
+
 export type CampoDeServico = {
   rotulo: string;
   linha: string;
