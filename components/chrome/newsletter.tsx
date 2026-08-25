@@ -8,22 +8,31 @@
 // success state replaces the form in place, because a modal and a toast are both
 // motion `marca.md` §9 does not authorise, and the error resolves in ink, since
 // the palette has no traffic lights.
+//
+// The success line reports what the submission did, and the submission did
+// nothing — Product Principle 2. It is the checkout's register in the footer's
+// voice: `Nada foi cobrado.` there, `NADA FOI ENVIADO NEM GUARDADO.` here, both
+// naming the store as a concept first, so the absence reads as authored rather
+// than broken. The note above the field still speaks as the fictional atelier;
+// this line speaks as the machine, which is why the two do not contradict.
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { FormEvent } from "react";
 
 const CORRIGIVEL = "Escreva um e-mail completo, como nome@provedor.com.br.";
+const RESOLUCAO = "LOJA CONCEITO. NADA FOI ENVIADO NEM GUARDADO.";
 
 export function Newsletter() {
   const [email, setEmail] = useState("");
   const [erro, setErro] = useState<string | null>(null);
   const [assinado, setAssinado] = useState(false);
+  const resolucao = useRef<HTMLParagraphElement>(null);
 
   if (assinado) {
     return (
-      <p className="t-annotation text-ink" role="status">
-        PRONTO. VOCÊ SERÁ AVISADO.
+      <p ref={resolucao} role="status" tabIndex={-1} className="t-annotation text-muted">
+        {RESOLUCAO}
       </p>
     );
   }
@@ -37,6 +46,11 @@ export function Newsletter() {
     }
     setErro(null);
     setAssinado(true);
+    // The swap unmounts the button that held focus, so focus is moved onto the
+    // resolution — the same repair `formulario-de-contato.tsx` makes for the same
+    // swap. `role="status"` announces the line; without this the keyboard reader
+    // is returned to `<body>` and has to find the footer again.
+    queueMicrotask(() => resolucao.current?.focus());
   };
 
   return (

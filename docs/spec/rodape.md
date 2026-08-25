@@ -232,8 +232,20 @@ Occupies 4 of the 12 columns; the right gutter stays empty.
   A note, not a tick-box: a concept store has nowhere to record consent, and a
   checkbox that persists nothing is an interface lie.
 - **Success state**: the form is replaced *in place* by a line in the annotation
-  voice — `PRONTO. VOCÊ SERÁ AVISADO.` No modal, no toast: both are motion that
-  `marca.md` §9 does not authorise.
+  voice, `--muted` — `LOJA CONCEITO. NADA FOI ENVIADO NEM GUARDADO.` No modal, no
+  toast: both are motion that `marca.md` §9 does not authorise. The line reports
+  what the submission did, and the submission did nothing: a promise to write
+  (`PRONTO. VOCÊ SERÁ AVISADO.`, shipped until 2026-08-25) is the fabrication
+  Product Principle 2 forbids, and it sat directly above a privacy-policy link,
+  which made it read as carelessness rather than fiction. This is the checkout's
+  register — `Nada foi cobrado.` there — carried into the footer's voice, naming
+  the store as a concept first so the absence reads as authored. The LGPD note
+  above the field still speaks as the fictional atelier and is unaffected; the
+  resolution speaks as the machine. The swap **moves focus to the resolution**,
+  which `role="status"` then announces: the submit button that held focus is
+  unmounted by the replacement, and without the move the keyboard reader lands
+  on `<body>` — the same repair `institucional.md` §13 makes for the contato
+  form's swap.
 - **Error state**: message in Body S `--ink` under the field, field border in
   `--ink`. No red — the palette has no traffic lights (`marca.md` §3).
 
