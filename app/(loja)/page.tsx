@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Abertura } from "@/components/home/abertura";
 import { Ambientes } from "@/components/home/ambientes";
 import { Colecao } from "@/components/home/colecao";
 import { FaixaDeDestaques } from "@/components/home/faixa-de-destaques";
@@ -18,8 +19,15 @@ import {
 import { compartilhamento, indexavel } from "@/lib/metadados/conteudo";
 
 /**
- * The home — `home.md`. Seven sections in one order, and the page has one job:
+ * The home — `home.md`. Eight sections in one order, and the page has one job:
  * **make navigation by ambiente feel inevitable, not imposed.**
+ *
+ * §0.5's Abertura is the eighth and it is first. It is also the one section that
+ * argues *against* that job rather than for it — its CTA is a standing route to
+ * `/produtos`, which `navbar.md` §5 and `home.md` §7 had each refused precisely
+ * so as not to weaken the ambientes. Both refusals were reopened deliberately
+ * (see `docs/adr/0002-a-abertura.md`); the mitigation is that §2 follows
+ * immediately, so the catalogue is offered once and the rooms are offered next.
  *
  * It is the busiest page in the store and still the quietest, which is what the
  * three budgets in §§9–11 buy: two réguas on the entire page, two índigos, and
@@ -60,6 +68,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-y-rhythm-6 pt-rhythm-5 pb-rhythm-6 lg:gap-y-rhythm-7 lg:pb-rhythm-7">
+      <Abertura />
       {destaque && <PecaEmDestaque destaque={destaque} />}
       <Ambientes campos={camposDeAmbientes()} />
       <FaixaDeDestaques cartoes={pecasEmDestaque()} />

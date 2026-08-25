@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
 import Home from "../app/(loja)/page";
 import { conteudoHome } from "../lib/catalogo";
-import { CAMPOS_DE_SERVICO, marcenariaDaHome } from "../lib/home/conteudo";
+import { CAMPOS_DE_SERVICO, LINHA_ABERTURA, marcenariaDaHome } from "../lib/home/conteudo";
 
 // The home renders on the server, so its markup is observable without a
 // browser — the same seam `tests/chrome-marcacao.test.tsx` uses for the chrome.
@@ -16,9 +16,66 @@ const semTags = html.replace(/<[^>]+>/g, " ");
 /** How many times a substring occurs — the budgets are counts, not presences. */
 const vezes = (agulha: string) => html.split(agulha).length - 1;
 
-describe("the seven sections, in `home.md` §0's order", () => {
-  test("hero, ambientes, destaques, coleção, serviço, inspirações, marcenaria", () => {
+const semTagsDe = (trecho: string) => trecho.replace(/<[^>]+>/g, " ");
+
+/**
+ * §0.5's markup alone — from the first `<section>` to the second. Slicing on a
+ * copy string would be approximate in both directions: §1's régua caption sits
+ * above its own eyebrow, and the Abertura's own line is prose that could recur.
+ */
+const abertura = html.slice(
+  html.indexOf("<section"),
+  html.indexOf("<section", html.indexOf("<section") + 1),
+);
+
+// home.md §0.5
+describe("§0.5 — the Abertura", () => {
+  test("opens the page, ahead of the piece", () => {
+    expect(html.indexOf(LINHA_ABERTURA)).toBeGreaterThan(-1);
+    expect(html.indexOf(LINHA_ABERTURA)).toBeLessThan(html.indexOf("PEÇA EM DESTAQUE"));
+  });
+
+  test("takes the page's only h1, and the piece became an h2", () => {
+    // The heading moved with the position. One `h1` per document, and it is the
+    // statement about the store rather than the name of one piece.
+    expect(vezes("<h1")).toBe(1);
+    expect(html).toContain(`<h1 class="t-display-xl text-ink">${LINHA_ABERTURA}</h1>`);
+    expect(html).toContain('<h2 class="t-display-xl mt-rhythm-3 text-ink">');
+  });
+
+  test("is contained in the reserved 21:9 slot, never cropped", () => {
+    // `imagens.md` §§2, 4. `object-cover` here would be the contain-fit rule
+    // being spent to make one photograph fit, which is what §4 exists to stop.
+    expect(abertura).toContain("aspect-21/9");
+    expect(abertura).toContain("object-contain");
+    expect(abertura).not.toContain("object-cover");
+  });
+
+  test("carries no eyebrow, no price and no régua", () => {
+    // The sixth ausência autorada (CONTEXT.md). Every one of these appears
+    // legitimately further down the page, so the assertion is worth only as much
+    // as the slice is exact — and the section boundary is the only exact one.
+    // §1's régua caption precedes its own eyebrow in the markup, so cutting on
+    // `PEÇA EM DESTAQUE` would read `L 220 CM` as if it were the Abertura's.
+    expect(semTagsDe(abertura)).not.toContain("R$");
+    expect(semTagsDe(abertura)).not.toContain(" CM");
+    expect(abertura).not.toContain("h-[13px] items-center");
+    expect(abertura).not.toContain("t-annotation");
+  });
+
+  test("lays no scrim or gradient over the photograph", () => {
+    // `marca.md` §6 permits no shadow and the token set has no scrim; §0.5's
+    // contrast argument rests on the image's own flat region instead. A
+    // gradient appearing here means that argument quietly failed.
+    expect(html).not.toContain("bg-gradient");
+    expect(html).not.toMatch(/bg-ink\/|bg-black\/|backdrop-/);
+  });
+});
+
+describe("the eight sections, in `home.md` §0's order", () => {
+  test("abertura, hero, ambientes, destaques, coleção, serviço, inspirações, marcenaria", () => {
     const ordem = [
+      LINHA_ABERTURA,
       "PEÇA EM DESTAQUE",
       "AMBIENTES",
       "PEÇAS EM DESTAQUE",
@@ -33,13 +90,23 @@ describe("the seven sections, in `home.md` §0's order", () => {
   });
 
   test("the scroll ends on the marcenaria's assertion", () => {
-    // §7: no closing CTA, no repeat of the ambientes, no "ver todas as peças".
-    // Repeating the ambientes at the end is the standard fix for a page that
-    // failed to route earlier; if §2 works, it is an admission of failure.
+    // §7: no closing CTA, no repeat of the ambientes. Repeating the ambientes at
+    // the end is the standard fix for a page that failed to route earlier; if §2
+    // works, it is an admission of failure.
     expect(html.lastIndexOf("SOBRE O ATELIÊ")).toBeGreaterThan(html.indexOf("INSPIRAÇÕES"));
-    expect(semTags).not.toContain("VER TODAS AS PEÇAS");
     expect(html.indexOf('href="/sala"')).toBeLessThan(html.indexOf("SOBRE O ATELIÊ"));
     expect(html.lastIndexOf('href="/sala"')).toBeLessThan(html.indexOf("PEÇAS EM DESTAQUE"));
+  });
+
+  test("`/produtos` is offered once, at the top, and never again", () => {
+    // §7 used to refuse `VER TODAS AS PEÇAS` outright. ADR 0002 withdrew half of
+    // that: the string is now §0.5's CTA, above the fold. The half that survives
+    // is the half worth testing — the page must not *end* by re-offering
+    // navigation, so one occurrence, before §1, and nothing after §6.
+    expect(vezes("VER TODAS AS PEÇAS")).toBe(1);
+    expect(vezes('href="/produtos"')).toBe(1);
+    expect(html.indexOf("VER TODAS AS PEÇAS")).toBeLessThan(html.indexOf("PEÇA EM DESTAQUE"));
+    expect(html.lastIndexOf('href="/produtos"')).toBeLessThan(html.indexOf("SOBRE O ATELIÊ"));
   });
 });
 
@@ -78,7 +145,7 @@ describe("§10 — the índigo budget", () => {
 
 describe("§11 — the Mincho budget", () => {
   test("piece names, the coleção, the article titles and one feature line", () => {
-    expect(vezes("t-display-xl")).toBe(1); // §1, the hero's piece
+    expect(vezes("t-display-xl")).toBe(2); // §0.5's line and §1's piece
     expect(vezes("t-display-l")).toBe(2); // §4's coleção, §7's feature line
     expect(vezes("t-display-m")).toBe(6); // §3's three cards, §6's three titles
   });

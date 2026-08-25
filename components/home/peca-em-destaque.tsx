@@ -5,13 +5,18 @@ import { Regua } from "@/components/marca/regua";
 import { CTA_DESTAQUE, EYEBROW_DESTAQUE, type DestaqueDaHome } from "@/lib/home/conteudo";
 
 /**
- * §1 — the home opens with reverence for an object, not with a taxonomy.
+ * §1 — reverence for an object, not a taxonomy.
  *
  * It establishes the régua, the photography rule and the fact that this store
  * **shows price**, all three at once — the things every other page will assume
- * have already been said. Opening on the four ambientes instead would spend
- * four photographs before earning any attention, and would open with exactly
- * the wall-of-categories register the brand refuses.
+ * have already been said. Putting the four ambientes here instead would spend
+ * four photographs before earning any attention, and would state exactly the
+ * wall-of-categories register the brand refuses.
+ *
+ * **This section no longer opens the page** — §0.5's Abertura does. What it lost
+ * was the position, not the job: every argument above is about what this section
+ * *says*, and all of it still has to be said before §2 asks the visitor to pick
+ * a room. It says it second now.
  *
  * The image is capped at `78vh` so §2's top hairline sits above the fold: the
  * ambientes have to read as the natural next step rather than as an opening
@@ -54,7 +59,12 @@ export function PecaEmDestaque({ destaque }: { destaque: DestaqueDaHome }) {
               the section is the piece's own name. */}
           <p className="t-annotation text-muted">{EYEBROW_DESTAQUE}</p>
 
-          <h1 className="t-display-xl mt-rhythm-3 text-ink">{destaque.nome}</h1>
+          {/* `h2`, not `h1`: §0.5's Abertura is the page's opening statement and
+              takes the single `h1`. The piece is now the second section and its
+              name is a section heading — which is what it always was
+              structurally, and was only an `h1` because it happened to be
+              first. */}
+          <h2 className="t-display-xl mt-rhythm-3 text-ink">{destaque.nome}</h2>
 
           {/* The designer is read through the família — `dados.md` §6.1's
               correction. Authorship does not change with the finish. */}

@@ -16,6 +16,7 @@ that ships, and domain terms stay pt-BR throughout.
 
 | # | Section | Background | Grid pair |
 |---|---|---|---|
+| 0.5 | Abertura — the room | `--plaster` | full width, `21:9` |
 | 1 | Hero — the piece | `--plaster` | image 7 / block 5 |
 | 2 | Ambientes | `--plaster` | 7 + 5 stacked |
 | 3 | Featured pieces | `--plaster` | 3 × 3 col, 10–12 empty |
@@ -36,6 +37,75 @@ accent, the background swap to `--kozo` is the only tonal shift available, and i
 earns its place by breaking that sequence — while delivering the delivery facts
 **after** the visitor has seen a price in §3, which is when "how does this reach
 me" actually becomes the question.
+
+---
+
+## 0.5. Abertura — the room
+
+**Numbered 0.5 on purpose.** Renumbering §§1–7 would break every cross-reference
+in every other spec that cites `home.md` §1 or §7, and the fractional number
+records that this section was inserted rather than designed with the rest. It is
+the eighth section and it is first.
+
+**Purpose.** Open on a *store* before opening on a *piece*. §1 is one object
+against plaster; it says nothing about a home, and the register a furnished room
+establishes — this is what the furniture is *for* — is the one thing §1 was never
+able to state.
+
+This is a **structural** argument and it has to be, because
+[`imagens.md`](imagens.md) §10.2 forbids the other kind outright: *"a placeholder
+is never evidence… If a section reads weak, the cause is its structure, never its
+stock photograph."* §1 was not replaced because it looked wrong. It was moved
+because the page had no opening register, and it still does the job it always
+did, second.
+
+**Form.** Full container width, `21:9`, contained and never cropped
+([`imagens.md`](imagens.md) §§2, 4). The ratio is reserved to this slot alone.
+
+**Content.**
+
+| Element | Typographic role | Data source |
+|---|---|---|
+| Line | Display XL (Mincho), `--ink` | fixed: `Móveis assinados, feitos sob encomenda` |
+| CTA | CTA | `VER TODAS AS PEÇAS` → `/produtos` |
+
+**No eyebrow, no price, no régua.** The eyebrow is withheld because
+`PEÇA EM DESTAQUE` belongs to §1 forty pixels below and two annotation voices in
+consecutive sections would blur both. The régua is withheld because §9's budget
+is two per page and both are spent below — see the sixth *ausência autorada* in
+[`CONTEXT.md`](../../CONTEXT.md).
+
+**The line is a statement, not a slogan.** It asserts the two facts the store is
+built on — the designer's name is always present (`marca.md` §1) and nothing is
+held in stock — and it is declarative. §1's copy rule holds here unchanged: no
+"bem-vindo", no "descubra", no category promise.
+
+**Text placement and contrast.** The block sits on the photograph's left third,
+which is flat cream stone; `--ink` clears the 4.5:1 floor against it by a wide
+margin. There is **no scrim and no gradient**, and neither is available to fix a
+future image that lacks such a region — `marca.md` §6 permits no shadow and the
+token set has no scrim. A replacement photograph must hold the flat light region;
+that is a constraint on the image, not a licence to overlay one.
+
+Below `lg` the block drops **below** the image. A 21:9 band at 360px is 154px
+tall and cannot hold a Display XL line, and the drop is also what keeps the
+contrast argument from having to hold at every viewport.
+
+**The image is not a link.** A 21:9 click target with no visible affordance is a
+trap, and §1 already settled that a photograph on this page is an object rather
+than a button. The CTA is the affordance.
+
+**Data.** Authored — three constants in `lib/home/conteudo.ts`, reading nothing
+from the catalogue. Every other slot on this page derives its lines from
+`lib/catalogo` because every other slot states a fact about a piece; this one
+states a fact about the store, and no record holds it.
+
+> **What this section cost.** Its CTA is a standing route to `/produtos`, which
+> [`navbar.md`](navbar.md) §5 and §7 below had each refused, both times so as not
+> to weaken the ambientes. Both refusals are reopened here, deliberately and with
+> the reasoning intact — see
+> [ADR 0002](../adr/0002-a-abertura.md). §2 following immediately is the
+> mitigation, not a denial that the cost is real.
 
 ---
 
@@ -317,9 +387,21 @@ column of its own precisely to house contact.
 
 **The scroll ends here.** No closing CTA, no repeat of the ambientes, no "ver todas
 as peças". Repeating the ambientes at the end of the page is the standard fix for a
-page that failed to route earlier; if §2 works, it is an admission of failure. And
-`/produtos` was already refused as a permanent slot by the navbar, exactly so as
-not to weaken the ambientes.
+page that failed to route earlier; if §2 works, it is an admission of failure.
+
+> **Amended by §0.5.** This paragraph also read: *"And `/produtos` was already
+> refused as a permanent slot by the navbar, exactly so as not to weaken the
+> ambientes."* That clause is withdrawn — `VER TODAS AS PEÇAS → /produtos` is now
+> §0.5's CTA, at the **top** of the page, which is a stronger version of what
+> this paragraph refused rather than a weaker one.
+>
+> What survives is the rest, and it is the load-bearing half: **the scroll still
+> ends on the marcenaria's assertion.** No closing CTA, no repeat of the
+> ambientes, nothing after §7. The refusal here was always two claims sharing a
+> sentence — *the page does not end by re-offering navigation*, and *the store
+> does not offer a standing route to `/produtos`*. The first stands. The second
+> is reopened in [ADR 0002](../adr/0002-a-abertura.md), which does not pretend it
+> is costless.
 
 ---
 

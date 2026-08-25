@@ -277,7 +277,7 @@ describe("o cartão", () => {
     // the cast shadow `marca.md` §7 makes part of the frame.
     expect(parametros.get("fit")).toBe("fill");
     expect(parametros.get("fill")).toBe("solid");
-    expect(parametros.get("fill-color")).toBe("eae7e0");
+    expect(parametros.get("fill-color")).toBe("f1f0ec");
     expect(url).not.toContain("fit=crop");
   });
 

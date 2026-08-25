@@ -92,8 +92,16 @@ describe("the navbar", () => {
   test("makes the cart a link to /carrinho and never claims (0)", () => {
     const markup = html();
     expect(markup).toContain('href="/carrinho"');
-    expect(semTags(markup)).toContain("CARRINHO");
+    // The word left the bar with the glyph's arrival, so the accessible name is
+    // now the only place it is stated — which makes asserting it the point.
+    expect(markup).toContain('aria-label="Carrinho"');
     expect(semTags(markup)).not.toContain("(0)");
+  });
+
+  // navbar.md §7 — the count is text, never a badge
+  test("draws no badge behind the count", () => {
+    const markup = html();
+    expect(markup).not.toMatch(/rounded-full|bg-indigo|bg-red/);
   });
 
   // navbar.md §11
@@ -101,10 +109,15 @@ describe("the navbar", () => {
     expect(semTags(html())).toContain("MENU");
   });
 
-  // navbar.md §§1, 11 — zero icons at every breakpoint
-  test("draws nothing: there is no icon in the bar", () => {
-    expect(html()).not.toContain("<svg");
-    expect(html()).not.toContain("<img");
+  // navbar.md §§1, 11 — one icon at every breakpoint, and it is the cart's
+  test("draws exactly one glyph, and it is hidden from the accessible tree", () => {
+    const markup = html();
+    // The budget is a count, not a presence: §1 refuses icons *in general*, and
+    // §7's amendment spends the single exception on the cart. A second `<svg>`
+    // in this bar is the amendment being read as a licence.
+    expect(markup.split("<svg").length - 1).toBe(1);
+    expect(markup).toContain('aria-hidden="true"');
+    expect(markup).not.toContain("<img");
   });
 });
 

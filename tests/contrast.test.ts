@@ -24,15 +24,15 @@ describe("the contrast formula", () => {
 // acessibilidade.md §3, recomputed against the palette that ships.
 describe("measured contrast — text floor 4.5:1", () => {
   const pairs: Array<[string, string, number]> = [
-    ["--ink", "--plaster", 15.8],
-    ["--ink", "--kozo", 14.08],
-    ["--muted", "--plaster", 5.11],
-    ["--muted", "--kozo", 4.56],
-    ["--indigo", "--plaster", 11.87],
-    ["--indigo", "--kozo", 10.58],
-    ["--plaster", "--indigo", 11.87],
-    ["--plaster", "--ink", 15.8],
-    ["--kozo", "--ink", 14.08],
+    ["--ink", "--plaster", 16.94],
+    ["--ink", "--kozo", 15.25],
+    ["--muted", "--plaster", 5.48],
+    ["--muted", "--kozo", 4.94],
+    ["--indigo", "--plaster", 12.72],
+    ["--indigo", "--kozo", 11.45],
+    ["--plaster", "--indigo", 12.72],
+    ["--plaster", "--ink", 16.94],
+    ["--kozo", "--ink", 15.25],
   ];
 
   for (const [foreground, ground, documented] of pairs) {

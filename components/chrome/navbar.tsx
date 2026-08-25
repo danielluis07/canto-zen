@@ -20,8 +20,10 @@ export type VarianteNavbar = "completa" | "reduzida";
 
 /**
  * The bar keeps the four ambientes one gesture away from anywhere in the store,
- * and does nothing else: no search, no icons, no mini-cart, no wishlist, no
- * language switcher, no phone number (`navbar.md` §1).
+ * and does nothing else: no search, no mini-cart, no wishlist, no
+ * language switcher, no phone number (`navbar.md` §1). The bar carries exactly
+ * one glyph — the cart's — and §7 is where that single exception is written
+ * down; §1's refusal of icons is otherwise intact.
  *
  * Two stacked bands, and only the second sticks. The `<header>` itself is the
  * sticky element, offset upwards by exactly the notice band's height, so the
@@ -80,9 +82,15 @@ function Completa() {
       <div className="border-b border-hairline bg-plaster">
         <div className="mx-auto flex h-[var(--altura-navbar)] w-full max-w-measure items-center px-gutter">
           {/*
-            The one exception to `marca.md` §4's "never for interface": with zero
-            icons in the bar, an annotation-voice wordmark would be
-            typographically identical to the label beside it (`navbar.md` §4).
+            The one exception to `marca.md` §4's "never for interface": an
+            annotation-voice wordmark would be typographically identical to the
+            label beside it (`navbar.md` §4).
+
+            §4 used to argue this from "zero icons in the bar". The cart's glyph
+            retired that clause without touching the conclusion — it sits at the
+            far right, among no other type, and does nothing to distinguish the
+            wordmark from the annotation labels it shares a line with. The
+            exception rests on that adjacency, which is unchanged.
           */}
           <Link href="/" className="t-display-m text-ink">
             Canto Zen

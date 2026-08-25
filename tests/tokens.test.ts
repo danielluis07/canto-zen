@@ -15,10 +15,10 @@ const rulesReferencing = (name: string): Rule[] =>
 describe("the palette", () => {
   const hexes: Array<[string, string]> = [
     ["--ink", "#1B1A18"],
-    ["--plaster", "#F5F4F0"],
-    ["--kozo", "#EAE7E0"],
+    ["--plaster", "#FCFCFB"],
+    ["--kozo", "#F1F0EC"],
     ["--oak", "#C6B49A"],
-    ["--hairline", "#D3CFC7"],
+    ["--hairline", "#DEDDD8"],
     ["--indigo", "#223244"],
     ["--muted", "#6B675F"],
   ];

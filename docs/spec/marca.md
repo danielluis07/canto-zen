@@ -76,12 +76,19 @@ A light, warm identity. **No dark mode** — already settled in the map.
 | Token | Name | Hex | Use |
 |---|---|---|---|
 | `--ink` | Tinta | `#1B1A18` | Text, hairline, régua stroke |
-| `--plaster` | Reboco | `#F5F4F0` | Page background |
-| `--kozo` | Kozo | `#EAE7E0` | Recessed panel, rail, band |
+| `--plaster` | Reboco | `#FCFCFB` | Page background |
+| `--kozo` | Kozo | `#F1F0EC` | Recessed panel, rail, band |
 | `--oak` | Carvalho | `#C6B49A` | Wood, warmth, subtle hover |
-| `--hairline` | Fio | `#D3CFC7` | Divider, panel edge — **never a control border** |
+| `--hairline` | Fio | `#DEDDD8` | Divider, panel edge — **never a control border** |
 | `--indigo` | Índigo | `#223244` | **Sole chromatic accent** |
 | `--muted` | Apagado | `#6B675F` | Secondary text, caption, resting control border |
+
+**The three grounds were cooled toward white** in
+[ADR 0001](../adr/0001-grounds-cooled-toward-white.md) — reboco, kozo and fio each
+moved a step lighter and a step less warm. `--oak` did **not** move: it is the
+wood, not a ground, and the warmth of the identity now lives in it and in the
+photography rather than in the paper. Every measured pair in
+[`acessibilidade.md`](acessibilidade.md) §3 rose; none was newly introduced.
 
 **Índigo is the only accent** and it is rationed: interactive state (focus, CTA
 hover, active link) and the Pix discount badge. Nothing else. If índigo appears
@@ -97,7 +104,9 @@ rather than chosen and checked afterwards (§5 there).
 - **Terracotta.** It is the category's default accent and the most recognisable
   cliché of AI-generated design. Índigo takes that place — cool against the wood,
   and it reads as both Japanese indigo dye and Scandinavian neutral.
-- **Cream `#F4F1EA` and neighbours.** Reboco is cooler and greyer on purpose.
+- **Cream `#F4F1EA` and neighbours.** Reboco is cooler than cream on purpose,
+  and after [ADR 0001](../adr/0001-grounds-cooled-toward-white.md) it is also
+  lighter: the warm end of this axis is what was refused, not the light end.
 - **E-commerce green, red and yellow.** Success and error states resolve in ink +
   índigo + typographic weight, not in traffic lights.
 
