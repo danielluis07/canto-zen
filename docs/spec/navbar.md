@@ -154,13 +154,14 @@ Five, in this order, all in the annotation voice:
 
 ## 6. Ambiente panel
 
-**Shape: a column.** The panel is a narrow column aligned under the navigation
-group — not a full-bleed surface.
+**Shape: a column.** The panel is a narrow column hanging under the ambiente
+label that opened it — not a full-bleed surface.
 
 | Property | Value |
 |---|---|
 | Content width | `max-width: 260px`, single column |
-| Alignment | under the navigation group, not under the page edge |
+| Alignment | left edge flush with its own label, not the navigation group and not the page edge |
+| Top edge | the bottom of the 72px bar, below its hairline — never inside the bar |
 | Background | `--plaster` — the same as the bar, continuous |
 | Bottom border | 1px hairline in `--hairline` |
 | Vertical padding | `2rem` |
@@ -195,6 +196,12 @@ Compared side by side in the prototype (§12):
 
 The column won because it is the only one that adds nothing to what the question
 asked for: revealing that ambiente's tipos.
+
+Alignment used to read "under the navigation group". It was wrong for the same
+reason it sounded tidy: one shared left edge puts every panel under *Sala*, so
+Escritório's column ends far to the left of its own label and the pointer path to
+it crosses Cozinha, which opens Cozinha instead. The rightmost room was
+unreachable by mouse. A panel belongs to one label and is positioned by it.
 
 ---
 

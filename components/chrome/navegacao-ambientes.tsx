@@ -133,8 +133,18 @@ export function NavegacaoAmbientes({ itens, paineis }: Props) {
       ref={grupo}
       onKeyDown={aoTeclar}
       onBlur={aoDesfocar}
-      className="ml-[3.5rem] hidden md:block">
-      <ul className="relative flex items-center gap-[2rem]">
+      className="ml-[3.5rem] hidden self-stretch md:block">
+      {/*
+        The group stretches to the bar's full 72px and so does every `<li>`,
+        which settles two things that were one bug each. Each panel is now
+        positioned by its own trigger instead of by the whole group, so it hangs
+        under the ambiente that opened it and no pointer path to it crosses a
+        neighbouring label; and `top-full` now resolves at the bottom of the bar
+        instead of halfway up it, so the panel starts below the bar's
+        `border-b border-hairline` — `mt-px` clears the rule itself — and the
+        hairline is never interrupted.
+      */}
+      <ul className="flex h-full items-center gap-[2rem]">
         {itens.map((item) => {
           const painel = item.abrePainel ? paineis[item.slug] : undefined;
           const marcado = ativo === item.slug;
@@ -143,6 +153,7 @@ export function NavegacaoAmbientes({ itens, paineis }: Props) {
           return (
             <li
               key={item.slug}
+              className="relative flex h-full items-center"
               onPointerEnter={
                 painel ? (e) => e.pointerType === "mouse" && agendar(item.slug, ATRASO_ABERTURA) : undefined
               }
@@ -176,7 +187,7 @@ export function NavegacaoAmbientes({ itens, paineis }: Props) {
                   id={`painel-${item.slug}`}
                   hidden={!escancarado}
                   aria-label={painel.rotulo}
-                  className="absolute left-0 top-full z-40 w-[260px] border-b border-hairline bg-plaster py-[2rem]">
+                  className="absolute left-0 top-full z-40 mt-px w-[260px] border-b border-hairline bg-plaster py-[2rem]">
                   <ul>
                     {painel.tipos.map((tipo) => (
                       <li key={tipo.slug}>
