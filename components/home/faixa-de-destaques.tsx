@@ -22,7 +22,10 @@ import {
  * would be three índigos on one screen, so the policy is stated once, on the
  * hairline that closes the strip.
  *
- * No régua on these cards (§9), and no hover on the photographs.
+ * No régua on these cards (§9), and no hover on the photographs. The width is
+ * stated anyway, in the annotation voice — a régua is not the only way to give
+ * a number, and three featured pieces with no dimension at all was the page
+ * teaching what measurement is for and then withholding it.
  */
 export function FaixaDeDestaques({ cartoes }: { cartoes: CartaoEmDestaque[] }) {
   return (
@@ -44,7 +47,12 @@ export function FaixaDeDestaques({ cartoes }: { cartoes: CartaoEmDestaque[] }) {
             </div>
 
             <h3 className="t-display-m mt-rhythm-3 text-ink">{cartao.nome}</h3>
-            <p className="t-annotation mt-rhythm-1 text-muted">{cartao.acabamento}</p>
+            {/* Acabamento and width on one line, as the listing card sets
+                them: the width is read from `medidas.largura` and is the
+                promise `produto.md` made when it kept cm out of `nome`. */}
+            <p className="t-annotation mt-rhythm-1 text-muted">
+              {cartao.acabamento} · {cartao.largura}
+            </p>
             {/* Three states and never a count, and no state colour: the
                 distinction that matters is in the text. */}
             <p className="t-annotation mt-rhythm-1 text-muted">{cartao.disponibilidade}</p>

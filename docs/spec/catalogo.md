@@ -310,17 +310,26 @@ differences stated below.
 Acabamento, width and disponibilidade occupy **a single line**, separated by `·`, in
 the order above.
 
-### The two differences from the home card
+### The one difference from the home card
 
-1. **Width goes in.** Furniture is bought by the measurement that has to fit the
-   wall (research §7.4), and [`produto.md`](produto.md) kept cm out of `nome` with
-   the explicit promise that the cota would carry it. On a card that cannot have a
-   régua (§4), the annotation line is that promise kept. Read from
-   `medidas.largura`, never hand-written.
-2. **The parcelamento line goes out.** Twelve cards × two price lines is 24 numeric
-   lines per screen, and the page becomes a price table. Parcelamento survives
-   **once per listing**, in the policy line (§7) — exactly the treatment `home.md`
-   §3 gave the Pix badge for the same reason.
+> **Correction — the width is no longer a difference.** This section listed two,
+> and the first was *"width goes in"*: the home card omitted `L {n} CM` because
+> the home carried its measurement in réguas, and this page could not. That was
+> withdrawn by [`home.md`](home.md) §3 — the home's régua budget is one cota on
+> one piece, which left three featured pieces stating no dimension at all. The
+> width is now on **both** cards, from `medidas.largura`, and the argument for it
+> below is the argument on both. One difference survives, and it is the second.
+
+**Width goes in — on this card and on the home's.** Furniture is bought by the
+measurement that has to fit the wall (research §7.4), and
+[`produto.md`](produto.md) kept cm out of `nome` with the explicit promise that
+the cota would carry it. On a card that cannot have a régua (§4), the annotation
+line is that promise kept. Read from `medidas.largura`, never hand-written.
+
+**The parcelamento line goes out.** Twelve cards × two price lines is 24 numeric
+lines per screen, and the page becomes a price table. Parcelamento survives
+**once per listing**, in the policy line (§7) — exactly the treatment `home.md`
+§3 gave the Pix badge for the same reason.
 
 The **Price typographic role (`1.75rem`) remains reserved for the hero and the
 PDP**, as `home.md` §3 fixed. The card uses Body with tabular figures.

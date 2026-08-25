@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Regua } from "@/components/marca/regua";
-import { CTA_COLECAO, EYEBROW_COLECAO, type ColecaoEmDestaque } from "@/lib/home/conteudo";
+import { CTA_COLECAO, type ColecaoEmDestaque } from "@/lib/home/conteudo";
 
 /**
  * §4 — the coleção surfaced *in context*, which is the obligation `rotas.md`
@@ -11,9 +10,11 @@ import { CTA_COLECAO, EYEBROW_COLECAO, type ColecaoEmDestaque } from "@/lib/home
  * it gets editorial framing — the default pair, image on 7 and text on 5 — and
  * not a rail of cards.
  *
- * The section-opening régua is the page's **second and last** (§9). Its label
- * counts the coleção rather than repeating an authored figure, so it cannot
- * disagree with the listing it points at.
+ * **No régua.** The count used to open this section as one, and a rule drawn
+ * the full width of the container above a block with no object under it reads
+ * as a divider, not as a measurement. The page's one régua is the cota on §1's
+ * sofá; the count survives in the eyebrow, still derived from
+ * `produtos.length`, so it cannot disagree with the listing it points at.
  *
  * **No prices in this block.** It sells the curated sequence; a price would
  * force choosing which piece, which is exactly the decision the coleção defers
@@ -22,9 +23,7 @@ import { CTA_COLECAO, EYEBROW_COLECAO, type ColecaoEmDestaque } from "@/lib/home
 export function Colecao({ bloco }: { bloco: ColecaoEmDestaque }) {
   return (
     <section className="mx-auto w-full max-w-measure px-gutter">
-      {bloco.regua && <Regua rotulo={bloco.regua} />}
-
-      <div className="mt-rhythm-5 grid gap-y-rhythm-5 lg:grid-cols-12 lg:gap-x-gutter">
+      <div className="grid gap-y-rhythm-5 lg:grid-cols-12 lg:gap-x-gutter">
         <div className="lg:col-span-7">
           <Link href={bloco.href} className="block">
             <div className="relative aspect-[3/2] w-full bg-kozo">
@@ -40,7 +39,7 @@ export function Colecao({ bloco }: { bloco: ColecaoEmDestaque }) {
         </div>
 
         <div className="max-w-aside lg:col-span-5">
-          <p className="t-annotation text-muted">{EYEBROW_COLECAO}</p>
+          <p className="t-annotation text-muted">{bloco.eyebrow}</p>
           <h2 className="t-display-l mt-rhythm-3 text-ink">{bloco.nome}</h2>
           <p className="t-body mt-rhythm-3 text-ink">{bloco.descricao}</p>
 

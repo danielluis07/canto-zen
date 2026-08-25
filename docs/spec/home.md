@@ -124,9 +124,20 @@ photographs before earning any attention.
 `max-height: 78vh`, so that §2's top hairline is visible above the fold — the
 ambientes appear as the natural next step, not as an opening demand.
 
+**"Real proportion" here means the exact ratio, not the enumerated one.**
+[`imagens.md`](imagens.md) §3 rounds every packshot frame to `3:2`, `1:1` or
+`4:5`, which is what keeps the listing grid ragged without being arbitrary. This
+frame is the one exception in the store, and the cota is the reason: a
+220 × 76 cm sofá rounds to `3:2` and the contained photograph then floats in a
+box nearly twice too tall, so the rule below it spans the container and its
+ticks land on empty `--kozo`. The section that teaches what the régua means
+would be teaching it against a margin. The box takes `largura / altura`, read
+from `medidas` like everything else and authored nowhere.
+
 **Régua.** One cota, `largura`, horizontal, along the image's bottom edge. The
 vertical cota is **suppressed** here: it would live outside the image on the
-right, where the text column begins. See the régua budget in §9.
+right, where the text column begins. This is now the page's **only** régua — see
+the budget in §9.
 
 **Content, top to bottom.**
 
@@ -219,12 +230,23 @@ default pair.
 
 | Element | Role | Note |
 |---|---|---|
-| `principal` image | real proportion | no régua |
+| `principal` image | real proportion (enumerated) | no régua |
 | Name | Display M (Mincho) | `produto.nome` |
-| Acabamento | Annotation, `--muted` | |
+| Acabamento **+ width** | Annotation, `--muted` | one line, `·`-separated |
 | Disponibilidade | Annotation, `--muted` | textual label, no colour |
 | À-vista price | **Body**, tabular | see below |
 | Parcelamento | Body S, `--muted` | `ou {total} em {N}x de {v} sem juros` |
+
+> **Correction — the width goes on the card.** This table originally omitted
+> `L {medidas.largura} CM`, and [`catalogo.md`](catalogo.md) §6 recorded that
+> omission as the listing card's *first difference* from this one. It rested on
+> the home carrying its measurement in réguas, and §9 grants the page exactly
+> one cota — so three of the four featured pieces stated no dimension at all, on
+> the page that exists to teach what a dimension is for. Furniture is bought by
+> the measurement that has to fit the wall, and [`produto.md`](produto.md) kept
+> cm out of `nome` on the promise that the cota would carry it. The annotation
+> line keeps that promise and spends no régua. §6's *two* differences are now
+> **one**: the parcelamento line, which stays.
 
 **Two rations are spent here and need to be stated explicitly.**
 
@@ -260,14 +282,23 @@ act** — which calls for editorial framing, not a rail of cards.
 
 **Form.** Default pair: image on columns 1–7, text on 8–12, `34ch` measure.
 
-**Régua — the second and last on the page.** A section-opening régua
-([`marca.md`](marca.md) §2, the "real figure to state" case), label `{n} PEÇAS`,
-with `n = colecao.produtos.length`. Derived, never authored: no new field, and the
-figure cannot diverge from the collection.
+**No régua.** This section originally opened with one, label `{n} PEÇAS`, and it
+was the page's second and last. It is **withdrawn**, and the count moves into
+the eyebrow: `COLEÇÃO · 6 PEÇAS`, still `n = colecao.produtos.length`, still
+derived, still unable to diverge from the collection.
+
+A régua is a cota — a rule drawn along an object, stating the measurement that
+decides whether the object fits. `{n} PEÇAS` measures nothing, and drawn the
+full width of the container above a block with no object beneath it, the
+signature reads as a divider. The budget was satisfied to the letter and against
+its own argument: the page taught the gesture once on a sofá, then taught that
+it can carry any number at all. The count is worth stating and is not a
+measurement, so it is stated in the voice that already carries facts about this
+block.
 
 | Element | Role | Source |
 |---|---|---|
-| Eyebrow | Annotation | `COLEÇÃO` |
+| Eyebrow | Annotation | `COLEÇÃO · {n} PEÇAS` |
 | Name | Display L (Mincho) | `colecao.nome` |
 | Description | Body | `colecao.descricao` |
 | CTA | CTA | `VER A COLEÇÃO` → `/colecoes/[slug]` |
@@ -449,15 +480,26 @@ the same one level up. An addition, not a reversal; see §12.
 `marca.md` caps it at two per *screen*, not per page — a page this size could
 legally carry more. The home is stricter than the rule:
 
-**Exactly two on the entire page.**
+**Exactly one on the entire page.**
 
 | Where | Cota |
 |---|---|
 | §1 Hero | `largura`, in cm, read from `medidas` |
-| §4 Coleção | section opening, `{n} PEÇAS` |
 
-**Prohibited in:** ambiente fields (§2), featured cards (§3), the service band
-(§5), Inspirações rows (§6), the marcenaria block (§7).
+**Prohibited in:** ambiente fields (§2), featured cards (§3), the coleção (§4),
+the service band (§5), Inspirações rows (§6), the marcenaria block (§7).
+
+> **Correction — the budget is one, not two.** §4's `{n} PEÇAS` was the second,
+> and withdrawing it is the point rather than a saving. A budget of two spent on
+> one cota and one count teaches that the gesture means *a measurement, or any
+> number*, which is the ambiguity the ration existed to prevent. One rule, on
+> the one object the page asks the visitor to look at, and it means exactly what
+> `marca.md` §2 says it means.
+
+**A ration on the rule is not a ration on measurement.** The three featured cards
+state `L {n} CM` in the annotation voice (§3), and the hero's cota is the same
+number in the same unit drawn as a rule. Four measurements, one signature — which
+is the split the correction above is for.
 
 The home is the only page that teaches what the gesture means. A visitor who meets
 it six times before reaching a product page has learned that it is ornament — and

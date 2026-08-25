@@ -1,8 +1,13 @@
 import { describe, expect, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
 import Home from "../app/(loja)/page";
-import { conteudoHome } from "../lib/catalogo";
-import { CAMPOS_DE_SERVICO, LINHA_ABERTURA, marcenariaDaHome } from "../lib/home/conteudo";
+import { conteudoHome, produto } from "../lib/catalogo";
+import {
+  CAMPOS_DE_SERVICO,
+  LINHA_ABERTURA,
+  marcenariaDaHome,
+  pecasEmDestaque,
+} from "../lib/home/conteudo";
 
 // The home renders on the server, so its markup is observable without a
 // browser — the same seam `tests/chrome-marcacao.test.tsx` uses for the chrome.
@@ -123,13 +128,32 @@ describe("§2 — the ambientes are the first navigational offer", () => {
   });
 });
 
-describe("§9 — the régua budget: exactly two on the entire page", () => {
-  test("the hero's largura and the coleção's count, and nothing else", () => {
+describe("§9 — the régua budget: exactly one on the entire page", () => {
+  test("the hero's largura cota, and nothing else", () => {
     // The régua's own container — `components/marca/regua.tsx`. Counting the
     // component is the only way to assert a budget stated per page.
-    expect(vezes("h-[13px] items-center")).toBe(2);
+    expect(vezes("h-[13px] items-center")).toBe(1);
     expect(vezes('class="relative flex w-[13px] justify-center self-stretch"')).toBe(0);
-    expect(semTags).toContain("6 PEÇAS");
+  });
+
+  test("the one rule is drawn on a box the size of the piece — §1", () => {
+    // The cota's ticks are the piece's edges only if the frame is the piece.
+    // The enumerated ratio would round the hero's 2.89:1 to `3:2`.
+    const peca = produto(conteudoHome.destaqueHome)!;
+    const razao = peca.medidas.largura / peca.medidas.altura;
+    expect(html).toContain(`aspect-ratio:${razao}`);
+    expect(html.slice(0, html.indexOf("h-[13px] items-center"))).not.toContain("aspect-[3/2]");
+  });
+
+  test("the coleção's count survives in the eyebrow, not as a rule", () => {
+    expect(semTags).toContain("COLEÇÃO · 6 PEÇAS");
+  });
+
+  test("every featured piece states a width without spending a régua", () => {
+    // §3's three cards plus §1's cota: four measurements on the page, one rule.
+    for (const cartao of pecasEmDestaque()) {
+      expect(semTags).toContain(`${cartao.acabamento} · ${cartao.largura}`);
+    }
   });
 });
 
@@ -158,7 +182,7 @@ describe("§11 — the Mincho budget", () => {
     for (const eyebrow of ["AMBIENTES", "PEÇAS EM DESTAQUE", "INSPIRAÇÕES"]) {
       expect(html).toContain(`<h2 class="t-annotation text-muted">${eyebrow}</h2>`);
     }
-    for (const eyebrow of ["PEÇA EM DESTAQUE", "COLEÇÃO"]) {
+    for (const eyebrow of ["PEÇA EM DESTAQUE", "COLEÇÃO · 6 PEÇAS"]) {
       expect(html).toContain(`<p class="t-annotation text-muted">${eyebrow}</p>`);
     }
   });

@@ -456,3 +456,20 @@ export const proporcaoDoPrincipal = ({ largura, altura }: Medidas): Proporcao =>
   if (razao < 0.87) return "4:5";
   return "1:1";
 };
+
+/**
+ * The piece's **exact** proportion, `largura / altura`, for the one frame that
+ * carries a cota along the image's bottom edge — the home's hero
+ * ([`home.md`](../../docs/spec/home.md) §1).
+ *
+ * `proporcaoDoPrincipal` quantises to the three enumerated ratios, which is
+ * what keeps the listing grid ragged without being arbitrary (`imagens.md` §3).
+ * A hero at 220 × 76 cm quantises to `3:2` and the contained photograph then
+ * floats inside a box `1.9×` too tall, so the régua's ticks land on the
+ * container and not on the sofá. The régua is an argument about measurement;
+ * ticks that measure the frame instead of the piece teach the opposite of it.
+ *
+ * So the enumeration governs every frame that carries no cota, and the exact
+ * ratio governs the one that does. Both read `medidas` and neither is authored.
+ */
+export const razaoDoPrincipal = ({ largura, altura }: Medidas): number => largura / altura;

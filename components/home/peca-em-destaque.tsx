@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CLASSE_DA_PROPORCAO } from "@/components/marca/proporcao";
 import { Regua } from "@/components/marca/regua";
 import { CTA_DESTAQUE, EYEBROW_DESTAQUE, type DestaqueDaHome } from "@/lib/home/conteudo";
 
@@ -27,6 +26,15 @@ import { CTA_DESTAQUE, EYEBROW_DESTAQUE, type DestaqueDaHome } from "@/lib/home/
  * One cota, `largura`, horizontal. The vertical one is suppressed even where
  * the piece declares it: it would live outside the image on the right, which is
  * where the text column begins.
+ *
+ * **The box takes the piece's exact ratio here, not the enumerated one.** Every
+ * other frame in the store rounds to `imagens.md` §3's three ratios, which is
+ * what lets the listing grid stay ragged without being arbitrary; this one
+ * cannot, because it is the only frame with a rule drawn along its bottom edge.
+ * A 220 × 76 cm sofá rounds to `3:2` and the contained photograph then floats
+ * in a box nearly twice too tall, so the régua's ticks measure the container.
+ * The one section that teaches what the gesture means would be teaching it
+ * against an empty margin.
  */
 export function PecaEmDestaque({ destaque }: { destaque: DestaqueDaHome }) {
   return (
@@ -37,7 +45,8 @@ export function PecaEmDestaque({ destaque }: { destaque: DestaqueDaHome }) {
               two motions and neither of them touches an image. */}
           <Link href={destaque.href} className="block">
             <div
-              className={`relative max-h-[78vh] w-full bg-kozo ${CLASSE_DA_PROPORCAO[destaque.proporcao]}`}>
+              className="relative max-h-[78vh] w-full bg-kozo"
+              style={{ aspectRatio: destaque.razao }}>
               <Image
                 src={destaque.imagem.src}
                 alt={destaque.imagem.alt}

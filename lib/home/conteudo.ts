@@ -23,6 +23,7 @@ import {
   politicas,
   produto,
   proporcaoDoPrincipal,
+  razaoDoPrincipal,
   tipo,
   todosOsProdutos,
   type Figura,
@@ -80,7 +81,13 @@ export const CTA_DESTAQUE = "VER A PEÇA";
 
 export type DestaqueDaHome = {
   imagem: Imagem;
-  proporcao: Proporcao;
+  /**
+   * `largura / altura` — the piece's **exact** proportion, not the enumerated
+   * one. §1's frame carries the cota along its bottom edge, so the box has to
+   * be the piece rather than a box the piece sits inside; see
+   * `razaoDoPrincipal`.
+   */
+  razao: number;
   nome: string;
   /** `LINHO CRU · POR MARINA AOKI` — the designer read through the família. */
   assinatura: string;
@@ -120,7 +127,7 @@ export const destaqueDaPeca = (peca: Produto): DestaqueDaHome | null => {
 
   return {
     imagem,
-    proporcao: proporcaoDoPrincipal(peca.medidas),
+    razao: razaoDoPrincipal(peca.medidas),
     nome: peca.nome,
     assinatura: assinatura(peca),
     preco: precoAVistaEmTexto(peca),
@@ -184,6 +191,17 @@ export type CartaoEmDestaque = {
   proporcao: Proporcao;
   nome: string;
   acabamento: string;
+  /**
+   * `L 190 CM`, read from `medidas.largura` and never hand-written.
+   *
+   * `catalogo.md` §6 listed the width as the listing card's *first difference*
+   * from this one. That difference is withdrawn. It rested on the home spending
+   * its measurement on réguas, and §9 grants the page exactly one cota — so
+   * three featured pieces carried no dimension at all, on the page that teaches
+   * what a dimension is for. The annotation line spends no régua, and it keeps
+   * the same promise `produto.md` made when it kept cm out of `nome`.
+   */
+  largura: string;
   disponibilidade: string;
   /** Body with tabular figures — the Price role stays with the hero and the PDP. */
   preco: string;
@@ -213,6 +231,7 @@ export const pecasEmDestaque = (): CartaoEmDestaque[] =>
       proporcao: proporcaoDoPrincipal(peca.medidas),
       nome: peca.nome,
       acabamento: peca.acabamento.toUpperCase(),
+      largura: `L ${peca.medidas.largura} CM`,
       disponibilidade: disponibilidadeEmTexto(peca),
       preco: precoAVistaEmTexto(peca),
       parcelamento: parcelamentoDaPagina(peca),
@@ -240,8 +259,22 @@ export type ColecaoEmDestaque = {
   nome: string;
   descricao: string;
   imagem: Figura;
-  /** `6 PEÇAS`, counted — never an authored figure that could diverge. */
-  regua: string | null;
+  /**
+   * `COLEÇÃO · 6 PEÇAS` — the eyebrow and the count, one annotation line.
+   *
+   * The count used to be the page's **second régua**, and that was the budget
+   * satisfied to the letter against its own argument. A régua is a cota: a rule
+   * drawn along an object, stating the measurement that decides whether the
+   * object fits. `{n} PEÇAS` measures nothing, and drawn full-container above a
+   * section with no object beneath it, the signature reads as a divider and
+   * teaches that the gesture means *any number*. The count is worth stating and
+   * it is not a measurement, so it is stated in the voice that carries facts
+   * about a block — the same voice the eyebrow was already in.
+   *
+   * Still counted from `produtos.length`, never authored, so it cannot diverge
+   * from the coleção it names.
+   */
+  eyebrow: string;
   href: string;
 };
 
@@ -251,6 +284,9 @@ export type ColecaoEmDestaque = {
  * that context. It sells the curated sequence and therefore states **no
  * price** — a price here would force choosing which piece, which is exactly the
  * decision the coleção defers to its listing.
+ *
+ * It also spends **no régua**: the page has one, and it is a cota on the hero.
+ * See `eyebrow` above for why the count moved into the annotation voice.
  */
 export const colecaoEmDestaque = (): ColecaoEmDestaque => {
   const encontrada = colecao(conteudoHome.colecaoDestaque);
@@ -262,7 +298,9 @@ export const colecaoEmDestaque = (): ColecaoEmDestaque => {
     nome: encontrada.nome,
     descricao: encontrada.descricao,
     imagem: encontrada.imagem,
-    regua: rotuloDaContagem(encontrada.produtos.length),
+    eyebrow: [EYEBROW_COLECAO, rotuloDaContagem(encontrada.produtos.length)]
+      .filter(Boolean)
+      .join(" · "),
     href: `/colecoes/${encontrada.slug}`,
   };
 };

@@ -171,6 +171,17 @@ pairing is `3:2`/`largura` and `4:5`/`altura`, and the home's hero — which
 [`home.md`](home.md) §1 requires to declare `cotas: ['largura']` — should be a
 `3:2` or `1:1` piece. A `4:5` hero with a horizontal cota is legal and ugly.
 
+**One frame is exempt from the enumeration: the home's hero.** The rounding is
+what makes the listing grid ragged rather than arbitrary, and it costs nothing
+wherever the frame carries no rule. It costs the argument wherever one is drawn:
+a 220 × 76 cm sofá is `2.89:1` and rounds to `3:2`, so the contained photograph
+floats in a box nearly twice too tall and the cota's ticks land on `--kozo`
+instead of on the piece's edges. [`home.md`](home.md) §1's frame therefore takes
+`largura / altura` exactly. Both readings come from `medidas`; the rule is
+*enumerated where the frame is a frame, exact where the frame is the object being
+measured*, and no third case exists — the hero is the store's only cota-bearing
+photograph outside the PDP.
+
 ---
 
 ## 4. Crop, fit and the square fields

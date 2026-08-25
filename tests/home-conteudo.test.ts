@@ -43,6 +43,15 @@ describe("§1 — the hero", () => {
     expect(hero.cota).toBe(`L ${peca.medidas.largura} CM`);
   });
 
+  test("frames the piece at its exact ratio, not the enumerated one — §1", () => {
+    // The cota runs along this frame's bottom edge, so the box has to be the
+    // piece: rounded to `3:2`, a 220 × 76 cm sofá floats in a box nearly twice
+    // too tall and the ticks measure the container instead.
+    const peca = produto(conteudoHome.destaqueHome)!;
+    expect(hero.razao).toBeCloseTo(peca.medidas.largura / peca.medidas.altura, 10);
+    expect(hero.razao).not.toBeCloseTo(3 / 2, 2);
+  });
+
   test("does not render at all when the principal declares no largura", () => {
     // §1's hard precondition, and the reason it is a `null` rather than a
     // fallback: an empty régua is prohibited (`marca.md` §2), so a piece that
@@ -89,12 +98,21 @@ describe("§3 — the featured strip", () => {
     expect(cartoes.map((c) => c.slug)).toEqual(conteudoHome.destaques);
   });
 
-  test("each card states acabamento, disponibilidade, price and parcelamento", () => {
+  test("each card states acabamento, largura, disponibilidade, price and parcelamento", () => {
     for (const cartao of cartoes) {
       expect(cartao.acabamento).toBe(cartao.acabamento.toUpperCase());
       expect(cartao.disponibilidade).toMatch(/^(ENVIO IMEDIATO|SOB ENCOMENDA|ESGOTADO)/);
       expect(cartao.preco).toMatch(/^R\$ /);
       expect(cartao.href).toBe(`/produtos/${cartao.slug}`);
+    }
+  });
+
+  test("every card states its width, read from `medidas` and never authored", () => {
+    // The listing card's width, on the home card too. No régua is spent: §9
+    // still grants the page one, and it is §1's cota.
+    for (const cartao of cartoes) {
+      const peca = produto(cartao.slug)!;
+      expect(cartao.largura).toBe(`L ${peca.medidas.largura} CM`);
     }
   });
 
@@ -114,9 +132,11 @@ describe("§4 — the featured coleção", () => {
     expect(bloco.descricao.length).toBeGreaterThan(0);
   });
 
-  test("its régua counts the coleção rather than an authored figure", () => {
-    // Derived, so the label cannot diverge from the collection it annotates.
-    expect(bloco.regua).toBe("6 PEÇAS");
+  test("its count rides the eyebrow, derived, and spends no régua", () => {
+    // Derived, so the label cannot diverge from the collection it names — and
+    // in the annotation voice, because `{n} PEÇAS` measures nothing and a rule
+    // drawn above a section with no object under it reads as a divider.
+    expect(bloco.eyebrow).toBe("COLEÇÃO · 6 PEÇAS");
   });
 });
 
