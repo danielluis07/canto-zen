@@ -42,6 +42,38 @@ import {
 // ---------------------------------------------------------------------------
 // §1 — the hero
 // ---------------------------------------------------------------------------
+// §0.5 — the Abertura
+// ---------------------------------------------------------------------------
+
+/**
+ * The Abertura is **authored, not derived** — the one slot on this page that
+ * reads nothing from the catalogue.
+ *
+ * Everything else here composes lines out of `lib/catalogo`, because everything
+ * else states a fact about a piece and two spellings of one fact is the drift
+ * the module boundary exists to prevent. The Abertura states a fact about the
+ * *store*, and there is no record it could read: `Loja` (`institucional.md`)
+ * holds identification, not position. So it is three constants, and they live
+ * here rather than in the component for the same reason every other line does.
+ *
+ * No eyebrow. `PEÇA EM DESTAQUE` belongs to the section directly below it, and
+ * an annotation line above the Mincho would put two voices in the one section
+ * whose argument is quiet.
+ */
+export const LINHA_ABERTURA = "Móveis assinados, feitos sob encomenda";
+export const CTA_ABERTURA = "VER TODAS AS PEÇAS";
+
+/**
+ * `imagens.md` §5.2 — authored `alt`, not templated: no entity backs this image,
+ * so no template can spell it. It describes the room, because that is what a
+ * reader who cannot see it needs; it does not describe the brand.
+ */
+export const IMAGEM_ABERTURA = {
+  src: "/images/hero.webp",
+  alt: "Sala de estar com sofá em linho, poltronas de couro trançado e banco de madeira maciça",
+} as const;
+
+// ---------------------------------------------------------------------------
 
 export const EYEBROW_DESTAQUE = "PEÇA EM DESTAQUE";
 export const CTA_DESTAQUE = "VER A PEÇA";

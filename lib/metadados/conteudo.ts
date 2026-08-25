@@ -28,7 +28,7 @@ export const ORIGEM = new URL("https://cantozen.com.br");
  * 96px square — so `tests/metadados.test.ts` reads `--kozo` out of
  * `app/globals.css` and holds the two together.
  */
-export const CAMPO_DE_COMPARTILHAMENTO = "eae7e0";
+export const CAMPO_DE_COMPARTILHAMENTO = "f1f0ec";
 
 /** 1.91:1 — the one frame proportion the store does not control (§5). */
 export const LARGURA_DO_CARTAO = 1200;

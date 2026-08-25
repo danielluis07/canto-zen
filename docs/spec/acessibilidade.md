@@ -55,23 +55,23 @@ actually use. **Text floor 4.5:1; boundary floor 3:1.**
 
 | Foreground | Ground | Ratio | Floor | |
 |---|---|---|---|---|
-| `--ink` `#1B1A18` | `--plaster` | **15.80** | 4.5 | ✓ |
-| `--ink` | `--kozo` | **14.08** | 4.5 | ✓ |
-| `--muted` `#6B675F` | `--plaster` | **5.11** | 4.5 | ✓ |
-| `--muted` | `--kozo` | **4.56** | 4.5 | ✓ |
-| `--indigo` `#223244` | `--plaster` | **11.87** | 4.5 | ✓ |
-| `--indigo` | `--kozo` | **10.58** | 4.5 | ✓ |
-| `--plaster` | `--indigo` | **11.87** | 4.5 | ✓ |
-| `--plaster` | `--ink` | **15.80** | 4.5 | ✓ |
-| `--kozo` | `--ink` | **14.08** | 4.5 | ✓ |
-| `--muted` (control border) | `--plaster` | **5.11** | 3.0 | ✓ |
-| `--muted` (control border) | `--kozo` | **4.56** | 3.0 | ✓ |
-| `--indigo` (focus ring) | `--plaster` | **11.87** | 3.0 | ✓ |
+| `--ink` `#1B1A18` | `--plaster` | **16.94** | 4.5 | ✓ |
+| `--ink` | `--kozo` | **15.25** | 4.5 | ✓ |
+| `--muted` `#6B675F` | `--plaster` | **5.48** | 4.5 | ✓ |
+| `--muted` | `--kozo` | **4.94** | 4.5 | ✓ |
+| `--indigo` `#223244` | `--plaster` | **12.72** | 4.5 | ✓ |
+| `--indigo` | `--kozo` | **11.45** | 4.5 | ✓ |
+| `--plaster` | `--indigo` | **12.72** | 4.5 | ✓ |
+| `--plaster` | `--ink` | **16.94** | 4.5 | ✓ |
+| `--kozo` | `--ink` | **15.25** | 4.5 | ✓ |
+| `--muted` (control border) | `--plaster` | **5.48** | 3.0 | ✓ |
+| `--muted` (control border) | `--kozo` | **4.94** | 3.0 | ✓ |
+| `--indigo` (focus ring) | `--plaster` | **12.72** | 3.0 | ✓ |
 
 **Two values in this table were changed to make it pass**, both recorded in
 [`marca.md`](marca.md) §3 — see §5.
 
-**`--hairline` `#D3CFC7` is absent from this table on purpose.** It measures 1.41
+**`--hairline` `#DEDDD8` is absent from this table on purpose.** It measures 1.32
 on `--plaster` and it stays that light, because after §5 it borders nothing that
 is a control: it is the divider rule, the panel edge, the navbar underline and
 the swatch outline. Structural edges are not control boundaries and the 3:1 floor

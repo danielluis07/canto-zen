@@ -16,8 +16,16 @@ The bar has **one** job: keep the four ambientes one gesture away from anywhere
 in the store. It does not sell, does not advertise and does not search. It is the
 room-primary spine of [`rotas.md`](rotas.md) made permanent.
 
-Corollary: everything that does not serve that job was refused — search, icons,
+Corollary: everything that does not serve that job was refused — search,
 mini-cart, wishlist counter, language switcher, support phone number.
+
+**Icons: one, and it is the cart's.** The original refusal was blanket. It is now
+a budget of exactly one, spent in §7, and the distinction matters: an icon is
+refused here whenever it is *decorating* a label that already works as words. The
+cart is the single case where the glyph **replaces** the words rather than
+dressing them, which is why it is the only one that pays for itself. A second
+glyph in this bar is this exception being read as a licence, and
+`tests/chrome-marcacao.test.tsx` asserts the count, not merely the absence.
 
 ---
 
@@ -95,9 +103,15 @@ authorise it.
 > interface"*. The wordmark is the **only** exception to that rule in the entire
 > storefront, and it does not generalise: no other chrome element uses Mincho.
 >
-> The reason: with zero icons in the bar, setting the wordmark in the annotation
-> voice would make it typographically identical to the "Inspirações" label beside
-> it — the brand would disappear inside its own navigation.
+> The reason: setting the wordmark in the annotation voice would make it
+> typographically identical to the "Inspirações" label beside it — the brand
+> would disappear inside its own navigation.
+>
+> This reason was originally written as *"with zero icons in the bar…"*. §1's
+> single-glyph exception retired that clause without touching the conclusion:
+> the cart's glyph sits at the far right, among no other type, and does nothing
+> to distinguish the wordmark from the annotation labels it shares a line with.
+> The exception rests on that adjacency, which is what it always rested on.
 
 There is no symbol, monogram or lockup. The brand has no logo system, and the
 bold gesture is already spent on the régua.
@@ -119,8 +133,18 @@ Five, in this order, all in the annotation voice:
 **Deliberately out of the bar:**
 
 - **All products** (`/produtos`) — it lives inside the panel as "Ver tudo em
-  {Ambiente}" and in the footer. A permanent slot for it would weaken the
-  ambientes.
+  {Ambiente}" and in the footer. A permanent slot **in the bar** would weaken the
+  ambientes, and that refusal stands: the bar still has no `/produtos` item, at
+  any breakpoint.
+
+  > **Narrowed by [`home.md`](home.md) §0.5.** This bullet used to be read as the
+  > store's general position on `/produtos`, and `home.md` §7 cited it that way.
+  > It is not: it is a decision about **this bar**, which is permanent and
+  > appears on all 15 routes. The home's Abertura now carries a `/produtos` CTA —
+  > one route, above the fold, on the single page whose job is routing. That is a
+  > real cost to the ambientes and [ADR 0002](../adr/0002-a-abertura.md) records
+  > it as one; it is not this bullet being overturned, because a link on one page
+  > and a permanent slot on every page are different amounts of the same thing.
 - **Sobre and Contato** — footer and home. They are not recurring navigation
   destinations.
 - **Coleções** — they have no index page (`rotas.md`, *Deliberate omissions*), so
@@ -176,12 +200,22 @@ asked for: revealing that ambiente's tipos.
 
 ## 7. Cart
 
-Text, no icon: **`CARRINHO`**, plus `(n)` when `n > 0`.
+A **glyph** and `(n)` when `n > 0`. This replaces the original *"text, no icon:
+`CARRINHO`"* — see §1's single-icon budget.
 
+- **`ShoppingBag`** from `lucide-react`, `18px`, stroke `1.25`. A bag, not a
+  trolley: `ShoppingCart` is the supermarket register and this store sells one
+  sofa at a time. The stroke is the hairline's weight, because the bar draws one
+  weight of line and a 2px glyph would be the heaviest mark in the chrome.
+- **The word is gone from the bar and lives in the accessible name** —
+  `aria-label="Carrinho"`, with the glyph `aria-hidden`. A bag beside a tabular
+  count is self-evident to anyone the glyph reaches; the label is what carries it
+  for everyone else. Nothing was made less legible, only less loud.
 - Annotation voice, `--ink`, tabular figures.
 - The parenthesis disappears entirely on an empty cart — never `(0)`.
-- No badge, no circle, no colour. Red does not exist in the palette, and an
-  índigo badge would spend the sole accent on a count.
+- **The count stays text.** No badge, no circle, no colour: red does not exist in
+  the palette, and an índigo badge would spend the sole accent on a number. This
+  is the refusal the glyph most invites and it survives the glyph intact.
 - **Navigates to `/carrinho`.** It does not open a drawer, does not open a
   preview, and has no hover state beyond the colour transition.
 

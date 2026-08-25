@@ -53,6 +53,12 @@ was chosen. A régua without a real figure behind it is forbidden.
 **Cota** — one measurement annotation on a Régua. Max two per piece (largura,
 altura).
 
+**Abertura** — the home's opening band: one wide room photograph carrying a
+single line and one link. It names a *role*, not a retail fixture — what opens
+the store — which is why it is not called a "vitrine": a shop window promises
+goods on display, and this one asserts a position. There is exactly one, it
+belongs to the home alone, and it carries no price and no Régua.
+
 ## Comércio
 
 **Preço de tabela** — the authored reference price, and the only price stored.
@@ -114,9 +120,10 @@ layout but not a heading skeleton, and each carries a date, because a policy
 without a version is a defect.
 
 **Ausência autorada** — something a surface deliberately does not have, recorded
-as a decision rather than an omission. Five so far: the carrinho has no Régua,
+as a decision rather than an omission. Six so far: the carrinho has no Régua,
 Inspirações has neither price nor Régua, the institutional pages have no
-photography, and the error surfaces have neither photography nor Régua.
+photography, the error surfaces have neither photography nor Régua, and the
+Abertura has neither price nor Régua.
 
 ## Estados
 

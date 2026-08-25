@@ -100,15 +100,29 @@ request to reopen `marca.md` §7.
 
 ## 2. Ratio discipline
 
-Ratios are **enumerated, not free-form**. Three retrato ratios plus two fixed
+Ratios are **enumerated, not free-form**. Three retrato ratios plus three fixed
 slot ratios, and nothing else may be introduced.
 
 | Token | Shape | Used for |
 |---|---|---|
-| `3:2` | horizontal | wide pieces; **all** ambiente-genre slots |
+| `3:2` | horizontal | wide pieces; **all** ambiente-genre slots except the Abertura |
 | `1:1` | square | roughly cubic pieces; **all** `detalhe` macros |
 | `4:5` | vertical | tall pieces |
 | `16:9` | wide | `Artigo.thumb` only |
+| `21:9` | banner | the home's Abertura ([`home.md`](home.md) §0.5) only |
+
+**`21:9` is a slot ratio, not a piece ratio.** It is reserved the way `16:9` is
+reserved: to exactly one authored composition, and it is unavailable to
+`Proporcao` — a Produto's frame is derived from its real measurements (§3) and no
+piece is 2.33:1. `components/marca/proporcao.ts` therefore does not gain a row;
+the Abertura declares its own box, which is what makes the reservation
+enforceable rather than merely stated.
+
+Adding a fifth ratio was weighed against cropping the photograph into `3:2`.
+Cropping was refused because §4's contain-fit rule is the store's truth-telling
+rule about images, and spending it to avoid one table row would be trading a
+principle for a formatting preference. Enumeration exists to remove
+arbitrariness; a named, reserved, single-use ratio is not arbitrary.
 
 Free-form ratios were refused. `marca.md` §7 asks the frame to sit in the
 piece's real proportion, which is a truth-telling rule, not a licence for

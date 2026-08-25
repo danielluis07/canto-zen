@@ -15,12 +15,17 @@
 :root {
   /* Palette — marca.md §3. Índigo is the sole accent and is rationed to
      interactive state and the Pix badge. No dark mode: the identity is light
-     and warm, and that is settled. */
+     and warm, and that is settled.
+
+     The three ground values were cooled in ADR 0001: reboco, kozo and fio sit
+     a step nearer white, while --oak keeps its warmth because it is the wood,
+     not a ground. Every text pair measured *higher* after the move — the floors
+     in acessibilidade.md §3 were re-derived, not merely re-checked. */
   --ink: #1b1a18;
-  --plaster: #f5f4f0;
-  --kozo: #eae7e0;
+  --plaster: #fcfcfb;
+  --kozo: #f1f0ec;
   --oak: #c6b49a;
-  --hairline: #d3cfc7;
+  --hairline: #deddd8;
   --indigo: #223244;
   --muted: #6b675f;
 
@@ -88,7 +93,7 @@
 
   /* Stroke and corner — marca.md §6. No radius, no UI shadow, one hairline.
      The resting border of a control is --muted and never --hairline: the
-     hairline measures 1.41 on plaster and is decorative structure only
+     hairline measures 1.32 on plaster and is decorative structure only
      (acessibilidade.md §5.2). --ink is the focused or filled border. */
   --hairline-width: 1px;
   --radius: 0;
