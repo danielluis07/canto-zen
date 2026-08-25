@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { beforeAll, describe, expect, mock, test } from "bun:test";
 import { renderToStaticMarkup } from "react-dom/server";
 
@@ -86,6 +87,29 @@ describe("the navbar", () => {
   test("exposes aria-expanded on each ambiente label, closed at rest", () => {
     expect(html().match(/aria-expanded="false"/g)?.length).toBeGreaterThanOrEqual(4);
     expect(html()).not.toContain('aria-expanded="true"');
+  });
+
+  // acessibilidade.md §4.2, navbar.md §10 — the panel is a non-modal disclosure
+  // and is forbidden from containing focus. Opening it needs a browser and this
+  // project has no such seam (`build-spec.md`), so the guarantee is asserted
+  // where it is decided: the handler that used to cycle Tab back inside.
+  describe("the ambiente panel, being non-modal, does not trap the keyboard", () => {
+    const fonte = readFileSync("components/chrome/navegacao-ambientes.tsx", "utf8");
+
+    test("never intercepts Tab", () => {
+      expect(fonte).not.toContain('"Tab"');
+      expect(fonte).not.toContain("shiftKey");
+    });
+
+    test("keeps Escape, and preventDefault is spent on nothing else", () => {
+      expect(fonte).toContain('evento.key !== "Escape"');
+      expect(fonte.match(/preventDefault\(\)/g)?.length).toBe(2); // Escape, and touch-opens-instead-of-navigating
+    });
+
+    test("closes when focus leaves the navigation group", () => {
+      expect(fonte).toContain("onBlur=");
+      expect(fonte).toContain("evento.relatedTarget");
+    });
   });
 
   // navbar.md §7

@@ -5,14 +5,26 @@
 // `navbar.md` §10 and `acessibilidade.md` §4 fix the behaviour between them: the
 // label is a link, hover opens after a 120ms intent delay, leaving closes after
 // 180ms, scrolling closes immediately, one panel is open at a time, Escape closes
-// and returns focus to the label that opened it, focus is contained while open,
-// and the label carries `aria-expanded`. Touch and keyboard have no hover, so the
-// first activation opens instead of navigating.
+// and returns focus to the label that opened it, and the label carries
+// `aria-expanded`. Touch and keyboard have no hover, so the first activation opens
+// instead of navigating.
+//
+// **This panel does not contain focus.** It is a non-modal disclosure hanging off
+// a link that never leaves the page's own tab order, so Tab walks through the
+// tipos and straight on into the next ambiente — `navbar.md` §10's order,
+// unmodified — and the panel closes as soon as focus lands outside the group.
+// `acessibilidade.md` §4.2 reserves containment for the modal overlays: a
+// disclosure that swallowed Tab in both directions would leave Escape as the only
+// way out, which is a trap however well it is documented.
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerEvent } from "react";
+import type {
+  FocusEvent as ReactFocusEvent,
+  KeyboardEvent as ReactKeyboardEvent,
+  PointerEvent as ReactPointerEvent,
+} from "react";
 import { itemAtivo, type ItemNav, type PainelAmbiente } from "@/lib/chrome/navegacao";
 
 const ATRASO_ABERTURA = 120;
@@ -39,7 +51,6 @@ export function NavegacaoAmbientes({ itens, paineis }: Props) {
 
   const temporizador = useRef<ReturnType<typeof setTimeout> | null>(null);
   const gatilhos = useRef(new Map<string, HTMLAnchorElement | null>());
-  const paineisRef = useRef(new Map<string, HTMLDivElement | null>());
   const grupo = useRef<HTMLElement | null>(null);
 
   const limpar = useCallback(() => {
@@ -85,39 +96,25 @@ export function NavegacaoAmbientes({ itens, paineis }: Props) {
     };
   }, [aberto, setAberto]);
 
-  /** The trigger and its panel's links, in tab order — the loop focus stays in. */
-  const focalizaveis = (slug: string): HTMLElement[] => {
-    const gatilho = gatilhos.current.get(slug);
-    const painel = paineisRef.current.get(slug);
-    const dentro = painel ? Array.from(painel.querySelectorAll<HTMLElement>("a[href]")) : [];
-    return gatilho ? [gatilho, ...dentro] : dentro;
-  };
-
+  // Escape is an accelerator, not the exit of last resort: it closes without
+  // walking back out through the tipos and returns focus to the label. Tab is
+  // deliberately left alone — see the note at the top of the file.
   const aoTeclar = (evento: ReactKeyboardEvent<HTMLElement>) => {
     if (!aberto) return;
+    if (evento.key !== "Escape") return;
+    evento.preventDefault();
+    fechar(true);
+  };
 
-    if (evento.key === "Escape") {
-      evento.preventDefault();
-      fechar(true);
-      return;
-    }
-
-    if (evento.key !== "Tab") return;
-
-    const ciclo = focalizaveis(aberto);
-    if (ciclo.length === 0) return;
-    const atual = document.activeElement as HTMLElement | null;
-    const posicao = atual ? ciclo.indexOf(atual) : -1;
-    if (posicao === -1) return;
-
-    const ultimo = ciclo.length - 1;
-    if (!evento.shiftKey && posicao === ultimo) {
-      evento.preventDefault();
-      ciclo[0].focus();
-    } else if (evento.shiftKey && posicao === 0) {
-      evento.preventDefault();
-      ciclo[ultimo].focus();
-    }
+  // Focus leaving the group closes the panel, with no focus return: the keyboard
+  // has already moved on and pulling it back would be the trap by another name.
+  // Movement *within* the group is left to the labels' own `onFocus`, which opens
+  // the next ambiente's panel or, on Inspirações, closes the open one — still one
+  // panel at a time.
+  const aoDesfocar = (evento: ReactFocusEvent<HTMLElement>) => {
+    if (!aberto) return;
+    if (grupo.current?.contains(evento.relatedTarget)) return;
+    setAberto(null);
   };
 
   const aoApontar = (evento: ReactPointerEvent<HTMLAnchorElement>, slug: string) => {
@@ -135,6 +132,7 @@ export function NavegacaoAmbientes({ itens, paineis }: Props) {
       aria-label="Navegação principal"
       ref={grupo}
       onKeyDown={aoTeclar}
+      onBlur={aoDesfocar}
       className="ml-[3.5rem] hidden md:block">
       <ul className="relative flex items-center gap-[2rem]">
         {itens.map((item) => {
@@ -158,10 +156,10 @@ export function NavegacaoAmbientes({ itens, paineis }: Props) {
                 }}
                 aria-expanded={painel ? escancarado : undefined}
                 aria-controls={painel ? `painel-${item.slug}` : undefined}
-                onFocus={painel ? () => {
+                onFocus={() => {
                   limpar();
-                  setAberto(item.slug);
-                } : undefined}
+                  setAberto(painel ? item.slug : null);
+                }}
                 onPointerDown={painel ? (e) => aoApontar(e, item.slug) : undefined}
                 className={[
                   "t-annotation block py-[0.5rem]",
@@ -176,9 +174,6 @@ export function NavegacaoAmbientes({ itens, paineis }: Props) {
               {painel ? (
                 <div
                   id={`painel-${item.slug}`}
-                  ref={(node) => {
-                    paineisRef.current.set(item.slug, node);
-                  }}
                   hidden={!escancarado}
                   aria-label={painel.rotulo}
                   className="absolute left-0 top-full z-40 w-[260px] border-b border-hairline bg-plaster py-[2rem]">

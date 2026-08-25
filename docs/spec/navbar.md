@@ -281,6 +281,12 @@ without drawing the hairline. An ambiente can be open and active at the same tim
   per `marca.md` §6. This is the bar's only índigo.
 - Tab order: wordmark → ambientes → Inspirações → cart. Panel content enters the
   order immediately after its label, when open.
+- **The panel does not contain focus.** It is a non-modal disclosure
+  ([`acessibilidade.md`](acessibilidade.md) §4.2): Tab from the last tipo walks
+  out into the next ambiente, Shift+Tab from a label walks back out to whatever
+  precedes it, and the panel closes as soon as focus leaves the navigation group —
+  without dragging focus back to the label. `Escape` is the accelerator that skips
+  the contents, never the only exit.
 - The `120ms` colour transition on interactive states is the only animation;
   nothing in the bar animates geometry, opacity or position.
 

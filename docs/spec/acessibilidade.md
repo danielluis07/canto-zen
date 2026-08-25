@@ -85,24 +85,59 @@ not. Oak is a wood tone, not a ground for secondary text.
 ## 4. The overlay rule
 
 Applies to **every** overlay — the navbar's ambiente panel
-([`navbar.md`](navbar.md) §6), the mobile `FILTRAR` and `ORDENAR` sheets
-([`catalogo.md`](catalogo.md) §12), and any overlay specified later.
+([`navbar.md`](navbar.md) §6), the mobile `MENU` panel ([`navbar.md`](navbar.md)
+§11), the mobile `FILTRAR` and `ORDENAR` sheets ([`catalogo.md`](catalogo.md)
+§12), and any overlay specified later.
+
+Every overlay owes all of this:
 
 - **`Escape` closes it**, from anywhere inside.
-- **Focus returns to the trigger** that opened it, always — on `Escape`, on the
-  explicit closing action, and on close-by-outside-click.
-- **Focus is contained while open.** Tab from the last focusable element inside
-  returns to the first; it does not escape to the page behind.
+- **Focus returns to the trigger** that opened it on `Escape` and on the explicit
+  closing action.
 - **The trigger carries `aria-expanded`**, and the overlay is labelled by the
   trigger's own text.
 - **One at a time.** Opening an overlay closes any other.
 
-`navbar.md` §6 states this behaviour for the ambiente panel in its own prose and
-keeps it — it is correct, and it reads better in place. The rule exists for the
-overlays that come *after* the two that are specified today.
-
 **Touch and keyboard have no hover.** Any overlay whose desktop affordance is
 hover must open on the first activation instead ([`navbar.md`](navbar.md) §6).
+
+What an overlay owes on top of that depends on whether it takes the page over.
+
+### 4.1 Modal overlays contain focus
+
+An overlay that covers the surface behind it and makes it inoperable — the mobile
+`MENU` panel, the mobile `FILTRAR` and `ORDENAR` sheets — **contains focus while
+open**. Tab from the last focusable element inside returns to the first; it does
+not reach a page the user cannot see or use. Closing by outside click returns
+focus to the trigger, because there is nowhere else focus could sensibly be.
+
+Containment here is not a courtesy: without it, Tab walks into content that is
+visually covered, and the focus ring disappears behind the overlay.
+
+### 4.2 Non-modal disclosures must **not** contain focus
+
+An overlay that leaves the page behind it visible and operable — today, only the
+navbar's ambiente panel — **is forbidden from containing focus.** Its trigger
+stays in the document's tab order, so:
+
+- **Tab walks straight through it and out.** From the last link in the panel, the
+  next Tab reaches whatever follows the trigger in
+  [`navbar.md`](navbar.md) §10's order. Shift+Tab from the trigger reaches
+  whatever precedes it. Neither direction is intercepted.
+- **It closes when focus leaves the group**, with no focus return — the keyboard
+  has already moved on, and pulling it back is the trap by another name.
+- **`Escape` stays**, as an accelerator that skips the panel's contents rather
+  than as the only way out.
+
+This is a correction, not a nuance. The rule above used to read as one line
+covering both kinds, and the ambiente panel implemented it literally: forward Tab
+at the last tipo and Shift+Tab at the label were both `preventDefault`ed back
+into the panel, on all four rooms, with Escape the only exit and nothing
+advertising it. WCAG 2.1.2 is arguably satisfied when Escape works, but blocking
+the standard exit gesture in both directions, unannounced, on the store's primary
+navigation is a trap in every sense that matters — and this document declines an
+AA claim on provenance, not on altitude, which makes shipping one intolerable.
+The floor now says which overlays contain focus and why, and the panel walks.
 
 ## 5. Palette changes this document forced
 
@@ -145,8 +180,32 @@ unselected rows, [`carrinho.md`](carrinho.md) §3 stepper and §5.2 CEP field,
 - **No conformance statement, no accessibility page in the storefront.** The
   commitment is a spec-level obligation, not marketing copy. A footer link
   claiming accessibility would be the unaudited assertion §2 refuses.
-- **No skip link.** The navbar's tab order is wordmark → four ambientes →
-  Inspirações → cart ([`navbar.md`](navbar.md) §6): seven stops before content,
-  which is not a barrier worth a permanent visible affordance. If the navbar ever
-  grows, this is the first thing to revisit.
+- **No skip link — and the arithmetic that refused one no longer holds.** The
+  refusal was priced at seven stops: wordmark → four ambientes → Inspirações →
+  cart ([`navbar.md`](navbar.md) §10), which is not a barrier worth a permanent
+  visible affordance.
+
+  That count was wrong, because it never counted the panels. An ambiente label
+  opens its panel on focus and the panel's contents enter the tab order right
+  after it ([`navbar.md`](navbar.md) §10), so a keyboard user tabbing from the
+  top of the page to `<main>` passes:
+
+  | Stop | Count |
+  |---|---|
+  | Wordmark | 1 |
+  | Sala + its 6 tipos + *Ver tudo* | 8 |
+  | Quarto + its 5 tipos + *Ver tudo* | 7 |
+  | Cozinha + its 5 tipos + *Ver tudo* | 7 |
+  | Escritório + its 4 tipos + *Ver tudo* | 6 |
+  | Inspirações | 1 |
+  | `CARRINHO` | 1 |
+  | **Total** | **31** |
+
+  Thirty-one, not seven. Until §4.2 the true figure was seven stops plus four
+  undocumented Escape presses, which was worse still; walking the panels is the
+  correct behaviour and it is also the expensive one. **Thirty-one stops before
+  content is a barrier**, and §6's own escape clause — *"if the navbar ever grows,
+  this is the first thing to revisit"* — is now triggered. The refusal stands here
+  only until a spec'd affordance replaces it; it is no longer defended on its
+  merits.
 - **No audit, and no schedule for one.** Stated plainly rather than implied.
