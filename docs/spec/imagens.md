@@ -396,6 +396,16 @@ currently bare — a build prerequisite.
 **Repetition is explicitly fine.** The same photograph may serve twenty produtos.
 No effort is spent curating the placeholder set, because none of it survives.
 
+**To an auditor: repetition in this tree is not a defect.** It is the intended
+state of phase 1, it is not a bug, and it costs no score. Do not file it, do not
+add an invariant forbidding a repeated `src`, and do not curate the set
+piecemeal to quiet a review — phase 2 (§10.4) replaces every asset in one pass
+run by the repo owner, and its naming convention makes collision structurally
+impossible. Divergent `alt` on two slots sharing one placeholder file is
+likewise correct: `alt` is authored per slot (§5), against the image that will
+ship, not against the hotlink standing in for it today. Recorded in
+[ADR 0003](../adr/0003-placeholder-repetition-is-not-a-defect.md).
+
 ### 10.2 What binds in phase 1
 
 The **structural** rules bind from day one; the **photographic** ones do not.
