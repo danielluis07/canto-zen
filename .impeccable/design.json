@@ -1,0 +1,356 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-25T00:00:00.000Z",
+  "title": "Design System: Canto Zen",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#1b1a18",
+        "tonalRamp": [
+          "oklch(15% 0.004 80)",
+          "oklch(26% 0.004 80)",
+          "oklch(37% 0.004 80)",
+          "oklch(48% 0.004 80)",
+          "oklch(59% 0.004 80)",
+          "oklch(70% 0.004 80)",
+          "oklch(81% 0.004 80)",
+          "oklch(92% 0.004 80)"
+        ]
+      },
+      "plaster": {
+        "role": "neutral",
+        "displayName": "Reboco",
+        "canonical": "#fcfcfb",
+        "tonalRamp": [
+          "oklch(15% 0.002 90)",
+          "oklch(26% 0.002 90)",
+          "oklch(37% 0.002 90)",
+          "oklch(48% 0.002 90)",
+          "oklch(59% 0.002 90)",
+          "oklch(70% 0.002 90)",
+          "oklch(81% 0.002 90)",
+          "oklch(92% 0.002 90)"
+        ]
+      },
+      "kozo": {
+        "role": "neutral",
+        "displayName": "Kozo",
+        "canonical": "#f1f0ec",
+        "tonalRamp": [
+          "oklch(15% 0.005 95)",
+          "oklch(26% 0.005 95)",
+          "oklch(37% 0.005 95)",
+          "oklch(48% 0.005 95)",
+          "oklch(59% 0.005 95)",
+          "oklch(70% 0.005 95)",
+          "oklch(81% 0.005 95)",
+          "oklch(92% 0.005 95)"
+        ]
+      },
+      "oak": {
+        "role": "secondary",
+        "displayName": "Carvalho",
+        "canonical": "#c6b49a",
+        "tonalRamp": [
+          "oklch(15% 0.035 80)",
+          "oklch(26% 0.035 80)",
+          "oklch(37% 0.035 80)",
+          "oklch(48% 0.035 80)",
+          "oklch(59% 0.035 80)",
+          "oklch(70% 0.035 80)",
+          "oklch(81% 0.035 80)",
+          "oklch(92% 0.035 80)"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Fio",
+        "canonical": "#deddd8",
+        "tonalRamp": [
+          "oklch(15% 0.006 100)",
+          "oklch(26% 0.006 100)",
+          "oklch(37% 0.006 100)",
+          "oklch(48% 0.006 100)",
+          "oklch(59% 0.006 100)",
+          "oklch(70% 0.006 100)",
+          "oklch(81% 0.006 100)",
+          "oklch(92% 0.006 100)"
+        ]
+      },
+      "indigo": {
+        "role": "primary",
+        "displayName": "Índigo",
+        "canonical": "#223244",
+        "tonalRamp": [
+          "oklch(15% 0.032 250)",
+          "oklch(26% 0.032 250)",
+          "oklch(37% 0.032 250)",
+          "oklch(48% 0.032 250)",
+          "oklch(59% 0.032 250)",
+          "oklch(70% 0.032 250)",
+          "oklch(81% 0.032 250)",
+          "oklch(92% 0.032 250)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Apagado",
+        "canonical": "#6b675f",
+        "tonalRamp": [
+          "oklch(15% 0.008 85)",
+          "oklch(26% 0.008 85)",
+          "oklch(37% 0.008 85)",
+          "oklch(48% 0.008 85)",
+          "oklch(59% 0.008 85)",
+          "oklch(70% 0.008 85)",
+          "oklch(81% 0.008 85)",
+          "oklch(92% 0.008 85)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display-xl": {
+        "displayName": "Display XL",
+        "purpose": "One feature line per page, in Mincho. The store's loudest voice, used once."
+      },
+      "display-l": {
+        "displayName": "Display L",
+        "purpose": "Section and editorial titles, in Mincho."
+      },
+      "display-m": {
+        "displayName": "Display M",
+        "purpose": "Piece names, collection titles, and the wordmark — the smallest place Mincho is allowed."
+      },
+      "price": {
+        "displayName": "Price",
+        "purpose": "The à-vista figure on the hero and the produto page only. Listing cards drop to Body so this role stays reserved."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text, capped at 68ch."
+      },
+      "body-s": {
+        "displayName": "Body S",
+        "purpose": "Parcelamento, field values, and every error message. Tabular, because it is a data voice."
+      },
+      "annotation": {
+        "displayName": "Annotation",
+        "purpose": "The workhorse: labels, breadcrumbs, captions, measurements, cota labels, the notice band, and every figure in a data context."
+      },
+      "cta": {
+        "displayName": "CTA",
+        "purpose": "Buttons and link actions only."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "motion-duration",
+        "value": "120ms",
+        "purpose": "The only duration in the store. Both motion entries use it; there is no scale."
+      },
+      {
+        "name": "motion-ease",
+        "value": "linear",
+        "purpose": "States no curve on purpose — at 120ms a curve would claim a personality this store does not have."
+      },
+      {
+        "name": "transition-color",
+        "value": "color 120ms linear, background-color 120ms linear, border-color 120ms linear, text-decoration-color 120ms linear, outline-color 120ms linear",
+        "purpose": "Entry 1 of a closed list of two: interactive state on pointer. The property allowlist is exactly these five; transform is refused."
+      },
+      {
+        "name": "transition-opacity",
+        "value": "opacity 120ms linear",
+        "purpose": "Entry 2 of two: the conteúdo-velho dim. Opacity 0.45 after a 120ms delay, bound to aria-busy so the state and its announcement cannot drift apart."
+      },
+      {
+        "name": "cut",
+        "value": "transition-duration: 0s",
+        "purpose": "Focus and active are cuts, never ramps. The focus ring must not lag the Tab press, and on a fast pass down a grid a ramp would smear it."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "@media (prefers-reduced-motion: reduce) { :root { --motion-duration: 0s } }",
+        "purpose": "One global rule for every entry present and future: the end state is kept, the interpolation dropped. Nothing is removed and nothing substituted."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The store's one button. A line on paper that inverts when you point at it.",
+      "html": "<button class=\"ds-btn-primary\">ADICIONAR AO CARRINHO</button>",
+      "css": ".ds-btn-primary { font-family: var(--font-grotesk, system-ui, sans-serif); font-size: 0.75rem; font-weight: 500; line-height: 1; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink, #1b1a18); background: transparent; border: 1px solid var(--ink, #1b1a18); border-radius: 0; padding: 0.75rem 1.5rem; cursor: pointer; transition: color 120ms linear, background-color 120ms linear, border-color 120ms linear; } .ds-btn-primary:hover { background: var(--ink, #1b1a18); color: var(--plaster, #fcfcfb); } .ds-btn-primary:focus-visible { outline: 2px solid var(--indigo, #223244); outline-offset: 3px; transition-duration: 0s; } .ds-btn-primary:active { transition-duration: 0s; }"
+    },
+    {
+      "name": "Primary Button — Disabled",
+      "kind": "button",
+      "refersTo": "button-primary-disabled",
+      "description": "The unavailable action: border drops to the fio, text to apagado. No opacity trick.",
+      "html": "<button class=\"ds-btn-disabled\" disabled>FINALIZAR COMPRA</button>",
+      "css": ".ds-btn-disabled { font-family: var(--font-grotesk, system-ui, sans-serif); font-size: 0.75rem; font-weight: 500; line-height: 1; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted, #6b675f); background: transparent; border: 1px solid var(--hairline, #deddd8); border-radius: 0; padding: 1rem 1.5rem; width: 100%; cursor: not-allowed; }"
+    },
+    {
+      "name": "Quiet Action",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "A borderless CTA-voice link, used where the action is a way out rather than the point of the page.",
+      "html": "<a class=\"ds-btn-quiet\" href=\"#\">VER TODAS AS INSPIRAÇÕES</a>",
+      "css": ".ds-btn-quiet { display: inline-block; font-family: var(--font-grotesk, system-ui, sans-serif); font-size: 0.75rem; font-weight: 500; line-height: 1; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink, #1b1a18); text-decoration: none; transition: color 120ms linear; } .ds-btn-quiet:hover { color: var(--indigo, #223244); } .ds-btn-quiet:focus-visible { outline: 2px solid var(--indigo, #223244); outline-offset: 3px; transition-duration: 0s; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Annotation-voice label above, 1px apagado border at rest going to tinta on focus or when filled.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field-label\" for=\"ds-cep\">CEP DE ENTREGA<span class=\"ds-field-optional\">OPCIONAL</span></label><input class=\"ds-field-input\" id=\"ds-cep\" placeholder=\"00000-000\" /></div>",
+      "css": ".ds-field-label { display: block; font-family: var(--font-grotesk, system-ui, sans-serif); font-size: 0.6875rem; font-weight: 500; line-height: 1.4; letter-spacing: 0.16em; text-transform: uppercase; font-variant-numeric: tabular-nums; color: var(--ink, #1b1a18); } .ds-field-optional { margin-left: 0.5rem; color: var(--muted, #6b675f); } .ds-field-input { display: block; width: 100%; margin-top: 0.75rem; padding: 0.75rem; font-family: var(--font-grotesk, system-ui, sans-serif); font-size: 0.875rem; font-weight: 400; line-height: 1.5; font-variant-numeric: tabular-nums; color: var(--ink, #1b1a18); background: transparent; border: 1px solid var(--muted, #6b675f); border-radius: 0; transition: border-color 120ms linear; } .ds-field-input:focus { border-color: var(--ink, #1b1a18); } .ds-field-input:focus-visible { outline: 2px solid var(--indigo, #223244); outline-offset: 3px; transition-duration: 0s; }"
+    },
+    {
+      "name": "Text Field — Error",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "The ink-only error treatment: border stays 1px and goes to tinta, message in Body S beneath. No icon, no colour, no exclamation mark, no uppercase.",
+      "html": "<div class=\"ds-field-err\"><label class=\"ds-field-err-label\" for=\"ds-cpf\">CPF</label><input class=\"ds-field-err-input\" id=\"ds-cpf\" value=\"123.456.789-0\" aria-invalid=\"true\" aria-describedby=\"ds-cpf-msg\" /><p class=\"ds-field-err-msg\" id=\"ds-cpf-msg\" role=\"alert\">Faltam dígitos. O CPF tem 11 números.</p></div>",
+      "css": ".ds-field-err-label { display: block; font-family: var(--font-grotesk, system-ui, sans-serif); font-size: 0.6875rem; font-weight: 500; line-height: 1.4; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink, #1b1a18); } .ds-field-err-input { display: block; width: 100%; margin-top: 0.75rem; padding: 0.75rem; font-family: var(--font-grotesk, system-ui, sans-serif); font-size: 0.875rem; line-height: 1.5; font-variant-numeric: tabular-nums; color: var(--ink, #1b1a18); background: transparent; border: 1px solid var(--ink, #1b1a18); border-radius: 0; } .ds-field-err-msg { margin: 0.75rem 0 0; font-family: var(--font-grotesk, system-ui, sans-serif); font-size: 0.875rem; line-height: 1.5; color: var(--ink, #1b1a18); }"
+    },
+    {
+      "name": "Navbar",
+      "kind": "nav",
+      "refersTo": "navbar",
+      "description": "Two stacked bands on a fio rule: the kozo notice band, then the constant 72px bar. Wordmark in Mincho, ambientes in the annotation voice, the store's one glyph at the far right.",
+      "html": "<header class=\"ds-nav\"><div class=\"ds-nav-aviso\"><p class=\"ds-nav-aviso-txt\">FRETE CALCULADO POR CEP · ATÉ 10X SEM JUROS · PEÇAS SOB ENCOMENDA</p></div><div class=\"ds-nav-bar\"><a class=\"ds-nav-marca\" href=\"#\">Canto Zen</a><nav class=\"ds-nav-itens\"><a class=\"ds-nav-item ds-nav-item-ativo\" href=\"#\">SALA</a><a class=\"ds-nav-item\" href=\"#\">QUARTO</a><a class=\"ds-nav-item\" href=\"#\">COZINHA</a><a class=\"ds-nav-item\" href=\"#\">ESCRITÓRIO</a><a class=\"ds-nav-item\" href=\"#\">INSPIRAÇÕES</a></nav><a class=\"ds-nav-carrinho\" href=\"#\" aria-label=\"Carrinho\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z\"/><path d=\"M3 6h18\"/><path d=\"M16 10a4 4 0 0 1-8 0\"/></svg><span class=\"ds-nav-contagem\">(2)</span></a></div></header>",
+      "css": ".ds-nav { background: var(--plaster, #fcfcfb); } .ds-nav-aviso { background: var(--kozo, #f1f0ec); border-bottom: 1px solid var(--hairline, #deddd8); padding: 0.625rem 1.5rem; } .ds-nav-aviso-txt { margin: 0; font-family: var(--font-grotesk, system-ui, sans-serif); font-size: 0.6875rem; font-weight: 500; line-height: 1.4; letter-spacing: 0.16em; text-transform: uppercase; font-variant-numeric: tabular-nums; color: var(--muted, #6b675f); } .ds-nav-bar { display: flex; align-items: center; gap: 2rem; height: 72px; padding: 0 1.5rem; border-bottom: 1px solid var(--hairline, #deddd8); } .ds-nav-marca { font-family: var(--font-mincho, Georgia, serif); font-size: 1.35rem; font-weight: 400; line-height: 1.45; letter-spacing: 0.005em; color: var(--ink, #1b1a18); text-decoration: none; } .ds-nav-itens { display: flex; gap: 1.5rem; } .ds-nav-item { font-family: var(--font-grotesk, system-ui, sans-serif); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink, #1b1a18); text-decoration: none; padding-bottom: 0.25rem; border-bottom: 1px solid transparent; transition: color 120ms linear, border-color 120ms linear; } .ds-nav-item:hover { color: var(--indigo, #223244); } .ds-nav-item-ativo { border-bottom-color: var(--ink, #1b1a18); } .ds-nav-carrinho { display: flex; align-items: center; gap: 0.375rem; margin-left: auto; font-family: var(--font-grotesk, system-ui, sans-serif); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.16em; font-variant-numeric: tabular-nums; color: var(--ink, #1b1a18); text-decoration: none; transition: color 120ms linear; } .ds-nav-carrinho:hover { color: var(--indigo, #223244); } .ds-nav :focus-visible { outline: 2px solid var(--indigo, #223244); outline-offset: 3px; transition-duration: 0s; }"
+    },
+    {
+      "name": "Listing Card",
+      "kind": "card",
+      "refersTo": "image-field",
+      "description": "No box, no border, no background, no shadow. A photograph on a kozo field in the piece's own proportion, text beneath, and the whole card is the link.",
+      "html": "<a class=\"ds-card\" href=\"#\"><div class=\"ds-card-campo\"></div><h2 class=\"ds-card-nome\">Poltrona Lina em linho cru</h2><p class=\"ds-card-linha\">SALA · POLTRONAS · L 78 × P 82 × A 74 CM</p><p class=\"ds-card-anterior\">R$ 6.480,00</p><p class=\"ds-card-preco\">R$ 5.832,00 à vista</p></a>",
+      "css": ".ds-card { display: block; text-decoration: none; max-width: 320px; } .ds-card-campo { width: 100%; aspect-ratio: 4 / 5; background: var(--kozo, #f1f0ec); } .ds-card-nome { margin: 1rem 0 0; font-family: var(--font-mincho, Georgia, serif); font-size: 1.35rem; font-weight: 400; line-height: 1.45; letter-spacing: 0.005em; color: var(--ink, #1b1a18); transition: color 120ms linear; } .ds-card:hover .ds-card-nome { color: var(--indigo, #223244); } .ds-card-linha { margin: 0.5rem 0 0; font-family: var(--font-grotesk, system-ui, sans-serif); font-size: 0.6875rem; font-weight: 500; line-height: 1.4; letter-spacing: 0.16em; text-transform: uppercase; font-variant-numeric: tabular-nums; color: var(--muted, #6b675f); } .ds-card-anterior { margin: 0.5rem 0 0; font-family: var(--font-grotesk, system-ui, sans-serif); font-size: 0.875rem; line-height: 1.5; font-variant-numeric: tabular-nums; color: var(--muted, #6b675f); text-decoration: line-through; text-decoration-thickness: 1px; } .ds-card-preco { margin: 0.5rem 0 0; font-family: var(--font-grotesk, system-ui, sans-serif); font-size: 1rem; line-height: 1.55; font-variant-numeric: tabular-nums; color: var(--ink, #1b1a18); } .ds-card:focus-visible { outline: 2px solid var(--indigo, #223244); outline-offset: 3px; }"
+    },
+    {
+      "name": "Régua",
+      "kind": "custom",
+      "refersTo": "image-field",
+      "description": "The identity's signature: a 1px tinta hairline with a 13px tick at each end, carrying a real figure in the annotation voice, the label cutting the rule on a breath of reboco. Never rendered without a real number.",
+      "html": "<div class=\"ds-regua-demo\"><div class=\"ds-regua-campo\"></div><div class=\"ds-regua\"><span class=\"ds-regua-rule\" aria-hidden=\"true\"></span><span class=\"ds-regua-tick ds-regua-tick-i\" aria-hidden=\"true\"></span><span class=\"ds-regua-tick ds-regua-tick-f\" aria-hidden=\"true\"></span><span class=\"ds-regua-rotulo\">L 78 CM</span></div></div>",
+      "css": ".ds-regua-demo { max-width: 320px; } .ds-regua-campo { width: 100%; aspect-ratio: 3 / 2; background: var(--kozo, #f1f0ec); margin-bottom: 0.75rem; } .ds-regua { position: relative; display: flex; align-items: center; height: 13px; } .ds-regua-rule { position: absolute; left: 0; right: 0; top: 6px; height: 1px; background: var(--ink, #1b1a18); } .ds-regua-tick { position: absolute; top: 0; width: 1px; height: 13px; background: var(--ink, #1b1a18); } .ds-regua-tick-i { left: 0; } .ds-regua-tick-f { right: 0; } .ds-regua-rotulo { position: relative; margin-left: 1.5rem; padding: 0 0.75rem; background: var(--plaster, #fcfcfb); font-family: var(--font-grotesk, system-ui, sans-serif); font-size: 0.6875rem; font-weight: 500; line-height: 1.4; letter-spacing: 0.16em; text-transform: uppercase; font-variant-numeric: tabular-nums; color: var(--ink, #1b1a18); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Measured Alcove",
+    "overview": "A tokonoma is an alcove built to hold one object, and the emptiness around the object is the point of the alcove rather than the space left over after it. Canto Zen is that alcove with a rule laid against it. Every surface gives a piece far more room than it needs, and then states — in a hairline with a tick at each end — exactly how much room it takes. Emptiness and measurement are the same gesture here: the space asserts the object's presence, and the cota proves the space is real. Neither works without the other, which is why the system can be this quiet everywhere else and still be recognisable at a glance.\n\nThe density is deliberately low and the asymmetry is deliberate too. Text never centres under an image; the default pairing puts the photograph on seven columns and the words on five, and the large right-hand gutter is left empty on purpose. Grounds are three near-whites a step apart — plaster, kozo, and a hairline between them — so depth resolves in tone rather than in shadow. The only shadow in the store is the one raking late-afternoon light casts inside a photograph, and it is never cropped out. The identity's warmth lives in the oak and in the photography, not in the paper.\n\nPersonality is spent once, in one place. Índigo is the sole chromatic accent and it is rationed to interactive state and the à-vista discount; commercial facts — price, parcelamento, prazo, frete, centimetres — appear in full but in the annotation voice: small, tracked, uppercase, tabular. Discreet price, never absent price. The one confirmed visual rejection is the SaaS default: rounded cards, drop shadows, gradient buttons, an icon beside every label, pill badges. The stylesheet enforces that refusal outside every layer, so no utility can reintroduce a radius or a shadow.",
+    "keyCharacteristics": [
+      "Low density; the emptiness is the alcove, never leftover margin.",
+      "Zero corner radius and zero UI shadow, enforced globally rather than by convention.",
+      "One hairline weight draws every divider, every control and the régua itself.",
+      "Two families only: Mincho signs, Grotesk speaks.",
+      "One accent, rationed. One duration, one easing. No dark mode.",
+      "Every figure in a data context is tabular; every measurement uses ×, never x."
+    ],
+    "rules": [
+      {
+        "name": "The Rationed Accent Rule",
+        "body": "Índigo appears only where the reader can act or has just acted, plus the discount superscript. If a screen shows índigo in more than two places, one of them is decoration and must come out.",
+        "section": "colors"
+      },
+      {
+        "name": "The Fio Is Not a Border Rule",
+        "body": "--hairline divides; it never identifies a control. A field, stepper or selectable row rests on --muted and moves to --ink when focused or filled — a two-step inside one warm-grey ramp, never a jump from near-invisible to black.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Dark Mode Rule",
+        "body": "The identity is light and warm and that is settled. There is no prefers-color-scheme branch and no second palette to keep in sync.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mincho Never Touches Interface Rule",
+        "body": "The display face reaches a surface only through a .t-display-* role, and the stylesheet publishes no font utility that would hand it to anything else. Its four permitted jobs are piece name, collection title, editorial title and one feature line per page. The single exception is the wordmark, which earns it by adjacency: an annotation-voice wordmark would be typographically identical to the nav labels beside it.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Figure Rule",
+        "body": "Any number in a data context sets font-variant-numeric: tabular-nums. Measurements always read L {n} × P {n} × A {n} cm with a multiplication sign — never the letter x.",
+        "section": "typography"
+      },
+      {
+        "name": "The Pick a Voice, Not a Size Rule",
+        "body": "Surfaces apply a role class; they do not type a size, a leading or a tracking. Eight roles cover the store.",
+        "section": "typography"
+      },
+      {
+        "name": "The Empty Right Gutter Rule",
+        "body": "When an image and its text pair, the remaining columns stay empty. Filling them with a third element is how a composed page becomes a dashboard.",
+        "section": "layout"
+      },
+      {
+        "name": "The Ragged Grid Rule",
+        "body": "Listing cards frame each piece in its own real proportion (3:2, 1:1 or 4:5, derived from medidas), so rows are deliberately uneven. The box reserves the ratio before anything loads, holding a flat kozo field, because in a ragged grid a shifting row is indistinguishable from a bug.",
+        "section": "layout"
+      },
+      {
+        "name": "The One Shadow Rule",
+        "body": "The only shadow in the store is in the photograph. If a shadow appears in the interface, it is a defect, not a decision.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Tone Goes One Step Rule",
+        "body": "Recession is plaster → kozo and stops. A panel inside a panel does not go a tone darker; it gets a hairline or nothing.",
+        "section": "elevation"
+      },
+      {
+        "name": "The One Weight Rule",
+        "body": "Every line in the interface is 1px. A border does not thicken to signal state; it changes colour. An error field stays 1px and goes to ink.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Empty Régua Rule",
+        "body": "A régua without a real figure behind it is prohibited. It is ornament and data at once, and it stops being either the moment the number is invented. Maximum two cotas per piece (largura, altura) and never more than twice per screen; never in running text, forms, checkout or the footer.",
+        "section": "components"
+      },
+      {
+        "name": "The Two Motions Rule",
+        "body": "The motion vocabulary is a closed list of exactly two entries, both 120ms linear: interactive state on pointer, and the stale-content dim (opacity 0.45 after a 120ms delay, bound to aria-busy so the state and its announcement cannot drift apart). The property allowlist is exactly what those two name; transform is refused. linear states no curve on purpose — at this duration a curve would claim a personality this store does not have. prefers-reduced-motion: reduce is honoured by one global rule that sets the duration to 0s: the end state is kept, the interpolation dropped.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do reach the type scale through a role class (.t-annotation, .t-display-l). Pick a voice, never a size.",
+      "Do use --muted (#6b675f) as a control's resting border and --ink as its focused or filled border.",
+      "Do build recession with --kozo under --plaster, one step and no further.",
+      "Do set every figure in a data context tabular, and write measurements as L {n} × P {n} × A {n} cm with a real ×.",
+      "Do invert a primary button on hover — ink ground, plaster text — and keep focus and active as cuts at 0s.",
+      "Do reserve an image's aspect ratio from its real medidas and hold a flat --kozo field until it paints.",
+      "Do put the photograph on 7 columns and the text on 5, and leave the right gutter empty.",
+      "Do give a régua a real number or leave it out entirely."
+    ],
+    "donts": [
+      "Don't add a corner radius or a box-shadow to anything. Both are nulled outside every layer precisely so this stays unreachable — reaching for rounded-* or shadow-* means the design has drifted, not that the rule needs an exception.",
+      "Don't ship the SaaS default in any of its parts: gradient buttons, pill badges, an icon beside every label, a card with a border and a hover lift.",
+      "Don't use --hairline (#deddd8) as a control border. It measures 1.32:1 and identifies nothing.",
+      "Don't spend índigo on anything that is not interactive state, the focus ring, or the à-vista discount superscript. Never on the active nav item, never as a badge fill.",
+      "Don't carry meaning in colour alone. Errors resolve in ink and position; selection resolves in ink.",
+      "Don't thicken a border to signal state. One weight, 1px, everywhere.",
+      "Don't hand Mincho to interface type, and don't add a third family.",
+      "Don't add a third motion entry, animate transform, or replace linear with a curve.",
+      "Don't centre a text block under its image.",
+      "Don't introduce ordinal numbering (01 / 02 / 03). Nothing here is a sequence the reader must follow in order.",
+      "Don't render a placeholder for a failed image — no icon, no glyph, no IMAGEM INDISPONÍVEL. The flat kozo field simply stays.",
+      "Don't add a dark-mode branch."
+    ]
+  }
+}
