@@ -70,7 +70,12 @@ export const ambientes: Ambiente[] = [
   {
     slug: "escritorio",
     label: "Escritório",
-    tipos: ["escrivaninhas", "cadeiras-de-trabalho", "estantes", "luminarias-de-mesa"],
+    tipos: [
+      "escrivaninhas",
+      "cadeiras-de-trabalho",
+      "estantes",
+      "luminarias-de-mesa",
+    ],
     imagem: {
       src: unsplash("1567016432779-094069958ea5"),
       alt: "Escritório com escrivaninha de madeira, estante e luminária de mesa",
@@ -87,28 +92,60 @@ export const ambientes: Ambiente[] = [
 export const tipos: Tipo[] = [
   { slug: "sofas", label: "Sofás", labelSingular: "Sofá" },
   { slug: "poltronas", label: "Poltronas", labelSingular: "Poltrona" },
-  { slug: "mesas-de-centro", label: "Mesas de centro", labelSingular: "Mesa de centro" },
-  { slug: "mesas-de-jantar", label: "Mesas de jantar", labelSingular: "Mesa de jantar" },
-  { slug: "racks-e-estantes", label: "Racks e estantes", labelSingular: "Rack" },
+  {
+    slug: "mesas-de-centro",
+    label: "Mesas de centro",
+    labelSingular: "Mesa de centro",
+  },
+  {
+    slug: "mesas-de-jantar",
+    label: "Mesas de jantar",
+    labelSingular: "Mesa de jantar",
+  },
+  {
+    slug: "racks-e-estantes",
+    label: "Racks e estantes",
+    labelSingular: "Rack",
+  },
   { slug: "aparadores", label: "Aparadores", labelSingular: "Aparador" },
   { slug: "camas", label: "Camas", labelSingular: "Cama" },
   { slug: "cabeceiras", label: "Cabeceiras", labelSingular: "Cabeceira" },
-  { slug: "criados-mudos", label: "Criados-mudos", labelSingular: "Criado-mudo" },
+  {
+    slug: "criados-mudos",
+    label: "Criados-mudos",
+    labelSingular: "Criado-mudo",
+  },
   { slug: "comodas", label: "Cômodas", labelSingular: "Cômoda" },
-  { slug: "guarda-roupas", label: "Guarda-roupas", labelSingular: "Guarda-roupa" },
+  {
+    slug: "guarda-roupas",
+    label: "Guarda-roupas",
+    labelSingular: "Guarda-roupa",
+  },
   { slug: "mesas", label: "Mesas", labelSingular: "Mesa" },
   { slug: "cadeiras", label: "Cadeiras", labelSingular: "Cadeira" },
   { slug: "banquetas", label: "Banquetas", labelSingular: "Banqueta" },
   { slug: "armarios", label: "Armários", labelSingular: "Armário" },
-  { slug: "carrinhos-e-apoios", label: "Carrinhos e apoios", labelSingular: "Carrinho" },
-  { slug: "escrivaninhas", label: "Escrivaninhas", labelSingular: "Escrivaninha" },
+  {
+    slug: "carrinhos-e-apoios",
+    label: "Carrinhos e apoios",
+    labelSingular: "Carrinho",
+  },
+  {
+    slug: "escrivaninhas",
+    label: "Escrivaninhas",
+    labelSingular: "Escrivaninha",
+  },
   {
     slug: "cadeiras-de-trabalho",
     label: "Cadeiras de trabalho",
     labelSingular: "Cadeira de trabalho",
   },
   { slug: "estantes", label: "Estantes", labelSingular: "Estante" },
-  { slug: "luminarias-de-mesa", label: "Luminárias de mesa", labelSingular: "Luminária de mesa" },
+  {
+    slug: "luminarias-de-mesa",
+    label: "Luminárias de mesa",
+    labelSingular: "Luminária de mesa",
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -145,7 +182,8 @@ export const materiais: Material[] = [
   {
     slug: "boucle",
     label: "Bouclé",
-    cuidados: "Escove no sentido da trama; nunca puxe fios soltos — corte rente.",
+    cuidados:
+      "Escove no sentido da trama; nunca puxe fios soltos — corte rente.",
   },
   {
     slug: "couro-natural",
@@ -156,7 +194,8 @@ export const materiais: Material[] = [
   {
     slug: "carvalho",
     label: "Carvalho",
-    cuidados: "Pano seco no dia a dia; reaplique óleo de acabamento uma vez por ano.",
+    cuidados:
+      "Pano seco no dia a dia; reaplique óleo de acabamento uma vez por ano.",
   },
   {
     slug: "nogueira",
@@ -171,7 +210,8 @@ export const materiais: Material[] = [
   {
     slug: "jatoba",
     label: "Jatobá",
-    cuidados: "Pano seco; a cor amadurece nos primeiros meses e depois estabiliza.",
+    cuidados:
+      "Pano seco; a cor amadurece nos primeiros meses e depois estabiliza.",
   },
   {
     slug: "palhinha",
@@ -301,7 +341,8 @@ export const familias: FamiliaAutorada[] = [
       "M12 68 V76 M208 68 V76",
       "M73 8 V30 M147 8 V30",
     ],
-    desenhoAlt: "Elevação frontal do Sofá Héron, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Sofá Héron, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "sofa-orla",
@@ -313,7 +354,8 @@ export const familias: FamiliaAutorada[] = [
       "M10 64 V72 M180 64 V72",
       "M63 8 V30 M127 8 V30",
     ],
-    desenhoAlt: "Elevação frontal do Sofá Orla, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Sofá Orla, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "sofa-taipa",
@@ -325,7 +367,8 @@ export const familias: FamiliaAutorada[] = [
       "M14 70 V80 M231 70 V80",
       "M61 6 V34 M122 6 V34 M184 6 V34",
     ],
-    desenhoAlt: "Elevação frontal do Sofá Taipa, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Sofá Taipa, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "sofa-maruja",
@@ -337,56 +380,74 @@ export const familias: FamiliaAutorada[] = [
       "M12 66 V74 M193 66 V74",
       "M68 7 V31 M137 7 V31",
     ],
-    desenhoAlt: "Elevação frontal do Sofá Marujá, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Sofá Marujá, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "poltrona-lina",
     nome: "Poltrona Lina",
     medidas: { largura: 78, profundidade: 82, altura: 74 },
-    corpo: ["M0 10 H78 V32 H0 Z", "M0 32 H78 V64 H0 Z", "M8 64 V74 M70 64 V74", "M14 32 H64"],
-    desenhoAlt: "Elevação frontal da Poltrona Lina, com as cotas de largura e altura",
+    corpo: [
+      "M0 10 H78 V32 H0 Z",
+      "M0 32 H78 V64 H0 Z",
+      "M8 64 V74 M70 64 V74",
+      "M14 32 H64",
+    ],
+    desenhoAlt:
+      "Elevação frontal da Poltrona Lina, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "poltrona-sagui",
     nome: "Poltrona Saguí",
     medidas: { largura: 88, profundidade: 86, altura: 80 },
-    corpo: ["M0 10 H88 V34 H0 Z", "M0 34 H88 V68 H0 Z", "M9 68 V80 M79 68 V80", "M16 34 H72"],
-    desenhoAlt: "Elevação frontal da Poltrona Saguí, com as cotas de largura e altura",
+    corpo: [
+      "M0 10 H88 V34 H0 Z",
+      "M0 34 H88 V68 H0 Z",
+      "M9 68 V80 M79 68 V80",
+      "M16 34 H72",
+    ],
+    desenhoAlt:
+      "Elevação frontal da Poltrona Saguí, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "mesa-de-centro-seixo",
     nome: "Mesa de Centro Seixo",
     medidas: { largura: 95, profundidade: 58, altura: 34 },
     corpo: ["M0 0 H95 V6 H0 Z", "M8 6 V34 M87 6 V34", "M8 26 H87"],
-    desenhoAlt: "Elevação frontal da Mesa de Centro Seixo, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Mesa de Centro Seixo, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "mesa-de-centro-luar",
     nome: "Mesa de Centro Luar",
     medidas: { largura: 125, profundidade: 70, altura: 40 },
     corpo: ["M0 0 H125 V8 H0 Z", "M14 8 V40 M111 8 V40", "M14 32 H111"],
-    desenhoAlt: "Elevação frontal da Mesa de Centro Luar, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Mesa de Centro Luar, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "mesa-de-centro-vau",
     nome: "Mesa de Centro Vau",
     medidas: { largura: 110, profundidade: 62, altura: 36 },
     corpo: ["M0 0 H110 V7 H0 Z", "M10 7 V36 M100 7 V36", "M10 28 H100"],
-    desenhoAlt: "Elevação frontal da Mesa de Centro Vau, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Mesa de Centro Vau, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "mesa-de-jantar-vargem",
     nome: "Mesa de Jantar Vargem",
     medidas: { largura: 200, profundidade: 92, altura: 76 },
     corpo: ["M0 0 H200 V6 H0 Z", "M12 6 V76 M188 6 V76", "M12 60 H188"],
-    desenhoAlt: "Elevação frontal da Mesa de Jantar Vargem, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Mesa de Jantar Vargem, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "mesa-de-jantar-ilhota",
     nome: "Mesa de Jantar Ilhota",
     medidas: { largura: 230, profundidade: 98, altura: 78 },
     corpo: ["M0 0 H230 V7 H0 Z", "M14 7 V78 M216 7 V78", "M14 62 H216"],
-    desenhoAlt: "Elevação frontal da Mesa de Jantar Ilhota, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Mesa de Jantar Ilhota, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "estante-cais",
@@ -397,28 +458,36 @@ export const familias: FamiliaAutorada[] = [
       "M0 40 H180 M0 80 H180 M0 120 H180 M0 160 H180",
       "M60 0 V200 M120 0 V200",
     ],
-    desenhoAlt: "Elevação frontal da Estante Cais, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Estante Cais, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "rack-varjao",
     nome: "Rack Varjão",
     medidas: { largura: 140, profundidade: 38, altura: 168 },
-    corpo: ["M0 0 H140 V168 H0 Z", "M0 42 H140 M0 84 H140 M0 126 H140", "M70 0 V168"],
-    desenhoAlt: "Elevação frontal do Rack Varjão, com as cotas de largura e altura",
+    corpo: [
+      "M0 0 H140 V168 H0 Z",
+      "M0 42 H140 M0 84 H140 M0 126 H140",
+      "M70 0 V168",
+    ],
+    desenhoAlt:
+      "Elevação frontal do Rack Varjão, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "estante-tramo",
     nome: "Estante Tramo",
     medidas: { largura: 100, profundidade: 34, altura: 148 },
     corpo: ["M0 0 H100 V148 H0 Z", "M0 37 H100 M0 74 H100 M0 111 H100"],
-    desenhoAlt: "Elevação frontal da Estante Tramo, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Estante Tramo, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "aparador-sereno",
     nome: "Aparador Sereno",
     medidas: { largura: 150, profundidade: 43, altura: 82 },
     corpo: ["M0 0 H150 V62 H0 Z", "M75 0 V62", "M10 62 V82 M140 62 V82"],
-    desenhoAlt: "Elevação frontal do Aparador Sereno, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Aparador Sereno, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "aparador-pedra",
@@ -430,7 +499,8 @@ export const familias: FamiliaAutorada[] = [
       "M87 10 V66",
       "M12 66 V86 M163 66 V86",
     ],
-    desenhoAlt: "Elevação frontal do Aparador Pedra, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Aparador Pedra, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "aparador-junco",
@@ -443,7 +513,8 @@ export const familias: FamiliaAutorada[] = [
       "M73 8 H122 V50 H73 Z",
       "M10 58 V78 M120 58 V78",
     ],
-    desenhoAlt: "Elevação frontal do Aparador Junco, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Aparador Junco, com as cotas de largura e altura",
   }),
 
   // §3.2's famílias, in §3.2's row order. `Vargem`, `Tramo`, `Bruma`, `Cais`,
@@ -461,14 +532,20 @@ export const familias: FamiliaAutorada[] = [
       "M12 88 V100 M160 88 V100",
       "M14 14 H158",
     ],
-    desenhoAlt: "Elevação frontal da Cama Nuvem, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Cama Nuvem, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "cama-orvalho",
     nome: "Cama Orvalho",
     medidas: { largura: 168, profundidade: 205, altura: 45 },
-    corpo: ["M0 0 H168 V10 H0 Z", "M0 10 H168 V34 H0 Z", "M8 34 V45 M160 34 V45"],
-    desenhoAlt: "Elevação frontal da Cama Orvalho, com as cotas de largura e altura",
+    corpo: [
+      "M0 0 H168 V10 H0 Z",
+      "M0 10 H168 V34 H0 Z",
+      "M8 34 V45 M160 34 V45",
+    ],
+    desenhoAlt:
+      "Elevação frontal da Cama Orvalho, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "cama-tatami",
@@ -480,7 +557,8 @@ export const familias: FamiliaAutorada[] = [
       "M74 8 V28",
       "M6 28 V38 M142 28 V38",
     ],
-    desenhoAlt: "Elevação frontal da Cama Tatami, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Cama Tatami, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "cama-abrigo",
@@ -492,7 +570,8 @@ export const familias: FamiliaAutorada[] = [
       "M14 16 H186 M14 44 H186",
       "M12 96 V110 M188 96 V110",
     ],
-    desenhoAlt: "Elevação frontal da Cama Abrigo, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Cama Abrigo, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "cabeceira-vela",
@@ -501,7 +580,8 @@ export const familias: FamiliaAutorada[] = [
     // No legs: the piece hangs on a francesa, which is what its descrição says
     // and what an elevation of it has to show.
     corpo: ["M0 0 H160 V100 H0 Z", "M10 10 H150 V90 H10 Z"],
-    desenhoAlt: "Elevação frontal da Cabeceira Vela, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Cabeceira Vela, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "cabeceira-ripado",
@@ -513,7 +593,8 @@ export const familias: FamiliaAutorada[] = [
       "M100 0 V96 M120 0 V96 M140 0 V96 M160 0 V96",
       "M9 96 V110 M171 96 V110",
     ],
-    desenhoAlt: "Elevação frontal da Cabeceira Ripado, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Cabeceira Ripado, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "criado-mudo-seixo",
@@ -522,21 +603,24 @@ export const familias: FamiliaAutorada[] = [
     // One gaveta, so one drawer front and no divider — the same N−1 reading
     // the cômodas and guarda-roupas below use.
     corpo: ["M0 0 H50 V40 H0 Z", "M5 6 H45 V34 H5 Z", "M6 40 V55 M44 40 V55"],
-    desenhoAlt: "Elevação frontal do Criado-mudo Seixo, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Criado-mudo Seixo, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "criado-mudo-luar",
     nome: "Criado-mudo Luar",
     medidas: { largura: 56, profundidade: 44, altura: 60 },
     corpo: ["M0 0 H56 V44 H0 Z", "M0 22 H56", "M7 44 V60 M49 44 V60"],
-    desenhoAlt: "Elevação frontal do Criado-mudo Luar, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Criado-mudo Luar, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "criado-mudo-junco",
     nome: "Criado-mudo Junco",
     medidas: { largura: 46, profundidade: 38, altura: 52 },
     corpo: ["M0 0 H46 V38 H0 Z", "M5 6 H41 V32 H5 Z", "M6 38 V52 M40 38 V52"],
-    desenhoAlt: "Elevação frontal do Criado-mudo Junco, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Criado-mudo Junco, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "comoda-vargem",
@@ -547,7 +631,8 @@ export const familias: FamiliaAutorada[] = [
       "M0 13 H110 M0 26 H110 M0 39 H110 M0 52 H110",
       "M9 64 V82 M101 64 V82",
     ],
-    desenhoAlt: "Elevação frontal da Cômoda Vargem, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Cômoda Vargem, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "comoda-tramo",
@@ -559,7 +644,8 @@ export const familias: FamiliaAutorada[] = [
       "M0 23 H128 M0 46 H128",
       "M10 70 V88 M118 70 V88",
     ],
-    desenhoAlt: "Elevação frontal da Cômoda Tramo, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Cômoda Tramo, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "comoda-bruma",
@@ -570,7 +656,8 @@ export const familias: FamiliaAutorada[] = [
       "M0 15 H92 M0 30 H92 M0 46 H92",
       "M8 62 V78 M84 62 V78",
     ],
-    desenhoAlt: "Elevação frontal da Cômoda Bruma, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Cômoda Bruma, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "guarda-roupa-cais",
@@ -581,7 +668,8 @@ export const familias: FamiliaAutorada[] = [
       "M48 0 V236 M96 0 V236 M144 0 V236 M192 0 V236",
       "M0 212 H240",
     ],
-    desenhoAlt: "Elevação frontal do Guarda-roupa Cais, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Guarda-roupa Cais, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "guarda-roupa-ripado",
@@ -592,7 +680,8 @@ export const familias: FamiliaAutorada[] = [
       "M45 0 V220 M90 0 V220 M135 0 V220",
       "M0 200 H180",
     ],
-    desenhoAlt: "Elevação frontal do Guarda-roupa Ripado, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Guarda-roupa Ripado, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "guarda-roupa-bruma",
@@ -603,22 +692,33 @@ export const familias: FamiliaAutorada[] = [
       "M50 0 V228 M100 0 V228 M150 0 V228",
       "M0 206 H200",
     ],
-    desenhoAlt: "Elevação frontal do Guarda-roupa Bruma, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Guarda-roupa Bruma, com as cotas de largura e altura",
   }),
 
   familiaComElevacao({
     slug: "mesa-taipa",
     nome: "Mesa Taipa",
     medidas: { largura: 150, profundidade: 82, altura: 76 },
-    corpo: ["M0 0 H150 V6 H0 Z", "M10 6 H140 V12 H10 Z", "M12 12 V76 M138 12 V76"],
-    desenhoAlt: "Elevação frontal da Mesa Taipa, com as cotas de largura e altura",
+    corpo: [
+      "M0 0 H150 V6 H0 Z",
+      "M10 6 H140 V12 H10 Z",
+      "M12 12 V76 M138 12 V76",
+    ],
+    desenhoAlt:
+      "Elevação frontal da Mesa Taipa, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "mesa-orla",
     nome: "Mesa Orla",
     medidas: { largura: 130, profundidade: 78, altura: 74 },
-    corpo: ["M0 0 H130 V5 H0 Z", "M9 5 H121 V10 H9 Z", "M11 10 V74 M119 10 V74"],
-    desenhoAlt: "Elevação frontal da Mesa Orla, com as cotas de largura e altura",
+    corpo: [
+      "M0 0 H130 V5 H0 Z",
+      "M9 5 H121 V10 H9 Z",
+      "M11 10 V74 M119 10 V74",
+    ],
+    desenhoAlt:
+      "Elevação frontal da Mesa Orla, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "mesa-pedra",
@@ -626,16 +726,27 @@ export const familias: FamiliaAutorada[] = [
     medidas: { largura: 180, profundidade: 90, altura: 78 },
     // Two slab legs in carvalho rather than four posts — the tampo is mármore,
     // and the drawing has to show what carries it.
-    corpo: ["M0 0 H180 V4 H0 Z", "M24 4 H48 V78 H24 Z", "M132 4 H156 V78 H132 Z"],
-    desenhoAlt: "Elevação frontal da Mesa Pedra, com as cotas de largura e altura",
+    corpo: [
+      "M0 0 H180 V4 H0 Z",
+      "M24 4 H48 V78 H24 Z",
+      "M132 4 H156 V78 H132 Z",
+    ],
+    desenhoAlt:
+      "Elevação frontal da Mesa Pedra, com as cotas de largura e altura",
   }),
 
   familiaComElevacao({
     slug: "cadeira-junco",
     nome: "Cadeira Junco",
     medidas: { largura: 52, profundidade: 56, altura: 88 },
-    corpo: ["M6 42 H46 V46 H6 Z", "M8 0 H44 V42 H8 Z", "M8 46 V88 M44 46 V88", "M8 72 H44"],
-    desenhoAlt: "Elevação frontal da Cadeira Junco, com as cotas de largura e altura",
+    corpo: [
+      "M6 42 H46 V46 H6 Z",
+      "M8 0 H44 V42 H8 Z",
+      "M8 46 V88 M44 46 V88",
+      "M8 72 H44",
+    ],
+    desenhoAlt:
+      "Elevação frontal da Cadeira Junco, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "cadeira-vime",
@@ -648,7 +759,8 @@ export const familias: FamiliaAutorada[] = [
       "M7 44 V84 M41 44 V84",
       "M7 70 H41",
     ],
-    desenhoAlt: "Elevação frontal da Cadeira Vime, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Cadeira Vime, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "cadeira-tramo",
@@ -663,7 +775,8 @@ export const familias: FamiliaAutorada[] = [
       "M5 41 V80 M39 41 V80",
       "M5 66 H39",
     ],
-    desenhoAlt: "Elevação frontal da Cadeira Tramo, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Cadeira Tramo, com as cotas de largura e altura",
   }),
 
   familiaComElevacao({
@@ -671,21 +784,24 @@ export const familias: FamiliaAutorada[] = [
     nome: "Banqueta Seixo",
     medidas: { largura: 40, profundidade: 40, altura: 68 },
     corpo: ["M0 0 H40 V5 H0 Z", "M6 5 V68 M34 5 V68", "M8 46 H32"],
-    desenhoAlt: "Elevação frontal da Banqueta Seixo, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Banqueta Seixo, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "banqueta-vau",
     nome: "Banqueta Vau",
     medidas: { largura: 42, profundidade: 42, altura: 72 },
     corpo: ["M0 0 H42 V6 H0 Z", "M7 6 V72 M35 6 V72", "M9 48 H33"],
-    desenhoAlt: "Elevação frontal da Banqueta Vau, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Banqueta Vau, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "banqueta-tramo",
     nome: "Banqueta Tramo",
     medidas: { largura: 38, profundidade: 38, altura: 64 },
     corpo: ["M0 0 H38 V4 H0 Z", "M4 4 V64 M34 4 V64", "M4 42 H34"],
-    desenhoAlt: "Elevação frontal da Banqueta Tramo, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Banqueta Tramo, com as cotas de largura e altura",
   }),
 
   familiaComElevacao({
@@ -695,7 +811,8 @@ export const familias: FamiliaAutorada[] = [
     // guarda-roupas above use, on a shallower box.
     medidas: { largura: 150, profundidade: 52, altura: 215 },
     corpo: ["M0 0 H150 V215 H0 Z", "M50 0 V196 M100 0 V196", "M0 196 H150"],
-    desenhoAlt: "Elevação frontal do Armário Cais, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Armário Cais, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "armario-ripado",
@@ -707,14 +824,16 @@ export const familias: FamiliaAutorada[] = [
       "M0 182 H120",
       "M15 0 V182 M30 0 V182 M45 0 V182 M75 0 V182 M90 0 V182 M105 0 V182",
     ],
-    desenhoAlt: "Elevação frontal do Armário Ripado, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Armário Ripado, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "armario-bruma",
     nome: "Armário Bruma",
     medidas: { largura: 90, profundidade: 42, altura: 185 },
     corpo: ["M0 0 H90 V185 H0 Z", "M45 0 V168", "M0 168 H90"],
-    desenhoAlt: "Elevação frontal do Armário Bruma, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Armário Bruma, com as cotas de largura e altura",
   }),
 
   familiaComElevacao({
@@ -729,21 +848,24 @@ export const familias: FamiliaAutorada[] = [
       "M2 60 H10 V68 H2 Z",
       "M46 60 H54 V68 H46 Z",
     ],
-    desenhoAlt: "Elevação frontal do Carrinho Roldana, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Carrinho Roldana, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "carrinho-junco",
     nome: "Carrinho Junco",
     medidas: { largura: 44, profundidade: 40, altura: 60 },
     corpo: ["M0 0 H44 V4 H0 Z", "M0 27 H44 V31 H0 Z", "M4 4 V60 M40 4 V60"],
-    desenhoAlt: "Elevação frontal do Carrinho Junco, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal do Carrinho Junco, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "mesa-de-apoio-luar",
     nome: "Mesa de Apoio Luar",
     medidas: { largura: 66, profundidade: 50, altura: 74 },
     corpo: ["M0 0 H66 V5 H0 Z", "M26 5 H40 V66 H26 Z", "M14 66 H52 V74 H14 Z"],
-    desenhoAlt: "Elevação frontal da Mesa de Apoio Luar, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Mesa de Apoio Luar, com as cotas de largura e altura",
   }),
 
   familiaComElevacao({
@@ -751,8 +873,14 @@ export const familias: FamiliaAutorada[] = [
     nome: "Escrivaninha Tramo",
     // Tramo is the aço carbono language: bent tube and one diagonal brace.
     medidas: { largura: 110, profundidade: 55, altura: 74 },
-    corpo: ["M0 0 H110 V4 H0 Z", "M6 4 V74 M104 4 V74", "M6 38 H104", "M6 74 L104 38"],
-    desenhoAlt: "Elevação frontal da Escrivaninha Tramo, com as cotas de largura e altura",
+    corpo: [
+      "M0 0 H110 V4 H0 Z",
+      "M6 4 V74 M104 4 V74",
+      "M6 38 H104",
+      "M6 74 L104 38",
+    ],
+    desenhoAlt:
+      "Elevação frontal da Escrivaninha Tramo, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "escrivaninha-vau",
@@ -760,7 +888,8 @@ export const familias: FamiliaAutorada[] = [
     // Vau is the span: two splayed trestles and nothing between the legs.
     medidas: { largura: 130, profundidade: 60, altura: 75 },
     corpo: ["M0 0 H130 V5 H0 Z", "M14 5 L4 75 M116 5 L126 75", "M9 40 H121"],
-    desenhoAlt: "Elevação frontal da Escrivaninha Vau, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Escrivaninha Vau, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "escrivaninha-cais",
@@ -775,7 +904,8 @@ export const familias: FamiliaAutorada[] = [
       "M5 5 V78",
       "M114 70 V78 M151 70 V78",
     ],
-    desenhoAlt: "Elevação frontal da Escrivaninha Cais, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Escrivaninha Cais, com as cotas de largura e altura",
   }),
 
   familiaComElevacao({
@@ -822,7 +952,8 @@ export const familias: FamiliaAutorada[] = [
       "M27 74 L8 86 M27 74 L46 86",
       "M8 86 V90 M46 86 V90",
     ],
-    desenhoAlt: "Elevação frontal da Cadeira de Trabalho Orla, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Cadeira de Trabalho Orla, com as cotas de largura e altura",
   }),
 
   familiaComElevacao({
@@ -831,7 +962,8 @@ export const familias: FamiliaAutorada[] = [
     // Four shelves in one bay — the narrow case, no divider.
     medidas: { largura: 90, profundidade: 32, altura: 160 },
     corpo: ["M0 0 H90 V160 H0 Z", "M0 40 H90 M0 76 H90 M0 112 H90 M0 148 H90"],
-    desenhoAlt: "Elevação frontal da Estante Bruma, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Estante Bruma, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "estante-vargem",
@@ -842,7 +974,8 @@ export const familias: FamiliaAutorada[] = [
       "M0 30 H110 M0 60 H110 M0 90 H110 M0 120 H110 M0 150 H110",
       "M55 0 V180",
     ],
-    desenhoAlt: "Elevação frontal da Estante Vargem, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Estante Vargem, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "estante-mirante",
@@ -854,7 +987,8 @@ export const familias: FamiliaAutorada[] = [
       "M0 28 H140 M0 56 H140 M0 84 H140 M0 112 H140 M0 140 H140 M0 168 H140",
       "M46 0 V200 M94 0 V200",
     ],
-    desenhoAlt: "Elevação frontal da Estante Mirante, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Estante Mirante, com as cotas de largura e altura",
   }),
 
   familiaComElevacao({
@@ -862,7 +996,8 @@ export const familias: FamiliaAutorada[] = [
     nome: "Luminária de Mesa Junco",
     medidas: { largura: 20, profundidade: 20, altura: 40 },
     corpo: ["M2 0 H18 L20 16 H0 Z", "M10 16 V37", "M4 37 H16 V40 H4 Z"],
-    desenhoAlt: "Elevação frontal da Luminária de Mesa Junco, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Luminária de Mesa Junco, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "luminaria-de-mesa-seixo",
@@ -870,15 +1005,22 @@ export const familias: FamiliaAutorada[] = [
     // Seixo is the pebble: a turned ceramic base under a short stem.
     medidas: { largura: 22, profundidade: 22, altura: 42 },
     corpo: ["M3 0 H19 L21 12 H1 Z", "M11 12 V26", "M4 42 C4 26 18 26 18 42 Z"],
-    desenhoAlt: "Elevação frontal da Luminária de Mesa Seixo, com as cotas de largura e altura",
+    desenhoAlt:
+      "Elevação frontal da Luminária de Mesa Seixo, com as cotas de largura e altura",
   }),
   familiaComElevacao({
     slug: "luminaria-de-mesa-farol",
     nome: "Luminária de Mesa Farol",
     // A closed four-face lantern, which is why the light only goes down.
     medidas: { largura: 26, profundidade: 26, altura: 50 },
-    corpo: ["M4 4 H22 V26 H4 Z", "M4 4 L13 0 L22 4", "M13 26 V44", "M6 44 H20 V50 H6 Z"],
-    desenhoAlt: "Elevação frontal da Luminária de Mesa Farol, com as cotas de largura e altura",
+    corpo: [
+      "M4 4 H22 V26 H4 Z",
+      "M4 4 L13 0 L22 4",
+      "M13 26 V44",
+      "M6 44 H20 V50 H6 Z",
+    ],
+    desenhoAlt:
+      "Elevação frontal da Luminária de Mesa Farol, com as cotas de largura e altura",
   }),
 ];
 
@@ -1748,7 +1890,9 @@ export const produtos: ProdutoAutorado[] = [
     colecoes: [],
     ordem: 29,
     precoTabela: 185000,
-    medidasExtras: [{ rotulo: "Quantidade de gavetas", valor: 1, unidade: "un" }],
+    medidasExtras: [
+      { rotulo: "Quantidade de gavetas", valor: 1, unidade: "un" },
+    ],
     disponibilidade: "envio-imediato",
     imagens: [
       {
@@ -1774,7 +1918,9 @@ export const produtos: ProdutoAutorado[] = [
     colecoes: [],
     ordem: 30,
     precoTabela: 230000,
-    medidasExtras: [{ rotulo: "Quantidade de gavetas", valor: 2, unidade: "un" }],
+    medidasExtras: [
+      { rotulo: "Quantidade de gavetas", valor: 2, unidade: "un" },
+    ],
     disponibilidade: "sob-encomenda",
     prazoProducaoSemanas: 3,
     imagens: [
@@ -1801,7 +1947,9 @@ export const produtos: ProdutoAutorado[] = [
     colecoes: [],
     ordem: 31,
     precoTabela: 168000,
-    medidasExtras: [{ rotulo: "Quantidade de gavetas", valor: 1, unidade: "un" }],
+    medidasExtras: [
+      { rotulo: "Quantidade de gavetas", valor: 1, unidade: "un" },
+    ],
     disponibilidade: "envio-imediato",
     imagens: [
       {
@@ -1827,7 +1975,9 @@ export const produtos: ProdutoAutorado[] = [
     colecoes: [],
     ordem: 32,
     precoTabela: 580000,
-    medidasExtras: [{ rotulo: "Quantidade de gavetas", valor: 5, unidade: "un" }],
+    medidasExtras: [
+      { rotulo: "Quantidade de gavetas", valor: 5, unidade: "un" },
+    ],
     disponibilidade: "sob-encomenda",
     prazoProducaoSemanas: 5,
     imagens: [
@@ -1854,7 +2004,9 @@ export const produtos: ProdutoAutorado[] = [
     colecoes: ["serra"],
     ordem: 33,
     precoTabela: 690000,
-    medidasExtras: [{ rotulo: "Quantidade de gavetas", valor: 6, unidade: "un" }],
+    medidasExtras: [
+      { rotulo: "Quantidade de gavetas", valor: 6, unidade: "un" },
+    ],
     disponibilidade: "sob-encomenda",
     prazoProducaoSemanas: 6,
     imagens: [
@@ -1881,7 +2033,9 @@ export const produtos: ProdutoAutorado[] = [
     colecoes: [],
     ordem: 34,
     precoTabela: 470000,
-    medidasExtras: [{ rotulo: "Quantidade de gavetas", valor: 4, unidade: "un" }],
+    medidasExtras: [
+      { rotulo: "Quantidade de gavetas", valor: 4, unidade: "un" },
+    ],
     disponibilidade: "esgotado",
     imagens: [
       {
@@ -2998,7 +3152,10 @@ export const artigos: Artigo[] = [
         src: unsplash("1555041469-a586c61ea9bc"),
         alt: "Escrivaninha estreita de freijó com a cadeira de carvalho recolhida sob o tampo",
         papel: "detalhe",
-        pecas: ["escrivaninha-vau-freijo", "cadeira-de-trabalho-ripado-carvalho"],
+        pecas: [
+          "escrivaninha-vau-freijo",
+          "cadeira-de-trabalho-ripado-carvalho",
+        ],
       },
     ],
     passagens: [
@@ -3036,7 +3193,7 @@ export const conteudoHome: ConteudoHome = {
     texto:
       "Cada peça é produzida sob encomenda na nossa marcenaria no interior de São Paulo, por uma equipe de nove marceneiros. Nada é feito antes de ser vendido, e é por isso que o prazo é contado em semanas. A madeira é maciça e certificada, os encaixes são de espiga e cavilha, e o acabamento leva uma demão por dia até fechar. O desenho é assinado por um dos oito designers do quadro, e o nome dele acompanha a peça.",
     imagem: {
-      src: unsplash("1601058268499-e52e4d8f8e0f"),
+      src: unsplash("1524758631624-e2822e304c36"),
       alt: "Bancada de marcenaria com peças em acabamento e ferramentas de mão",
     },
   },
